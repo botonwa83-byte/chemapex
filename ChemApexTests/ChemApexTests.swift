@@ -79,6 +79,26 @@ final class ChemApexTests: XCTestCase {
         XCTAssertEqual(DetectiveManager.stars(cluesRevealed: 2, wrongGuesses: 5), 1)
     }
 
+    /// 现象闪卡：ID 唯一；每个类别至少 4 种不同颜色名（保证凑得齐 4 个选项）。
+    func testFlashcardDataIntegrity() {
+        let ids = FlashcardData.all.map(\.id)
+        XCTAssertEqual(Set(ids).count, ids.count, "闪卡 ID 重复")
+        for category in FlashCategory.allCases {
+            let facts = FlashcardData.facts(in: category)
+            let distinctColors = Set(facts.map(\.colorName))
+            XCTAssertGreaterThanOrEqual(distinctColors.count, 4,
+                "类别 \(category.name) 颜色名不足 4 种，凑不齐选项")
+        }
+    }
+
+    /// 复习排期：答对升档（1→3→7→15→30→60 封顶），答错回到 1 天。
+    func testReviewSchedulerIntervals() {
+        XCTAssertEqual(ReviewScheduler.nextInterval(current: 0, correct: true).days, 3)
+        XCTAssertEqual(ReviewScheduler.nextInterval(current: 1, correct: true).days, 7)
+        XCTAssertEqual(ReviewScheduler.nextInterval(current: 5, correct: true).days, 60, "最高档封顶")
+        XCTAssertEqual(ReviewScheduler.nextInterval(current: 4, correct: false).days, 1, "答错重置")
+    }
+
     /// 元素与方程式数据完整性。
     func testAtlasDataIntegrity() {
         let numbers = ElementData.all.map(\.number)

@@ -18,8 +18,9 @@ struct ChemApexApp: App {
 
 struct MainTabView: View {
     @State private var selectedTab = 0
-    // 截图/UI 自动化用启动参数：-demoDetective 直接打开化学神探案件
+    // 截图/UI 自动化用启动参数：-demoDetective 化学神探案件；-demoFlashcards 现象闪卡对战
     @State private var demoDetective = ProcessInfo.processInfo.arguments.contains("-demoDetective")
+    @State private var demoFlashcards = ProcessInfo.processInfo.arguments.contains("-demoFlashcards")
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -44,6 +45,9 @@ struct MainTabView: View {
             if let first = DetectiveData.all.first {
                 NavigationStack { DetectiveCaseView(detectiveCase: first) }
             }
+        }
+        .fullScreenCover(isPresented: $demoFlashcards) {
+            NavigationStack { FlashcardGameView(category: .flame) }
         }
     }
 }
@@ -94,6 +98,21 @@ struct MoreView: View {
                 }
 
                 Section("我的练习") {
+                    NavigationLink { ReviewView() } label: {
+                        HStack {
+                            Label("智能复习", systemImage: "brain.head.profile")
+                            Spacer()
+                            if ReviewScheduler.shared.dueCount > 0 {
+                                Text("\(ReviewScheduler.shared.dueCount)")
+                                    .font(AppFont.chip).foregroundColor(.white)
+                                    .padding(.horizontal, 7).padding(.vertical, 2)
+                                    .background(Color.apexLava).clipShape(Capsule())
+                            }
+                        }
+                    }
+                    NavigationLink { FlashcardView() } label: {
+                        Label("现象闪卡 · 颜色快答", systemImage: "paintpalette")
+                    }
                     NavigationLink { ErrorBookView() } label: {
                         HStack {
                             Label("错题本", systemImage: "exclamationmark.triangle")

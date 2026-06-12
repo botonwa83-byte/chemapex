@@ -36,6 +36,8 @@ final class ProgressManager: ObservableObject {
         stats[problemId] = s
         touchToday()
         save()
+        // 同步进入艾宾浩斯复习排期
+        ReviewScheduler.shared.recordAnswer(problemId: problemId, correct: correct)
     }
 
     func toggleFlag(problemId: String) {
