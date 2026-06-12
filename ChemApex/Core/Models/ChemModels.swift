@@ -6,6 +6,7 @@ enum ChemTopic: String, Codable, CaseIterable, Identifiable {
     // 初中
     case phenomena        // 身边的化学·物质与变化
     case massConservation // 质量守恒与方程式
+    case acidBaseSalt     // 酸碱盐与金属活动性
     // 高中
     case mole             // 物质的量
     case ionReaction      // 离子反应
@@ -18,6 +19,7 @@ enum ChemTopic: String, Codable, CaseIterable, Identifiable {
     case solution         // 水溶液中的离子平衡
     case electrochem      // 电化学
     case organic          // 有机化学
+    case experiment       // 化学实验
     // 竞赛
     case structure        // 结构化学
 
@@ -27,6 +29,7 @@ enum ChemTopic: String, Codable, CaseIterable, Identifiable {
         switch self {
         case .phenomena:        return "物质与变化"
         case .massConservation: return "质量守恒"
+        case .acidBaseSalt:     return "酸碱盐"
         case .mole:             return "物质的量"
         case .ionReaction:      return "离子反应"
         case .redox:            return "氧化还原"
@@ -38,13 +41,14 @@ enum ChemTopic: String, Codable, CaseIterable, Identifiable {
         case .solution:         return "水溶液离子平衡"
         case .electrochem:      return "电化学"
         case .organic:          return "有机化学"
+        case .experiment:       return "化学实验"
         case .structure:        return "结构化学"
         }
     }
 
     var stage: Stage {
         switch self {
-        case .phenomena, .massConservation: return .junior
+        case .phenomena, .massConservation, .acidBaseSalt: return .junior
         case .structure: return .olympiad
         default: return .senior
         }
@@ -54,6 +58,7 @@ enum ChemTopic: String, Codable, CaseIterable, Identifiable {
         switch self {
         case .phenomena:        return "eye"
         case .massConservation: return "scalemass"
+        case .acidBaseSalt:     return "flask"
         case .mole:             return "number.circle"
         case .ionReaction:      return "drop"
         case .redox:            return "arrow.left.arrow.right"
@@ -65,6 +70,7 @@ enum ChemTopic: String, Codable, CaseIterable, Identifiable {
         case .solution:         return "testtube.2"
         case .electrochem:      return "bolt"
         case .organic:          return "hexagon"
+        case .experiment:       return "flask.fill"
         case .structure:        return "atom"
         }
     }

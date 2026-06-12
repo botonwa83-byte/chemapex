@@ -5,7 +5,18 @@ import Foundation
 // 全部方程式均已配平核对。
 
 enum EquationLibrary {
-    static let all: [ChemEquation] = junior + seniorMetal + seniorNonmetal
+    static let all: [ChemEquation] = {
+        var list: [ChemEquation] = []
+        list += junior
+        list += junior2
+        list += seniorMetal
+        list += seniorMetal2
+        list += seniorNonmetal
+        list += seniorNonmetal2
+        list += principles
+        list += organic
+        return list
+    }()
 
     static func equations(topic: ChemTopic) -> [ChemEquation] {
         all.filter { $0.topic == topic }
@@ -116,6 +127,56 @@ enum EquationLibrary {
             ionic: "2Fe³⁺ + Fe → 3Fe²⁺"),
     ]
 
+    // MARK: 高中篇 · 金属补全（铝三角 / 铁三角）
+
+    private static let seniorMetal2: [ChemEquation] = [
+        ChemEquation(
+            id: "eq_s21", stage: .senior, topic: .metals,
+            formula: "2Al + 2NaOH + 2H₂O → 2NaAlO₂ + 3H₂↑",
+            condition: "常温",
+            phenomenon: "铝溶解，产生大量气泡",
+            examPoint: "铝是中学唯一既溶于强酸又溶于强碱并放氢气的金属",
+            trap: "氧化剂是水不是 NaOH（H₂ 中的氢来自 H₂O 和 NaOH，化合价降低的是水中的 H）",
+            ionic: "2Al + 2OH⁻ + 2H₂O → 2AlO₂⁻ + 3H₂↑"),
+        ChemEquation(
+            id: "eq_s22", stage: .senior, topic: .metals,
+            formula: "Al(OH)₃ + 3HCl → AlCl₃ + 3H₂O；Al(OH)₃ + NaOH → NaAlO₂ + 2H₂O",
+            condition: "常温",
+            phenomenon: "白色沉淀溶解",
+            examPoint: "Al(OH)₃ 两性的正面证据：既溶于强酸又溶于强碱",
+            trap: "Al(OH)₃ 不溶于氨水——所以实验室用「铝盐 + 过量氨水」制 Al(OH)₃，不用 NaOH（过量会把沉淀溶掉）"),
+        ChemEquation(
+            id: "eq_s23", stage: .senior, topic: .metals,
+            formula: "4Fe(OH)₂ + O₂ + 2H₂O → 4Fe(OH)₃",
+            condition: "常温（空气中自发）",
+            phenomenon: "白色沉淀迅速变灰绿色，最终变红褐色",
+            examPoint: "「白→灰绿→红褐」三段变色是铁的标志性现象",
+            trap: "制备 Fe(OH)₂ 要隔绝空气：胶头滴管插入液面以下，液面覆煤油"),
+        ChemEquation(
+            id: "eq_s24", stage: .senior, topic: .metals,
+            formula: "3Fe + 4H₂O(g) → Fe₃O₄ + 4H₂",
+            condition: "高温",
+            phenomenon: "铁与水蒸气反应生成黑色固体和氢气",
+            examPoint: "铁与水蒸气反应生成 Fe₃O₄（不是 Fe₂O₃）",
+            trap: "常温下铁不与水反应；产物 Fe₃O₄ 中铁为 +2、+3 混合价"),
+        ChemEquation(
+            id: "eq_s25", stage: .senior, topic: .metals,
+            formula: "2FeCl₂ + Cl₂ → 2FeCl₃",
+            condition: "常温",
+            phenomenon: "溶液由浅绿色变黄色",
+            examPoint: "Fe²⁺ 的还原性；与 2FeCl₃ + Fe → 3FeCl₂ 组成铁三角循环",
+            trap: "保存 FeCl₂ 溶液要加铁钉（防氧化）；保存 FeCl₃ 溶液要加盐酸（防水解）",
+            ionic: "2Fe²⁺ + Cl₂ → 2Fe³⁺ + 2Cl⁻"),
+        ChemEquation(
+            id: "eq_s26", stage: .senior, topic: .metals,
+            formula: "Na₂CO₃ + HCl(少量) → NaHCO₃ + NaCl",
+            condition: "常温（向碳酸钠溶液中逐滴加盐酸）",
+            phenomenon: "开始无气泡，盐酸过量后才放出气泡",
+            examPoint: "滴加顺序决定现象：可用于不加试剂鉴别 Na₂CO₃ 与盐酸",
+            trap: "盐酸足量时一步到位：Na₂CO₃ + 2HCl → 2NaCl + H₂O + CO₂↑；反过来把 Na₂CO₃ 滴入盐酸则立即冒泡",
+            ionic: "CO₃²⁻ + H⁺ → HCO₃⁻"),
+    ]
+
     // MARK: 高中篇 · 非金属与工业
 
     private static let seniorNonmetal: [ChemEquation] = [
@@ -198,5 +259,193 @@ enum EquationLibrary {
             phenomenon: "固体减少，产生使澄清石灰水变浑浊的气体",
             examPoint: "Na₂CO₃ 与 NaHCO₃ 鉴别（加热法）；差量法素材",
             trap: "Na₂CO₃ 受热不分解——稳定性：正盐 > 酸式盐"),
+    ]
+
+    // MARK: 初中篇 · 气体制取与酸碱盐
+
+    private static let junior2: [ChemEquation] = [
+        ChemEquation(
+            id: "eq_j05", stage: .junior, topic: .phenomena,
+            formula: "2KMnO₄ → K₂MnO₄ + MnO₂ + O₂↑",
+            condition: "Δ（加热）",
+            phenomenon: "紫黑色固体分解，产生使带火星木条复燃的气体",
+            examPoint: "实验室制氧气；试管口略向下倾斜，管口塞一团棉花",
+            trap: "用排水法收集时，先撤导管再熄灯——防止水倒吸炸裂试管"),
+        ChemEquation(
+            id: "eq_j06", stage: .junior, topic: .acidBaseSalt,
+            formula: "CaCO₃ + 2HCl → CaCl₂ + H₂O + CO₂↑",
+            condition: "常温",
+            phenomenon: "固体溶解，产生大量气泡",
+            examPoint: "实验室制 CO₂（大理石 + 稀盐酸）",
+            trap: "不能用稀硫酸——生成微溶的 CaSO₄ 覆盖在大理石表面使反应停止；不能用浓盐酸——挥发的 HCl 混入气体"),
+        ChemEquation(
+            id: "eq_j07", stage: .junior, topic: .acidBaseSalt,
+            formula: "Zn + H₂SO₄(稀) → ZnSO₄ + H₂↑",
+            condition: "常温",
+            phenomenon: "锌粒溶解，产生气泡",
+            examPoint: "实验室制氢气；金属活动性「氢前置换氢」",
+            trap: "选锌是速率适中：镁太快、铁太慢"),
+        ChemEquation(
+            id: "eq_j08", stage: .junior, topic: .massConservation,
+            formula: "Fe₂O₃ + 3CO → 2Fe + 3CO₂",
+            condition: "高温",
+            phenomenon: "红棕色粉末逐渐变黑（工业高炉炼铁）",
+            examPoint: "CO 的还原性；工业炼铁原理",
+            trap: "CO 有毒，尾气必须点燃处理；「还原剂是 CO 不是 C」"),
+        ChemEquation(
+            id: "eq_j09", stage: .junior, topic: .acidBaseSalt,
+            formula: "NaOH + HCl → NaCl + H₂O",
+            condition: "常温",
+            phenomenon: "无明显现象（需借助指示剂判断）",
+            examPoint: "中和反应；酸碱性变化用酚酞/石蕊跟踪",
+            trap: "无现象 ≠ 不反应——「如何证明中和发生了」是经典实验设计题"),
+        ChemEquation(
+            id: "eq_j10", stage: .junior, topic: .acidBaseSalt,
+            formula: "CaO + H₂O → Ca(OH)₂",
+            condition: "常温",
+            phenomenon: "剧烈反应，放出大量热（可使水沸腾）",
+            examPoint: "生石灰作干燥剂/自热食品热源；石灰三兄弟转化链",
+            trap: "CaO 叫生石灰、Ca(OH)₂ 叫熟石灰（消石灰）、CaCO₃ 是石灰石——名字别混"),
+    ]
+
+    // MARK: 高中篇 · 非金属补全（硫氮硅与工业链）
+
+    private static let seniorNonmetal2: [ChemEquation] = [
+        ChemEquation(
+            id: "eq_s27", stage: .senior, topic: .nonmetals,
+            formula: "SO₂ + H₂O ⇌ H₂SO₃",
+            condition: "常温（可逆）",
+            phenomenon: "气体溶解，溶液能使石蕊变红",
+            examPoint: "SO₂ 是酸性氧化物；酸雨的成因之一",
+            trap: "SO₂ 使石蕊「变红不褪色」——SO₂ 的漂白对石蕊无效，这是与氯水的重要区别"),
+        ChemEquation(
+            id: "eq_s28", stage: .senior, topic: .nonmetals,
+            formula: "2SO₂ + O₂ ⇌ 2SO₃",
+            condition: "催化剂、Δ（接触法）",
+            phenomenon: "工业制硫酸的关键一步",
+            examPoint: "可逆反应；接触法制硫酸：S/FeS₂ → SO₂ → SO₃ → H₂SO₄",
+            trap: "SO₃ 用 98.3% 浓硫酸吸收而不用水——防止形成酸雾"),
+        ChemEquation(
+            id: "eq_s29", stage: .senior, topic: .nonmetals,
+            formula: "N₂ + O₂ → 2NO",
+            condition: "放电或高温",
+            phenomenon: "「雷雨发庄稼」的第一步",
+            examPoint: "氮的固定（自然固氮）；N₂ 三键稳定需要苛刻条件",
+            trap: "直接产物是 NO 不是 NO₂——氮氧化物链条要一步步走"),
+        ChemEquation(
+            id: "eq_s30", stage: .senior, topic: .nonmetals,
+            formula: "2NO + O₂ → 2NO₂",
+            condition: "常温",
+            phenomenon: "无色气体变红棕色",
+            examPoint: "NO 的检验方法（接触空气变色）",
+            trap: "颜色变化是 NO 的「身份证」；收集 NO 只能排水法"),
+        ChemEquation(
+            id: "eq_s31", stage: .senior, topic: .nonmetals,
+            formula: "3NO₂ + H₂O → 2HNO₃ + NO",
+            condition: "常温",
+            phenomenon: "红棕色气体被水吸收，剩余约 1/3 体积无色气体",
+            examPoint: "工业制硝酸最后一步；歧化反应（N 从 +4 到 +5 和 +2）",
+            trap: "NO₂ 溶于水「不全吸收」——剩下 1/3 的 NO，气体体积计算高频考点"),
+        ChemEquation(
+            id: "eq_s32", stage: .senior, topic: .nonmetals,
+            formula: "NH₃ + HCl → NH₄Cl",
+            condition: "常温（气体相遇）",
+            phenomenon: "产生大量白烟",
+            examPoint: "蘸浓盐酸与浓氨水的玻璃棒互相靠近冒白烟——检验 NH₃ 或 HCl",
+            trap: "「白烟」是 NH₄Cl 固体小颗粒，不是「白雾」（雾是小液滴）"),
+        ChemEquation(
+            id: "eq_s33", stage: .senior, topic: .nonmetals,
+            formula: "SiO₂ + 4HF → SiF₄↑ + 2H₂O",
+            condition: "常温",
+            phenomenon: "玻璃被腐蚀",
+            examPoint: "氢氟酸刻蚀玻璃；HF 保存在塑料瓶中",
+            trap: "SiO₂ 是酸性氧化物却与酸（HF）反应——特例中的特例"),
+        ChemEquation(
+            id: "eq_s34", stage: .senior, topic: .nonmetals,
+            formula: "2Cl₂ + 2Ca(OH)₂ → Ca(ClO)₂ + CaCl₂ + 2H₂O",
+            condition: "常温（石灰乳）",
+            phenomenon: "工业制漂白粉",
+            examPoint: "漂白粉有效成分是 Ca(ClO)₂；使用时与 CO₂、水反应生成 HClO",
+            trap: "漂白粉久置失效：Ca(ClO)₂ 与空气中 CO₂、水反应生成 HClO，HClO 见光分解"),
+    ]
+
+    // MARK: 原理篇（热化学 / 水解 / 电极反应）
+
+    private static let principles: [ChemEquation] = [
+        ChemEquation(
+            id: "eq_p01", stage: .senior, topic: .energy,
+            formula: "2H₂(g) + O₂(g) = 2H₂O(l)　ΔH = −571.6 kJ/mol",
+            condition: "热化学方程式（25℃，101 kPa）",
+            phenomenon: "氢气燃烧热 285.8 kJ/mol 的规范表达",
+            examPoint: "热化学方程式三要素：聚集态、ΔH 符号与单位、系数表示物质的量",
+            trap: "系数翻倍 ΔH 也翻倍；燃烧热必须对应液态水"),
+        ChemEquation(
+            id: "eq_p02", stage: .senior, topic: .solution,
+            formula: "FeCl₃ + 3H₂O ⇌ Fe(OH)₃ + 3HCl",
+            condition: "常温（水解，加热促进）",
+            phenomenon: "FeCl₃ 溶液显酸性、呈黄色",
+            examPoint: "盐类水解的代表；FeCl₃ 净水原理（水解生成的 Fe(OH)₃ 胶体吸附杂质）",
+            trap: "制 Fe(OH)₃ 胶体的写法不同：饱和 FeCl₃ 溶液滴入沸水，用 → 并标「(胶体)」"),
+        ChemEquation(
+            id: "eq_p03", stage: .senior, topic: .electrochem,
+            formula: "负极：2H₂ + 4OH⁻ − 4e⁻ → 4H₂O；正极：O₂ + 2H₂O + 4e⁻ → 4OH⁻",
+            condition: "氢氧燃料电池（KOH 电解质）",
+            phenomenon: "总反应即氢气燃烧：2H₂ + O₂ → 2H₂O",
+            examPoint: "燃料电池电极反应式：燃料在负极失电子，O₂ 在正极得电子",
+            trap: "电解质环境决定写法：碱性写 OH⁻、酸性写 H⁺——两极相加必须能消去电子得总反应"),
+    ]
+
+    // MARK: 有机篇（必修有机全链条）
+
+    private static let organic: [ChemEquation] = [
+        ChemEquation(
+            id: "eq_o01", stage: .senior, topic: .organic,
+            formula: "CH₄ + Cl₂ → CH₃Cl + HCl",
+            condition: "光照",
+            phenomenon: "黄绿色变浅，容器内壁出现油状液滴",
+            examPoint: "取代反应的代表；实际产物是四种氯代物与 HCl 的混合物",
+            trap: "光照是必要条件——黑暗中不反应；CH₃Cl 是气体，油状液滴是多氯代物"),
+        ChemEquation(
+            id: "eq_o02", stage: .senior, topic: .organic,
+            formula: "CH₂=CH₂ + Br₂ → CH₂BrCH₂Br",
+            condition: "常温",
+            phenomenon: "溴水（或溴的 CCl₄ 溶液）褪色",
+            examPoint: "加成反应的代表；鉴别烷烃与烯烃的标准方法",
+            trap: "苯也能使溴水「褪色」但那是萃取（物理过程）——褪色不一定是加成"),
+        ChemEquation(
+            id: "eq_o03", stage: .senior, topic: .organic,
+            formula: "CH₂=CH₂ + H₂O → CH₃CH₂OH",
+            condition: "催化剂、加温加压",
+            phenomenon: "工业制乙醇（乙烯水化法）",
+            examPoint: "加成反应；与「粮食酿酒」的生物路线对比",
+            trap: "水化是加成不是取代——双键打开，H 和 OH 各加一边"),
+        ChemEquation(
+            id: "eq_o04", stage: .senior, topic: .organic,
+            formula: "2CH₃CH₂OH + O₂ → 2CH₃CHO + 2H₂O",
+            condition: "Cu 或 Ag 催化、Δ",
+            phenomenon: "铜丝灼烧变黑，插入乙醇恢复亮红色",
+            examPoint: "醇的催化氧化：脱去羟基氢和 α-碳上的氢",
+            trap: "铜丝「黑→红」循环说明 Cu 是催化剂；乙醇→乙醛→乙酸是氧化链条"),
+        ChemEquation(
+            id: "eq_o05", stage: .senior, topic: .organic,
+            formula: "CH₃COOH + C₂H₅OH ⇌ CH₃COOC₂H₅ + H₂O",
+            condition: "浓硫酸、Δ（可逆）",
+            phenomenon: "饱和碳酸钠溶液液面上出现透明油状物，有香味",
+            examPoint: "酯化反应：酸脱羟基醇脱氢（同位素 ¹⁸O 示踪证明）",
+            trap: "导管不插入液面以下（防倒吸）；Na₂CO₃ 溶液三作用：吸乙醇、除乙酸、降低酯的溶解度"),
+        ChemEquation(
+            id: "eq_o06", stage: .senior, topic: .organic,
+            formula: "2CH₃CH₂OH + 2Na → 2CH₃CH₂ONa + H₂↑",
+            condition: "常温",
+            phenomenon: "钠沉在乙醇底部，缓慢放出气泡",
+            examPoint: "与钠和水反应「浮、剧烈」对比：羟基氢不如水中的氢活泼",
+            trap: "钠在乙醇中「沉底、缓慢」、在水中「上浮、剧烈」——密度与活性双重对比"),
+        ChemEquation(
+            id: "eq_o07", stage: .senior, topic: .organic,
+            formula: "nCH₂=CH₂ → ₋[CH₂—CH₂]ₙ₋",
+            condition: "催化剂（加聚反应）",
+            phenomenon: "工业制聚乙烯（塑料袋、保鲜膜）",
+            examPoint: "加聚反应：双键打开、首尾相连；聚乙烯分子中无双键",
+            trap: "聚乙烯不能使溴水褪色（双键已消耗）；食品保鲜膜用聚乙烯，聚氯乙烯不能包食品"),
     ]
 }

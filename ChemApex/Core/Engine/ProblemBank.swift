@@ -17,7 +17,7 @@ enum ProblemBank {
 
     // MARK: 常规题（分批声明，避免单个数组字面量过大拖慢类型检查）
 
-    static let regular: [ChemProblem] = juniorBatch + seniorBatch1 + seniorBatch2
+    static let regular: [ChemProblem] = juniorBatch + seniorBatch1 + seniorBatch2 + expansionBatch
 
     private static let juniorBatch: [ChemProblem] = [
 
@@ -268,7 +268,7 @@ enum ProblemBank {
             explanation: "乙烯含碳碳双键，能与 Br₂ 发生加成使溴的 CCl₄ 溶液褪色，甲烷不能。酸性高锰酸钾也可鉴别（乙烯使其褪色），但会把乙烯氧化成 CO₂，不能用于「除杂」——鉴别与除杂的试剂选择经常对比考。",
             nodeId: "n12"),
 
-        // ===== N13 结构之眼（竞赛预告） =====
+        // ===== 结构之眼（竞赛预告） =====
         ChemProblem(
             id: "p_oly_01", stage: .olympiad, topic: .structure,
             content: "基态碳原子（C，原子序数 6）的电子排布式是？",
@@ -276,5 +276,79 @@ enum ProblemBank {
             answerIndex: 0,
             explanation: "按能量最低原理依次填充：1s² → 2s² → 2p²。每个 s 能级最多 2 个电子，2p² 的两个电子按洪特规则分占两个轨道且自旋平行。这是结构化学的入口。",
             nodeId: "n13"),
+    ]
+
+    // MARK: 覆盖补强批次（酸碱盐 / 实验 / 热化学 / 水解 / 酯化）
+
+    private static let expansionBatch: [ChemProblem] = [
+
+        // ===== 酸碱盐 · 物质的家谱（初中） =====
+        ChemProblem(
+            id: "p_jr_07", stage: .junior, topic: .acidBaseSalt,
+            content: "下列物质能使紫色石蕊试液变红的是？",
+            options: ["NaOH 溶液", "稀盐酸", "食盐水", "蒸馏水"],
+            answerIndex: 1,
+            explanation: "石蕊遇酸变红、遇碱变蓝；酚酞遇碱变红、遇酸不变色。「酸红碱蓝」是指示剂的基本功，食盐水和蒸馏水呈中性，不变色。",
+            nodeId: "n02x"),
+        ChemProblem(
+            id: "p_jr_08", stage: .junior, topic: .acidBaseSalt,
+            content: "下列金属中，能与稀盐酸反应放出氢气的是？",
+            options: ["铜", "银", "铁", "金"],
+            answerIndex: 2,
+            explanation: "金属活动性顺序中排在氢前面的金属才能置换出酸中的氢。铁排在氢前，铜、银、金都在氢后。「氢前置换氢」是判断依据。",
+            nodeId: "n02x"),
+        ChemProblem(
+            id: "p_jr_09", stage: .junior, topic: .acidBaseSalt,
+            content: "下列两种溶液混合后，能发生复分解反应的是？",
+            options: ["NaCl 与 KNO₃", "BaCl₂ 与 Na₂SO₄", "NaOH 与 KCl", "稀盐酸与 Na₂SO₄"],
+            answerIndex: 1,
+            explanation: "复分解反应发生的条件：生成沉淀、气体或水（至少其一）。BaCl₂ + Na₂SO₄ → BaSO₄↓（白色沉淀）+ 2NaCl 满足条件；其余组合交换成分后没有沉淀、气体或水生成。",
+            nodeId: "n02x"),
+
+        // ===== 化学实验 · 真理的裁判所（高中） =====
+        ChemProblem(
+            id: "p_exp_01", stage: .senior, topic: .experiment,
+            content: "从碘水中提取碘单质，应选用的分离操作是？",
+            options: ["过滤", "蒸发结晶", "加 CCl₄ 萃取后分液", "直接蒸馏"],
+            answerIndex: 2,
+            explanation: "碘在 CCl₄ 中的溶解度远大于在水中，且 CCl₄ 与水互不相溶——满足萃取剂两条件。萃取后分液，下层紫红色为碘的 CCl₄ 溶液。过滤分离固液、蒸馏分离沸点不同的互溶液体，都不适用。",
+            nodeId: "n12x"),
+        ChemProblem(
+            id: "p_exp_02", stage: .senior, topic: .experiment,
+            content: "检验某溶液中含有 SO₄²⁻，正确的操作顺序是？",
+            options: ["直接加 BaCl₂ 溶液，看是否有白色沉淀", "先加足量稀盐酸无明显现象，再加 BaCl₂ 溶液，产生白色沉淀", "先加稀硝酸，再加 AgNO₃ 溶液", "加 NaOH 溶液并加热"],
+            answerIndex: 1,
+            explanation: "直接加 BaCl₂ 无法排除 CO₃²⁻、SO₃²⁻、Ag⁺ 的干扰（它们也生成白色沉淀）。先加足量稀盐酸：排除上述干扰离子且无沉淀生成，再加 BaCl₂ 出现白色沉淀，才能确认 SO₄²⁻。「先排干扰，再下结论」是检验题的总原则。",
+            nodeId: "n12x"),
+        ChemProblem(
+            id: "p_exp_03", stage: .senior, topic: .experiment,
+            content: "下列气体中，只能用排水法收集的是？",
+            options: ["NH₃", "NO", "NO₂", "HCl"],
+            answerIndex: 1,
+            explanation: "NO 难溶于水但遇空气立即被氧化成 NO₂，不能排空气，只能排水收集。NH₃、HCl 极易溶于水不能排水；NO₂ 与水反应（3NO₂ + H₂O → 2HNO₃ + NO）也不能排水。收集方法 = 溶解性 + 密度 + 是否与水/空气反应三重判断。",
+            nodeId: "n12x"),
+
+        // ===== 热化学 / 水解 / 酯化（补强既有节点） =====
+        ChemProblem(
+            id: "p_sr_26", stage: .senior, topic: .energy,
+            content: "已知氢气的燃烧热为 285.8 kJ/mol，下列热化学方程式书写正确的是？",
+            options: ["2H₂ + O₂ = 2H₂O　ΔH = −571.6 kJ/mol", "H₂(g) + ½O₂(g) = H₂O(g)　ΔH = −285.8 kJ/mol", "H₂(g) + ½O₂(g) = H₂O(l)　ΔH = −285.8 kJ/mol", "H₂(g) + ½O₂(g) = H₂O(l)　ΔH = +285.8 kJ/mol"],
+            answerIndex: 2,
+            explanation: "热化学方程式三查：①标聚集态（g/l/s）②ΔH 带正负号 ③燃烧热对应生成液态水。A 缺聚集态；B 错在生成气态水（燃烧热定义要求稳定氧化物，水为液态）；D 放热反应 ΔH 应为负。",
+            nodeId: "n09"),
+        ChemProblem(
+            id: "p_sr_27", stage: .senior, topic: .solution,
+            content: "常温下 0.1 mol/L Na₂CO₃ 溶液显碱性，其主要原因是？",
+            options: ["Na⁺ 发生水解", "CO₃²⁻ 结合水电离出的 H⁺，使 c(OH⁻) > c(H⁺)", "Na₂CO₃ 电离出 OH⁻", "溶液中没有 H⁺"],
+            answerIndex: 1,
+            explanation: "CO₃²⁻ 是弱酸根，发生水解：CO₃²⁻ + H₂O ⇌ HCO₃⁻ + OH⁻，消耗 H⁺、积累 OH⁻，溶液显碱性。口诀「有弱才水解，谁强显谁性」；Na⁺ 是强碱阳离子不水解；盐本身不电离出 OH⁻。",
+            nodeId: "n10"),
+        ChemProblem(
+            id: "p_sr_28", stage: .senior, topic: .organic,
+            content: "实验室制乙酸乙酯（乙酸 + 乙醇，浓硫酸共热），浓硫酸的作用是？",
+            options: ["只作催化剂", "只作吸水剂", "催化剂和吸水剂", "氧化剂"],
+            answerIndex: 2,
+            explanation: "酯化反应可逆：CH₃COOH + C₂H₅OH ⇌ CH₃COOC₂H₅ + H₂O。浓硫酸既加快反应（催化剂），又吸收生成的水使平衡正移（吸水剂），一身二职。另注意：导管不能插入饱和碳酸钠溶液液面以下（防倒吸）。",
+            nodeId: "n12"),
     ]
 }
