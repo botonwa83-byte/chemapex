@@ -18,6 +18,8 @@ struct ChemApexApp: App {
 
 struct MainTabView: View {
     @State private var selectedTab = 0
+    // 截图/UI 自动化用启动参数：-demoDetective 直接打开化学神探案件
+    @State private var demoDetective = ProcessInfo.processInfo.arguments.contains("-demoDetective")
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -38,6 +40,11 @@ struct MainTabView: View {
                 .tag(3)
         }
         .tint(.apexLava)
+        .fullScreenCover(isPresented: $demoDetective) {
+            if let first = DetectiveData.all.first {
+                NavigationStack { DetectiveCaseView(detectiveCase: first) }
+            }
+        }
     }
 }
 
@@ -67,6 +74,14 @@ struct MoreView: View {
                 Section("秒杀武器") {
                     NavigationLink { DescentView() } label: {
                         Label("守恒之眼 · 双解对决", systemImage: "eye")
+                    }
+                    NavigationLink { DetectiveView() } label: {
+                        HStack {
+                            Label("化学神探 · 推断破案", systemImage: "magnifyingglass")
+                            Spacer()
+                            Text("\(DetectiveManager.shared.solvedCount)/\(DetectiveData.all.count)")
+                                .font(AppFont.chip).foregroundColor(.secondary)
+                        }
                     }
                     NavigationLink { WeaponShelfView() } label: {
                         HStack {

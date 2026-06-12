@@ -58,6 +58,27 @@ final class ChemApexTests: XCTestCase {
         }
     }
 
+    /// 化学神探案件完整性：答案下标合法、线索 ≥3、嫌疑人不重复、星级规则单调。
+    func testDetectiveCasesIntegrity() {
+        XCTAssertFalse(DetectiveData.all.isEmpty)
+        let ids = DetectiveData.all.map(\.id)
+        XCTAssertEqual(Set(ids).count, ids.count, "案件 ID 重复")
+        for c in DetectiveData.all {
+            XCTAssertTrue(c.suspects.indices.contains(c.answerIndex), "案件 \(c.id) 答案下标越界")
+            XCTAssertGreaterThanOrEqual(c.clues.count, 3, "案件 \(c.id) 线索太少")
+            XCTAssertEqual(Set(c.suspects).count, c.suspects.count, "案件 \(c.id) 嫌疑人重复")
+            XCTAssertFalse(c.verdict.isEmpty, "案件 \(c.id) 缺结案陈词")
+            for clue in c.clues {
+                XCTAssertFalse(clue.deduction.isEmpty, "线索 \(clue.id) 缺推理价值")
+            }
+        }
+        // 星级规则：2 条线索零失误 = 3 星；错猜降星但保底 1 星
+        XCTAssertEqual(DetectiveManager.stars(cluesRevealed: 2, wrongGuesses: 0), 3)
+        XCTAssertEqual(DetectiveManager.stars(cluesRevealed: 3, wrongGuesses: 0), 2)
+        XCTAssertEqual(DetectiveManager.stars(cluesRevealed: 4, wrongGuesses: 0), 1)
+        XCTAssertEqual(DetectiveManager.stars(cluesRevealed: 2, wrongGuesses: 5), 1)
+    }
+
     /// 元素与方程式数据完整性。
     func testAtlasDataIntegrity() {
         let numbers = ElementData.all.map(\.number)

@@ -7,12 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05B0DAF6553653E1EE25F5C1 /* DetectiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B21BD363A6BC0B1B3779CE3 /* DetectiveView.swift */; };
 		12F9980D6869A3FBC5C32B87 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD1B2BD5EEF4F749E69B12B /* ProfileView.swift */; };
 		17131E797F21970687F0D9EE /* AtlasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D149BF064FE1C74041A2C2A /* AtlasView.swift */; };
 		17B8ADFA1355C62B2094AC74 /* EquationLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B89530B64C7D480B203B15 /* EquationLibraryView.swift */; };
 		20C184C78F00CD6CEB3726E1 /* LoreViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0139E5D4E13BB63746A218 /* LoreViews.swift */; };
 		3158BF6BD4D259BEC3BA1E7B /* LearningNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B045497FE83B5D48B7EC1 /* LearningNode.swift */; };
 		3F2A2CC4A635852968247702 /* ElementData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB6B715BD929366D631F0F6 /* ElementData.swift */; };
+		43AE5E0CACCB58A208077EF3 /* Detective.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B583F2F4DB4F0D710ED2EF /* Detective.swift */; };
+		44335065492C03A4EFEC8552 /* DetectiveData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9D8698B41DB7321B52D33C /* DetectiveData.swift */; };
 		49A064CB5FA3E084B508F7E7 /* ProgressManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84E91E6228EF266A56B6F48 /* ProgressManager.swift */; };
 		6AF19FC8A19ED49EBCBC73FA /* Stage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C716BE99074F201478CCB85E /* Stage.swift */; };
 		6FB4C5AA918D53C8F805ED4C /* StudentProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0D54B6141EB1A6C1C34EF7 /* StudentProfile.swift */; };
@@ -56,7 +59,9 @@
 		2CE19B8D8E8A24982BEE23B0 /* ProblemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemDetailView.swift; sourceTree = "<group>"; };
 		380C21F86BAA84B63C32506B /* Element.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
 		3850E04270D572926CAC8FF8 /* ChemApexApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChemApexApp.swift; sourceTree = "<group>"; };
+		3B21BD363A6BC0B1B3779CE3 /* DetectiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectiveView.swift; sourceTree = "<group>"; };
 		56D15DF74F566562536B34E7 /* ThemeColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColors.swift; sourceTree = "<group>"; };
+		57B583F2F4DB4F0D710ED2EF /* Detective.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detective.swift; sourceTree = "<group>"; };
 		5E44FC3818EA27F820D90E29 /* DescentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescentView.swift; sourceTree = "<group>"; };
 		621F89CFE36C183A0B89427F /* ChemApex.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = ChemApex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7015CFAAAC13062019705FB3 /* Lore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lore.swift; sourceTree = "<group>"; };
@@ -65,6 +70,7 @@
 		826D2B8FFED04BD231BCA72B /* NodeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeDetailView.swift; sourceTree = "<group>"; };
 		8327AB579289C7DBECCFC7E2 /* LoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoreData.swift; sourceTree = "<group>"; };
 		865B045497FE83B5D48B7EC1 /* LearningNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningNode.swift; sourceTree = "<group>"; };
+		8E9D8698B41DB7321B52D33C /* DetectiveData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectiveData.swift; sourceTree = "<group>"; };
 		939AAE4513B8D671F3214A70 /* EquationLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquationLibrary.swift; sourceTree = "<group>"; };
 		9B0D54B6141EB1A6C1C34EF7 /* StudentProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentProfile.swift; sourceTree = "<group>"; };
 		A81598C2BCACA59774AFBA3B /* AscentPathView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AscentPathView.swift; sourceTree = "<group>"; };
@@ -159,6 +165,14 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
+		859CACB09CCA4DDC9282FD6D /* Detective */ = {
+			isa = PBXGroup;
+			children = (
+				3B21BD363A6BC0B1B3779CE3 /* DetectiveView.swift */,
+			);
+			path = Detective;
+			sourceTree = "<group>";
+		};
 		A1CE2DF953E492E0CF4EE298 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -201,6 +215,7 @@
 			children = (
 				D3710480DEAE2DD92C4F6DCD /* ChemEquation.swift */,
 				7572800DD69E2F6B2C990B6A /* ChemModels.swift */,
+				57B583F2F4DB4F0D710ED2EF /* Detective.swift */,
 				380C21F86BAA84B63C32506B /* Element.swift */,
 				865B045497FE83B5D48B7EC1 /* LearningNode.swift */,
 				7015CFAAAC13062019705FB3 /* Lore.swift */,
@@ -214,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				12B8783B53EBE1B1B4F3E72E /* DescentCases.swift */,
+				8E9D8698B41DB7321B52D33C /* DetectiveData.swift */,
 				7AB6B715BD929366D631F0F6 /* ElementData.swift */,
 				939AAE4513B8D671F3214A70 /* EquationLibrary.swift */,
 				8327AB579289C7DBECCFC7E2 /* LoreData.swift */,
@@ -238,6 +254,7 @@
 				55035E333EA9B81EDDD80E2F /* AscentPath */,
 				09018ED662D0132F79299FE4 /* Atlas */,
 				A7834CFE12FB6D3ED9DA8E40 /* Descent */,
+				859CACB09CCA4DDC9282FD6D /* Detective */,
 				A5A9156CA5FAB16BC2890AF0 /* Lab */,
 				660A8A77B6AE077DD2D9BBB1 /* Lore */,
 				3ED9F8B4A02C0A82CEC7D11A /* Profile */,
@@ -347,6 +364,9 @@
 				C262BBC53C1314FD1F16A36F /* DescentCases.swift in Sources */,
 				7057FE2AA5882B83468B060C /* DescentView.swift in Sources */,
 				E67694B93B2AEE5DD77A5F16 /* DesignSystem.swift in Sources */,
+				43AE5E0CACCB58A208077EF3 /* Detective.swift in Sources */,
+				44335065492C03A4EFEC8552 /* DetectiveData.swift in Sources */,
+				05B0DAF6553653E1EE25F5C1 /* DetectiveView.swift in Sources */,
 				EC0230FE6FF68D40FBABC77F /* Element.swift in Sources */,
 				3F2A2CC4A635852968247702 /* ElementData.swift in Sources */,
 				7B1B239255B1E673B7E12233 /* EquationLibrary.swift in Sources */,
