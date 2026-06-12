@@ -350,5 +350,42 @@ enum ProblemBank {
             answerIndex: 2,
             explanation: "酯化反应可逆：CH₃COOH + C₂H₅OH ⇌ CH₃COOC₂H₅ + H₂O。浓硫酸既加快反应（催化剂），又吸收生成的水使平衡正移（吸水剂），一身二职。另注意：导管不能插入饱和碳酸钠溶液液面以下（防倒吸）。",
             nodeId: "n12"),
+
+        // ===== 阶段 A 补全（周期律 / 电化学应用 / 有机检验 / 结构） =====
+        ChemProblem(
+            id: "p_sr_29", stage: .senior, topic: .periodicLaw,
+            content: "锂、钠、钾分别与水反应，剧烈程度的变化规律是？",
+            options: ["依次减弱", "依次增强", "先增强后减弱", "完全相同"],
+            answerIndex: 1,
+            explanation: "同主族从上到下金属性增强：Li 与水反应缓慢，Na 熔成小球四处游动，K 反应剧烈甚至燃烧（紫色火焰）。「同主族向下越来越猛」是周期律最直观的体现。",
+            nodeId: "n08"),
+        ChemProblem(
+            id: "p_sr_30", stage: .senior, topic: .electrochem,
+            content: "钢铁在潮湿的中性环境中主要发生吸氧腐蚀，其正极反应式是？",
+            options: ["2H⁺ + 2e⁻ → H₂↑", "O₂ + 2H₂O + 4e⁻ → 4OH⁻", "Fe − 2e⁻ → Fe²⁺", "Fe − 3e⁻ → Fe³⁺"],
+            answerIndex: 1,
+            explanation: "中性/弱酸性潮湿环境下是吸氧腐蚀：正极上 O₂ 得电子；负极 Fe − 2e⁻ → Fe²⁺（注意是 +2 价）。析氢腐蚀（A）只在较强酸性环境发生。C 是负极反应不是正极。",
+            nodeId: "n11"),
+        ChemProblem(
+            id: "p_sr_31", stage: .senior, topic: .organic,
+            content: "检验某有机物中含有醛基，最合适的方法是？",
+            options: ["加 NaOH 溶液，观察是否变色", "加入银氨溶液，水浴加热，看是否出现光亮银镜", "加入 NaCl 溶液，看是否有沉淀", "滴入酚酞，看是否变红"],
+            answerIndex: 1,
+            explanation: "醛基的两大检验法：①银氨溶液水浴加热出银镜 ②新制 Cu(OH)₂ 加热出砖红色 Cu₂O 沉淀。两者都利用醛基的还原性。注意操作细节：银镜反应必须水浴，不能直接加热。",
+            nodeId: "n12"),
+        ChemProblem(
+            id: "p_oly_02", stage: .olympiad, topic: .structure,
+            content: "下列分子中，中心原子采取 sp 杂化的是？",
+            options: ["CH₄", "NH₃", "CO₂", "H₂O"],
+            answerIndex: 2,
+            explanation: "CO₂ 直线形，碳原子 2 个 σ 键、无孤对电子，sp 杂化。CH₄（4 个 σ 键）、NH₃（3 σ + 1 孤对）、H₂O（2 σ + 2 孤对）都是 sp³ 杂化。判断口诀：σ 键数 + 孤对数 = 2 是 sp、3 是 sp²、4 是 sp³。",
+            nodeId: "n13"),
+        ChemProblem(
+            id: "p_oly_03", stage: .olympiad, topic: .structure,
+            content: "下列晶体熔化时，只需克服分子间作用力的是？",
+            options: ["NaCl", "金刚石", "干冰", "铁"],
+            answerIndex: 2,
+            explanation: "干冰（固态 CO₂）是分子晶体，熔化只破坏分子间作用力，所以熔点极低。NaCl 是离子晶体（破坏离子键）、金刚石是共价晶体（破坏共价键）、铁是金属晶体（破坏金属键）。熔沸点大致：共价 > 离子/金属 > 分子。",
+            nodeId: "n13"),
     ]
 }

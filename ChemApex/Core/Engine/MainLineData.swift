@@ -212,7 +212,7 @@ enum MainLineData {
                     id: "k0803", title: "化学键",
                     detail: "活泼金属与活泼非金属之间一般是离子键；非金属之间是共价键。NaOH 同时含离子键和共价键；NH₄Cl 是全由非金属组成的离子化合物。"),
             ],
-            problemIds: ["p_sr_16", "p_sr_17"]),
+            problemIds: ["p_sr_16", "p_sr_17", "p_sr_29"]),
 
         LearningNode(
             id: "n09", order: 10, stage: .senior, topic: .energy,
@@ -282,8 +282,12 @@ enum MainLineData {
                 KnowledgePoint(
                     id: "k1103", title: "电解饱和食盐水",
                     detail: "阳极 Cl₂、阴极 H₂、阴极区生成 NaOH——氯碱工业。两极产物先判断、再用电子守恒算量。"),
+                KnowledgePoint(
+                    id: "k1104", title: "金属腐蚀与防护",
+                    detail: "潮湿中性环境是吸氧腐蚀（正极 O₂ 得电子），强酸性环境才是析氢腐蚀。防护三招：牺牲阳极法（船体接锌块）、外加电流法（接电源负极）、加保护层。电解精炼/电镀：粗（镀层）金属作阳极、纯（待镀）金属作阴极。",
+                    pitfall: "一见腐蚀就写析氢是大坑——日常生锈绝大多数是吸氧腐蚀。"),
             ],
-            problemIds: ["p_sr_22", "p_sr_23"]),
+            problemIds: ["p_sr_22", "p_sr_23", "p_sr_30"]),
 
         LearningNode(
             id: "n12", order: 13, stage: .senior, topic: .organic,
@@ -305,7 +309,7 @@ enum MainLineData {
                     detail: "苯环上的碳碳键介于单双键之间——苯不能使溴水和酸性 KMnO₄ 褪色，但能与液溴（FeBr₃ 催化）发生取代。糖类、油脂、蛋白质：葡萄糖银镜反应检验醛基，蛋白质灼烧有烧焦羽毛味、遇浓硝酸变黄。",
                     pitfall: "苯使溴水「褪色」是萃取（物理过程），不是反应——和乙烯的加成褪色本质不同。"),
             ],
-            problemIds: ["p_sr_24", "p_sr_25", "p_sr_28"]),
+            problemIds: ["p_sr_24", "p_sr_25", "p_sr_28", "p_sr_31"]),
 
         LearningNode(
             id: "n12x", order: 14, stage: .senior, topic: .experiment,
@@ -346,7 +350,19 @@ enum MainLineData {
                 KnowledgePoint(
                     id: "k1302", title: "为什么性质能「算」出来",
                     detail: "电负性、电离能、轨道杂化决定了你在高中死记硬背的一切：键角、酸性、颜色。结构化学是化学从经验走向理论的入口——这就是降维视角。"),
+                KnowledgePoint(
+                    id: "k1303", title: "杂化轨道与分子构型",
+                    detail: "判断口诀：中心原子的 σ 键数 + 孤对电子数 = 2 → sp（直线）、3 → sp²（平面三角）、4 → sp³（四面体）。孤对电子会「压弯」键角：CH₄ 109.5° → NH₃ 107° → H₂O 105°。",
+                    pitfall: "数的是 σ 键不是总键数——双键、三键里只有一个 σ 键。"),
+                KnowledgePoint(
+                    id: "k1304", title: "晶体四类型",
+                    detail: "离子晶体（NaCl，破坏离子键）、共价晶体（金刚石/SiO₂，破坏共价键，熔点最高）、分子晶体（干冰/冰，只破坏分子间作用力，熔点最低）、金属晶体（破坏金属键）。熔沸点比较先定类型再比强弱。",
+                    pitfall: "SiO₂ 是共价晶体不是分子晶体——「二氧化碳是分子晶体」不能类推到二氧化硅。"),
+                KnowledgePoint(
+                    id: "k1305", title: "电离能与电负性",
+                    detail: "同周期从左到右电离能总体增大、电负性增大；氟电负性最大（4.0）。第一电离能的「反常」：N > O、Mg > Al——半满/全满结构更稳定。电负性差大于 1.7 倾向离子键。",
+                    pitfall: "新课标选必2 已是高考范围——这一关的内容并非纯竞赛，选考结构的同学必须拿下。"),
             ],
-            problemIds: ["p_oly_01"]),
+            problemIds: ["p_oly_01", "p_oly_02", "p_oly_03"]),
     ]
 }

@@ -15,6 +15,7 @@ enum EquationLibrary {
         list += seniorNonmetal2
         list += principles
         list += organic
+        list += applications
         return list
     }()
 
@@ -447,5 +448,88 @@ enum EquationLibrary {
             phenomenon: "工业制聚乙烯（塑料袋、保鲜膜）",
             examPoint: "加聚反应：双键打开、首尾相连；聚乙烯分子中无双键",
             trap: "聚乙烯不能使溴水褪色（双键已消耗）；食品保鲜膜用聚乙烯，聚氯乙烯不能包食品"),
+        ChemEquation(
+            id: "eq_o08", stage: .senior, topic: .organic,
+            formula: "C₆H₆ + HNO₃ → C₆H₅NO₂ + H₂O",
+            condition: "浓硫酸、约 55℃ 水浴",
+            phenomenon: "生成无色（工业品淡黄色）、有苦杏仁气味的油状液体硝基苯",
+            examPoint: "苯环上的取代反应；浓硫酸作催化剂兼吸水剂",
+            trap: "温度过高会生成更多副产物且硝酸分解——必须水浴控温；硝基苯有毒，沾皮肤用酒精擦洗"),
+        ChemEquation(
+            id: "eq_o09", stage: .senior, topic: .organic,
+            formula: "CH₃CHO + 2Ag(NH₃)₂OH → CH₃COONH₄ + 2Ag↓ + 3NH₃ + H₂O",
+            condition: "水浴加热（银镜反应）",
+            phenomenon: "洁净试管内壁出现光亮的银镜",
+            examPoint: "检验醛基的标准方法；醛的还原性",
+            trap: "必须水浴加热不能直接灼烧；银氨溶液现配现用；试管要先用 NaOH 煮洗保证洁净"),
+        ChemEquation(
+            id: "eq_o10", stage: .senior, topic: .organic,
+            formula: "CH₃CHO + 2Cu(OH)₂ → CH₃COOH + Cu₂O↓ + 2H₂O",
+            condition: "Δ（加热煮沸）",
+            phenomenon: "出现砖红色沉淀（Cu₂O）",
+            examPoint: "检验醛基的第二法；新制 Cu(OH)₂ 悬浊液",
+            trap: "新教材在过量 NaOH 环境下写作生成 CH₃COONa（再加 NaOH、生成 3H₂O），考试以所用教材为准；Cu(OH)₂ 必须新制"),
+    ]
+
+    // MARK: 应用篇（电化学应用 / 散点补全）
+
+    private static let applications: [ChemEquation] = [
+        ChemEquation(
+            id: "eq_e01", stage: .senior, topic: .electrochem,
+            formula: "阳极（粗铜）：Cu − 2e⁻ → Cu²⁺；阴极（纯铜）：Cu²⁺ + 2e⁻ → Cu",
+            condition: "电解精炼铜（CuSO₄ 电解液）",
+            phenomenon: "粗铜溶解，纯铜增重，槽底积「阳极泥」",
+            examPoint: "电解精炼：粗作阳极、纯作阴极；电镀同理（镀层金属作阳极）",
+            trap: "比铜活泼的杂质（Zn/Fe）溶入溶液但不在阴极析出；比铜惰性的（Ag/Au）沉为阳极泥——贵金属回收来源"),
+        ChemEquation(
+            id: "eq_e02", stage: .senior, topic: .electrochem,
+            formula: "Pb + PbO₂ + 2H₂SO₄ → 2PbSO₄ + 2H₂O",
+            condition: "铅蓄电池放电（充电为逆反应）",
+            phenomenon: "放电时硫酸浓度逐渐下降",
+            examPoint: "二次电池代表；负极 Pb、正极 PbO₂，放电后两极都生成 PbSO₄",
+            trap: "可用电解液密度判断电量；充电时电池负极接电源负极（阴极）"),
+        ChemEquation(
+            id: "eq_e03", stage: .senior, topic: .electrochem,
+            formula: "负极：2Fe − 4e⁻ → 2Fe²⁺；正极：O₂ + 2H₂O + 4e⁻ → 4OH⁻",
+            condition: "钢铁吸氧腐蚀（中性/弱酸性潮湿环境）",
+            phenomenon: "铁生锈：Fe²⁺ 进一步被氧化，最终生成铁锈 Fe₂O₃·xH₂O",
+            examPoint: "电化学腐蚀的主要形式；防护：牺牲阳极法（接锌块）、外加电流法",
+            trap: "潮湿中性环境主要是吸氧腐蚀；只有较强酸性环境才以析氢腐蚀为主——别一见腐蚀就写 H₂"),
+        ChemEquation(
+            id: "eq_s35", stage: .senior, topic: .nonmetals,
+            formula: "Cl₂ + 2NaBr → 2NaCl + Br₂",
+            condition: "常温",
+            phenomenon: "溶液由无色变橙黄色",
+            examPoint: "卤素单质氧化性递变：Cl₂ > Br₂ > I₂；活泼卤素置换不活泼卤素",
+            trap: "F₂ 是例外——通入盐溶液会先与水剧烈反应，不能置换出其他卤素",
+            ionic: "Cl₂ + 2Br⁻ → 2Cl⁻ + Br₂"),
+        ChemEquation(
+            id: "eq_s36", stage: .senior, topic: .metals,
+            formula: "4Na + O₂ → 2Na₂O（常温）；2Na + O₂ → Na₂O₂（点燃）",
+            condition: "条件分岔：常温缓慢氧化 / 点燃",
+            phenomenon: "点燃时发出黄色火焰，生成淡黄色固体",
+            examPoint: "同一组反应物、不同条件、不同产物的代表",
+            trap: "Na₂O 白色、Na₂O₂ 淡黄色——颜色就是产物的「身份证」；切开的钠变暗是生成 Na₂O"),
+        ChemEquation(
+            id: "eq_s37", stage: .senior, topic: .nonmetals,
+            formula: "Na₂CO₃ + SiO₂ → Na₂SiO₃ + CO₂↑",
+            condition: "高温（玻璃工业）",
+            phenomenon: "工业制普通玻璃的反应之一（另有 CaCO₃ + SiO₂）",
+            examPoint: "高沸点酸酐在高温下「赶走」挥发性酸酐",
+            trap: "不违背「强酸制弱酸」——那是溶液中的规则，高温熔融体系靠挥发性定方向"),
+        ChemEquation(
+            id: "eq_p04", stage: .senior, topic: .solution,
+            formula: "CH₃COOH ⇌ CH₃COO⁻ + H⁺",
+            condition: "水溶液中（电离平衡）",
+            phenomenon: "0.1 mol/L 醋酸的 pH 约为 3（远大于盐酸的 1）",
+            examPoint: "弱电解质部分电离的标志；电离是吸热过程，升温促进",
+            trap: "加水稀释促进电离，但 c(H⁺) 仍减小；加醋酸钠抑制电离（同离子效应）"),
+        ChemEquation(
+            id: "eq_p05", stage: .senior, topic: .solution,
+            formula: "AgCl(s) + I⁻ → AgI(s) + Cl⁻",
+            condition: "常温（沉淀转化）",
+            phenomenon: "白色沉淀逐渐变为黄色",
+            examPoint: "沉淀向更难溶方向转化：Ksp(AgI) ≪ Ksp(AgCl)",
+            trap: "AgCl 白、AgBr 浅黄、AgI 黄——三种卤化银颜色递变，均不溶于稀硝酸"),
     ]
 }
