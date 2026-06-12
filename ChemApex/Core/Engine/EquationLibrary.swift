@@ -531,5 +531,33 @@ enum EquationLibrary {
             phenomenon: "白色沉淀逐渐变为黄色",
             examPoint: "沉淀向更难溶方向转化：Ksp(AgI) ≪ Ksp(AgCl)",
             trap: "AgCl 白、AgBr 浅黄、AgI 黄——三种卤化银颜色递变，均不溶于稀硝酸"),
+        ChemEquation(
+            id: "eq_a01", stage: .senior, topic: .metals,
+            formula: "NaCl + NH₃ + CO₂ + H₂O → NaHCO₃↓ + NH₄Cl",
+            condition: "向饱和氨盐水中通入 CO₂（侯氏制碱法核心步骤）",
+            phenomenon: "析出白色 NaHCO₃ 晶体",
+            examPoint: "侯德榜打破封锁的国产工艺；NaHCO₃ 溶解度最小所以先析出，再煅烧得纯碱",
+            trap: "通气顺序是「先氨后碳」——NH₃ 极易溶，先造碱性环境 CO₂ 才能大量吸收"),
+        ChemEquation(
+            id: "eq_a02", stage: .senior, topic: .metals,
+            formula: "2Al₂O₃ → 4Al + 3O₂↑",
+            condition: "电解（熔融，加冰晶石助熔）",
+            phenomenon: "工业炼铝（霍尔—埃鲁法）",
+            examPoint: "活泼金属（K~Al）只能用电解熔融法冶炼",
+            trap: "不能电解熔融 AlCl₃（共价化合物不导电），更不能电解溶液；冰晶石的作用是降低 Al₂O₃ 的熔化温度"),
+        ChemEquation(
+            id: "eq_a03", stage: .senior, topic: .metals,
+            formula: "MgCl₂ → Mg + Cl₂↑",
+            condition: "电解（熔融）",
+            phenomenon: "海水提镁的最后一步",
+            examPoint: "海水提镁链：石灰乳沉淀 Mg(OH)₂ → 盐酸溶解 → 浓缩结晶 → 电解熔融",
+            trap: "电解 MgCl₂ 溶液得不到镁（阴极析出 H₂）——活泼金属必须电解熔融态"),
+        ChemEquation(
+            id: "eq_a04", stage: .senior, topic: .nonmetals,
+            formula: "SiO₂ + 2C → Si(粗) + 2CO↑",
+            condition: "高温（工业制粗硅）",
+            phenomenon: "焦炭还原石英砂",
+            examPoint: "硅的工业制备第一步；后续提纯经 SiCl₄ 蒸馏再还原",
+            trap: "产物是 CO 不是 CO₂——高温下碳过量，按 CO 配平"),
     ]
 }

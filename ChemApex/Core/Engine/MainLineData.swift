@@ -95,6 +95,10 @@ enum MainLineData {
                 KnowledgePoint(
                     id: "k0303", title: "物质的量浓度",
                     detail: "c = n/V，单位 mol/L。V 是溶液体积（不是水的体积）。配制要用容量瓶定容。"),
+                KnowledgePoint(
+                    id: "k0304", title: "Nᴀ 陷阱题五大套路",
+                    detail: "①22.4 L/mol 必须「标况 + 气体」双前提 ②稀有气体是单原子分子 ③可逆反应不能进行到底（如 N₂+3H₂）④NO₂ 会部分二聚成 N₂O₄ ⑤电子转移数要按实际化合价变化算（Na₂O₂ 与水：每 mol O₂ 转移 2 mol 电子）。",
+                    pitfall: "选择题里 Nᴀ 出现 = 警报拉响，五条套路逐一排查。"),
             ],
             problemIds: ["p_sr_01", "p_sr_02", "p_sr_03"],
             bossCaseId: "boss_cross",
@@ -116,8 +120,12 @@ enum MainLineData {
                 KnowledgePoint(
                     id: "k0403", title: "离子共存",
                     detail: "审题三件套：①颜色（Cu²⁺蓝、Fe³⁺黄、Fe²⁺浅绿、MnO₄⁻紫）②酸碱性（H⁺/OH⁻ 与谁反应）③离子间生成沉淀、气体、弱电解质的不共存。"),
+                KnowledgePoint(
+                    id: "k0404", title: "分散系与胶体",
+                    detail: "按分散质粒径分：溶液（<1 nm）、胶体（1~100 nm）、浊液（>100 nm）。丁达尔效应（光路）是区分胶体与溶液的最简方法。Fe(OH)₃ 胶体：饱和 FeCl₃ 滴入沸水。聚沉的应用：卤水点豆腐、江河入海口三角洲。",
+                    pitfall: "胶体能透过滤纸但不能透过半透膜——提纯胶体用渗析不用过滤。"),
             ],
-            problemIds: ["p_sr_04", "p_sr_05", "p_sr_06"],
+            problemIds: ["p_sr_04", "p_sr_05", "p_sr_06", "p_sr_32"],
             bossCaseId: "boss_charge",
             weaponUnlocked: .chargeConservation),
 
@@ -136,8 +144,12 @@ enum MainLineData {
                 KnowledgePoint(
                     id: "k0503", title: "部分氧化与歧化",
                     detail: "同一物质可以部分被氧化（如 MnO₂+4HCl 中只有一半 HCl 被氧化）；同一元素自身既升又降叫歧化（如 Cl₂+H₂O）。"),
+                KnowledgePoint(
+                    id: "k0504", title: "氧化性/还原性强弱比较",
+                    detail: "金标准：同一反应中，氧化性 氧化剂 > 氧化产物；还原性 还原剂 > 还原产物。由 2FeCl₃ + Cu → 2FeCl₂ + CuCl₂ 立刻读出氧化性 Fe³⁺ > Cu²⁺。辅助依据：金属活动性表（还原性）、卤素顺序（氧化性）。",
+                    pitfall: "强弱看「得失电子的难易」，不看得失数目——Na 失 1 个电子但还原性比失 3 个的 Al 强。"),
             ],
-            problemIds: ["p_sr_07", "p_sr_08", "p_sr_09"],
+            problemIds: ["p_sr_07", "p_sr_08", "p_sr_09", "p_sr_33"],
             bossCaseId: "boss_electron",
             weaponUnlocked: .electronConservation),
 
@@ -161,8 +173,12 @@ enum MainLineData {
                     id: "k0604", title: "Na₂CO₃ 与 NaHCO₃",
                     detail: "鉴别三法：①加热（NaHCO₃ 分解放 CO₂，Na₂CO₃ 不分解）②与盐酸反应剧烈程度（NaHCO₃ 更快）③CaCl₂ 溶液（Na₂CO₃ 出沉淀）。向 Na₂CO₃ 溶液逐滴加盐酸：先 CO₃²⁻→HCO₃⁻ 无气泡，后放 CO₂——滴加顺序决定现象。",
                     pitfall: "稳定性：正盐 > 酸式盐；溶解度 Na₂CO₃ > NaHCO₃（与多数「酸式盐更易溶」直觉相反）。"),
+                KnowledgePoint(
+                    id: "k0605", title: "金属冶炼三方法",
+                    detail: "按活动性选方法：K~Al 电解熔融法（炼铝：电解熔融 Al₂O₃ 加冰晶石助熔）；Zn~Cu 热还原法（C/CO/H₂/铝热剂）；Hg、Ag 热分解法。海水提镁：石灰乳沉淀 → 盐酸溶解 → 电解熔融 MgCl₂。",
+                    pitfall: "不能电解熔融 AlCl₃ 炼铝——AlCl₃ 是共价化合物，熔融态不导电；也不能电解盐溶液得活泼金属（阴极只出 H₂）。"),
             ],
-            problemIds: ["p_sr_10", "p_sr_11", "p_sr_12"],
+            problemIds: ["p_sr_10", "p_sr_11", "p_sr_12", "p_sr_34"],
             bossCaseId: "boss_extreme",
             weaponUnlocked: .extremeValue),
 
@@ -211,6 +227,10 @@ enum MainLineData {
                 KnowledgePoint(
                     id: "k0803", title: "化学键",
                     detail: "活泼金属与活泼非金属之间一般是离子键；非金属之间是共价键。NaOH 同时含离子键和共价键；NH₄Cl 是全由非金属组成的离子化合物。"),
+                KnowledgePoint(
+                    id: "k0804", title: "核素与同位素",
+                    detail: "质量数 A = 质子数 Z + 中子数 N。质子数相同、中子数不同的核素互为同位素（¹H/²H/³H），化学性质几乎完全相同。三个「同」字辈：同位素（原子）、同素异形体（单质）、同分异构体（化合物），各管各的层次。",
+                    pitfall: "中性原子电子数 = 质子数；阴离子电子数 = 质子数 + 电荷数——带电微粒数电子先看电荷。"),
             ],
             problemIds: ["p_sr_16", "p_sr_17", "p_sr_29"]),
 

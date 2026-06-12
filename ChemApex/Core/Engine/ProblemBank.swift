@@ -387,5 +387,28 @@ enum ProblemBank {
             answerIndex: 2,
             explanation: "干冰（固态 CO₂）是分子晶体，熔化只破坏分子间作用力，所以熔点极低。NaCl 是离子晶体（破坏离子键）、金刚石是共价晶体（破坏共价键）、铁是金属晶体（破坏金属键）。熔沸点大致：共价 > 离子/金属 > 分子。",
             nodeId: "n13"),
+
+        // ===== 阶段 A 续（胶体 / 氧化性比较 / 金属冶炼） =====
+        ChemProblem(
+            id: "p_sr_32", stage: .senior, topic: .ionReaction,
+            content: "区别 Fe(OH)₃ 胶体和 FeCl₃ 溶液，最简单的方法是？",
+            options: ["观察颜色", "用一束光照射，看有无光亮通路", "加热蒸发", "测定导电性"],
+            answerIndex: 1,
+            explanation: "丁达尔效应：胶体粒子（1~100 nm）对光散射形成光亮通路，溶液没有。两者都可能呈红棕/黄色，颜色不可靠；丁达尔效应是区分胶体与溶液的标准方法。",
+            nodeId: "n04"),
+        ChemProblem(
+            id: "p_sr_33", stage: .senior, topic: .redox,
+            content: "已知反应 2FeCl₃ + Cu → 2FeCl₂ + CuCl₂ 能自发进行，由此可判断氧化性强弱为？",
+            options: ["Cu²⁺ > Fe³⁺", "Fe³⁺ > Cu²⁺", "Fe²⁺ > Cu²⁺", "无法判断"],
+            answerIndex: 1,
+            explanation: "同一反应中氧化性：氧化剂 > 氧化产物。此反应中 Fe³⁺ 是氧化剂、Cu²⁺ 是氧化产物，故 Fe³⁺ > Cu²⁺。这正是 FeCl₃ 溶液能刻蚀铜电路板的原因。",
+            nodeId: "n05"),
+        ChemProblem(
+            id: "p_sr_34", stage: .senior, topic: .metals,
+            content: "工业上冶炼金属铝采用的方法是？",
+            options: ["用 CO 还原氧化铝", "电解熔融氯化铝", "电解熔融氧化铝（加冰晶石）", "电解氯化铝溶液"],
+            answerIndex: 2,
+            explanation: "铝活动性强，只能电解熔融化合物冶炼。但不能选 AlCl₃——它是共价化合物，熔融态不导电；电解溶液阴极只会析出 H₂。工业电解熔融 Al₂O₃，加冰晶石降低熔点。「三连坑」全在选项里。",
+            nodeId: "n06"),
     ]
 }
