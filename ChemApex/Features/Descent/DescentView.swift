@@ -4,6 +4,8 @@ import SwiftUI
 
 struct DescentView: View {
     @EnvironmentObject var progress: ProgressManager
+    @ObservedObject private var purchase = PurchaseManager.shared
+    @State private var showPaywall = false
 
     var body: some View {
         ScrollView {
@@ -12,9 +14,14 @@ struct DescentView: View {
                     .font(.subheadline).foregroundColor(.secondary)
                     .padding(.bottom, Spacing.xs)
 
-                ForEach(DescentCases.all) { p in
+                ForEach(Array(DescentCases.all.enumerated()), id: \.element.id) { index, p in
                     if let dual = p.dualSolution {
-                        caseCard(p, dual: dual)
+                        if purchase.isDescentPremiumLocked(index: index) {
+                            Button { showPaywall = true } label: { caseLabel(p, dual: dual, locked: true) }
+                                .buttonStyle(.plain)
+                        } else {
+                            caseCard(p, dual: dual)
+                        }
                     }
                 }
             }
@@ -23,19 +30,28 @@ struct DescentView: View {
         .background(Color.mysteryBackground.ignoresSafeArea())
         .navigationTitle("守恒之眼")
         .navigationBarTitleDisplayMode(.inline)
+        .sheet(isPresented: $showPaywall) { PaywallView() }
     }
 
     private func caseCard(_ p: ChemProblem, dual: DualSolution) -> some View {
         NavigationLink {
             DescentDetailView(problem: p, dual: dual)
         } label: {
+            caseLabel(p, dual: dual, locked: false)
+        }
+        .buttonStyle(.plain)
+    }
+
+    private func caseLabel(_ p: ChemProblem, dual: DualSolution, locked: Bool) -> some View {
             VStack(alignment: .leading, spacing: Spacing.sm) {
                 HStack {
                     Image(systemName: dual.weapon.icon).foregroundColor(.apexMystery)
                     Text(dual.weapon.name).font(AppFont.cardTitle)
                     Spacer()
                     TagChip(text: String(format: "快 %.0f 倍", dual.timeRatio), color: .apexMystery)
-                    if progress.viewedBossCases.contains(p.id) {
+                    if locked {
+                        Image(systemName: "crown.fill").foregroundColor(.apexGold)
+                    } else if progress.viewedBossCases.contains(p.id) {
                         Image(systemName: "checkmark.seal.fill").foregroundColor(.apexGold)
                     }
                 }
@@ -43,12 +59,12 @@ struct DescentView: View {
                 HStack(spacing: 6) {
                     TagChip(text: p.stage.shortTitle, color: p.stage.color)
                     TagChip(text: p.topic.name, color: .apexStarBlue)
+                    if locked { TagChip(text: "完整版解锁", color: .apexGold) }
                 }
             }
             .foregroundColor(.primary)
             .cardSurface(padding: Spacing.lg)
-        }
-        .buttonStyle(.plain)
+            .opacity(locked ? 0.7 : 1)
     }
 }
 

@@ -59,31 +59,49 @@ struct LabView: View {
 struct TopicProblemListView: View {
     let topic: ChemTopic
     @EnvironmentObject var progress: ProgressManager
+    @ObservedObject private var purchase = PurchaseManager.shared
+    @State private var showPaywall = false
 
     private var problems: [ChemProblem] { ProblemBank.problems(topic: topic) }
 
     var body: some View {
         List {
             ForEach(problems) { p in
-                NavigationLink { ProblemDetailView(problem: p) } label: {
-                    HStack(spacing: Spacing.md) {
-                        Image(systemName: progress.stats(for: p.id).everCorrect ? "checkmark.circle.fill" : "circle")
-                            .foregroundColor(progress.stats(for: p.id).everCorrect ? .apexEmerald : .secondary)
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text(p.content).font(.subheadline).lineLimit(2)
-                            HStack(spacing: 6) {
-                                TagChip(text: p.stage.shortTitle, color: p.stage.color)
-                                if p.dualSolution != nil {
-                                    TagChip(text: "⚔️ 双解", color: .apexMystery)
-                                }
-                            }
-                        }
+                if purchase.isProblemPremiumLocked(p) {
+                    Button { showPaywall = true } label: { problemLabel(p, locked: true) }
+                        .buttonStyle(.plain)
+                } else {
+                    NavigationLink { ProblemDetailView(problem: p) } label: {
+                        problemLabel(p, locked: false)
                     }
-                    .padding(.vertical, 2)
                 }
             }
         }
         .navigationTitle(topic.name)
         .navigationBarTitleDisplayMode(.inline)
+        .sheet(isPresented: $showPaywall) { PaywallView() }
+    }
+
+    private func problemLabel(_ p: ChemProblem, locked: Bool) -> some View {
+        HStack(spacing: Spacing.md) {
+            if locked {
+                Image(systemName: "crown.fill").foregroundColor(.apexGold)
+            } else {
+                Image(systemName: progress.stats(for: p.id).everCorrect ? "checkmark.circle.fill" : "circle")
+                    .foregroundColor(progress.stats(for: p.id).everCorrect ? .apexEmerald : .secondary)
+            }
+            VStack(alignment: .leading, spacing: 4) {
+                Text(p.content).font(.subheadline).lineLimit(2)
+                    .foregroundColor(locked ? .secondary : .primary)
+                HStack(spacing: 6) {
+                    TagChip(text: p.stage.shortTitle, color: p.stage.color)
+                    if p.dualSolution != nil {
+                        TagChip(text: "⚔️ 双解", color: .apexMystery)
+                    }
+                    if locked { TagChip(text: "完整版解锁", color: .apexGold) }
+                }
+            }
+        }
+        .padding(.vertical, 2)
     }
 }

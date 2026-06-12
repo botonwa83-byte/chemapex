@@ -99,6 +99,22 @@ final class ChemApexTests: XCTestCase {
         XCTAssertEqual(ReviewScheduler.nextInterval(current: 4, correct: false).days, 1, "答错重置")
     }
 
+    /// 免费档策略：初中全部免费；免费战例恰为免费关卡的 Boss；数量与常量一致。
+    func testFreeTierPolicy() {
+        // 初中段必须全部落在免费档内（低门槛起点不能收费）
+        let juniorOrders = MainLineData.nodes.filter { $0.stage == .junior }.map(\.order)
+        XCTAssertTrue(juniorOrders.allSatisfy { $0 <= PurchaseManager.freeNodeCount },
+                      "初中关卡必须免费")
+        // 免费关卡的 Boss 战例 ⊆ 守恒之眼免费档（两把锁不能打架）
+        let freeNodes = MainLineData.nodes.filter { $0.order <= PurchaseManager.freeNodeCount }
+        let freeBossIds = Set(freeNodes.compactMap(\.bossCaseId))
+        let freeDescentIds = Set(DescentCases.all.prefix(PurchaseManager.freeDescentCount).map(\.id))
+        XCTAssertEqual(freeBossIds, freeDescentIds,
+                       "免费关卡的 Boss 与守恒之眼免费档必须一致")
+        // 神探免费档不超过总案件数
+        XCTAssertLessThanOrEqual(PurchaseManager.freeDetectiveCount, DetectiveData.all.count)
+    }
+
     /// 元素与方程式数据完整性。
     func testAtlasDataIntegrity() {
         let numbers = ElementData.all.map(\.number)

@@ -4,6 +4,8 @@ import SwiftUI
 
 struct DetectiveView: View {
     @ObservedObject private var manager = DetectiveManager.shared
+    @ObservedObject private var purchase = PurchaseManager.shared
+    @State private var showPaywall = false
 
     var body: some View {
         ScrollView {
@@ -18,8 +20,8 @@ struct DetectiveView: View {
                 Text("推断题就是破案：线索逐条揭开，随时指认嫌疑物质。揭得越少猜中，星级越高（错猜降星）。")
                     .font(.caption).foregroundColor(.secondary)
 
-                ForEach(DetectiveData.all) { c in
-                    caseRow(c)
+                ForEach(Array(DetectiveData.all.enumerated()), id: \.element.id) { index, c in
+                    caseRow(c, premiumLocked: purchase.isDetectivePremiumLocked(index: index))
                 }
             }
             .padding(Spacing.lg)
@@ -27,6 +29,7 @@ struct DetectiveView: View {
         .background(Color.mysteryBackground.ignoresSafeArea())
         .navigationTitle("化学神探")
         .navigationBarTitleDisplayMode(.inline)
+        .sheet(isPresented: $showPaywall) { PaywallView() }
     }
 
     private func statBlock(value: String, label: String, color: Color) -> some View {
@@ -37,27 +40,36 @@ struct DetectiveView: View {
         .frame(maxWidth: .infinity)
     }
 
-    private func caseRow(_ c: DetectiveCase) -> some View {
+    @ViewBuilder
+    private func caseRow(_ c: DetectiveCase, premiumLocked: Bool) -> some View {
+        if premiumLocked {
+            Button { showPaywall = true } label: { caseLabel(c, premiumLocked: true) }
+                .buttonStyle(.plain)
+        } else {
+            NavigationLink { DetectiveCaseView(detectiveCase: c) } label: { caseLabel(c, premiumLocked: false) }
+                .buttonStyle(.plain)
+        }
+    }
+
+    private func caseLabel(_ c: DetectiveCase, premiumLocked: Bool) -> some View {
         let stars = manager.bestStars[c.id] ?? 0
-        return NavigationLink {
-            DetectiveCaseView(detectiveCase: c)
-        } label: {
-            HStack(spacing: Spacing.lg) {
-                Image(systemName: stars > 0 ? "checkmark.seal.fill" : "magnifyingglass")
+        return HStack(spacing: Spacing.lg) {
+                Image(systemName: premiumLocked ? "crown.fill" : (stars > 0 ? "checkmark.seal.fill" : "magnifyingglass"))
                     .font(.title3)
                     .frame(width: 40, height: 40)
                     .background(Color.apexMystery.opacity(0.12))
-                    .foregroundColor(stars > 0 ? .apexGold : .apexMystery)
+                    .foregroundColor(premiumLocked || stars > 0 ? .apexGold : .apexMystery)
                     .cornerRadius(Radius.inner)
                 VStack(alignment: .leading, spacing: 4) {
                     Text(c.title).font(AppFont.cardTitle)
                     HStack(spacing: 6) {
                         TagChip(text: c.topic.name, color: .apexStarBlue)
                         TagChip(text: "\(c.clues.count) 条线索", color: .apexMystery)
+                        if premiumLocked { TagChip(text: "完整版解锁", color: .apexGold) }
                     }
                 }
                 Spacer()
-                if stars > 0 {
+                if stars > 0, !premiumLocked {
                     HStack(spacing: 1) {
                         ForEach(0..<3, id: \.self) { i in
                             Image(systemName: i < stars ? "star.fill" : "star")
@@ -71,8 +83,7 @@ struct DetectiveView: View {
             }
             .foregroundColor(.primary)
             .cardSurface(padding: Spacing.lg)
-        }
-        .buttonStyle(.plain)
+            .opacity(premiumLocked ? 0.7 : 1)
     }
 }
 

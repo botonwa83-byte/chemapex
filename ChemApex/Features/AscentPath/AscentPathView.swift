@@ -6,6 +6,8 @@ import SwiftUI
 struct AscentPathView: View {
     @EnvironmentObject var profile: StudentProfile
     @EnvironmentObject var progress: ProgressManager
+    @ObservedObject private var purchase = PurchaseManager.shared
+    @State private var showPaywall = false
 
     private var nodes: [LearningNode] { MainLineData.nodes }
 
@@ -22,7 +24,9 @@ struct AscentPathView: View {
                                 summitBanner
                             }
                             NodeCard(node: node, state: progress.nodeState(node, in: nodes),
-                                     progressValue: progress.nodeProgress(node))
+                                     progressValue: progress.nodeProgress(node),
+                                     premiumLocked: purchase.isNodePremiumLocked(node),
+                                     onPremiumTap: { showPaywall = true })
                                 .id(node.id)
                             if node.stage != nodes[max(index - 1, 0)].stage, index > 0 {
                                 stageDivider(nodes[index - 1].stage)
@@ -34,6 +38,7 @@ struct AscentPathView: View {
                 }
                 .background(Color.apexBackground.ignoresSafeArea())
                 .navigationTitle("登顶之路")
+                .sheet(isPresented: $showPaywall) { PaywallView() }
                 .onAppear {
                     if let current = progress.currentNode(in: nodes) {
                         proxy.scrollTo(current.id, anchor: .center)
@@ -89,18 +94,31 @@ struct NodeCard: View {
     let node: LearningNode
     let state: NodeState
     let progressValue: Double
+    var premiumLocked: Bool = false
+    var onPremiumTap: () -> Void = {}
 
     var body: some View {
-        NavigationLink {
-            NodeDetailView(node: node)
-        } label: {
+        Group {
+            if premiumLocked {
+                Button(action: onPremiumTap) { cardLabel }
+            } else {
+                NavigationLink { NodeDetailView(node: node) } label: { cardLabel }
+            }
+        }
+        .buttonStyle(.plain)
+        .disabled(!premiumLocked && state == .locked)
+    }
+
+    private var cardLabel: some View {
             HStack(spacing: Spacing.lg) {
                 // 序号圆环
                 ZStack {
                     Circle()
                         .stroke(state == .locked ? Color.secondary.opacity(0.3) : node.stage.color, lineWidth: 3)
                         .frame(width: 46, height: 46)
-                    if state == .completed {
+                    if premiumLocked {
+                        Image(systemName: "crown.fill").font(.subheadline).foregroundColor(.apexGold)
+                    } else if state == .completed {
                         Image(systemName: "checkmark").font(.headline).foregroundColor(node.stage.color)
                     } else if state == .locked {
                         Image(systemName: "lock.fill").font(.subheadline).foregroundColor(.secondary)
@@ -142,11 +160,8 @@ struct NodeCard: View {
             .cardSurface(padding: Spacing.lg)
             .overlay(
                 RoundedRectangle(cornerRadius: Radius.card)
-                    .stroke(state == .current ? node.stage.color : .clear, lineWidth: 2)
+                    .stroke(state == .current && !premiumLocked ? node.stage.color : .clear, lineWidth: 2)
             )
-            .opacity(state == .locked ? 0.65 : 1)
-        }
-        .buttonStyle(.plain)
-        .disabled(state == .locked)
+            .opacity(state == .locked || premiumLocked ? 0.65 : 1)
     }
 }

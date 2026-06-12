@@ -21,6 +21,7 @@ struct MainTabView: View {
     // 截图/UI 自动化用启动参数：-demoDetective 化学神探案件；-demoFlashcards 现象闪卡对战
     @State private var demoDetective = ProcessInfo.processInfo.arguments.contains("-demoDetective")
     @State private var demoFlashcards = ProcessInfo.processInfo.arguments.contains("-demoFlashcards")
+    @State private var demoPaywall = ProcessInfo.processInfo.arguments.contains("-demoPaywall")
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -49,6 +50,7 @@ struct MainTabView: View {
         .fullScreenCover(isPresented: $demoFlashcards) {
             NavigationStack { FlashcardGameView(category: .flame) }
         }
+        .sheet(isPresented: $demoPaywall) { PaywallView() }
     }
 }
 
@@ -57,10 +59,31 @@ struct MainTabView: View {
 struct MoreView: View {
     @EnvironmentObject var profile: StudentProfile
     @EnvironmentObject var progress: ProgressManager
+    @ObservedObject private var purchase = PurchaseManager.shared
+    @State private var showPaywall = false
 
     var body: some View {
         NavigationStack {
             List {
+                if !purchase.isUnlocked {
+                    Section {
+                        Button { showPaywall = true } label: {
+                            HStack(spacing: 12) {
+                                Image(systemName: "crown.fill")
+                                    .font(.title3).foregroundColor(.apexGold)
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text("解锁完整版").font(.headline).foregroundColor(.primary)
+                                    Text("主线全部 \(MainLineData.nodes.count) 关 · 战例 · 神探，一次买断")
+                                        .font(.caption).foregroundColor(.secondary)
+                                }
+                                Spacer()
+                                Image(systemName: "chevron.right").font(.caption).foregroundColor(.secondary)
+                            }
+                            .padding(.vertical, 4)
+                        }
+                    }
+                }
+
                 Section {
                     NavigationLink { ProfileView() } label: {
                         HStack(spacing: 12) {
@@ -138,6 +161,7 @@ struct MoreView: View {
                 }
             }
             .navigationTitle("更多")
+            .sheet(isPresented: $showPaywall) { PaywallView() }
         }
     }
 }

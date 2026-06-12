@@ -22,6 +22,7 @@
 		6FB4C5AA918D53C8F805ED4C /* StudentProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0D54B6141EB1A6C1C34EF7 /* StudentProfile.swift */; };
 		7057FE2AA5882B83468B060C /* DescentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E44FC3818EA27F820D90E29 /* DescentView.swift */; };
 		7B1B239255B1E673B7E12233 /* EquationLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939AAE4513B8D671F3214A70 /* EquationLibrary.swift */; };
+		7E4EDE272B4430E2AB496746 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B48063DE8C8652CD273F71 /* PaywallView.swift */; };
 		83D2BDE094B5820636155D5E /* FlashcardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C380C80B7C0BC86152B9A401 /* FlashcardView.swift */; };
 		84E5502A096A5AF72F49E07C /* MainLineData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19533570D9B93FEA5DBF927 /* MainLineData.swift */; };
 		97843A0238779E8DFA35A85F /* ChemEquation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3710480DEAE2DD92C4F6DCD /* ChemEquation.swift */; };
@@ -29,6 +30,7 @@
 		9AFB80A45C1298681DB0ED37 /* LabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227DEFF985E4448FA09463B3 /* LabView.swift */; };
 		9B3D4DB2AEC368CCEC64B1E3 /* ProblemBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5331FD2F074F36C119C2F4B /* ProblemBank.swift */; };
 		9B3FCCA21D7728DCC90671C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E368C57C6027C3660F997B64 /* Assets.xcassets */; };
+		9BF8D7C5D550CCEDB65E28FD /* PurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48454AD7F837B599640CF93 /* PurchaseManager.swift */; };
 		9E828A446591F02BDF92BA01 /* ChemApexApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3850E04270D572926CAC8FF8 /* ChemApexApp.swift */; };
 		A3499EA2EC203E21FECBBE6D /* Flashcard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF8B89D3A636482DFCDF594 /* Flashcard.swift */; };
 		A5F6142E3D99768A15598B68 /* ChemModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7572800DD69E2F6B2C990B6A /* ChemModels.swift */; };
@@ -71,6 +73,7 @@
 		57B583F2F4DB4F0D710ED2EF /* Detective.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detective.swift; sourceTree = "<group>"; };
 		5E44FC3818EA27F820D90E29 /* DescentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescentView.swift; sourceTree = "<group>"; };
 		621F89CFE36C183A0B89427F /* ChemApex.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = ChemApex.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		65B48063DE8C8652CD273F71 /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
 		7015CFAAAC13062019705FB3 /* Lore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lore.swift; sourceTree = "<group>"; };
 		7572800DD69E2F6B2C990B6A /* ChemModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChemModels.swift; sourceTree = "<group>"; };
 		763B52E623B1F4023F2239DB /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
@@ -83,6 +86,7 @@
 		9B0D54B6141EB1A6C1C34EF7 /* StudentProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentProfile.swift; sourceTree = "<group>"; };
 		A81598C2BCACA59774AFBA3B /* AscentPathView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AscentPathView.swift; sourceTree = "<group>"; };
 		ACD1B2BD5EEF4F749E69B12B /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		B48454AD7F837B599640CF93 /* PurchaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseManager.swift; sourceTree = "<group>"; };
 		B5331FD2F074F36C119C2F4B /* ProblemBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemBank.swift; sourceTree = "<group>"; };
 		BBF8B89D3A636482DFCDF594 /* Flashcard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flashcard.swift; sourceTree = "<group>"; };
 		C380C80B7C0BC86152B9A401 /* FlashcardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardView.swift; sourceTree = "<group>"; };
@@ -191,6 +195,14 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
+		73BB9FE4D1D6CF907CA1E36A /* Paywall */ = {
+			isa = PBXGroup;
+			children = (
+				65B48063DE8C8652CD273F71 /* PaywallView.swift */,
+			);
+			path = Paywall;
+			sourceTree = "<group>";
+		};
 		859CACB09CCA4DDC9282FD6D /* Detective */ = {
 			isa = PBXGroup;
 			children = (
@@ -264,6 +276,7 @@
 				D19533570D9B93FEA5DBF927 /* MainLineData.swift */,
 				B5331FD2F074F36C119C2F4B /* ProblemBank.swift */,
 				D84E91E6228EF266A56B6F48 /* ProgressManager.swift */,
+				B48454AD7F837B599640CF93 /* PurchaseManager.swift */,
 				44E31DC8C94737CD7BCC8D2D /* ReviewScheduler.swift */,
 			);
 			path = Engine;
@@ -287,6 +300,7 @@
 				37A4F4D07DADF28DBE6DD161 /* Flashcards */,
 				A5A9156CA5FAB16BC2890AF0 /* Lab */,
 				660A8A77B6AE077DD2D9BBB1 /* Lore */,
+				73BB9FE4D1D6CF907CA1E36A /* Paywall */,
 				3ED9F8B4A02C0A82CEC7D11A /* Profile */,
 				02F7857164DE6A2243B574A1 /* Review */,
 			);
@@ -412,10 +426,12 @@
 				20C184C78F00CD6CEB3726E1 /* LoreViews.swift in Sources */,
 				84E5502A096A5AF72F49E07C /* MainLineData.swift in Sources */,
 				BB1FEE7B9113EFC86CE5742A /* NodeDetailView.swift in Sources */,
+				7E4EDE272B4430E2AB496746 /* PaywallView.swift in Sources */,
 				9B3D4DB2AEC368CCEC64B1E3 /* ProblemBank.swift in Sources */,
 				E976778A608D83741F89FACD /* ProblemDetailView.swift in Sources */,
 				12F9980D6869A3FBC5C32B87 /* ProfileView.swift in Sources */,
 				49A064CB5FA3E084B508F7E7 /* ProgressManager.swift in Sources */,
+				9BF8D7C5D550CCEDB65E28FD /* PurchaseManager.swift in Sources */,
 				EFEB1842A44D11BE4D81B0CA /* ReviewScheduler.swift in Sources */,
 				4D2DD1E3D6FAFC6548A8964D /* ReviewView.swift in Sources */,
 				6AF19FC8A19ED49EBCBC73FA /* Stage.swift in Sources */,
