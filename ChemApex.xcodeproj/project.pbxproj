@@ -41,6 +41,7 @@
 		9BF6EA7AE5A1EFF6D504BF4C /* ProblemBank+Structure.swift in Sources */ = {isa = PBXBuildFile; fileRef = E470BCC51954C6788C1A4C1B /* ProblemBank+Structure.swift */; };
 		9BF8D7C5D550CCEDB65E28FD /* PurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48454AD7F837B599640CF93 /* PurchaseManager.swift */; };
 		9E828A446591F02BDF92BA01 /* ChemApexApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3850E04270D572926CAC8FF8 /* ChemApexApp.swift */; };
+		A10FDE044628985ADEE9F2B9 /* EquationDrillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA6FA9765E3193E26704B3E /* EquationDrillView.swift */; };
 		A3499EA2EC203E21FECBBE6D /* Flashcard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF8B89D3A636482DFCDF594 /* Flashcard.swift */; };
 		A5F6142E3D99768A15598B68 /* ChemModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7572800DD69E2F6B2C990B6A /* ChemModels.swift */; };
 		AA917FD8EBC3DA6E65BCA933 /* ProcessFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF7E1435985319CEE4EF29C /* ProcessFlow.swift */; };
@@ -54,6 +55,7 @@
 		DCA9EBD769BEBF1CC7BBA82E /* ProblemBank+Junior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98AFA8E1427FA97D595DF9B9 /* ProblemBank+Junior.swift */; };
 		E151F5D4FBB76C8BC0B434EF /* ProblemBank+CoreSenior.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42A9E5BED2FA0A505B22C29 /* ProblemBank+CoreSenior.swift */; };
 		E67694B93B2AEE5DD77A5F16 /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FA735507B9C2669DBC2FE0 /* DesignSystem.swift */; };
+		E7976BAEC2781878584E6F42 /* EquationDrill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518F7AF35E6D7191FB39070D /* EquationDrill.swift */; };
 		E976778A608D83741F89FACD /* ProblemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE19B8D8E8A24982BEE23B0 /* ProblemDetailView.swift */; };
 		EA3712B4DF20F11E86A0CE5A /* Lore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7015CFAAAC13062019705FB3 /* Lore.swift */; };
 		EC0230FE6FF68D40FBABC77F /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380C21F86BAA84B63C32506B /* Element.swift */; };
@@ -86,8 +88,10 @@
 		3850E04270D572926CAC8FF8 /* ChemApexApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChemApexApp.swift; sourceTree = "<group>"; };
 		3B21BD363A6BC0B1B3779CE3 /* DetectiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectiveView.swift; sourceTree = "<group>"; };
 		44E31DC8C94737CD7BCC8D2D /* ReviewScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewScheduler.swift; sourceTree = "<group>"; };
+		518F7AF35E6D7191FB39070D /* EquationDrill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquationDrill.swift; sourceTree = "<group>"; };
 		56D15DF74F566562536B34E7 /* ThemeColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColors.swift; sourceTree = "<group>"; };
 		57B583F2F4DB4F0D710ED2EF /* Detective.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detective.swift; sourceTree = "<group>"; };
+		5AA6FA9765E3193E26704B3E /* EquationDrillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquationDrillView.swift; sourceTree = "<group>"; };
 		5E44FC3818EA27F820D90E29 /* DescentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescentView.swift; sourceTree = "<group>"; };
 		61F6EE70FC279AD6FB667103 /* LabBenchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabBenchData.swift; sourceTree = "<group>"; };
 		621F89CFE36C183A0B89427F /* ChemApex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChemApex.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				0D149BF064FE1C74041A2C2A /* AtlasView.swift */,
+				5AA6FA9765E3193E26704B3E /* EquationDrillView.swift */,
 				E4B89530B64C7D480B203B15 /* EquationLibraryView.swift */,
 			);
 			path = Atlas;
@@ -301,6 +306,7 @@
 				7572800DD69E2F6B2C990B6A /* ChemModels.swift */,
 				57B583F2F4DB4F0D710ED2EF /* Detective.swift */,
 				380C21F86BAA84B63C32506B /* Element.swift */,
+				518F7AF35E6D7191FB39070D /* EquationDrill.swift */,
 				BBF8B89D3A636482DFCDF594 /* Flashcard.swift */,
 				314BEB9E7F5731AE8A7843FA /* LabBench.swift */,
 				865B045497FE83B5D48B7EC1 /* LearningNode.swift */,
@@ -481,6 +487,8 @@
 				05B0DAF6553653E1EE25F5C1 /* DetectiveView.swift in Sources */,
 				EC0230FE6FF68D40FBABC77F /* Element.swift in Sources */,
 				3F2A2CC4A635852968247702 /* ElementData.swift in Sources */,
+				E7976BAEC2781878584E6F42 /* EquationDrill.swift in Sources */,
+				A10FDE044628985ADEE9F2B9 /* EquationDrillView.swift in Sources */,
 				7B1B239255B1E673B7E12233 /* EquationLibrary.swift in Sources */,
 				17B8ADFA1355C62B2094AC74 /* EquationLibraryView.swift in Sources */,
 				A3499EA2EC203E21FECBBE6D /* Flashcard.swift in Sources */,

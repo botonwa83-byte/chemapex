@@ -26,6 +26,7 @@ struct MainTabView: View {
     @State private var demoProcess = ProcessInfo.processInfo.arguments.contains("-demoProcess")
     @State private var demoWeapon = ProcessInfo.processInfo.arguments.contains("-demoWeapon")
     @State private var demoDuel = ProcessInfo.processInfo.arguments.contains("-demoDuel")
+    @State private var demoDrill = ProcessInfo.processInfo.arguments.contains("-demoDrill")
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -74,6 +75,9 @@ struct MainTabView: View {
             if let boss = DescentCases.bossCase(id: "boss_electron"), let dual = boss.dualSolution {
                 NavigationStack { DescentDetailView(problem: boss, dual: dual) }
             }
+        }
+        .fullScreenCover(isPresented: $demoDrill) {
+            NavigationStack { EquationDrillSessionView(equations: Array(EquationLibrary.all.prefix(8)), title: "方程式默写") }
         }
     }
 }
