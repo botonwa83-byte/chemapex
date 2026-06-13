@@ -22,6 +22,7 @@ struct MainTabView: View {
     @State private var demoDetective = ProcessInfo.processInfo.arguments.contains("-demoDetective")
     @State private var demoFlashcards = ProcessInfo.processInfo.arguments.contains("-demoFlashcards")
     @State private var demoPaywall = ProcessInfo.processInfo.arguments.contains("-demoPaywall")
+    @State private var demoLabBench = ProcessInfo.processInfo.arguments.contains("-demoLabBench")
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -51,6 +52,11 @@ struct MainTabView: View {
             NavigationStack { FlashcardGameView(category: .flame) }
         }
         .sheet(isPresented: $demoPaywall) { PaywallView() }
+        .fullScreenCover(isPresented: $demoLabBench) {
+            if let first = LabBenchData.all.first {
+                NavigationStack { LabBenchGameView(setup: first) }
+            }
+        }
     }
 }
 

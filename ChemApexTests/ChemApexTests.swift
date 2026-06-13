@@ -113,6 +113,39 @@ final class ChemApexTests: XCTestCase {
                        "免费关卡的 Boss 与守恒之眼免费档必须一致")
         // 神探免费档不超过总案件数
         XCTAssertLessThanOrEqual(PurchaseManager.freeDetectiveCount, DetectiveData.all.count)
+        // 实验台初中关必须免费
+        let juniorLabs = LabBenchData.all.prefix(PurchaseManager.freeLabCount)
+        XCTAssertTrue(juniorLabs.allSatisfy { $0.stage == .junior }, "实验台免费档应为初中关")
+    }
+
+    /// 实验台数据完整性：每个插槽的正确卡必须在卡池中；拒绝理由只指向卡池内的卡。
+    func testLabBenchIntegrity() {
+        XCTAssertFalse(LabBenchData.all.isEmpty)
+        let ids = LabBenchData.all.map(\.id)
+        XCTAssertEqual(Set(ids).count, ids.count, "实验台关卡 ID 重复")
+        for setup in LabBenchData.all {
+            let poolIds = Set(setup.pool.map(\.id))
+            XCTAssertEqual(poolIds.count, setup.pool.count, "关卡 \(setup.id) 卡池 ID 重复")
+            for slot in setup.slots {
+                XCTAssertTrue(poolIds.contains(slot.correctCardId),
+                              "关卡 \(setup.id) 插槽 \(slot.role) 的正确卡不在卡池中")
+                XCTAssertFalse(slot.successNote.isEmpty)
+            }
+            for cardId in setup.rejections.keys {
+                XCTAssertTrue(poolIds.contains(cardId),
+                              "关卡 \(setup.id) 拒绝理由指向了不存在的卡 \(cardId)")
+            }
+            // 每张干扰卡（非任何插槽正确卡）必须有拒绝理由
+            let correctIds = Set(setup.slots.map(\.correctCardId))
+            for card in setup.pool where !correctIds.contains(card.id) {
+                XCTAssertNotNil(setup.rejections[card.id],
+                                "关卡 \(setup.id) 干扰卡 \(card.id) 缺少化学理由")
+            }
+        }
+        // 计星规则
+        XCTAssertEqual(LabBenchManager.stars(mistakes: 0), 3)
+        XCTAssertEqual(LabBenchManager.stars(mistakes: 2), 2)
+        XCTAssertEqual(LabBenchManager.stars(mistakes: 3), 1)
     }
 
     /// 元素与方程式数据完整性。

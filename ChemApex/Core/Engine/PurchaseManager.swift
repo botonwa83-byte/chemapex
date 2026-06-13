@@ -18,6 +18,7 @@ final class PurchaseManager: ObservableObject {
     static let freeNodeCount = 6        // 主线前 6 关
     static let freeDescentCount = 4     // 守恒之眼前 4 案（恰为免费关卡的 Boss）
     static let freeDetectiveCount = 3   // 化学神探前 3 案
+    static let freeLabCount = 3         // 虚拟实验台前 3 关（初中全部）
 
     @Published private(set) var isUnlocked: Bool = false
     @Published private(set) var product: Product?
@@ -57,6 +58,11 @@ final class PurchaseManager: ObservableObject {
     func isDetectivePremiumLocked(index: Int) -> Bool {
         guard !isUnlocked else { return false }
         return index >= Self.freeDetectiveCount
+    }
+
+    func isLabPremiumLocked(index: Int) -> Bool {
+        guard !isUnlocked else { return false }
+        return index >= Self.freeLabCount
     }
 
     // MARK: StoreKit

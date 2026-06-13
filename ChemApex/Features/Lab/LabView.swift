@@ -9,6 +9,8 @@ struct LabView: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: Spacing.xl) {
+                    benchEntry
+
                     ForEach(Stage.allCases) { stage in
                         SectionHeader(title: "\(stage.emoji) \(stage.title)", accent: stage.color)
                         ForEach(topics(for: stage)) { topic in
@@ -21,6 +23,29 @@ struct LabView: View {
             .background(Color.apexBackground.ignoresSafeArea())
             .navigationTitle("反应釜")
         }
+    }
+
+    private var benchEntry: some View {
+        NavigationLink { LabBenchView() } label: {
+            HStack(spacing: Spacing.lg) {
+                Image(systemName: "flask.fill")
+                    .font(.title2)
+                    .frame(width: 48, height: 48)
+                    .background(Color.apexEmerald.opacity(0.15))
+                    .foregroundColor(.apexEmerald)
+                    .cornerRadius(Radius.inner)
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("虚拟实验台").font(AppFont.cardTitle)
+                    Text("拼气体制备装置链 · \(LabBenchManager.shared.completedCount)/\(LabBenchData.all.count) 已通关")
+                        .font(.caption).foregroundColor(.secondary)
+                }
+                Spacer()
+                Image(systemName: "chevron.right").font(.caption).foregroundColor(.secondary)
+            }
+            .foregroundColor(.primary)
+            .cardSurface(padding: Spacing.lg)
+        }
+        .buttonStyle(.plain)
     }
 
     private func topics(for stage: Stage) -> [ChemTopic] {

@@ -18,6 +18,7 @@
 		44335065492C03A4EFEC8552 /* DetectiveData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9D8698B41DB7321B52D33C /* DetectiveData.swift */; };
 		49A064CB5FA3E084B508F7E7 /* ProgressManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84E91E6228EF266A56B6F48 /* ProgressManager.swift */; };
 		4D2DD1E3D6FAFC6548A8964D /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B52E623B1F4023F2239DB /* ReviewView.swift */; };
+		5BB58A62C8C1D589EF01EF0B /* LabBenchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A09E07508A87AD10FC9D5E /* LabBenchView.swift */; };
 		6AF19FC8A19ED49EBCBC73FA /* Stage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C716BE99074F201478CCB85E /* Stage.swift */; };
 		6FB4C5AA918D53C8F805ED4C /* StudentProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0D54B6141EB1A6C1C34EF7 /* StudentProfile.swift */; };
 		7057FE2AA5882B83468B060C /* DescentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E44FC3818EA27F820D90E29 /* DescentView.swift */; };
@@ -38,7 +39,9 @@
 		B753E9230B48AA11C8D6A787 /* AscentPathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81598C2BCACA59774AFBA3B /* AscentPathView.swift */; };
 		B7E08DFE56B2A3713F842277 /* FlashcardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E0F6F3EF8CA31A48CDC81D /* FlashcardData.swift */; };
 		BB1FEE7B9113EFC86CE5742A /* NodeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826D2B8FFED04BD231BCA72B /* NodeDetailView.swift */; };
+		BC7FC756A19F2B7DED76B695 /* LabBenchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F6EE70FC279AD6FB667103 /* LabBenchData.swift */; };
 		C262BBC53C1314FD1F16A36F /* DescentCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B8783B53EBE1B1B4F3E72E /* DescentCases.swift */; };
+		D3E9B6BFB314F1E4CE3E1491 /* LabBench.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314BEB9E7F5731AE8A7843FA /* LabBench.swift */; };
 		E67694B93B2AEE5DD77A5F16 /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FA735507B9C2669DBC2FE0 /* DesignSystem.swift */; };
 		E976778A608D83741F89FACD /* ProblemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE19B8D8E8A24982BEE23B0 /* ProblemDetailView.swift */; };
 		EA3712B4DF20F11E86A0CE5A /* Lore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7015CFAAAC13062019705FB3 /* Lore.swift */; };
@@ -63,8 +66,10 @@
 		12B8783B53EBE1B1B4F3E72E /* DescentCases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescentCases.swift; sourceTree = "<group>"; };
 		21AF02FC975D4D1600CCA458 /* ChemApexTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = ChemApexTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		227DEFF985E4448FA09463B3 /* LabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabView.swift; sourceTree = "<group>"; };
+		29A09E07508A87AD10FC9D5E /* LabBenchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabBenchView.swift; sourceTree = "<group>"; };
 		29E0F6F3EF8CA31A48CDC81D /* FlashcardData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardData.swift; sourceTree = "<group>"; };
 		2CE19B8D8E8A24982BEE23B0 /* ProblemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemDetailView.swift; sourceTree = "<group>"; };
+		314BEB9E7F5731AE8A7843FA /* LabBench.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabBench.swift; sourceTree = "<group>"; };
 		380C21F86BAA84B63C32506B /* Element.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
 		3850E04270D572926CAC8FF8 /* ChemApexApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChemApexApp.swift; sourceTree = "<group>"; };
 		3B21BD363A6BC0B1B3779CE3 /* DetectiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectiveView.swift; sourceTree = "<group>"; };
@@ -72,6 +77,7 @@
 		56D15DF74F566562536B34E7 /* ThemeColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColors.swift; sourceTree = "<group>"; };
 		57B583F2F4DB4F0D710ED2EF /* Detective.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detective.swift; sourceTree = "<group>"; };
 		5E44FC3818EA27F820D90E29 /* DescentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescentView.swift; sourceTree = "<group>"; };
+		61F6EE70FC279AD6FB667103 /* LabBenchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabBenchData.swift; sourceTree = "<group>"; };
 		621F89CFE36C183A0B89427F /* ChemApex.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = ChemApex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65B48063DE8C8652CD273F71 /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
 		7015CFAAAC13062019705FB3 /* Lore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lore.swift; sourceTree = "<group>"; };
@@ -177,6 +183,14 @@
 			path = AscentPath;
 			sourceTree = "<group>";
 		};
+		62AA2FED08EAE8DE7C76BB00 /* LabBench */ = {
+			isa = PBXGroup;
+			children = (
+				29A09E07508A87AD10FC9D5E /* LabBenchView.swift */,
+			);
+			path = LabBench;
+			sourceTree = "<group>";
+		};
 		660A8A77B6AE077DD2D9BBB1 /* Lore */ = {
 			isa = PBXGroup;
 			children = (
@@ -256,6 +270,7 @@
 				57B583F2F4DB4F0D710ED2EF /* Detective.swift */,
 				380C21F86BAA84B63C32506B /* Element.swift */,
 				BBF8B89D3A636482DFCDF594 /* Flashcard.swift */,
+				314BEB9E7F5731AE8A7843FA /* LabBench.swift */,
 				865B045497FE83B5D48B7EC1 /* LearningNode.swift */,
 				7015CFAAAC13062019705FB3 /* Lore.swift */,
 				C716BE99074F201478CCB85E /* Stage.swift */,
@@ -272,6 +287,7 @@
 				7AB6B715BD929366D631F0F6 /* ElementData.swift */,
 				939AAE4513B8D671F3214A70 /* EquationLibrary.swift */,
 				29E0F6F3EF8CA31A48CDC81D /* FlashcardData.swift */,
+				61F6EE70FC279AD6FB667103 /* LabBenchData.swift */,
 				8327AB579289C7DBECCFC7E2 /* LoreData.swift */,
 				D19533570D9B93FEA5DBF927 /* MainLineData.swift */,
 				B5331FD2F074F36C119C2F4B /* ProblemBank.swift */,
@@ -299,6 +315,7 @@
 				859CACB09CCA4DDC9282FD6D /* Detective */,
 				37A4F4D07DADF28DBE6DD161 /* Flashcards */,
 				A5A9156CA5FAB16BC2890AF0 /* Lab */,
+				62AA2FED08EAE8DE7C76BB00 /* LabBench */,
 				660A8A77B6AE077DD2D9BBB1 /* Lore */,
 				73BB9FE4D1D6CF907CA1E36A /* Paywall */,
 				3ED9F8B4A02C0A82CEC7D11A /* Profile */,
@@ -419,6 +436,9 @@
 				A3499EA2EC203E21FECBBE6D /* Flashcard.swift in Sources */,
 				B7E08DFE56B2A3713F842277 /* FlashcardData.swift in Sources */,
 				83D2BDE094B5820636155D5E /* FlashcardView.swift in Sources */,
+				D3E9B6BFB314F1E4CE3E1491 /* LabBench.swift in Sources */,
+				BC7FC756A19F2B7DED76B695 /* LabBenchData.swift in Sources */,
+				5BB58A62C8C1D589EF01EF0B /* LabBenchView.swift in Sources */,
 				9AFB80A45C1298681DB0ED37 /* LabView.swift in Sources */,
 				3158BF6BD4D259BEC3BA1E7B /* LearningNode.swift in Sources */,
 				EA3712B4DF20F11E86A0CE5A /* Lore.swift in Sources */,
