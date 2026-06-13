@@ -1,0 +1,150 @@
+import Foundation
+
+// MARK: - 工艺流程题库（一期 4 流程）
+// 红线：每步操作、试剂、产物、顺序理由必须符合教材标准；方程式配平核对。
+
+enum ProcessFlowData {
+    static let all: [ProcessFlow] = [crudeSalt, kelpIodine, seawaterBromine, bauxite]
+
+    // MARK: 粗盐提纯（除杂顺序经典题）
+
+    private static let crudeSalt = ProcessFlow(
+        id: "pf_salt", title: "粗盐提纯", stage: .junior, topic: .acidBaseSalt,
+        overview: "粗盐水中除 NaCl 外，还含 SO₄²⁻、Mg²⁺、Ca²⁺ 三种杂质离子。设计除杂流程，得到精盐。",
+        nodes: [
+            ProcessNode(id: "salt_n0", substance: "粗盐水\n（含 SO₄²⁻ / Mg²⁺ / Ca²⁺）"),
+            ProcessNode(id: "salt_n1", substance: "溶液①\n（无 SO₄²⁻，多 Ba²⁺）"),
+            ProcessNode(id: "salt_n2", substance: "溶液②\n（无 Mg²⁺）"),
+            ProcessNode(id: "salt_n3", substance: "溶液③\n（无 Ca²⁺、Ba²⁺）"),
+            ProcessNode(id: "salt_n4", substance: "滤液"),
+            ProcessNode(id: "salt_n5", substance: "精盐水", highlight: true),
+        ],
+        steps: [
+            ProcessStep(id: "salt_s0", operation: "加过量 BaCl₂ 溶液",
+                sideNote: "Ba²⁺ + SO₄²⁻ → BaSO₄↓，除去 SO₄²⁻；过量是为了除尽，但引入了多余 Ba²⁺。",
+                quiz: ProcessQuiz(prompt: "除去 SO₄²⁻ 应加入过量的？",
+                    options: ["BaCl₂ 溶液", "Ba(NO₃)₂ 溶液", "稀硫酸", "BaSO₄ 固体"],
+                    answerIndex: 0,
+                    explanation: "用 BaCl₂ 而非 Ba(NO₃)₂——后者会引入新杂质 NO₃⁻。引入的 Cl⁻ 与目标产物 NaCl 同类，不算杂质。")),
+            ProcessStep(id: "salt_s1", operation: "加过量 NaOH 溶液",
+                sideNote: "Mg²⁺ + 2OH⁻ → Mg(OH)₂↓，除去 Mg²⁺。"),
+            ProcessStep(id: "salt_s2", operation: "加过量 Na₂CO₃ 溶液",
+                sideNote: "Ca²⁺、过量 Ba²⁺ 都与 CO₃²⁻ 生成沉淀——一步除两害。",
+                quiz: ProcessQuiz(prompt: "加 Na₂CO₃ 的顺序必须？",
+                    options: ["在加 BaCl₂ 之后", "在加 BaCl₂ 之前", "任意顺序均可", "在加盐酸之后"],
+                    answerIndex: 0,
+                    explanation: "Na₂CO₃ 要顺带除掉前面过量的 Ba²⁺，所以必须排在 BaCl₂ 之后。这是除杂顺序题的核心考点。")),
+            ProcessStep(id: "salt_s3", operation: "过滤",
+                sideNote: "除去 BaSO₄、Mg(OH)₂、CaCO₃、BaCO₃ 全部沉淀。"),
+            ProcessStep(id: "salt_s4", operation: "加适量盐酸",
+                sideNote: "中和除去过量的 NaOH 和 Na₂CO₃（生成 NaCl + H₂O + CO₂↑）。",
+                quiz: ProcessQuiz(prompt: "最后加适量盐酸的目的？",
+                    options: ["除去过量的 NaOH 和 Na₂CO₃", "把 BaSO₄ 溶解掉", "再次沉淀 Ca²⁺", "增大溶液酸性便于保存"],
+                    answerIndex: 0,
+                    explanation: "盐酸排在过滤之后、且只能加适量——除去过量的 NaOH 和 Na₂CO₃，引入的 Cl⁻ 与 NaCl 同类。盐酸过量会使精盐水显酸性。")),
+        ],
+        examPoint: "除杂顺序两条铁律：① 除 Ba²⁺ 的 Na₂CO₃ 必须在 BaCl₂ 之后；② 调 pH 的盐酸必须在过滤之后、且适量。加入的试剂只能过量不能不足，多余的由后续步骤清走。")
+
+    // MARK: 海带提碘
+
+    private static let kelpIodine = ProcessFlow(
+        id: "pf_iodine", title: "海带提碘", stage: .senior, topic: .nonmetals,
+        overview: "海带中的碘以 I⁻ 形式存在。从海带中提取碘单质。",
+        nodes: [
+            ProcessNode(id: "i_n0", substance: "干海带"),
+            ProcessNode(id: "i_n1", substance: "海带灰"),
+            ProcessNode(id: "i_n2", substance: "含 I⁻ 的滤液"),
+            ProcessNode(id: "i_n3", substance: "含 I₂ 的溶液"),
+            ProcessNode(id: "i_n4", substance: "碘的 CCl₄ 溶液\n（下层紫红）"),
+            ProcessNode(id: "i_n5", substance: "碘单质 I₂", highlight: true),
+        ],
+        steps: [
+            ProcessStep(id: "i_s0", operation: "灼烧成灰",
+                sideNote: "把有机碘转化为可溶的碘化物；灼烧固体用坩埚。",
+                quiz: ProcessQuiz(prompt: "灼烧海带应使用的仪器是？",
+                    options: ["坩埚", "蒸发皿", "烧杯", "试管"],
+                    answerIndex: 0,
+                    explanation: "灼烧固体用坩埚（耐高温）；蒸发皿用于蒸发结晶溶液。仪器张冠李戴是流程题的常见陷阱。")),
+            ProcessStep(id: "i_s1", operation: "加水浸泡、过滤",
+                sideNote: "可溶的 I⁻ 进入滤液，不溶残渣被滤去。"),
+            ProcessStep(id: "i_s2", operation: "加稀硫酸和适量 H₂O₂",
+                sideNote: "2I⁻ + H₂O₂ + 2H⁺ → I₂ + 2H₂O，把 I⁻ 氧化为 I₂。",
+                quiz: ProcessQuiz(prompt: "氧化 I⁻ 的氧化剂用量为何强调「适量」？",
+                    options: ["过量氧化剂会把 I₂ 进一步氧化成 IO₃⁻", "过量会使溶液变酸", "适量是为了省钱", "过量会生成沉淀"],
+                    answerIndex: 0,
+                    explanation: "氧化剂过量会把生成的 I₂ 继续氧化成 IO₃⁻，反而拿不到碘单质——所以必须适量。若用 Cl₂ 作氧化剂同理。")),
+            ProcessStep(id: "i_s3", operation: "加 CCl₄ 萃取、分液",
+                sideNote: "碘在 CCl₄ 中溶解度远大于水，且 CCl₄ 与水不互溶；下层紫红色为碘的 CCl₄ 溶液。",
+                quiz: ProcessQuiz(prompt: "下列可作萃取剂的是？",
+                    options: ["四氯化碳", "酒精", "氢氧化钠溶液", "稀盐酸"],
+                    answerIndex: 0,
+                    explanation: "萃取剂两条件：与水不互溶、溶质在其中溶解度更大。酒精与水互溶不能用；CCl₄ 满足条件。")),
+            ProcessStep(id: "i_s4", operation: "蒸馏",
+                sideNote: "利用沸点差分离 CCl₄ 与 I₂，得到碘单质。"),
+        ],
+        examPoint: "提碘四步：灼烧（坩埚）→ 浸取过滤 → 氧化（适量氧化剂，过量会生成 IO₃⁻）→ 萃取分液 + 蒸馏。仪器选择和氧化剂用量是两大失分点。")
+
+    // MARK: 海水提溴
+
+    private static let seawaterBromine = ProcessFlow(
+        id: "pf_bromine", title: "海水提溴", stage: .senior, topic: .nonmetals,
+        overview: "海水中溴以 Br⁻ 形式存在，浓度很低。工业上「吹出—吸收—再氧化」富集后提溴。",
+        nodes: [
+            ProcessNode(id: "br_n0", substance: "浓缩海水\n（含 Br⁻）"),
+            ProcessNode(id: "br_n1", substance: "含 Br₂ 的溶液"),
+            ProcessNode(id: "br_n2", substance: "含 Br₂ 的热空气"),
+            ProcessNode(id: "br_n3", substance: "富集的 HBr 溶液"),
+            ProcessNode(id: "br_n4", substance: "Br₂"),
+            ProcessNode(id: "br_n5", substance: "液溴", highlight: true),
+        ],
+        steps: [
+            ProcessStep(id: "br_s0", operation: "通入足量 Cl₂",
+                sideNote: "Cl₂ + 2Br⁻ → Br₂ + 2Cl⁻，氯的氧化性强于溴，把 Br⁻ 氧化出来。",
+                quiz: ProcessQuiz(prompt: "用 Cl₂ 氧化 Br⁻ 的依据是？",
+                    options: ["氧化性 Cl₂ > Br₂", "氧化性 Br₂ > Cl₂", "Cl₂ 溶解度更大", "Br⁻ 半径更小"],
+                    answerIndex: 0,
+                    explanation: "卤素氧化性 Cl₂ > Br₂ > I₂，活泼的氯单质才能把溴从其离子中置换出来。注意 F₂ 例外（会先与水反应）。")),
+            ProcessStep(id: "br_s1", operation: "通入热空气吹出",
+                sideNote: "Br₂ 易挥发，用热空气把它从溶液中吹出，与大量水分离。"),
+            ProcessStep(id: "br_s2", operation: "用 SO₂ 吸收",
+                sideNote: "Br₂ + SO₂ + 2H₂O → 2HBr + H₂SO₄，把稀薄的 Br₂ 转成溶液富集（浓缩）。",
+                quiz: ProcessQuiz(prompt: "吹出的 Br₂ 用 SO₂ 吸收，目的是？",
+                    options: ["将稀薄的溴富集浓缩", "除去溴中的氯气", "防止溴挥发污染", "把溴还原成溴化氢便于储存"],
+                    answerIndex: 0,
+                    explanation: "吹出的 Br₂ 很稀，SO₂ 吸收生成 HBr 溶液实现富集；之后再用 Cl₂ 氧化 HBr 得到更浓的 Br₂——「吹出—吸收—再氧化」是富集的核心思路。")),
+            ProcessStep(id: "br_s3", operation: "再通入 Cl₂ 氧化",
+                sideNote: "Cl₂ + 2HBr → Br₂ + 2HCl，把富集后的 Br⁻ 再次氧化为 Br₂。"),
+            ProcessStep(id: "br_s4", operation: "蒸馏（或萃取）",
+                sideNote: "分离得到液溴。"),
+        ],
+        examPoint: "海水提溴的灵魂是「富集」：直接提取太稀，先吹出、用 SO₂ 吸收成 HBr 浓缩、再用 Cl₂ 氧化。两次用到 Cl₂ 氧化，依据都是卤素氧化性 Cl₂ > Br₂。")
+
+    // MARK: 铝土矿提取氧化铝
+
+    private static let bauxite = ProcessFlow(
+        id: "pf_bauxite", title: "铝土矿提氧化铝", stage: .senior, topic: .metals,
+        overview: "铝土矿主要成分 Al₂O₃，含杂质 Fe₂O₃、SiO₂。用碱溶法提取纯净的 Al₂O₃。",
+        nodes: [
+            ProcessNode(id: "al_n0", substance: "铝土矿\n（Al₂O₃ / Fe₂O₃ / SiO₂）"),
+            ProcessNode(id: "al_n1", substance: "滤液\n（NaAlO₂ / Na₂SiO₃）"),
+            ProcessNode(id: "al_n2", substance: "Al(OH)₃ 沉淀"),
+            ProcessNode(id: "al_n3", substance: "Al₂O₃", highlight: true),
+        ],
+        steps: [
+            ProcessStep(id: "al_s0", operation: "加过量 NaOH 溶液、过滤",
+                sideNote: "Al₂O₃、SiO₂ 是酸性/两性氧化物，溶于 NaOH；Fe₂O₃ 是碱性氧化物不溶，作滤渣除去。",
+                quiz: ProcessQuiz(prompt: "加过量 NaOH 能分离出谁？",
+                    options: ["不溶的 Fe₂O₃ 留作滤渣", "不溶的 Al₂O₃ 留作滤渣", "SiO₂ 不反应被滤去", "三者全部溶解"],
+                    answerIndex: 0,
+                    explanation: "Al₂O₃（两性）和 SiO₂（酸性）都溶于强碱，Fe₂O₃（碱性氧化物）不溶——过滤即把铁杂质除去。")),
+            ProcessStep(id: "al_s1", operation: "通入过量 CO₂",
+                sideNote: "NaAlO₂ + CO₂ + 2H₂O → Al(OH)₃↓ + NaHCO₃；Na₂SiO₃ 不反应留在溶液中。",
+                quiz: ProcessQuiz(prompt: "从滤液中析出 Al(OH)₃，为什么通 CO₂ 而不加盐酸？",
+                    options: ["盐酸过量会溶解 Al(OH)₃，且无法与硅酸盐分离", "CO₂ 更便宜", "盐酸不与 NaAlO₂ 反应", "CO₂ 能氧化铝"],
+                    answerIndex: 0,
+                    explanation: "CO₂ 是弱酸，只把 AlO₂⁻ 转成 Al(OH)₃（不溶于碳酸，不会再溶解），硅酸钠留在溶液实现分离；盐酸过量会把 Al(OH)₃ 也溶掉。")),
+            ProcessStep(id: "al_s2", operation: "过滤、灼烧",
+                sideNote: "2Al(OH)₃ →(Δ) Al₂O₃ + 3H₂O，得到纯净氧化铝（再电解熔融制铝）。"),
+        ],
+        examPoint: "碱溶法分两关：① 过量 NaOH 溶铝留铁，靠「两性 vs 碱性」分离；② 通过量 CO₂（弱酸）析出 Al(OH)₃ 而不用强酸——既不溶解产物，又把硅酸盐留在液中。")
+}

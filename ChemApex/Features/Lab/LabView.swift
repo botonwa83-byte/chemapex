@@ -10,6 +10,7 @@ struct LabView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: Spacing.xl) {
                     benchEntry
+                    processEntry
 
                     ForEach(Stage.allCases) { stage in
                         SectionHeader(title: "\(stage.emoji) \(stage.title)", accent: stage.color)
@@ -37,6 +38,29 @@ struct LabView: View {
                 VStack(alignment: .leading, spacing: 4) {
                     Text("虚拟实验台").font(AppFont.cardTitle)
                     Text("拼气体制备装置链 · \(LabBenchManager.shared.completedCount)/\(LabBenchData.all.count) 已通关")
+                        .font(.caption).foregroundColor(.secondary)
+                }
+                Spacer()
+                Image(systemName: "chevron.right").font(.caption).foregroundColor(.secondary)
+            }
+            .foregroundColor(.primary)
+            .cardSurface(padding: Spacing.lg)
+        }
+        .buttonStyle(.plain)
+    }
+
+    private var processEntry: some View {
+        NavigationLink { ProcessFlowListView() } label: {
+            HStack(spacing: Spacing.lg) {
+                Image(systemName: "arrow.triangle.branch")
+                    .font(.title2)
+                    .frame(width: 48, height: 48)
+                    .background(Color.apexStarBlue.opacity(0.15))
+                    .foregroundColor(.apexStarBlue)
+                    .cornerRadius(Radius.inner)
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("工艺流程").font(AppFont.cardTitle)
+                    Text("拼工业流程链 · \(ProcessFlowManager.shared.completedCount)/\(ProcessFlowData.all.count) 已打通")
                         .font(.caption).foregroundColor(.secondary)
                 }
                 Spacer()

@@ -23,6 +23,7 @@ struct MainTabView: View {
     @State private var demoFlashcards = ProcessInfo.processInfo.arguments.contains("-demoFlashcards")
     @State private var demoPaywall = ProcessInfo.processInfo.arguments.contains("-demoPaywall")
     @State private var demoLabBench = ProcessInfo.processInfo.arguments.contains("-demoLabBench")
+    @State private var demoProcess = ProcessInfo.processInfo.arguments.contains("-demoProcess")
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -55,6 +56,11 @@ struct MainTabView: View {
         .fullScreenCover(isPresented: $demoLabBench) {
             if let first = LabBenchData.all.first {
                 NavigationStack { LabBenchGameView(setup: first) }
+            }
+        }
+        .fullScreenCover(isPresented: $demoProcess) {
+            if let first = ProcessFlowData.all.first {
+                NavigationStack { ProcessFlowDetailView(flow: first) }
             }
         }
     }

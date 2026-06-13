@@ -148,6 +148,32 @@ final class ChemApexTests: XCTestCase {
         XCTAssertEqual(LabBenchManager.stars(mistakes: 3), 1)
     }
 
+    /// 工艺流程完整性：节点数 = 步数 + 1；填空选项下标合法且每题有解析。
+    func testProcessFlowIntegrity() {
+        XCTAssertFalse(ProcessFlowData.all.isEmpty)
+        let ids = ProcessFlowData.all.map(\.id)
+        XCTAssertEqual(Set(ids).count, ids.count, "流程 ID 重复")
+        for flow in ProcessFlowData.all {
+            XCTAssertEqual(flow.nodes.count, flow.steps.count + 1,
+                           "流程 \(flow.id) 节点数应比步数多 1")
+            XCTAssertGreaterThan(flow.quizCount, 0, "流程 \(flow.id) 至少要有一处填空")
+            XCTAssertFalse(flow.examPoint.isEmpty)
+            for step in flow.steps {
+                XCTAssertFalse(step.operation.isEmpty)
+                if let quiz = step.quiz {
+                    XCTAssertTrue(quiz.options.indices.contains(quiz.answerIndex),
+                                  "流程 \(flow.id) 步骤 \(step.id) 答案下标越界")
+                    XCTAssertGreaterThanOrEqual(quiz.options.count, 2)
+                    XCTAssertFalse(quiz.explanation.isEmpty)
+                }
+            }
+        }
+        XCTAssertEqual(ProcessFlowManager.stars(mistakes: 0), 3)
+        XCTAssertEqual(ProcessFlowManager.stars(mistakes: 1), 2)
+        XCTAssertEqual(ProcessFlowManager.stars(mistakes: 4), 1)
+        XCTAssertLessThanOrEqual(PurchaseManager.freeProcessCount, ProcessFlowData.all.count)
+    }
+
     /// 元素与方程式数据完整性。
     func testAtlasDataIntegrity() {
         let numbers = ElementData.all.map(\.number)

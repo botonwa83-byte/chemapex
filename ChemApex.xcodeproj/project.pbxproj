@@ -22,6 +22,7 @@
 		6AF19FC8A19ED49EBCBC73FA /* Stage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C716BE99074F201478CCB85E /* Stage.swift */; };
 		6FB4C5AA918D53C8F805ED4C /* StudentProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0D54B6141EB1A6C1C34EF7 /* StudentProfile.swift */; };
 		7057FE2AA5882B83468B060C /* DescentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E44FC3818EA27F820D90E29 /* DescentView.swift */; };
+		7718915B1069081813181777 /* ProcessFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1EB4ABDEEA03529E1C0605 /* ProcessFlowView.swift */; };
 		7B1B239255B1E673B7E12233 /* EquationLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939AAE4513B8D671F3214A70 /* EquationLibrary.swift */; };
 		7E4EDE272B4430E2AB496746 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B48063DE8C8652CD273F71 /* PaywallView.swift */; };
 		83D2BDE094B5820636155D5E /* FlashcardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C380C80B7C0BC86152B9A401 /* FlashcardView.swift */; };
@@ -35,6 +36,7 @@
 		9E828A446591F02BDF92BA01 /* ChemApexApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3850E04270D572926CAC8FF8 /* ChemApexApp.swift */; };
 		A3499EA2EC203E21FECBBE6D /* Flashcard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF8B89D3A636482DFCDF594 /* Flashcard.swift */; };
 		A5F6142E3D99768A15598B68 /* ChemModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7572800DD69E2F6B2C990B6A /* ChemModels.swift */; };
+		AA917FD8EBC3DA6E65BCA933 /* ProcessFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF7E1435985319CEE4EF29C /* ProcessFlow.swift */; };
 		B66F21ED4D0890106F454AF5 /* ThemeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D15DF74F566562536B34E7 /* ThemeColors.swift */; };
 		B753E9230B48AA11C8D6A787 /* AscentPathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81598C2BCACA59774AFBA3B /* AscentPathView.swift */; };
 		B7E08DFE56B2A3713F842277 /* FlashcardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E0F6F3EF8CA31A48CDC81D /* FlashcardData.swift */; };
@@ -48,6 +50,7 @@
 		EC0230FE6FF68D40FBABC77F /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380C21F86BAA84B63C32506B /* Element.swift */; };
 		EFEB1842A44D11BE4D81B0CA /* ReviewScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E31DC8C94737CD7BCC8D2D /* ReviewScheduler.swift */; };
 		F18FCEAB30062C4C1CB9A0C1 /* ChemApexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE61566C4664A41EF400513 /* ChemApexTests.swift */; };
+		F50AA94A13382FDA96166AE5 /* ProcessFlowData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E7A28FCBFCBB869951C94E /* ProcessFlowData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,9 +87,11 @@
 		7572800DD69E2F6B2C990B6A /* ChemModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChemModels.swift; sourceTree = "<group>"; };
 		763B52E623B1F4023F2239DB /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
 		7AB6B715BD929366D631F0F6 /* ElementData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementData.swift; sourceTree = "<group>"; };
+		7DF7E1435985319CEE4EF29C /* ProcessFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessFlow.swift; sourceTree = "<group>"; };
 		826D2B8FFED04BD231BCA72B /* NodeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeDetailView.swift; sourceTree = "<group>"; };
 		8327AB579289C7DBECCFC7E2 /* LoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoreData.swift; sourceTree = "<group>"; };
 		865B045497FE83B5D48B7EC1 /* LearningNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningNode.swift; sourceTree = "<group>"; };
+		8B1EB4ABDEEA03529E1C0605 /* ProcessFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessFlowView.swift; sourceTree = "<group>"; };
 		8E9D8698B41DB7321B52D33C /* DetectiveData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectiveData.swift; sourceTree = "<group>"; };
 		939AAE4513B8D671F3214A70 /* EquationLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquationLibrary.swift; sourceTree = "<group>"; };
 		9B0D54B6141EB1A6C1C34EF7 /* StudentProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentProfile.swift; sourceTree = "<group>"; };
@@ -95,6 +100,7 @@
 		B48454AD7F837B599640CF93 /* PurchaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseManager.swift; sourceTree = "<group>"; };
 		B5331FD2F074F36C119C2F4B /* ProblemBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemBank.swift; sourceTree = "<group>"; };
 		BBF8B89D3A636482DFCDF594 /* Flashcard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flashcard.swift; sourceTree = "<group>"; };
+		C1E7A28FCBFCBB869951C94E /* ProcessFlowData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessFlowData.swift; sourceTree = "<group>"; };
 		C380C80B7C0BC86152B9A401 /* FlashcardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardView.swift; sourceTree = "<group>"; };
 		C716BE99074F201478CCB85E /* Stage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stage.swift; sourceTree = "<group>"; };
 		D19533570D9B93FEA5DBF927 /* MainLineData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLineData.swift; sourceTree = "<group>"; };
@@ -273,6 +279,7 @@
 				314BEB9E7F5731AE8A7843FA /* LabBench.swift */,
 				865B045497FE83B5D48B7EC1 /* LearningNode.swift */,
 				7015CFAAAC13062019705FB3 /* Lore.swift */,
+				7DF7E1435985319CEE4EF29C /* ProcessFlow.swift */,
 				C716BE99074F201478CCB85E /* Stage.swift */,
 				9B0D54B6141EB1A6C1C34EF7 /* StudentProfile.swift */,
 			);
@@ -291,6 +298,7 @@
 				8327AB579289C7DBECCFC7E2 /* LoreData.swift */,
 				D19533570D9B93FEA5DBF927 /* MainLineData.swift */,
 				B5331FD2F074F36C119C2F4B /* ProblemBank.swift */,
+				C1E7A28FCBFCBB869951C94E /* ProcessFlowData.swift */,
 				D84E91E6228EF266A56B6F48 /* ProgressManager.swift */,
 				B48454AD7F837B599640CF93 /* PurchaseManager.swift */,
 				44E31DC8C94737CD7BCC8D2D /* ReviewScheduler.swift */,
@@ -318,10 +326,19 @@
 				62AA2FED08EAE8DE7C76BB00 /* LabBench */,
 				660A8A77B6AE077DD2D9BBB1 /* Lore */,
 				73BB9FE4D1D6CF907CA1E36A /* Paywall */,
+				F234FD0E5117A725E788E597 /* ProcessFlow */,
 				3ED9F8B4A02C0A82CEC7D11A /* Profile */,
 				02F7857164DE6A2243B574A1 /* Review */,
 			);
 			path = Features;
+			sourceTree = "<group>";
+		};
+		F234FD0E5117A725E788E597 /* ProcessFlow */ = {
+			isa = PBXGroup;
+			children = (
+				8B1EB4ABDEEA03529E1C0605 /* ProcessFlowView.swift */,
+			);
+			path = ProcessFlow;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -449,6 +466,9 @@
 				7E4EDE272B4430E2AB496746 /* PaywallView.swift in Sources */,
 				9B3D4DB2AEC368CCEC64B1E3 /* ProblemBank.swift in Sources */,
 				E976778A608D83741F89FACD /* ProblemDetailView.swift in Sources */,
+				AA917FD8EBC3DA6E65BCA933 /* ProcessFlow.swift in Sources */,
+				F50AA94A13382FDA96166AE5 /* ProcessFlowData.swift in Sources */,
+				7718915B1069081813181777 /* ProcessFlowView.swift in Sources */,
 				12F9980D6869A3FBC5C32B87 /* ProfileView.swift in Sources */,
 				49A064CB5FA3E084B508F7E7 /* ProgressManager.swift in Sources */,
 				9BF8D7C5D550CCEDB65E28FD /* PurchaseManager.swift in Sources */,

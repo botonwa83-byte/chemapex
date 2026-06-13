@@ -19,6 +19,7 @@ final class PurchaseManager: ObservableObject {
     static let freeDescentCount = 4     // 守恒之眼前 4 案（恰为免费关卡的 Boss）
     static let freeDetectiveCount = 3   // 化学神探前 3 案
     static let freeLabCount = 3         // 虚拟实验台前 3 关（初中全部）
+    static let freeProcessCount = 2     // 工艺流程前 2 个
 
     @Published private(set) var isUnlocked: Bool = false
     @Published private(set) var product: Product?
@@ -63,6 +64,11 @@ final class PurchaseManager: ObservableObject {
     func isLabPremiumLocked(index: Int) -> Bool {
         guard !isUnlocked else { return false }
         return index >= Self.freeLabCount
+    }
+
+    func isProcessPremiumLocked(index: Int) -> Bool {
+        guard !isUnlocked else { return false }
+        return index >= Self.freeProcessCount
     }
 
     // MARK: StoreKit
