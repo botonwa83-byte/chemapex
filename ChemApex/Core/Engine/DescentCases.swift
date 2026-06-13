@@ -193,7 +193,7 @@ enum DescentCases {
                 principle: "原理：多步反应中只要某元素不流失，它的原子个数从始至终守恒。所以首尾物质之间存在固定的摩尔比（由原子守恒锁定），与中间几步、每步系数无关。写一条关系式，等于一次性跳过所有中间环节。",
                 keyInsight: "多步反应不必步步为营——找到贯穿首尾的原子，写一条关系式直达终点。",
                 plainTalk: "硫原子就像快递包裹，中间转了三个仓库，但一件都没丢。你不用管每个仓库怎么分拣，只要数清楚发货时有多少件（2 份硫），收货时就有多少件（2 份硫酸）。")),
-    ] + batch2
+    ] + batch2 + batch3
 
     // MARK: 扩容对决（每把武器再补一道，覆盖更多题型）
 
@@ -348,6 +348,70 @@ enum DescentCases {
                 principle: "原理：混合物的平均碳数是各组分按数量的加权平均，必然介于最小与最大组分之间。所以平均碳数 1.5，数学上就强制要求「必有一个组分碳数小于 1.5」——这不是推测，是平均值定义的必然结果。气态烃里碳数小于 1.5 的只有甲烷。",
                 keyInsight: "平均值卡在两组分之间——平均碳 1.5 就逼出「必有一个碳数 ≤1」，唯一答案 CH₄。",
                 plainTalk: "全班平均身高 1.5 米，那肯定有人比 1.5 矮。气态烃里比「1.5 个碳」还少的，只有甲烷（1 个碳），所以一定有甲烷。")),
+    ]
+
+    // MARK: 付费专享对决（用「为什么能这么秒」格式，覆盖新题型）
+
+    private static let batch3: [ChemProblem] = [
+
+        // 关系式法 · 工业制硝酸（氮守恒）
+        ChemProblem(
+            id: "boss_relation2", stage: .senior, topic: .nonmetals,
+            content: "标准状况下 11.2 L NH₃ 经催化氧化等一系列反应，假设氮元素全部转化为 HNO₃，理论上可制得 HNO₃ 的物质的量为？",
+            options: ["0.25 mol", "0.5 mol", "1 mol", "2 mol"],
+            answerIndex: 1,
+            explanation: "n(NH₃)=11.2/22.4=0.5 mol。氮原子守恒：每 1 个 N 进 1 个 HNO₃，NH₃ ~ HNO₃，故得 0.5 mol HNO₃。",
+            nodeId: "n", weapon: .relationMethod,
+            dualSolution: DualSolution(
+                standard: SolutionPath(
+                    title: "常规解：逐个写工业反应",
+                    steps: [
+                        "4NH₃ + 5O₂ →(催化剂,Δ) 4NO + 6H₂O",
+                        "2NO + O₂ → 2NO₂",
+                        "3NO₂ + H₂O → 2HNO₃ + NO（NO 还要循环氧化）",
+                        "逐步按系数换算，还要处理 NO 的循环——极易绕晕",
+                    ],
+                    timeMinutes: 6),
+                descent: SolutionPath(
+                    title: "关系式法：只认氮原子",
+                    steps: [
+                        "氮原子从 NH₃ 一路守恒到 HNO₃：NH₃ ~ HNO₃",
+                        "0.5 mol NH₃ → 0.5 mol HNO₃ ✓",
+                    ],
+                    timeMinutes: 1),
+                weapon: .relationMethod,
+                principle: "原理：化学变化中原子既不消失也不新生（原子守恒），氮原子从 NH₃ 出发，无论中间变成 NO、NO₂ 还是循环几圈，最终都进入 HNO₃，总数不变。所以 NH₃ 与 HNO₃ 是 1:1 的固定关系，中间所有反应都可以略过——这就是关系式法的底气。",
+                keyInsight: "多步工业流程，盯住守恒的氮原子，首尾直接 1:1 挂钩。",
+                plainTalk: "氮原子像一个个乘客，从「氨气」站上车，中间换乘好几趟（NO、NO₂），但没人下车。上车 0.5 摩尔，到「硝酸」终点站还是 0.5 摩尔。")),
+
+        // 电荷守恒 · 含 OH⁻ 溶液
+        ChemProblem(
+            id: "boss_charge2", stage: .senior, topic: .ionReaction,
+            content: "某无色溶液中含 Na⁺ 0.3 mol、Ba²⁺ 0.1 mol、Cl⁻ 0.2 mol，其余阴离子只有 OH⁻。则 OH⁻ 的物质的量为？",
+            options: ["0.1 mol", "0.3 mol", "0.5 mol", "0.2 mol"],
+            answerIndex: 1,
+            explanation: "电荷守恒：正电荷 0.3×1 + 0.1×2 = 0.5 mol，负电荷 0.2×1 + n(OH⁻)×1 = 0.5，解得 n(OH⁻)=0.3 mol。",
+            nodeId: "n04", weapon: .chargeConservation,
+            dualSolution: DualSolution(
+                standard: SolutionPath(
+                    title: "常规解：推测由哪些物质组成",
+                    steps: [
+                        "想溶液是 NaCl、NaOH、Ba(OH)₂、BaCl₂ 怎么配的",
+                        "设各成分物质的量，列多个方程",
+                        "未知数比方程多，要讨论——绕远路",
+                    ],
+                    timeMinutes: 5),
+                descent: SolutionPath(
+                    title: "电荷守恒：正负电荷相等",
+                    steps: [
+                        "正电荷：0.3×1 + 0.1×2 = 0.5 mol",
+                        "负电荷：0.2 + n(OH⁻) = 0.5 → n(OH⁻)=0.3 mol ✓",
+                    ],
+                    timeMinutes: 1),
+                weapon: .chargeConservation,
+                principle: "原理：溶液宏观电中性是物理定律。无论这些离子来自 NaOH、Ba(OH)₂ 还是 BaCl₂，只要它们共处一溶液，全部正电荷与全部负电荷就必须严格相等。这条等式与「怎么配出来的」毫无关系，直接拿来用即可。",
+                keyInsight: "多种离子混在一起求其一，正负电荷总量一拉平就出来。",
+                plainTalk: "一杯水里漂着各种带电小球，正电球和负电球的总电量必须打平（不然杯子会带电放电）。正的一共 0.5，负的已知 0.2，那剩下的氢氧根必须补够 0.3。")),
     ]
 
     static func bossCase(id: String) -> ChemProblem? {
