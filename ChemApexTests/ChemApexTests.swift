@@ -220,6 +220,18 @@ final class ChemApexTests: XCTestCase {
 
     private func gcd(_ a: Int, _ b: Int) -> Int { b == 0 ? a : gcd(b, a % b) }
 
+    /// 简答题：ID 唯一、采分点非空、答案非空。
+    func testShortAnswerIntegrity() {
+        XCTAssertFalse(ShortAnswerData.all.isEmpty)
+        let ids = ShortAnswerData.all.map(\.id)
+        XCTAssertEqual(Set(ids).count, ids.count, "简答题 ID 重复")
+        for q in ShortAnswerData.all {
+            XCTAssertFalse(q.answer.isEmpty, "题 \(q.id) 缺标准答案")
+            XCTAssertGreaterThanOrEqual(q.scorePoints.count, 2, "题 \(q.id) 采分点太少")
+            XCTAssertFalse(q.question.isEmpty)
+        }
+    }
+
     /// 元素与方程式数据完整性。
     func testAtlasDataIntegrity() {
         let numbers = ElementData.all.map(\.number)

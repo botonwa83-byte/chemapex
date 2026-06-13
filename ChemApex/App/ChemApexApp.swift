@@ -28,6 +28,7 @@ struct MainTabView: View {
     @State private var demoDuel = ProcessInfo.processInfo.arguments.contains("-demoDuel")
     @State private var demoDrill = ProcessInfo.processInfo.arguments.contains("-demoDrill")
     @State private var demoBalance = ProcessInfo.processInfo.arguments.contains("-demoBalance")
+    @State private var demoShort = ProcessInfo.processInfo.arguments.contains("-demoShort")
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -82,6 +83,9 @@ struct MainTabView: View {
         }
         .fullScreenCover(isPresented: $demoBalance) {
             NavigationStack { BalanceSessionView(problems: Array(BalanceData.all.prefix(5)), title: "配平训练") }
+        }
+        .fullScreenCover(isPresented: $demoShort) {
+            NavigationStack { ShortAnswerSessionView(items: Array(ShortAnswerData.all.prefix(5)), title: "简答题训练") }
         }
     }
 }
@@ -177,6 +181,14 @@ struct MoreView: View {
                     }
                     NavigationLink { FlashcardView() } label: {
                         Label("现象闪卡 · 颜色快答", systemImage: "paintpalette")
+                    }
+                    NavigationLink { ShortAnswerListView() } label: {
+                        HStack {
+                            Label("简答题 · 答题踩分", systemImage: "text.append")
+                            Spacer()
+                            Text("\(ShortAnswerManager.shared.masteredCount)/\(ShortAnswerData.all.count)")
+                                .font(AppFont.chip).foregroundColor(.secondary)
+                        }
                     }
                     NavigationLink { ErrorBookView() } label: {
                         HStack {
