@@ -19,6 +19,7 @@ struct AscentPathView: View {
             ScrollView {
                 VStack(spacing: Spacing.lg) {
                     examCountdown
+                    weakRecommend
                     todayBattle
                     statusHeader
                     pathHeader
@@ -65,6 +66,36 @@ struct AscentPathView: View {
                     .multilineTextAlignment(.trailing).frame(width: 120)
             }
             .cardSurface(padding: Spacing.lg)
+        }
+    }
+
+    // MARK: 薄弱推荐（学情诊断上首页）
+
+    @ViewBuilder
+    private var weakRecommend: some View {
+        let weak = progress.weakNodes(limit: 1)
+        if let d = weak.first {
+            NavigationLink {
+                DiagnosisView()
+            } label: {
+                HStack(spacing: Spacing.md) {
+                    Image(systemName: "target").font(.title3)
+                        .frame(width: 44, height: 44)
+                        .background(Color.apexDanger.opacity(0.12))
+                        .foregroundColor(.apexDanger)
+                        .cornerRadius(Radius.inner)
+                    VStack(alignment: .leading, spacing: 3) {
+                        Text("学情诊断 · 优先攻弱项").font(.caption2).foregroundColor(.secondary)
+                        Text("最弱：\(d.node.title)").font(AppFont.cardTitle)
+                        Text("正确率仅 \(Int(d.accuracy * 100))%，先把它补起来").font(.caption).foregroundColor(.apexDanger)
+                    }
+                    Spacer(minLength: 0)
+                    Image(systemName: "chevron.right").font(.caption).foregroundColor(.secondary)
+                }
+                .foregroundColor(.primary)
+                .cardSurface(padding: Spacing.lg)
+            }
+            .buttonStyle(.plain)
         }
     }
 

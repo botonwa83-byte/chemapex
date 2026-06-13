@@ -96,6 +96,42 @@ final class ProgressManager: ObservableObject {
         }
     }
 
+    // MARK: 学情诊断（按章节聚合正确率，找出薄弱项）
+
+    struct NodeDiagnosis: Identifiable {
+        let node: LearningNode
+        let attempted: Int
+        let correct: Int
+        var accuracy: Double { attempted == 0 ? 0 : Double(correct) / Double(attempted) }
+        var id: String { node.id }
+    }
+
+    /// 已练过的章节诊断，按正确率从低到高排（最弱在前）。
+    func diagnosis() -> [NodeDiagnosis] {
+        var byNode: [String: (att: Int, cor: Int)] = [:]
+        for p in ProblemBank.all {
+            let s = stats(for: p.id)
+            guard s.attempts > 0, let nid = p.nodeId else { continue }
+            var v = byNode[nid] ?? (0, 0)
+            v.att += s.attempts; v.cor += s.correct
+            byNode[nid] = v
+        }
+        return byNode.compactMap { nid, v in
+            guard let node = MainLineData.node(id: nid) else { return nil }
+            return NodeDiagnosis(node: node, attempted: v.att, correct: v.cor)
+        }.sorted { $0.accuracy < $1.accuracy }
+    }
+
+    /// 最薄弱的若干章节（正确率最低且已练过 ≥2 次）。
+    func weakNodes(limit: Int = 3) -> [NodeDiagnosis] {
+        Array(diagnosis().filter { $0.attempted >= 2 }.prefix(limit))
+    }
+
+    /// 总体正确率（已练题）。
+    var overallAccuracy: Double {
+        totalAttempts == 0 ? 0 : Double(totalCorrect) / Double(totalAttempts)
+    }
+
     // MARK: 连击（连续学习天数）
 
     private func touchToday() {

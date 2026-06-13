@@ -149,6 +149,16 @@ struct MoreView: View {
                 }
 
                 Section("我的练习") {
+                    NavigationLink { DiagnosisView() } label: {
+                        HStack {
+                            Label("学情诊断 · 找薄弱", systemImage: "chart.bar.xaxis")
+                            Spacer()
+                            if let weakest = progress.weakNodes(limit: 1).first {
+                                Text("最弱 \(Int(weakest.accuracy * 100))%")
+                                    .font(AppFont.chip).foregroundColor(.apexDanger)
+                            }
+                        }
+                    }
                     NavigationLink { ReviewView() } label: {
                         HStack {
                             Label("智能复习", systemImage: "brain.head.profile")
