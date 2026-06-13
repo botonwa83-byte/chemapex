@@ -250,5 +250,111 @@ extension ProblemBank {
             answerIndex: 1,
             explanation: "基元反应的速率方程中，各物质浓度的幂等于其化学计量数。v = k·c²(NO)·c(O₂)，c(NO) 变 2 倍 → 速率变 2² = 4 倍。高中只定性说「增大浓度加快速率」，化学动力学能精确算出快几倍——这是速率的降维视角。",
             nodeId: "cap"),
+
+        // ===== 压轴擂台：近十年高考压轴题型（重磅难题，非臆造真题出处） =====
+
+        // 压轴①·金属与硝酸 电子守恒综合
+        ChemProblem(
+            id: "p_apex_01", stage: .senior, topic: .redox,
+            content: "将 8.4 g 铁和 9.6 g 铜的混合物加入足量稀硝酸中，金属完全溶解，铁全部被氧化为 Fe³⁺，还原产物只有 NO。则标准状况下生成 NO 的体积为？（Fe 56、Cu 64）",
+            options: ["3.36 L", "4.48 L", "5.60 L", "6.72 L"],
+            answerIndex: 2,
+            explanation: "n(Fe)=8.4/56=0.15 mol（失3e）、n(Cu)=9.6/64=0.15 mol（失2e），失电子共 0.15×3+0.15×2=0.75 mol。NO 中 N 由+5→+2 得3e，n(NO)=0.75/3=0.25 mol，标况 V=0.25×22.4=5.60 L。",
+            nodeId: "cap", weapon: .electronConservation,
+            dualSolution: DualSolution(
+                standard: SolutionPath(
+                    title: "常规解：写两个方程式配平联立",
+                    steps: [
+                        "Fe + 4HNO₃ → Fe(NO₃)₃ + NO↑ + 2H₂O",
+                        "3Cu + 8HNO₃ → 3Cu(NO₃)₂ + 2NO↑ + 4H₂O",
+                        "0.15 mol Fe → 0.15 mol NO；0.15 mol Cu → 0.1 mol NO",
+                        "共 0.25 mol NO → 5.6 L",
+                    ],
+                    timeMinutes: 6),
+                descent: SolutionPath(
+                    title: "电子守恒：只算电子总账",
+                    steps: [
+                        "失电子：Fe 0.15×3 + Cu 0.15×2 = 0.75 mol",
+                        "NO 每个得 3e：n(NO)=0.75/3=0.25 mol → 5.6 L",
+                    ],
+                    timeMinutes: 1),
+                weapon: .electronConservation,
+                principle: "两种金属、两个反应，常规解要分别配平再联立。但电子的总账只有一本——所有金属失去的电子，全部被硝酸中的氮接收。把铁、铜失的电子加在一起、除以每个 NO 得的 3 个，一步出结果，不必管反应分几个。",
+                keyInsight: "多种还原剂同时被氧化，电子守恒把它们的失电子数直接相加。",
+                plainTalk: "铁和铜一起交电子：铁每个交3个、铜每个交2个，各0.15摩尔，总共交出0.75摩尔。这些电子全被氮收走变成NO，一个NO收3个，所以0.25摩尔NO，标况下5.6升。")),
+
+        // 压轴②·混合碱与盐酸 滴加顺序（数轴分段）
+        ChemProblem(
+            id: "p_apex_02", stage: .senior, topic: .metals,
+            content: "向 100 mL 含 Na₂CO₃ 和 NaHCO₃ 的混合溶液中，逐滴加入 1 mol/L 盐酸。加入 0→100 mL 时无气体，加入 100→250 mL 时产生气体。则原溶液中 Na₂CO₃ 和 NaHCO₃ 的物质的量分别为？",
+            options: ["0.1 mol、0.05 mol", "0.05 mol、0.1 mol", "0.1 mol、0.15 mol", "0.15 mol、0.05 mol"],
+            answerIndex: 0,
+            explanation: "逐滴加盐酸：第一步 CO₃²⁻+H⁺→HCO₃⁻（无气体），耗 HCl 0.1 mol，故 n(Na₂CO₃)=0.1 mol。第二步 HCO₃⁻+H⁺→CO₂↑，耗 HCl 0.15 mol = 此时 HCO₃⁻ 总量 = 原 NaHCO₃ + 0.1，解得原 NaHCO₃=0.05 mol。",
+            nodeId: "cap", weapon: .numberLine,
+            dualSolution: DualSolution(
+                standard: SolutionPath(
+                    title: "常规解：设未知数两阶段列式",
+                    steps: [
+                        "设 Na₂CO₃ 为 x、NaHCO₃ 为 y",
+                        "无气体段：CO₃²⁻+H⁺→HCO₃⁻，耗 HCl = x = 0.1",
+                        "放气段：HCO₃⁻+H⁺→CO₂，耗 HCl = x + y = 0.15",
+                        "解得 x=0.1、y=0.05",
+                    ],
+                    timeMinutes: 5),
+                descent: SolutionPath(
+                    title: "数轴分段：两段盐酸各对应一步",
+                    steps: [
+                        "数轴标两个拐点：100 mL、250 mL",
+                        "第一段 0.1 mol HCl = n(Na₂CO₃) → 0.1 mol",
+                        "第二段 0.15 mol HCl = 总 HCO₃⁻ = 0.1 + NaHCO₃ → 0.05 mol",
+                    ],
+                    timeMinutes: 1.5),
+                weapon: .numberLine,
+                principle: "盐酸逐滴加入，反应有先后——先把 CO₃²⁻ 全转成 HCO₃⁻（不放气），再把所有 HCO₃⁻ 转成 CO₂（放气）。每一段消耗的盐酸量对应一个确定的反应。把盐酸体积画在数轴上、标出两个拐点，每段读一个方程，未知数迎刃而解。",
+                keyInsight: "逐滴加酸是分步反应，画数轴标拐点，每段盐酸量对应一步、对应一个量。",
+                plainTalk: "盐酸一滴一滴加，反应排队来：先让碳酸根降级成碳酸氢根（不冒泡），再让碳酸氢根放CO₂。第一段用0.1摩尔酸，就是0.1摩尔碳酸钠；第二段用0.15摩尔，减掉前面带来的0.1，剩0.05就是原来的碳酸氢钠。")),
+
+        // 压轴③·Nᴀ 综合判断（多陷阱）
+        ChemProblem(
+            id: "p_apex_03", stage: .senior, topic: .mole,
+            content: "设 Nᴀ 为阿伏加德罗常数的值，下列说法正确的是？",
+            options: [
+                "1 mol Na₂O₂ 与足量 CO₂ 完全反应，转移电子数为 2Nᴀ",
+                "标准状况下，22.4 L 由 N₂ 和 CO 组成的混合气体含 Nᴀ 个分子",
+                "1 L 0.1 mol/L 的醋酸溶液中含 H⁺ 数为 0.1Nᴀ",
+                "1 mol Cl₂ 与足量 NaOH 完全反应，转移电子数为 2Nᴀ"],
+            answerIndex: 1,
+            explanation: "B 正确：标况下气体 1 mol = 22.4 L 含 Nᴀ 个分子，N₂、CO 都是双原子气体、与组成无关。A 错：2Na₂O₂+2CO₂→2Na₂CO₃+O₂，1 mol Na₂O₂ 只转移 1Nᴀ 电子。C 错：醋酸是弱酸部分电离，H⁺ 远小于 0.1Nᴀ。D 错：Cl₂ 歧化只转移 1Nᴀ 电子。这类「四个陷阱选一对」是压轴选择常客。",
+            nodeId: "cap"),
+
+        // 压轴④·化学平衡常数 三段式
+        ChemProblem(
+            id: "p_apex_04", stage: .senior, topic: .equilibrium,
+            content: "某温度下，向 2 L 密闭容器中充入 2 mol SO₂ 和 1 mol O₂，发生 2SO₂(g)+O₂(g)⇌2SO₃(g)。达平衡时测得 SO₃ 为 1.6 mol。则该温度下反应的平衡常数 K 为？",
+            options: ["40", "80", "160", "320"],
+            answerIndex: 2,
+            explanation: "三段式（mol）：起始 2、1、0；转化 1.6、0.8、1.6；平衡 0.4、0.2、1.6。除以 2 L 得平衡浓度（mol/L）：SO₂ 0.2、O₂ 0.1、SO₃ 0.8。K=c²(SO₃)/[c²(SO₂)·c(O₂)]=0.8²/(0.2²×0.1)=0.64/0.004=160。",
+            nodeId: "cap", weapon: .threeStage,
+            dualSolution: DualSolution(
+                standard: SolutionPath(
+                    title: "常规解：凭感觉凑各平衡量",
+                    steps: [
+                        "生成 1.6 mol SO₃，反推消耗 SO₂、O₂ 各多少…",
+                        "再换算成浓度、代入 K 表达式",
+                        "量一多，易把转化量/平衡量、物质的量/浓度搞混",
+                    ],
+                    timeMinutes: 5),
+                descent: SolutionPath(
+                    title: "三段式：列表 → 算浓度 → 代 K",
+                    steps: [
+                        "起始 2/1/0，转化 1.6/0.8/1.6（按系数2:1:2），平衡 0.4/0.2/1.6",
+                        "÷2L → 浓度 0.2/0.1/0.8",
+                        "K=0.8²/(0.2²×0.1)=160",
+                    ],
+                    timeMinutes: 1.5),
+                weapon: .threeStage,
+                principle: "平衡常数 K 要的是「平衡时的浓度」，而平衡浓度 = 起始 ± 转化。三段式把这三者对齐成一张表，转化量严格按系数比填，平衡量一减就有；再统一除以体积换成浓度代入 K。一张表理清所有量，是平衡计算压轴题不翻车的保证。",
+                keyInsight: "求 K 先列三段式，把「起始-转化-平衡」摆清楚，再换浓度代公式。",
+                plainTalk: "别在脑子里硬算。画三行：开始多少、变了多少、剩多少。变化量按方程式2:1:2配。算出平衡各剩多少摩尔，除以2升变浓度，套进K的公式，得160。")),
     ]
 }

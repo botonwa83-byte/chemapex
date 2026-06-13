@@ -875,9 +875,13 @@ enum MainLineData {
     private static let olympiadNodes: [LearningNode] = [
         LearningNode(
             id: "cap", order: 0, stage: .olympiad, topic: .structure,
-            title: "竞赛之窗 · 向上仰望",
-            tagline: "山顶的风景：从「记性质」到「算性质」",
+            title: "巅峰擂台 · 压轴与降维",
+            tagline: "山顶的风景：高考压轴题 + 从「记性质」到「算性质」",
             knowledgePoints: [
+                KnowledgePoint(
+                    id: "kcap0", title: "压轴题的拆解心法",
+                    detail: "高考压轴不是更难的新知识，而是把多个考点拧成一股绳。拆它只有三招：① 抓守恒（电子/原子/电荷三本总账，绕开复杂中间过程）；② 画数轴/列三段式（把分步反应、平衡变化摆成可读的表）；③ 盯陷阱（Nᴀ 题的弱电解质、气体状况、歧化转移数）。这四道题正是这些招式的实战。",
+                    pitfall: "压轴题最忌一上来死磕方程式——先想「哪个量守恒」，往往一步到位。"),
                 KnowledgePoint(
                     id: "kcap1", title: "为什么性质能「算」出来",
                     detail: "电负性、电离能、杂化、晶胞，决定了你在高中死记硬背的一切：键角、酸性、颜色、熔点。结构化学是化学从经验走向理论的入口——这就是上帝视角的降维。"),
@@ -895,6 +899,7 @@ enum MainLineData {
                     id: "kcap5", title: "化学动力学：算出「快几倍」",
                     detail: "高中只定性说「增大浓度加快速率」，动力学用速率方程 v=k·c^a·c^b 精确量化。基元反应的浓度幂等于计量数；活化能 Ea、速率常数 k、反应级数，把「快慢」从感觉变成可计算——这是速率的上帝视角。"),
             ],
-            problemIds: ["p_cap_01", "p_cap_02", "p_cap_03", "p_cap_04", "p_cap_05", "p_cap_06", "p_cap_07"]),
+            problemIds: ["p_apex_01", "p_apex_02", "p_apex_03", "p_apex_04",
+                         "p_cap_01", "p_cap_02", "p_cap_03", "p_cap_04", "p_cap_05", "p_cap_06", "p_cap_07"]),
     ]
 }
