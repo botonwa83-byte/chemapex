@@ -317,7 +317,7 @@ extension ProblemBank {
             options: ["c(Na⁺) = 2[c(CO₃²⁻)+c(HCO₃⁻)+c(H₂CO₃)]", "c(Na⁺) = c(CO₃²⁻)", "c(Na⁺) = 2c(CO₃²⁻)", "c(OH⁻) = c(H⁺)"],
             answerIndex: 0,
             explanation: "物料守恒：碳元素以 CO₃²⁻、HCO₃⁻、H₂CO₃ 三种形式存在，钠碳原子比 2:1 不变，故 c(Na⁺)=2[c(CO₃²⁻)+c(HCO₃⁻)+c(H₂CO₃)]。这是离子浓度比较题的三大守恒之一。",
-            nodeId: "p5"),
+            nodeId: "p5", weapon: .chargeConservation),
         ChemProblem(
             id: "p_p5_07", stage: .senior, topic: .solution,
             content: "关于盐类水解，下列说法正确的是？",
@@ -500,7 +500,7 @@ extension ProblemBank {
             options: ["0.025 mol", "0.05 mol", "0.1 mol", "0.2 mol"],
             answerIndex: 1,
             explanation: "电子守恒：n(Cu)=6.4/64=0.1 mol，阴极得电子 0.1×2=0.2 mol。阳极 2H₂O−4e⁻→O₂↑+4H⁺，每生成 1 mol O₂ 转移 4 mol 电子，故 n(O₂)=0.2/4=0.05 mol。电解计算的核心是「两极转移电子数相等」。",
-            nodeId: "p8"),
+            nodeId: "p8", weapon: .electronConservation),
         ChemProblem(
             id: "p_p8_05", stage: .senior, topic: .electrochem,
             content: "电解精炼铜时，下列说法正确的是？",

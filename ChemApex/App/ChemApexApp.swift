@@ -24,6 +24,7 @@ struct MainTabView: View {
     @State private var demoPaywall = ProcessInfo.processInfo.arguments.contains("-demoPaywall")
     @State private var demoLabBench = ProcessInfo.processInfo.arguments.contains("-demoLabBench")
     @State private var demoProcess = ProcessInfo.processInfo.arguments.contains("-demoProcess")
+    @State private var demoWeapon = ProcessInfo.processInfo.arguments.contains("-demoWeapon")
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -61,6 +62,11 @@ struct MainTabView: View {
         .fullScreenCover(isPresented: $demoProcess) {
             if let first = ProcessFlowData.all.first {
                 NavigationStack { ProcessFlowDetailView(flow: first) }
+            }
+        }
+        .fullScreenCover(isPresented: $demoWeapon) {
+            if let first = WeaponGuideData.all.first {
+                NavigationStack { WeaponDetailView(guide: first) }
             }
         }
     }
@@ -124,9 +130,9 @@ struct MoreView: View {
                     }
                     NavigationLink { WeaponShelfView() } label: {
                         HStack {
-                            Label("武器架", systemImage: "shield.lefthalf.filled")
+                            Label("解题武器库 · 学方法", systemImage: "shield.lefthalf.filled")
                             Spacer()
-                            Text("\(progress.unlockedWeapons.count) 把")
+                            Text("\(WeaponGuideData.all.count) 把")
                                 .font(AppFont.chip).foregroundColor(.secondary)
                         }
                     }
@@ -218,37 +224,3 @@ struct ErrorBookView: View {
 
 // MARK: - 武器架
 
-struct WeaponShelfView: View {
-    @EnvironmentObject var progress: ProgressManager
-
-    var body: some View {
-        List {
-            ForEach(Stage.allCases) { stage in
-                Section("\(stage.emoji) \(stage.title)") {
-                    ForEach(ChemWeapon.allCases.filter { $0.stage == stage }) { weapon in
-                        weaponRow(weapon)
-                    }
-                }
-            }
-        }
-        .navigationTitle("武器架")
-        .navigationBarTitleDisplayMode(.inline)
-    }
-
-    private func weaponRow(_ weapon: ChemWeapon) -> some View {
-        let unlocked = progress.unlockedWeapons.contains(weapon)
-        return HStack(spacing: Spacing.md) {
-            Image(systemName: unlocked ? weapon.icon : "lock.fill")
-                .frame(width: 28)
-                .foregroundColor(unlocked ? weapon.stage.color : .secondary)
-            VStack(alignment: .leading, spacing: 2) {
-                Text(weapon.name).font(AppFont.cardTitle)
-                    .foregroundColor(unlocked ? .primary : .secondary)
-                Text(unlocked ? weapon.insight : "在登顶之路上通关对应 Boss 解锁")
-                    .font(.caption).foregroundColor(.secondary)
-            }
-        }
-        .padding(.vertical, 2)
-        .opacity(unlocked ? 1 : 0.6)
-    }
-}

@@ -78,7 +78,7 @@ enum ProblemBank {
             options: ["只含 C、H", "含 C、H、O", "只含 C、O", "无法确定"],
             answerIndex: 1,
             explanation: "8.8 g CO₂ 中碳元素 2.4 g，5.4 g H₂O 中氢元素 0.6 g，合计 3.0 g < 4.6 g，差的 1.6 g 只能来自该物质中的氧元素。用元素守恒「称」出看不见的氧——这就是守恒思想。",
-            nodeId: "n02"),
+            nodeId: "n02", weapon: .atomConservation),
     ]
 
     private static let seniorBatch1: [ChemProblem] = [

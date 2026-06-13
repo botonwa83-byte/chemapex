@@ -30,7 +30,7 @@ extension ProblemBank {
             options: ["1 mol", "2 mol", "0.5 mol", "4 mol"],
             answerIndex: 0,
             explanation: "2Na₂O₂+2H₂O→4NaOH+O₂↑ 中，O 由 −1 价歧化为 −2（NaOH）和 0（O₂）。每 2 mol Na₂O₂ 转移 2 mol 电子，故 1 mol Na₂O₂ 转移 1 mol 电子。Na₂O₂ 既是氧化剂又是还原剂。",
-            nodeId: "na"),
+            nodeId: "na", weapon: .electronConservation),
         ChemProblem(
             id: "p_na_04", stage: .senior, topic: .metals,
             content: "用焰色反应检验钠元素，火焰呈现的颜色是？",
@@ -253,7 +253,7 @@ extension ProblemBank {
             options: ["S/FeS₂ → SO₃ → SO₂ → H₂SO₄", "S/FeS₂ → SO₂ → SO₃ → H₂SO₄", "SO₂ → S → SO₃ → H₂SO₄", "H₂SO₄ → SO₃ → SO₂"],
             answerIndex: 1,
             explanation: "①燃烧 S 或煅烧 FeS₂ 得 SO₂ ②催化氧化 2SO₂+O₂⇌2SO₃ ③SO₃ 用浓硫酸吸收（不用水，防酸雾）得 H₂SO₄。硫原子守恒贯穿全程：FeS₂~2H₂SO₄（关系式法素材）。",
-            nodeId: "s"),
+            nodeId: "s", weapon: .relationMethod),
     ]
 
     // MARK: 氮 N ★★★

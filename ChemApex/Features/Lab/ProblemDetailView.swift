@@ -45,6 +45,28 @@ struct ProblemDetailView: View {
                     }
                     .cardSurface(padding: Spacing.lg)
 
+                    // 方法教练：这道题练的是哪把武器
+                    if problem.dualSolution == nil,
+                       let weapon = problem.weapon,
+                       let guide = WeaponGuideData.guide(for: weapon) {
+                        NavigationLink {
+                            WeaponDetailView(guide: guide)
+                        } label: {
+                            HStack {
+                                Image(systemName: weapon.icon)
+                                Text("这道题练的是「\(weapon.name)」· 学方法")
+                                    .font(AppFont.cardTitle)
+                                Spacer()
+                                Image(systemName: "chevron.right").font(.caption)
+                            }
+                            .foregroundColor(weapon.stage.color)
+                            .padding(Spacing.lg)
+                            .frame(maxWidth: .infinity)
+                            .background(weapon.stage.color.opacity(0.1))
+                            .cornerRadius(Radius.card)
+                        }
+                    }
+
                     if let dual = problem.dualSolution {
                         NavigationLink {
                             DescentDetailView(problem: problem, dual: dual)

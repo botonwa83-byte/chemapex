@@ -174,6 +174,29 @@ final class ChemApexTests: XCTestCase {
         XCTAssertLessThanOrEqual(PurchaseManager.freeProcessCount, ProcessFlowData.all.count)
     }
 
+    /// 武器教学完整性：例题 id 存在且带双解；步骤/识局非空；标签题目存在。
+    func testWeaponGuideIntegrity() {
+        XCTAssertFalse(WeaponGuideData.all.isEmpty)
+        let weapons = Set(WeaponGuideData.all.map(\.weapon))
+        XCTAssertEqual(weapons.count, WeaponGuideData.all.count, "武器教学重复")
+        for guide in WeaponGuideData.all {
+            XCTAssertFalse(guide.whenToUse.isEmpty, "武器 \(guide.weapon.name) 缺识局信号")
+            XCTAssertFalse(guide.steps.isEmpty, "武器 \(guide.weapon.name) 缺方法步骤")
+            XCTAssertFalse(guide.tagline.isEmpty)
+            if let caseId = guide.exampleCaseId {
+                let boss = DescentCases.bossCase(id: caseId)
+                XCTAssertNotNil(boss, "武器 \(guide.weapon.name) 例题 \(caseId) 不存在")
+                XCTAssertNotNil(boss?.dualSolution, "武器例题 \(caseId) 缺双解")
+            }
+        }
+        // 每道带 weapon 标签的题，其武器若已配教学，应能在教学库找到
+        for p in ProblemBank.all {
+            if let w = p.weapon, WeaponGuideData.taughtWeapons.contains(w) {
+                XCTAssertNotNil(WeaponGuideData.guide(for: w))
+            }
+        }
+    }
+
     /// 元素与方程式数据完整性。
     func testAtlasDataIntegrity() {
         let numbers = ElementData.all.map(\.number)

@@ -190,5 +190,18 @@ struct ChemProblem: Codable, Identifiable {
     let answerIndex: Int
     let explanation: String
     var nodeId: String? = nil          // 所属主线节点
+    var weapon: ChemWeapon? = nil      // 这道题主要训练的解题武器（方法教练标签）
     var dualSolution: DualSolution? = nil
+}
+
+// MARK: - 武器教学：把「方法」从名字变成可教的能力
+// 何时用(识局) → 怎么用(步骤) → 看对决(例题) → 去练习(挂该武器的题)。
+
+struct WeaponGuide: Identifiable {
+    let weapon: ChemWeapon
+    let tagline: String          // 一句话定位，如「氧化还原压轴一行拿下」
+    let whenToUse: [String]      // 识局信号：什么样的题该亮出这把武器
+    let steps: [String]          // 方法步骤
+    let exampleCaseId: String?   // 守恒之眼对决例题（Boss 题 id）
+    var id: String { weapon.rawValue }
 }

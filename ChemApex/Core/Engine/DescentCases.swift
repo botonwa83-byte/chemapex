@@ -14,7 +14,7 @@ enum DescentCases {
             options: ["0.8 g", "5.6 g", "6.4 g", "2.8 g"],
             answerIndex: 1,
             explanation: "Fe + CuSO₄ → FeSO₄ + Cu：每反应 56 g Fe，棒上沉积 64 g Cu，净增 8 g。实际增重 0.8 g，是「每摩尔净增 8 g」的 0.1 倍，故反应了 0.1 mol 铁，即 5.6 g。",
-            nodeId: "n02",
+            nodeId: "n02", weapon: .differenceMethod,
             dualSolution: DualSolution(
                 standard: SolutionPath(
                     title: "常规解：设未知数列方程",
@@ -44,7 +44,7 @@ enum DescentCases {
             options: ["1 : 1", "1 : 2", "2 : 1", "7 : 11"],
             answerIndex: 0,
             explanation: "M(CO) = 28，M(CO₂) = 44。十字交叉：n(CO) : n(CO₂) = (44 − 36) : (36 − 28) = 8 : 8 = 1 : 1。同温同压下体积比等于物质的量之比。",
-            nodeId: "n03",
+            nodeId: "n03", weapon: .crossMethod,
             dualSolution: DualSolution(
                 standard: SolutionPath(
                     title: "常规解：设比例列方程",
@@ -73,7 +73,7 @@ enum DescentCases {
             options: ["0.1 mol", "0.15 mol", "0.2 mol", "0.3 mol"],
             answerIndex: 1,
             explanation: "溶液整体不带电：正电荷 0.2×1 + 0.1×2 = 0.4 mol，负电荷 0.1×1 + n×2 = 0.4，解得 n(SO₄²⁻) = 0.15 mol。",
-            nodeId: "n04",
+            nodeId: "n04", weapon: .chargeConservation,
             dualSolution: DualSolution(
                 standard: SolutionPath(
                     title: "常规解：逐一配对找盐",
@@ -102,7 +102,7 @@ enum DescentCases {
             options: ["1 : 9", "9 : 1", "1 : 3", "3 : 1"],
             answerIndex: 0,
             explanation: "n(Cu) = 38.4/64 = 0.6 mol，失电子 1.2 mol。气体共 1 mol，设 NO x mol（得 3e⁻）、NO₂ y mol（得 1e⁻）：x + y = 1，3x + y = 1.2，解得 x = 0.1、y = 0.9，体积比 1:9。",
-            nodeId: "n05",
+            nodeId: "n05", weapon: .electronConservation,
             dualSolution: DualSolution(
                 standard: SolutionPath(
                     title: "常规解：写两个方程式联立",
@@ -134,7 +134,7 @@ enum DescentCases {
             options: ["Mg 和 Al", "Fe 和 Zn", "Cu 和 Zn", "Mg 和 Cu"],
             answerIndex: 0,
             explanation: "极值法：10 g 纯金属产 H₂ 分别为 Mg 0.417 mol、Al 0.556 mol、Fe 0.179 mol、Zn 0.154 mol、Cu 0。混合物的产气量必介于两种纯金属之间，只有 Mg(0.417)–Al(0.556) 区间夹住 0.5。",
-            nodeId: "al",
+            nodeId: "al", weapon: .extremeValue,
             dualSolution: DualSolution(
                 standard: SolutionPath(
                     title: "常规解：逐个选项设方程检验",
@@ -165,7 +165,7 @@ enum DescentCases {
             options: ["98 g", "196 g", "120 g", "245 g"],
             answerIndex: 1,
             explanation: "硫原子守恒：1 mol FeS₂ 含 2 mol S，最终全部进入 H₂SO₄，故 FeS₂ ~ 2H₂SO₄。120 g FeS₂ = 1 mol → 2 mol H₂SO₄ = 196 g。",
-            nodeId: "s",
+            nodeId: "s", weapon: .relationMethod,
             dualSolution: DualSolution(
                 standard: SolutionPath(
                     title: "常规解：三个方程逐步换算",

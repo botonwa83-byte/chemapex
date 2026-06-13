@@ -152,7 +152,7 @@ extension ProblemBank {
             options: ["1 mol", "2 mol", "4 mol", "0.5 mol"],
             answerIndex: 1,
             explanation: "每个 Na 失 1 个电子、每个 Cl 得 1 个电子。生成 2 mol NaCl，转移 2 mol 电子。先标化合价变化、再数每个原子转移几个电子、最后乘个数，是求转移电子数的通法。",
-            nodeId: "n05"),
+            nodeId: "n05", weapon: .electronConservation),
         ChemProblem(
             id: "p_redox_03", stage: .senior, topic: .redox,
             content: "配平反应 __Al + __HCl → __AlCl₃ + __H₂↑，正确的系数依次为？",
@@ -180,7 +180,7 @@ extension ProblemBank {
             options: ["0.2 mol", "0.5 mol", "1 mol", "1.4 mol"],
             answerIndex: 2,
             explanation: "每个 Mn 由 +7 降到 +2 得 5 个电子，0.2 mol KMnO₄ 转移 0.2×5=1 mol 电子。氧化还原计算的核心是电子守恒，关键是数清每个原子的化合价变化数。",
-            nodeId: "n05"),
+            nodeId: "n05", weapon: .electronConservation),
         ChemProblem(
             id: "p_redox_07", stage: .senior, topic: .redox,
             content: "已知氧化性 Cl₂ > Br₂ > Fe³⁺ > I₂。则下列反应不能发生的是？",
