@@ -105,11 +105,27 @@ struct DescentDetailView: View {
                     path: dual.descent, accent: .apexMystery,
                     icon: "hare", expanded: $showDescent)
 
+                // 为什么能这么秒 · 原理（核心教学，讲透所以然）
+                if !dual.principle.isEmpty {
+                    VStack(alignment: .leading, spacing: Spacing.sm) {
+                        HStack {
+                            Image(systemName: "lightbulb.max.fill").foregroundColor(.apexEmerald)
+                            Text("为什么能这么秒 · 原理").font(AppFont.cardTitle)
+                        }
+                        Text(dual.principle).font(.subheadline).lineSpacing(4)
+                            .foregroundColor(.primary.opacity(0.9))
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(Spacing.lg)
+                    .background(Color.apexEmerald.opacity(0.1))
+                    .cornerRadius(Radius.card)
+                }
+
                 // 武器洞察
                 VStack(alignment: .leading, spacing: Spacing.sm) {
                     HStack {
                         Image(systemName: dual.weapon.icon).foregroundColor(.apexGold)
-                        Text("武器洞察 · \(dual.weapon.name)").font(AppFont.cardTitle)
+                        Text("一句话记住 · \(dual.weapon.name)").font(AppFont.cardTitle)
                     }
                     Text(dual.keyInsight).font(.subheadline)
                 }

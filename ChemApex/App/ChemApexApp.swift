@@ -25,6 +25,7 @@ struct MainTabView: View {
     @State private var demoLabBench = ProcessInfo.processInfo.arguments.contains("-demoLabBench")
     @State private var demoProcess = ProcessInfo.processInfo.arguments.contains("-demoProcess")
     @State private var demoWeapon = ProcessInfo.processInfo.arguments.contains("-demoWeapon")
+    @State private var demoDuel = ProcessInfo.processInfo.arguments.contains("-demoDuel")
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -67,6 +68,11 @@ struct MainTabView: View {
         .fullScreenCover(isPresented: $demoWeapon) {
             if let first = WeaponGuideData.all.first {
                 NavigationStack { WeaponDetailView(guide: first) }
+            }
+        }
+        .fullScreenCover(isPresented: $demoDuel) {
+            if let boss = DescentCases.bossCase(id: "boss_electron"), let dual = boss.dualSolution {
+                NavigationStack { DescentDetailView(problem: boss, dual: dual) }
             }
         }
     }

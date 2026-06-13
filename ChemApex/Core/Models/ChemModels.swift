@@ -176,6 +176,7 @@ struct DualSolution: Codable {
     let standard: SolutionPath
     let descent: SolutionPath
     let weapon: ChemWeapon
+    var principle: String = ""   // 为什么能这么秒（原理）：讲清方法为何成立，让学生看懂所以然
     let keyInsight: String       // 一句话武器洞察
     let plainTalk: String        // 说人话：给完全没听懂的同学
     var timeRatio: Double { max(standard.timeMinutes / max(descent.timeMinutes, 0.1), 1) }

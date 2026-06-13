@@ -55,6 +55,8 @@ final class ChemApexTests: XCTestCase {
             }
             XCTAssertGreaterThan(dual.timeRatio, 1, "战例 \(p.id) 的秒杀解不比常规解快")
             XCTAssertFalse(dual.plainTalk.isEmpty, "战例 \(p.id) 缺少说人话")
+            XCTAssertFalse(dual.principle.isEmpty, "战例 \(p.id) 缺少「为什么能这么秒」原理——秒杀必须讲透所以然")
+            XCTAssertGreaterThan(dual.principle.count, 30, "战例 \(p.id) 的原理太简略，讲不清所以然")
         }
     }
 
