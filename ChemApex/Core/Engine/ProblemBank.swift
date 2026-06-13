@@ -17,7 +17,17 @@ enum ProblemBank {
 
     // MARK: 常规题（分批声明，避免单个数组字面量过大拖慢类型检查）
 
-    static let regular: [ChemProblem] = juniorBatch + seniorBatch1 + seniorBatch2 + expansionBatch + principlesBatch + elementsBatch
+    static let regular: [ChemProblem] = {
+        var list: [ChemProblem] = []
+        list += juniorBatch
+        list += seniorBatch1
+        list += seniorBatch2
+        list += expansionBatch
+        list += principlesBatch
+        list += elementsBatch
+        list += coreSeniorBatch
+        return list
+    }()
 
     private static let juniorBatch: [ChemProblem] = [
 

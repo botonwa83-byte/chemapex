@@ -108,7 +108,7 @@ enum MainLineData {
                     detail: "①22.4 L/mol 必须「标况 + 气体」双前提 ②稀有气体是单原子分子 ③可逆反应不能进行到底（如 N₂+3H₂）④NO₂ 会部分二聚成 N₂O₄ ⑤电子转移数要按实际化合价变化算（Na₂O₂ 与水：每 mol O₂ 转移 2 mol 电子）。",
                     pitfall: "选择题里 Nᴀ 出现 = 警报拉响，五条套路逐一排查。"),
             ],
-            problemIds: ["p_sr_01", "p_sr_02", "p_sr_03"],
+            problemIds: ["p_sr_01", "p_sr_02", "p_sr_03", "p_mole_01", "p_mole_02", "p_mole_03", "p_mole_04", "p_mole_05", "p_mole_06", "p_mole_07", "p_mole_08", "p_mole_09"],
             bossCaseId: "boss_cross",
             weaponUnlocked: .crossMethod),
 
@@ -133,7 +133,7 @@ enum MainLineData {
                     detail: "按分散质粒径分：溶液（<1 nm）、胶体（1~100 nm）、浊液（>100 nm）。丁达尔效应（光路）是区分胶体与溶液的最简方法。Fe(OH)₃ 胶体：饱和 FeCl₃ 滴入沸水。聚沉的应用：卤水点豆腐、江河入海口三角洲。",
                     pitfall: "胶体能透过滤纸但不能透过半透膜——提纯胶体用渗析不用过滤。"),
             ],
-            problemIds: ["p_sr_04", "p_sr_05", "p_sr_06", "p_sr_32"],
+            problemIds: ["p_sr_04", "p_sr_05", "p_sr_06", "p_sr_32", "p_ion_01", "p_ion_02", "p_ion_03", "p_ion_04", "p_ion_05", "p_ion_06", "p_ion_07", "p_ion_08"],
             bossCaseId: "boss_charge",
             weaponUnlocked: .chargeConservation),
 
@@ -157,7 +157,7 @@ enum MainLineData {
                     detail: "金标准：同一反应中，氧化性 氧化剂 > 氧化产物；还原性 还原剂 > 还原产物。由 2FeCl₃ + Cu → 2FeCl₂ + CuCl₂ 立刻读出氧化性 Fe³⁺ > Cu²⁺。辅助依据：金属活动性表（还原性）、卤素顺序（氧化性）。",
                     pitfall: "强弱看「得失电子的难易」，不看得失数目——Na 失 1 个电子但还原性比失 3 个的 Al 强。"),
             ],
-            problemIds: ["p_sr_07", "p_sr_08", "p_sr_09", "p_sr_33"],
+            problemIds: ["p_sr_07", "p_sr_08", "p_sr_09", "p_sr_33", "p_redox_01", "p_redox_02", "p_redox_03", "p_redox_04", "p_redox_05", "p_redox_06", "p_redox_07", "p_redox_08"],
             bossCaseId: "boss_electron",
             weaponUnlocked: .electronConservation),
 
@@ -343,7 +343,30 @@ enum MainLineData {
                     detail: "质量数 A = 质子数 Z + 中子数 N。质子数相同、中子数不同的核素互为同位素（¹H/²H/³H），化学性质几乎完全相同。三个「同」字辈：同位素（原子）、同素异形体（单质）、同分异构体（化合物），各管各的层次。",
                     pitfall: "中性原子电子数 = 质子数；阴离子电子数 = 质子数 + 电荷数——带电微粒数电子先看电荷。"),
             ],
-            problemIds: ["p_sr_16", "p_sr_17", "p_sr_29"]),
+            problemIds: ["p_sr_16", "p_sr_17", "p_sr_29", "p_period_01", "p_period_02", "p_period_03", "p_period_04", "p_period_05", "p_period_06", "p_period_07"]),
+
+        LearningNode(
+            id: "bond", order: 0, stage: .senior, topic: .periodicLaw,
+            title: "化学键",
+            tagline: "原子靠什么连在一起",
+            knowledgePoints: [
+                KnowledgePoint(
+                    id: "kbond1", title: "离子键与共价键",
+                    detail: "离子键：阴阳离子间的静电作用，一般在活泼金属与活泼非金属间（如 NaCl）。共价键：原子间共用电子对，一般在非金属元素间（如 HCl、Cl₂）。",
+                    pitfall: "NH₄Cl 是全由非金属组成的离子化合物（含 NH₄⁺ 与 Cl⁻）——离子键不一定含金属。"),
+                KnowledgePoint(
+                    id: "kbond2", title: "离子化合物与共价化合物",
+                    detail: "含离子键的化合物是离子化合物（强碱、活泼金属氧化物、大多数盐、铵盐）；只含共价键的是共价化合物（酸、非金属氢化物、非金属氧化物）。判据：是否含离子键。",
+                    pitfall: "NaOH、Na₂O₂、Na₂SO₄ 既含离子键又含共价键，仍属离子化合物。"),
+                KnowledgePoint(
+                    id: "kbond3", title: "极性键与非极性键",
+                    detail: "同种原子间共用电子对不偏移——非极性键（H₂、Cl₂、Na₂O₂ 中的 O—O）；不同种原子间共用电子对偏移——极性键（HCl、H₂O）。",
+                    pitfall: "键的极性（看成键原子）与分子的极性（看分子结构是否对称）是两个层次：CO₂ 含极性键但整体非极性。"),
+                KnowledgePoint(
+                    id: "kbond4", title: "化学键与化学反应",
+                    detail: "化学反应的本质是旧键断裂、新键形成。断键吸热、成键放热，二者差值即反应的能量变化。电子式可表示离子键（标电荷+方括号）和共价键（共用电子对）。"),
+            ],
+            problemIds: ["p_bond_01", "p_bond_02", "p_bond_03", "p_bond_04", "p_bond_05", "p_bond_06", "p_bond_07"]),
     ]
 
     // MARK: 选必1 反应原理段 🔥（高考压轴大题区，按权重配题）
