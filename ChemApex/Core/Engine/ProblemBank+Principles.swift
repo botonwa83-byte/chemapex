@@ -500,7 +500,28 @@ extension ProblemBank {
             options: ["0.025 mol", "0.05 mol", "0.1 mol", "0.2 mol"],
             answerIndex: 1,
             explanation: "电子守恒：n(Cu)=6.4/64=0.1 mol，阴极得电子 0.1×2=0.2 mol。阳极 2H₂O−4e⁻→O₂↑+4H⁺，每生成 1 mol O₂ 转移 4 mol 电子，故 n(O₂)=0.2/4=0.05 mol。电解计算的核心是「两极转移电子数相等」。",
-            nodeId: "p8", weapon: .electronConservation),
+            nodeId: "p8", weapon: .electronConservation,
+            dualSolution: DualSolution(
+                standard: SolutionPath(
+                    title: "常规解：写两极电极式逐步算",
+                    steps: [
+                        "阴极：Cu²⁺ + 2e⁻ → Cu，析出 6.4 g Cu = 0.1 mol",
+                        "由电极式，阴极得电子 0.1 × 2 = 0.2 mol",
+                        "阳极：2H₂O − 4e⁻ → O₂↑ + 4H⁺",
+                        "阳极失电子也是 0.2 mol → n(O₂) = 0.2/4 = 0.05 mol",
+                    ],
+                    timeMinutes: 4),
+                descent: SolutionPath(
+                    title: "电子守恒：两极电子数相等",
+                    steps: [
+                        "阴极得电子 = 阳极失电子（电子守恒）",
+                        "Cu：0.1×2 = 0.2 mol 电子 → O₂：0.2/4 = 0.05 mol ✓",
+                    ],
+                    timeMinutes: 1),
+                weapon: .electronConservation,
+                principle: "原理：电解时电子从电源出发，经阴极进入溶液、又从阳极回到电源，是一条闭合回路。电子既不会在电路里堆积也不会消失，所以「阴极得到的电子总数」必然精确等于「阳极失去的电子总数」。抓住这条守恒，不必把两极产物逐个配平。",
+                keyInsight: "电解计算的命根子：阴极得电子 = 阳极失电子，一条等式连通两极。",
+                plainTalk: "电子像在一条单行道上跑圈：从阴极钻进溶液帮铜「上岸」，再从阳极爬出来。进出口的电子数必须一样多。铜那边用了 0.2 摩尔电子，氧气这边就也得凑够 0.2 摩尔，一个氧气分子要 4 个，所以 0.05 摩尔。")),
         ChemProblem(
             id: "p_p8_05", stage: .senior, topic: .electrochem,
             content: "电解精炼铜时，下列说法正确的是？",

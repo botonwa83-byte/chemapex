@@ -85,7 +85,28 @@ extension ProblemBank {
             options: ["6 : 1", "1 : 6", "3 : 1", "1 : 3"],
             answerIndex: 0,
             explanation: "十字交叉：n(CH₄):n(CO₂) = (44−20):(20−16) = 24:4 = 6:1。平均值 20 离 16 近、离 44 远，故离得近的 CH₄ 占多数，符合 6:1。",
-            nodeId: "n03", weapon: .crossMethod),
+            nodeId: "n03", weapon: .crossMethod,
+            dualSolution: DualSolution(
+                standard: SolutionPath(
+                    title: "常规解：设比例列方程",
+                    steps: [
+                        "设 n(CH₄)=x、n(CO₂)=y",
+                        "平均摩尔质量：(16x + 44y)/(x + y) = 20",
+                        "展开：16x + 44y = 20x + 20y → 24y = 4x",
+                        "x : y = 24 : 4 = 6 : 1",
+                    ],
+                    timeMinutes: 3),
+                descent: SolutionPath(
+                    title: "十字交叉：差值交叉定比例",
+                    steps: [
+                        "16 和 44 夹住平均值 20",
+                        "n(CH₄):n(CO₂)=(44−20):(20−16)=24:4=6:1 ✓",
+                    ],
+                    timeMinutes: 0.5),
+                weapon: .crossMethod,
+                principle: "原理：平均摩尔质量是两组分按物质的量加权的平均值，移项 (16x+44y)/(x+y)=20 就直接得到 x:y=(44−20):(20−16)。十字交叉只是这个代数式的图形化——平均值离哪个组分近，哪个组分就多，距离的反比就是数量比。",
+                keyInsight: "平均值离谁近谁就多；两个「距离」交叉一比，就是物质的量之比。",
+                plainTalk: "平均 20 离 16 很近、离 44 很远，说明便宜的甲烷占大头。到底多几倍？看距离：到 44 是 24、到 16 是 4，所以甲烷是二氧化碳的 6 倍。")),
 
         // MARK: 电荷守恒
         ChemProblem(
@@ -103,7 +124,27 @@ extension ProblemBank {
             options: ["1 mol", "2 mol", "0.5 mol", "4 mol"],
             answerIndex: 1,
             explanation: "CO₂+2NaOH→Na₂CO₃+H₂O。由钠/碳原子守恒：1 mol CO₂ 生成 1 mol Na₂CO₃，含 2 mol Na，故需 2 mol NaOH。原子守恒省去配平细节。",
-            nodeId: "n03", weapon: .atomConservation),
+            nodeId: "n03", weapon: .atomConservation,
+            dualSolution: DualSolution(
+                standard: SolutionPath(
+                    title: "常规解：写方程式按系数算",
+                    steps: [
+                        "CO₂ + 2NaOH → Na₂CO₃ + H₂O",
+                        "由系数 1 mol CO₂ ~ 2 mol NaOH",
+                        "故消耗 NaOH 2 mol",
+                    ],
+                    timeMinutes: 2),
+                descent: SolutionPath(
+                    title: "原子守恒：盯住钠和碳",
+                    steps: [
+                        "碳守恒：1 mol CO₂ → 1 mol Na₂CO₃",
+                        "钠守恒：1 mol Na₂CO₃ 含 2 mol Na → 需 2 mol NaOH ✓",
+                    ],
+                    timeMinutes: 1),
+                weapon: .atomConservation,
+                principle: "原理：化学变化只是原子重新组合，钠原子和碳原子都不会消失或新生。碳全部进入 Na₂CO₃，钠也全部进入 Na₂CO₃，所以由「1 个 Na₂CO₃ 带走 2 个 Na」就能反推需要多少 NaOH，不必依赖配平好的方程式系数。",
+                keyInsight: "盯住守恒的元素（钠、碳），由产物直接反推反应物的量。",
+                plainTalk: "碳全跑进了碳酸钠，钠也全跑进了碳酸钠。一个碳酸钠要拉走两个钠，那这些钠原来都在 NaOH 里，所以得用 2 摩尔 NaOH。")),
         ChemProblem(
             id: "m_atom_02", stage: .senior, topic: .mole,
             content: "某有机物 1 mol 完全燃烧生成 3 mol CO₂ 和 4 mol H₂O，则该有机物分子中碳、氢原子数为？",

@@ -144,7 +144,28 @@ enum ProblemBank {
             options: ["全部", "1/2", "1/4", "3/4"],
             answerIndex: 1,
             explanation: "4 mol HCl 中只有 2 mol 变成了 Cl₂（被氧化），另外 2 mol 以 Cl⁻ 形式留在 MnCl₂ 中只起酸的作用。「部分被氧化」是氧化还原计算的经典考法。",
-            nodeId: "n05"),
+            nodeId: "n05", weapon: .electronConservation,
+            dualSolution: DualSolution(
+                standard: SolutionPath(
+                    title: "常规解：逐个分析每个 Cl 的去向",
+                    steps: [
+                        "MnO₂ + 4HCl(浓) → MnCl₂ + Cl₂↑ + 2H₂O",
+                        "4 个 Cl 中：2 个进入 Cl₂（0 价，被氧化）",
+                        "另 2 个进入 MnCl₂（仍是 −1 价，没变）",
+                        "被氧化的占 2/4 = 1/2",
+                    ],
+                    timeMinutes: 2),
+                descent: SolutionPath(
+                    title: "看价态：只有变价的才被氧化",
+                    steps: [
+                        "被氧化 = 化合价升高的那部分 Cl（−1→0，进 Cl₂）",
+                        "Cl₂ 含 2 个 Cl，总 4 个 → 1/2 被氧化 ✓",
+                    ],
+                    timeMinutes: 0.5),
+                weapon: .electronConservation,
+                principle: "原理：氧化还原的本质是电子转移，而电子转移一定伴随化合价变化。所以「被氧化」的判据只有一个——化合价是否升高。这里只有变成 Cl₂ 的那 2 个 Cl 价态从 −1 升到 0，剩下 2 个 Cl⁻ 价态没变、只是当了「酸」。不必算电子总数，盯价态就够。",
+                keyInsight: "判断「谁被氧化」只看化合价升没升——没变价的，哪怕参加了反应也没被氧化。",
+                plainTalk: "4 个氯里，只有两个「升职」了（从 −1 变 0 跑进氯气），另外两个原地不动（还在 −1，只是陪着当酸）。升职的占一半，所以被氧化的就是 1/2。")),
         ChemProblem(
             id: "p_sr_09", stage: .senior, topic: .redox,
             content: "下列反应中，水作氧化剂的是？",
