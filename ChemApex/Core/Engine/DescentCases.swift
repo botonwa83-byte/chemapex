@@ -412,6 +412,65 @@ enum DescentCases {
                 principle: "原理：溶液宏观电中性是物理定律。无论这些离子来自 NaOH、Ba(OH)₂ 还是 BaCl₂，只要它们共处一溶液，全部正电荷与全部负电荷就必须严格相等。这条等式与「怎么配出来的」毫无关系，直接拿来用即可。",
                 keyInsight: "多种离子混在一起求其一，正负电荷总量一拉平就出来。",
                 plainTalk: "一杯水里漂着各种带电小球，正电球和负电球的总电量必须打平（不然杯子会带电放电）。正的一共 0.5，负的已知 0.2，那剩下的氢氧根必须补够 0.3。")),
+
+        // 十字交叉 · 同位素丰度
+        ChemProblem(
+            id: "boss_cross2", stage: .senior, topic: .periodicLaw,
+            content: "氯元素有 ³⁵Cl 和 ³⁷Cl 两种同位素，氯的相对原子质量为 35.5。则 ³⁵Cl 与 ³⁷Cl 的原子个数比（丰度比）约为？",
+            options: ["3 : 1", "1 : 3", "1 : 1", "2 : 1"],
+            answerIndex: 0,
+            explanation: "十字交叉：³⁵Cl : ³⁷Cl =(37−35.5):(35.5−35)=1.5:0.5=3:1。元素的相对原子质量是各同位素按丰度的加权平均。",
+            nodeId: "struct_atom", weapon: .crossMethod,
+            dualSolution: DualSolution(
+                standard: SolutionPath(
+                    title: "常规解：设丰度列方程",
+                    steps: [
+                        "设 ³⁵Cl 占 x、³⁷Cl 占 (1−x)",
+                        "加权平均：35x + 37(1−x) = 35.5",
+                        "解得 x = 0.75，即 ³⁵Cl : ³⁷Cl = 0.75 : 0.25 = 3 : 1",
+                    ],
+                    timeMinutes: 3),
+                descent: SolutionPath(
+                    title: "十字交叉：离平均值越近占比越大",
+                    steps: [
+                        "35 和 37 夹住平均值 35.5",
+                        "³⁵Cl : ³⁷Cl =(37−35.5):(35.5−35)=1.5:0.5=3:1 ✓",
+                    ],
+                    timeMinutes: 0.5),
+                weapon: .crossMethod,
+                principle: "原理：元素的相对原子质量本就是各同位素质量按丰度的加权平均值。加权平均必然偏向占比大的那一方——35.5 离 35 更近，说明 ³⁵Cl 更多。十字交叉把「加权平均」这个代数关系倒过来用，直接读出丰度比，数学上严格成立。",
+                keyInsight: "相对原子质量是同位素的加权平均——离它越近的同位素，丰度越大。",
+                plainTalk: "平均分 35.5 更靠近 35，说明考 35 分的人多。具体多多少？看距离的反比：到 37 的距离是 1.5、到 35 的距离是 0.5，所以 35 的人是 37 的人的 3 倍。")),
+
+        // 原子守恒 · 燃烧求分子式
+        ChemProblem(
+            id: "boss_atom2", stage: .senior, topic: .organic,
+            content: "0.1 mol 某气态烃完全燃烧，生成 0.3 mol CO₂ 和 0.4 mol H₂O。该烃的分子式为？",
+            options: ["C₃H₈", "C₃H₆", "C₂H₆", "C₃H₄"],
+            answerIndex: 0,
+            explanation: "碳守恒：每分子含 C = 0.3/0.1 = 3 个；氢守恒：每分子含 H = 2×0.4/0.1 = 8 个。故分子式 C₃H₈（丙烷）。",
+            nodeId: "org_hydro", weapon: .atomConservation,
+            dualSolution: DualSolution(
+                standard: SolutionPath(
+                    title: "常规解：写燃烧方程式配平",
+                    steps: [
+                        "设烃为 CₓHᵧ，CₓHᵧ + O₂ → x CO₂ + (y/2) H₂O",
+                        "0.1 mol 烃 → 0.1x mol CO₂ = 0.3 → x = 3",
+                        "0.1 mol 烃 → 0.1·(y/2) mol H₂O = 0.4 → y = 8",
+                        "分子式 C₃H₈",
+                    ],
+                    timeMinutes: 3),
+                descent: SolutionPath(
+                    title: "原子守恒：碳氢直接数",
+                    steps: [
+                        "碳守恒：C 数 = n(CO₂)/n(烃) = 0.3/0.1 = 3",
+                        "氢守恒：H 数 = 2·n(H₂O)/n(烃) = 0.8/0.1 = 8 → C₃H₈ ✓",
+                    ],
+                    timeMinutes: 1),
+                weapon: .atomConservation,
+                principle: "原理：燃烧只是原子重新组合，碳原子全部跑进 CO₂、氢原子全部跑进 H₂O，一个不丢（原子守恒）。所以「1 个烃分子里有几个碳」就等于「生成的 CO₂ 分子数 ÷ 烃分子数」，氢同理。不必配平整个方程式，数原子即可定分子式。",
+                keyInsight: "由燃烧产物反推分子式：碳进 CO₂、氢进 H₂O，按比例直接数原子。",
+                plainTalk: "烧之前烧之后，碳原子和氢原子的数目都没变。0.1 摩尔烃烧出 0.3 摩尔 CO₂，说明平均每个烃分子掏出 3 个碳；烧出 0.4 摩尔水（含 0.8 摩尔氢），每个分子 8 个氢。拼起来就是 C₃H₈。")),
     ]
 
     static func bossCase(id: String) -> ChemProblem? {
