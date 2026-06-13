@@ -27,6 +27,7 @@
 		7E4EDE272B4430E2AB496746 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B48063DE8C8652CD273F71 /* PaywallView.swift */; };
 		83D2BDE094B5820636155D5E /* FlashcardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C380C80B7C0BC86152B9A401 /* FlashcardView.swift */; };
 		84E5502A096A5AF72F49E07C /* MainLineData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19533570D9B93FEA5DBF927 /* MainLineData.swift */; };
+		8F9EF725F3D52527A14F533B /* ProblemBank+Principles.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6C112875409A9E7CB185C4 /* ProblemBank+Principles.swift */; };
 		97843A0238779E8DFA35A85F /* ChemEquation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3710480DEAE2DD92C4F6DCD /* ChemEquation.swift */; };
 		98A1C71636F6E0EDAF895544 /* LoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8327AB579289C7DBECCFC7E2 /* LoreData.swift */; };
 		9AFB80A45C1298681DB0ED37 /* LabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227DEFF985E4448FA09463B3 /* LabView.swift */; };
@@ -106,6 +107,7 @@
 		D19533570D9B93FEA5DBF927 /* MainLineData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLineData.swift; sourceTree = "<group>"; };
 		D3710480DEAE2DD92C4F6DCD /* ChemEquation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChemEquation.swift; sourceTree = "<group>"; };
 		D84E91E6228EF266A56B6F48 /* ProgressManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressManager.swift; sourceTree = "<group>"; };
+		DE6C112875409A9E7CB185C4 /* ProblemBank+Principles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProblemBank+Principles.swift"; sourceTree = "<group>"; };
 		E368C57C6027C3660F997B64 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E4B89530B64C7D480B203B15 /* EquationLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquationLibraryView.swift; sourceTree = "<group>"; };
 		F9FA735507B9C2669DBC2FE0 /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 				8327AB579289C7DBECCFC7E2 /* LoreData.swift */,
 				D19533570D9B93FEA5DBF927 /* MainLineData.swift */,
 				B5331FD2F074F36C119C2F4B /* ProblemBank.swift */,
+				DE6C112875409A9E7CB185C4 /* ProblemBank+Principles.swift */,
 				C1E7A28FCBFCBB869951C94E /* ProcessFlowData.swift */,
 				D84E91E6228EF266A56B6F48 /* ProgressManager.swift */,
 				B48454AD7F837B599640CF93 /* PurchaseManager.swift */,
@@ -464,6 +467,7 @@
 				84E5502A096A5AF72F49E07C /* MainLineData.swift in Sources */,
 				BB1FEE7B9113EFC86CE5742A /* NodeDetailView.swift in Sources */,
 				7E4EDE272B4430E2AB496746 /* PaywallView.swift in Sources */,
+				8F9EF725F3D52527A14F533B /* ProblemBank+Principles.swift in Sources */,
 				9B3D4DB2AEC368CCEC64B1E3 /* ProblemBank.swift in Sources */,
 				E976778A608D83741F89FACD /* ProblemDetailView.swift in Sources */,
 				AA917FD8EBC3DA6E65BCA933 /* ProcessFlow.swift in Sources */,

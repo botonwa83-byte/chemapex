@@ -17,7 +17,7 @@ enum ProblemBank {
 
     // MARK: 常规题（分批声明，避免单个数组字面量过大拖慢类型检查）
 
-    static let regular: [ChemProblem] = juniorBatch + seniorBatch1 + seniorBatch2 + expansionBatch
+    static let regular: [ChemProblem] = juniorBatch + seniorBatch1 + seniorBatch2 + expansionBatch + principlesBatch
 
     private static let juniorBatch: [ChemProblem] = [
 
@@ -211,14 +211,14 @@ enum ProblemBank {
             options: ["甲烷燃烧", "盐酸与 NaOH 中和", "Ba(OH)₂·8H₂O 与 NH₄Cl 固体反应", "铝热反应"],
             answerIndex: 2,
             explanation: "Ba(OH)₂·8H₂O 与 NH₄Cl 是中学唯一要求记住的常温自发吸热反应（烧杯下木板会被冻住）。燃烧、中和、铝热都是典型放热反应。",
-            nodeId: "n09"),
+            nodeId: "p1"),
         ChemProblem(
             id: "p_sr_19", stage: .senior, topic: .equilibrium,
             content: "恒温恒容下，N₂ + 3H₂ ⇌ 2NH₃。能说明反应已达平衡状态的是？",
             options: ["N₂、H₂、NH₃ 的浓度之比为 1:3:2", "单位时间内消耗 1 mol N₂ 同时生成 2 mol NH₃", "混合气体的平均摩尔质量不再变化", "反应完全停止"],
             answerIndex: 2,
             explanation: "该反应前后气体分子数变化（4→2），恒容下总质量不变、总物质的量在变，平均摩尔质量是「变量」——变量不变即平衡。A 是任意时刻都可能的比例；B 是同方向速率；D 平衡是动态的。",
-            nodeId: "n09"),
+            nodeId: "p3"),
 
         // ===== N10 水溶液 · 离子平衡 =====
         ChemProblem(
@@ -227,14 +227,14 @@ enum ProblemBank {
             options: ["3 mol/L", "10⁻³ mol/L", "10⁻¹¹ mol/L", "10³ mol/L"],
             answerIndex: 1,
             explanation: "pH = −lg c(H⁺)，pH = 3 即 c(H⁺) = 10⁻³ mol/L。顺手记：常温下 c(H⁺)·c(OH⁻) = 10⁻¹⁴，所以此溶液 c(OH⁻) = 10⁻¹¹ mol/L。",
-            nodeId: "n10"),
+            nodeId: "p4"),
         ChemProblem(
             id: "p_sr_21", stage: .senior, topic: .solution,
             content: "常温下，浓度均为 0.1 mol/L 的盐酸和醋酸，下列说法正确的是？",
             options: ["两者 pH 相同", "醋酸的 pH 更大", "盐酸的 pH 更大", "两者 c(H⁺) 相同"],
             answerIndex: 1,
             explanation: "盐酸完全电离，c(H⁺) = 0.1 mol/L，pH = 1；醋酸是弱酸只部分电离，c(H⁺) < 0.1 mol/L，pH > 1。「同浓度比电离、同 pH 比储备」是强弱酸对比的纲。",
-            nodeId: "n10"),
+            nodeId: "p4"),
 
         // ===== N11 电化学 · 电子的迁徙 =====
         ChemProblem(
@@ -243,14 +243,14 @@ enum ProblemBank {
             options: ["铜，氧化反应", "锌，氧化反应", "锌，还原反应", "铜，还原反应"],
             answerIndex: 1,
             explanation: "活泼金属锌作负极，失电子被氧化：Zn − 2e⁻ → Zn²⁺；铜是正极，H⁺ 在其表面得电子放出 H₂。口诀：负失氧（负极·失电子·氧化反应）。",
-            nodeId: "n11"),
+            nodeId: "p7"),
         ChemProblem(
             id: "p_sr_23", stage: .senior, topic: .electrochem,
             content: "电解饱和食盐水时，阴极上的产物是？",
             options: ["Cl₂", "O₂", "H₂", "Na"],
             answerIndex: 2,
             explanation: "阴极发生还原反应，H₂O 得电子放出 H₂（同时生成 OH⁻）；阳极放出 Cl₂。注意水溶液中 Na⁺ 不会在阴极放电析出钠——制金属钠要电解熔融 NaCl。",
-            nodeId: "n11"),
+            nodeId: "p8"),
 
         // ===== N12 有机入门 · 碳的王国 =====
         ChemProblem(
@@ -335,14 +335,14 @@ enum ProblemBank {
             options: ["2H₂ + O₂ = 2H₂O　ΔH = −571.6 kJ/mol", "H₂(g) + ½O₂(g) = H₂O(g)　ΔH = −285.8 kJ/mol", "H₂(g) + ½O₂(g) = H₂O(l)　ΔH = −285.8 kJ/mol", "H₂(g) + ½O₂(g) = H₂O(l)　ΔH = +285.8 kJ/mol"],
             answerIndex: 2,
             explanation: "热化学方程式三查：①标聚集态（g/l/s）②ΔH 带正负号 ③燃烧热对应生成液态水。A 缺聚集态；B 错在生成气态水（燃烧热定义要求稳定氧化物，水为液态）；D 放热反应 ΔH 应为负。",
-            nodeId: "n09"),
+            nodeId: "p1"),
         ChemProblem(
             id: "p_sr_27", stage: .senior, topic: .solution,
             content: "常温下 0.1 mol/L Na₂CO₃ 溶液显碱性，其主要原因是？",
             options: ["Na⁺ 发生水解", "CO₃²⁻ 结合水电离出的 H⁺，使 c(OH⁻) > c(H⁺)", "Na₂CO₃ 电离出 OH⁻", "溶液中没有 H⁺"],
             answerIndex: 1,
             explanation: "CO₃²⁻ 是弱酸根，发生水解：CO₃²⁻ + H₂O ⇌ HCO₃⁻ + OH⁻，消耗 H⁺、积累 OH⁻，溶液显碱性。口诀「有弱才水解，谁强显谁性」；Na⁺ 是强碱阳离子不水解；盐本身不电离出 OH⁻。",
-            nodeId: "n10"),
+            nodeId: "p5"),
         ChemProblem(
             id: "p_sr_28", stage: .senior, topic: .organic,
             content: "实验室制乙酸乙酯（乙酸 + 乙醇，浓硫酸共热），浓硫酸的作用是？",
@@ -365,7 +365,7 @@ enum ProblemBank {
             options: ["2H⁺ + 2e⁻ → H₂↑", "O₂ + 2H₂O + 4e⁻ → 4OH⁻", "Fe − 2e⁻ → Fe²⁺", "Fe − 3e⁻ → Fe³⁺"],
             answerIndex: 1,
             explanation: "中性/弱酸性潮湿环境下是吸氧腐蚀：正极上 O₂ 得电子；负极 Fe − 2e⁻ → Fe²⁺（注意是 +2 价）。析氢腐蚀（A）只在较强酸性环境发生。C 是负极反应不是正极。",
-            nodeId: "n11"),
+            nodeId: "p8"),
         ChemProblem(
             id: "p_sr_31", stage: .senior, topic: .organic,
             content: "检验某有机物中含有醛基，最合适的方法是？",

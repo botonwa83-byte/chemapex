@@ -5,7 +5,15 @@ import Foundation
 // 顺序即学习顺序：初中直觉 → 高中主战场 → 竞赛仰望。
 
 enum MainLineData {
-    static let nodes: [LearningNode] = juniorNodes + seniorNodes1 + seniorNodes2 + olympiadNodes
+    static let nodes: [LearningNode] = assignOrder(
+        juniorNodes + seniorNodes1 + seniorNodes2 + principleNodes + organicExpNodes + olympiadNodes)
+
+    /// 按数组位置统一赋 order（1 起），插关/拆关不必手工重排序号。
+    private static func assignOrder(_ list: [LearningNode]) -> [LearningNode] {
+        var list = list
+        for i in list.indices { list[i].order = i + 1 }
+        return list
+    }
 
     static func node(id: String) -> LearningNode? { nodes.first { $0.id == id } }
 
@@ -233,82 +241,198 @@ enum MainLineData {
                     pitfall: "中性原子电子数 = 质子数；阴离子电子数 = 质子数 + 电荷数——带电微粒数电子先看电荷。"),
             ],
             problemIds: ["p_sr_16", "p_sr_17", "p_sr_29"]),
+    ]
 
+    // MARK: 选必1 反应原理段 🔥（高考压轴大题区，按权重配题）
+
+    private static let principleNodes: [LearningNode] = [
         LearningNode(
-            id: "n09", order: 10, stage: .senior, topic: .energy,
-            title: "能量与平衡 · 反应的方向盘",
-            tagline: "反应放不放热、走多快、到哪停",
+            id: "p1", order: 0, stage: .senior, topic: .energy,
+            title: "反应热与盖斯定律",
+            tagline: "化学反应的能量账本",
             knowledgePoints: [
                 KnowledgePoint(
-                    id: "k0901", title: "放热与吸热",
-                    detail: "放热：燃烧、中和、活泼金属与酸、铝热。吸热：Ba(OH)₂·8H₂O 与 NH₄Cl、大多数分解反应、C 与 CO₂/H₂O 的反应。键能角度：断键吸热、成键放热。",
-                    pitfall: "需要加热才能发生 ≠ 吸热反应——燃烧也要点燃，但它放热。"),
+                    id: "kp101", title: "吸热与放热",
+                    detail: "放热反应（ΔH<0）：燃烧、中和、活泼金属与酸、铝热、大多数化合反应。吸热反应（ΔH>0）：Ba(OH)₂·8H₂O 与 NH₄Cl、大多数分解、C+CO₂/H₂O。能量视角：放热=反应物总能量高于生成物。",
+                    pitfall: "「需要加热才发生」≠ 吸热——燃烧也要点燃但放热；常温自发也可吸热（如上述铵盐反应）。"),
                 KnowledgePoint(
-                    id: "k0902", title: "平衡的标志",
-                    detail: "本质标志：正逆速率相等。判断技巧：找「变量」——随反应进行会变的量（如变气体分子数反应的压强、平均摩尔质量）不再变化，即达平衡。",
-                    pitfall: "「浓度比等于系数比」「速率比等于系数比（同向）」都不是平衡标志。"),
+                    id: "kp102", title: "ΔH 的两种算法",
+                    detail: "键能法：ΔH =（反应物总键能）−（生成物总键能）；能量法：ΔH =（生成物总能量）−（反应物总能量）。活化能视角：ΔH = 正反应活化能 E₁ − 逆反应活化能 E₂。",
+                    pitfall: "断键吸热、成键放热——两个算法符号方向相反，别记混。"),
                 KnowledgePoint(
-                    id: "k0903", title: "勒夏特列原理",
-                    detail: "改变条件，平衡向「削弱这种改变」的方向移动——只削弱，不抵消。升温向吸热方向、加压向气体分子数减小方向移动。"),
+                    id: "kp103", title: "热化学方程式三要素",
+                    detail: "①标聚集态(g/l/s/aq) ②ΔH 带正负号和单位 kJ/mol ③系数只表物质的量、可为分数。系数加倍 ΔH 加倍，逆向写 ΔH 变号。",
+                    pitfall: "燃烧热对应生成液态水、中和热对应生成 1 mol 液态水——聚集态写错是最高频失分点。"),
                 KnowledgePoint(
-                    id: "k0904", title: "热化学方程式与盖斯定律",
-                    detail: "热化学方程式三要素：标聚集态(g/l/s)、ΔH 带符号和单位、系数只表示物质的量（可为分数）。盖斯定律：反应热只与始末状态有关——方程式可以像代数式一样加减，ΔH 跟着加减。",
-                    pitfall: "燃烧热对应生成液态水；中和热对应生成 1 mol 液态水。聚集态写错是最高频失分点。"),
-                KnowledgePoint(
-                    id: "k0905", title: "反应速率及影响因素",
-                    detail: "v = Δc/Δt，单位 mol/(L·s)。同一反应中各物质速率之比 = 化学计量数之比。影响因素：浓度、压强（仅气体）、温度、催化剂、接触面积。",
-                    pitfall: "固体和纯液体的「浓度」视为常数——增加固体的量不改变速率（增大接触面积才会）。"),
+                    id: "kp104", title: "盖斯定律",
+                    detail: "反应热只与始末状态有关，与路径无关。目标反应可由已知反应「像代数式一样加减」得到，ΔH 同步加减。是求难以直接测定反应热的通法。",
+                    pitfall: "方程式怎么加减，ΔH 就怎么加减；方程式翻倍/倒转，ΔH 也翻倍/变号。"),
             ],
-            problemIds: ["p_sr_18", "p_sr_19", "p_sr_26"]),
+            problemIds: ["p_sr_18", "p_sr_26", "p_p1_01", "p_p1_02", "p_p1_03", "p_p1_04", "p_p1_05", "p_p1_06", "p_p1_07", "p_p1_08"]),
 
         LearningNode(
-            id: "n10", order: 11, stage: .senior, topic: .solution,
-            title: "水溶液 · 离子的平衡术",
-            tagline: "pH、弱电解质与三大守恒的主场",
+            id: "p2", order: 0, stage: .senior, topic: .equilibrium,
+            title: "化学反应速率",
+            tagline: "反应有多快，怎么调",
             knowledgePoints: [
                 KnowledgePoint(
-                    id: "k1001", title: "水的离子积与 pH",
-                    detail: "常温下 c(H⁺)·c(OH⁻) = 10⁻¹⁴，pH = −lg c(H⁺)。酸性 pH<7、碱性 pH>7（仅限常温）。",
-                    pitfall: "升温后纯水 pH < 7 但仍是中性——中性的标准是 c(H⁺)=c(OH⁻)，不是 pH=7。"),
+                    id: "kp201", title: "速率的定义与换算",
+                    detail: "v = Δc/Δt，单位 mol/(L·s)。同一反应中各物质速率之比 = 化学计量数之比。比较不同物质表示的速率快慢，要先换算成同一物质。",
+                    pitfall: "速率是平均值、恒正；固体和纯液体不写速率（浓度视为常数）。"),
                 KnowledgePoint(
-                    id: "k1002", title: "强酸与弱酸",
-                    detail: "同浓度：强酸 c(H⁺) 大、pH 小；同 pH：弱酸「储备」多，稀释后 pH 变化小、与足量金属反应产气多。"),
+                    id: "kp202", title: "影响速率的因素",
+                    detail: "浓度↑、温度↑、催化剂、压强（仅气体、且改变气体浓度时）、固体表面积↑ 都加快速率。本质：增大单位体积内活化分子数或活化分子百分数。",
+                    pitfall: "恒容充入惰性气体：总压增大但反应气体浓度不变，速率不变；恒压充惰性气体：体积变大、浓度减小，速率减慢。"),
                 KnowledgePoint(
-                    id: "k1003", title: "溶液三大守恒",
-                    detail: "电荷守恒（正=负）、物料守恒（元素总量不变）、质子守恒（得失 H⁺ 相等）。离子浓度大小比较题的三把钥匙。"),
+                    id: "kp203", title: "催化剂与活化能",
+                    detail: "催化剂降低活化能、使更多分子成为活化分子，同等加快正逆反应。有效碰撞理论：只有能量足够且取向合适的碰撞才有效。",
+                    pitfall: "催化剂只改变到达平衡的快慢，不改变平衡、转化率、ΔH。"),
                 KnowledgePoint(
-                    id: "k1004", title: "盐类水解",
-                    detail: "口诀：有弱才水解，越弱越水解，谁强显谁性。强碱弱酸盐（Na₂CO₃、CH₃COONa）显碱性；强酸弱碱盐（NH₄Cl、FeCl₃）显酸性。升温促进水解；FeCl₃ 净水、明矾净水都是水解的应用。",
-                    pitfall: "水解是微弱的、可逆的——离子方程式用 ⇌，一般不标 ↑↓（双水解相互促进进行到底的除外）。"),
-                KnowledgePoint(
-                    id: "k1005", title: "沉淀溶解平衡与 Ksp",
-                    detail: "难溶电解质在水中存在溶解平衡，Ksp 只与温度有关。Q > Ksp 沉淀生成，Q < Ksp 沉淀溶解。沉淀转化向更难溶的方向进行（如 AgCl → AgBr → AgI，颜色白→浅黄→黄）。",
-                    pitfall: "Ksp 小不一定溶解度小——只有同类型（如都是 AB 型）才能直接比较。"),
+                    id: "kp204", title: "控制变量法",
+                    detail: "探究某因素对速率的影响时，只改变该因素、其余条件相同，才能归因。实验设计与数据分析的通用方法。"),
             ],
-            problemIds: ["p_sr_20", "p_sr_21", "p_sr_27"]),
+            problemIds: ["p_p2_01", "p_p2_02", "p_p2_03", "p_p2_04", "p_p2_05", "p_p2_06", "p_p2_07", "p_p2_08"]),
 
         LearningNode(
-            id: "n11", order: 12, stage: .senior, topic: .electrochem,
-            title: "电化学 · 电子的迁徙",
-            tagline: "原电池与电解池：一个放电，一个充电",
+            id: "p3", order: 0, stage: .senior, topic: .equilibrium,
+            title: "化学平衡",
+            tagline: "可逆反应到哪儿停，怎么移",
             knowledgePoints: [
                 KnowledgePoint(
-                    id: "k1101", title: "原电池：负失氧",
-                    detail: "自发氧化还原 → 电能。负极失电子（氧化），正极得电子（还原）；电子走外电路，阴离子在溶液中流向负极。",
-                    pitfall: "电子不下水！电子只走导线，溶液中靠离子定向移动导电。"),
+                    id: "kp301", title: "平衡状态的判断",
+                    detail: "本质标志：正逆速率相等。技巧：找「变量」——随反应进行会变、变到不再变的量（如气体分子数改变反应的总压、平均摩尔质量）即达平衡。",
+                    pitfall: "「浓度比=系数比」「同向速率比=系数比」「总质量/总体积恒定（恒容）」都不是平衡标志。"),
                 KnowledgePoint(
-                    id: "k1102", title: "电解池：阳氧阴还",
-                    detail: "外加电源强制反应。阳极氧化（接正极）、阴极还原。阴极放电顺序：Ag⁺ > Cu²⁺ > H⁺；水溶液中 Na⁺、Mg²⁺、Al³⁺ 不放电。"),
+                    id: "kp302", title: "勒夏特列原理",
+                    detail: "改变一个条件，平衡向「削弱这种改变」的方向移动（只削弱不抵消）。升温向吸热方向、加压向气体分子数减小方向、增大某物浓度向消耗它的方向移动。",
+                    pitfall: "增大某反应物浓度，平衡正移，但提高的是另一反应物的转化率，自身转化率反而降低。"),
                 KnowledgePoint(
-                    id: "k1103", title: "电解饱和食盐水",
-                    detail: "阳极 Cl₂、阴极 H₂、阴极区生成 NaOH——氯碱工业。两极产物先判断、再用电子守恒算量。"),
+                    id: "kp303", title: "平衡常数 K",
+                    detail: "K = 生成物浓度幂之积 / 反应物浓度幂之积（幂为系数，固体纯液体不计）。K 只与温度有关；K 大表示反应进行得完全（转化率高）。",
+                    pitfall: "改变浓度、压强、加催化剂都不改变 K。"),
                 KnowledgePoint(
-                    id: "k1104", title: "金属腐蚀与防护",
-                    detail: "潮湿中性环境是吸氧腐蚀（正极 O₂ 得电子），强酸性环境才是析氢腐蚀。防护三招：牺牲阳极法（船体接锌块）、外加电流法（接电源负极）、加保护层。电解精炼/电镀：粗（镀层）金属作阳极、纯（待镀）金属作阴极。",
-                    pitfall: "一见腐蚀就写析氢是大坑——日常生锈绝大多数是吸氧腐蚀。"),
+                    id: "kp304", title: "Q 与 K 判方向 · 转化率",
+                    detail: "浓度商 Q<K 正向、Q>K 逆向、Q=K 平衡。转化率 = 转化量/起始量。工业条件（如合成氨高温高压催化剂）是速率与平衡的折中优化。"),
             ],
-            problemIds: ["p_sr_22", "p_sr_23", "p_sr_30"]),
+            problemIds: ["p_sr_19", "p_p3_01", "p_p3_02", "p_p3_03", "p_p3_04", "p_p3_05", "p_p3_06", "p_p3_07", "p_p3_08", "p_p3_09", "p_p3_10", "p_p3_11"]),
 
+        LearningNode(
+            id: "p4", order: 0, stage: .senior, topic: .solution,
+            title: "电离平衡与 pH",
+            tagline: "弱电解质、水的电离与中和滴定",
+            knowledgePoints: [
+                KnowledgePoint(
+                    id: "kp401", title: "强弱电解质与电离平衡",
+                    detail: "强电解质完全电离（强酸强碱、绝大多数盐）；弱电解质部分电离、存在电离平衡（弱酸弱碱、水）。强弱看「是否完全电离」，与溶解性、导电能力强弱无关。",
+                    pitfall: "稀释促进弱电解质电离（电离程度增大），但离子浓度 c(H⁺) 仍减小。"),
+                KnowledgePoint(
+                    id: "kp402", title: "水的离子积 Kw",
+                    detail: "Kw = c(H⁺)·c(OH⁻)，只与温度有关，常温 10⁻¹⁴。水电离吸热，升温 Kw 增大。任何水溶液中 Kw 都成立。",
+                    pitfall: "升温后纯水 pH<7 仍是中性——中性标准是 c(H⁺)=c(OH⁻)，不是 pH=7。"),
+                KnowledgePoint(
+                    id: "kp403", title: "pH 与强弱酸对比",
+                    detail: "pH=−lg c(H⁺)。同浓度：强酸 c(H⁺) 大、pH 小；同 pH：弱酸储备多，稀释 pH 变化小、与足量金属产气多。强酸强碱等浓等体积恰好中和呈中性。"),
+                KnowledgePoint(
+                    id: "kp404", title: "酸碱中和滴定",
+                    detail: "用已知浓度标准液测未知浓度。指示剂选酚酞或甲基橙（不用石蕊）；终点：颜色变化且半分钟不褪。误差分析靠「c待=c标·V标/V待」，看哪步使 V标 偏大或偏小。",
+                    pitfall: "滴定管尖嘴滴定前有气泡、滴定后消失，使 V标 偏大、结果偏高。"),
+            ],
+            problemIds: ["p_sr_20", "p_sr_21", "p_p4_01", "p_p4_02", "p_p4_03", "p_p4_04", "p_p4_05", "p_p4_06", "p_p4_07", "p_p4_08"]),
+
+        LearningNode(
+            id: "p5", order: 0, stage: .senior, topic: .solution,
+            title: "盐类水解",
+            tagline: "谁强显谁性，离子浓度三守恒",
+            knowledgePoints: [
+                KnowledgePoint(
+                    id: "kp501", title: "水解规律",
+                    detail: "口诀「有弱才水解，越弱越水解，谁强显谁性」。强碱弱酸盐（Na₂CO₃/CH₃COONa）显碱性；强酸弱碱盐（NH₄Cl/FeCl₃）显酸性；强酸强碱盐（NaCl）不水解显中性。",
+                    pitfall: "水解吸热（中和的逆过程），升温、加水都促进水解。"),
+                KnowledgePoint(
+                    id: "kp502", title: "水解方程式与双水解",
+                    detail: "水解微弱可逆，用「⇌」、一般不标↑↓。双水解相互促进进行到底（Al³⁺ 与 HCO₃⁻/CO₃⁻²/AlO₂⁻、Fe³⁺ 与 CO₃²⁻），用「→」并标↑↓——泡沫灭火器原理。",
+                    pitfall: "Al³⁺+3HCO₃⁻→Al(OH)₃↓+3CO₂↑ 既有沉淀又有气泡。"),
+                KnowledgePoint(
+                    id: "kp503", title: "水解的应用",
+                    detail: "明矾净水（Al³⁺ 水解生成胶体）、热纯碱去油污（CO₃²⁻ 水解显碱性、升温促进）、配 FeCl₃/SnCl₂ 溶液加对应酸抑制水解、铵态氮肥不与草木灰混用。"),
+                KnowledgePoint(
+                    id: "kp504", title: "离子浓度三守恒",
+                    detail: "电荷守恒（阳离子正电荷总量=阴离子负电荷总量）、物料守恒（某元素各形态浓度之和守恒）、质子守恒（得失 H⁺ 相等）。是离子浓度大小比较与等式判断的三把钥匙。",
+                    pitfall: "酸式盐酸碱性看电离与水解谁占优：NaHCO₃ 水解>电离显碱性，NaHSO₃ 电离>水解显酸性。"),
+            ],
+            problemIds: ["p_sr_27", "p_p5_01", "p_p5_02", "p_p5_03", "p_p5_04", "p_p5_05", "p_p5_06", "p_p5_07", "p_p5_08", "p_p5_09"]),
+
+        LearningNode(
+            id: "p6", order: 0, stage: .senior, topic: .solution,
+            title: "沉淀溶解平衡",
+            tagline: "Ksp、沉淀的生成转化与溶解",
+            knowledgePoints: [
+                KnowledgePoint(
+                    id: "kp601", title: "溶度积 Ksp",
+                    detail: "难溶电解质在饱和溶液中存在沉淀溶解平衡。Ksp = 各离子浓度幂之积（固体不计），只与温度有关。AB 型 s=√Ksp；AB₂ 型 Ksp=c(A)·c²(B)。",
+                    pitfall: "Ksp 小不一定溶解度小——只有同类型（同为 AB 型或同为 AB₂ 型）才能用 Ksp 直接比较溶解度。"),
+                KnowledgePoint(
+                    id: "kp602", title: "Q 与 Ksp 判沉淀",
+                    detail: "离子积 Q>Ksp 生成沉淀、Q<Ksp 沉淀溶解、Q=Ksp 平衡（饱和）。加沉淀剂、调 pH 使某离子沉淀完全（一般 c<10⁻⁵ 视为沉淀完全）。"),
+                KnowledgePoint(
+                    id: "kp603", title: "沉淀的转化",
+                    detail: "沉淀总是向更难溶（Ksp 更小）的方向转化：AgCl→AgBr→AgI（颜色白→浅黄→黄）、CaSO₄→CaCO₃（锅炉除垢）。Ksp 差越大越易转化。"),
+                KnowledgePoint(
+                    id: "kp604", title: "同离子效应与应用",
+                    detail: "加入含相同离子的物质，使沉淀溶解平衡逆移、沉淀更完全（检验 SO₄²⁻ 加过量 BaCl₂）。工业上用 MgO/Mg(OH)₂ 调 pH 除 Fe³⁺ 而不引入新杂质。"),
+            ],
+            problemIds: ["p_p6_01", "p_p6_02", "p_p6_03", "p_p6_04", "p_p6_05", "p_p6_06", "p_p6_07", "p_p6_08"]),
+
+        LearningNode(
+            id: "p7", order: 0, stage: .senior, topic: .electrochem,
+            title: "原电池与化学电源",
+            tagline: "化学能变电能：负失氧、正得还",
+            knowledgePoints: [
+                KnowledgePoint(
+                    id: "kp701", title: "原电池构成与判断",
+                    detail: "四条件：两个活泼性不同的电极、电解质溶液、闭合回路、能自发氧化还原。负极（较活泼）失电子被氧化，正极得电子被还原。",
+                    pitfall: "口诀「负失氧、正得还」；外电路电流由正极流向负极，与电子方向相反。"),
+                KnowledgePoint(
+                    id: "kp702", title: "电极反应式书写",
+                    detail: "把总反应拆成氧化半反应（负极）和还原半反应（正极）。要结合电解质环境：碱性写 OH⁻、酸性写 H⁺。两极反应式相加应得总反应。",
+                    pitfall: "电子只走外电路导线，溶液中靠离子定向移动（阳离子奔正极、阴离子奔负极）。"),
+                KnowledgePoint(
+                    id: "kp703", title: "盐桥与离子移动",
+                    detail: "盐桥沟通内电路、平衡两池电荷失衡，使电流持续。带盐桥的原电池能量转化效率更高、电流更稳定。"),
+                KnowledgePoint(
+                    id: "kp704", title: "常见化学电源",
+                    detail: "一次电池（锌锰干电池，不可充）；二次电池（铅蓄电池、锂离子电池，放电=原电池、充电=电解池）；燃料电池（氢氧、甲烷等，燃料在负极氧化、O₂ 在正极还原）。",
+                    pitfall: "铅蓄电池放电两极都生成 PbSO₄、硫酸被消耗，可由密度判断电量。"),
+            ],
+            problemIds: ["p_sr_22", "p_p7_01", "p_p7_02", "p_p7_03", "p_p7_04", "p_p7_05", "p_p7_06", "p_p7_07", "p_p7_08", "p_p7_09"]),
+
+        LearningNode(
+            id: "p8", order: 0, stage: .senior, topic: .electrochem,
+            title: "电解与金属腐蚀",
+            tagline: "电能驱动反应 · 阳氧阴还",
+            knowledgePoints: [
+                KnowledgePoint(
+                    id: "kp801", title: "电解池与放电顺序",
+                    detail: "外加电源强制反应：阳极（接电源正极）氧化、阴极（接负极）还原。阴极放电序 Ag⁺>Cu²⁺>H⁺（水溶液 Na⁺/Mg²⁺/Al³⁺ 不放电）；惰性阳极放电序 S²⁻>I⁻>Br⁻>Cl⁻>OH⁻>含氧酸根。",
+                    pitfall: "口诀「阳氧阴还」；活泼电极作阳极时电极本身先溶解（如精炼铜）。"),
+                KnowledgePoint(
+                    id: "kp802", title: "电解类型与溶液复原",
+                    detail: "四类型：电解水型（强碱/含氧酸/活泼金属含氧酸盐）、电解电解质型（无氧酸/不活泼金属无氧酸盐）、放氢生碱型（活泼金属无氧酸盐如 NaCl）、放氧生酸型（不活泼金属含氧酸盐如 CuSO₄）。复原靠「出什么补什么」。",
+                    pitfall: "电解 NaCl 溶液后补 HCl 复原（逸出 H₂、Cl₂）；电解 CuSO₄ 后补 CuO 复原。"),
+                KnowledgePoint(
+                    id: "kp803", title: "电解的计算与应用",
+                    detail: "核心是两极转移电子数相等（电子守恒）。应用：氯碱工业、电解精炼铜（粗作阳极纯作阴极）、电镀（镀层金属作阳极）、电冶活泼金属（电解熔融）。"),
+                KnowledgePoint(
+                    id: "kp804", title: "金属腐蚀与防护",
+                    detail: "电化学腐蚀为主：中性/弱酸性潮湿环境是吸氧腐蚀（正极 O₂+2H₂O+4e⁻→4OH⁻），强酸性才析氢腐蚀。防护：牺牲阳极的阴极保护法（接更活泼金属）、外加电流阴极保护法、镀层。",
+                    pitfall: "一见腐蚀就写析氢是大坑——日常铁生锈绝大多数是吸氧腐蚀。"),
+            ],
+            problemIds: ["p_sr_23", "p_sr_30", "p_p8_01", "p_p8_02", "p_p8_03", "p_p8_04", "p_p8_05", "p_p8_06", "p_p8_07", "p_p8_08"]),
+    ]
+
+    // MARK: 高中段 ⚗️（有机 + 实验，排在选必1反应原理之后）
+
+    private static let organicExpNodes: [LearningNode] = [
         LearningNode(
             id: "n12", order: 13, stage: .senior, topic: .organic,
             title: "有机入门 · 碳的王国",

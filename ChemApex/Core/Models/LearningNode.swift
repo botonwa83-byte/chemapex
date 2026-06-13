@@ -13,7 +13,7 @@ struct KnowledgePoint: Codable, Identifiable {
 
 struct LearningNode: Codable, Identifiable {
     let id: String
-    let order: Int               // 主线序号（1 起）
+    var order: Int               // 主线序号（1 起，由 MainLineData 按数组位置自动赋值）
     let stage: Stage
     let topic: ChemTopic
     let title: String            // 如 "氧化还原 · 电子的转移"
