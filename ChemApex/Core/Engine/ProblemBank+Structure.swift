@@ -213,5 +213,42 @@ extension ProblemBank {
             answerIndex: 0,
             explanation: "等电子体（原子数相同、价电子总数相同）具有相似的空间构型。CO₂ 是直线形，故等电子的 N₃⁻、CNO⁻ 也是直线形。等电子原理是预测陌生微粒结构的「降维」工具——这正是结构化学的上帝视角。",
             nodeId: "cap"),
+
+        // ===== 竞赛之窗扩充：热力学/结构/动力学的"上帝视角" =====
+        ChemProblem(
+            id: "p_cap_03", stage: .olympiad, topic: .structure,
+            content: "高中靠「放热有利、熵增有利」定性判断反应方向，竞赛用 ΔG = ΔH − TΔS 精确判断。某反应 ΔH > 0、ΔS > 0，则它？",
+            options: ["任何温度都自发", "任何温度都不自发", "高温下自发（T 足够大时 ΔG<0）", "低温下自发"],
+            answerIndex: 2,
+            explanation: "ΔG < 0 反应自发。ΔH>0、ΔS>0 时，ΔG = ΔH − TΔS，只有当温度 T 足够高、TΔS 超过 ΔH 时 ΔG 才<0。所以这类反应「高温自发」（如 CaCO₃ 高温分解）。一条公式取代了高中所有定性口诀——这就是热力学的降维。",
+            nodeId: "cap"),
+        ChemProblem(
+            id: "p_cap_04", stage: .olympiad, topic: .structure,
+            content: "金属铜为面心立方最密堆积。其晶胞中每个铜原子周围最近邻的铜原子数（配位数）为？",
+            options: ["6", "8", "12", "4"],
+            answerIndex: 2,
+            explanation: "面心立方（A1）和六方最密堆积（A3）的配位数都是 12——这是球的最密堆积所能达到的最大配位数，空间利用率 74%。高中只背「金属晶体」，竞赛能算出它堆得多紧、利用率多高。",
+            nodeId: "cap"),
+        ChemProblem(
+            id: "p_cap_05", stage: .olympiad, topic: .structure,
+            content: "高中杂化只学到 sp³。SF₆ 分子中硫原子有 6 个 σ 键、无孤对，其杂化方式与空间构型为？",
+            options: ["sp³，四面体", "sp³d，三角双锥", "sp³d²，正八面体", "sp²，平面三角"],
+            answerIndex: 2,
+            explanation: "价层电子对数 = σ键数 + 孤对数 = 6 → sp³d² 杂化，正八面体构型。同理 PCl₅ 是 sp³d（三角双锥）。杂化理论从 sp 一路延伸到 sp³d²，把各种「怪构型」都算得明明白白。",
+            nodeId: "cap"),
+        ChemProblem(
+            id: "p_cap_06", stage: .olympiad, topic: .structure,
+            content: "配合物 [Cu(NH₃)₄]²⁺ 中，中心离子 Cu²⁺ 的配位数及该配离子的空间构型分别是？",
+            options: ["4，正四面体", "4，平面正方形", "6，正八面体", "2，直线形"],
+            answerIndex: 1,
+            explanation: "Cu²⁺（d⁹）与 4 个 NH₃ 以配位键结合，配位数为 4，采取 dsp² 杂化，空间构型为平面正方形（不是四面体）。配合物的中心离子、配体、配位数、构型，是结构化学和无机化学的交汇点。",
+            nodeId: "cap"),
+        ChemProblem(
+            id: "p_cap_07", stage: .olympiad, topic: .structure,
+            content: "对基元反应 2NO + O₂ → 2NO₂，其速率方程可直接由方程式系数写出为 v = k·c²(NO)·c(O₂)。若 NO 浓度增大到原来的 2 倍（其他不变），反应速率变为原来的？",
+            options: ["2 倍", "4 倍", "6 倍", "8 倍"],
+            answerIndex: 1,
+            explanation: "基元反应的速率方程中，各物质浓度的幂等于其化学计量数。v = k·c²(NO)·c(O₂)，c(NO) 变 2 倍 → 速率变 2² = 4 倍。高中只定性说「增大浓度加快速率」，化学动力学能精确算出快几倍——这是速率的降维视角。",
+            nodeId: "cap"),
     ]
 }
