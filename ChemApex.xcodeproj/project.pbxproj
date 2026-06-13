@@ -23,6 +23,7 @@
 		6FB4C5AA918D53C8F805ED4C /* StudentProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0D54B6141EB1A6C1C34EF7 /* StudentProfile.swift */; };
 		7057FE2AA5882B83468B060C /* DescentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E44FC3818EA27F820D90E29 /* DescentView.swift */; };
 		7718915B1069081813181777 /* ProcessFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1EB4ABDEEA03529E1C0605 /* ProcessFlowView.swift */; };
+		77720270C4522A2D732CD03D /* ProblemBank+Elements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765C389486DB6ED2F8618004 /* ProblemBank+Elements.swift */; };
 		7B1B239255B1E673B7E12233 /* EquationLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939AAE4513B8D671F3214A70 /* EquationLibrary.swift */; };
 		7E4EDE272B4430E2AB496746 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B48063DE8C8652CD273F71 /* PaywallView.swift */; };
 		83D2BDE094B5820636155D5E /* FlashcardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C380C80B7C0BC86152B9A401 /* FlashcardView.swift */; };
@@ -87,6 +88,7 @@
 		7015CFAAAC13062019705FB3 /* Lore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lore.swift; sourceTree = "<group>"; };
 		7572800DD69E2F6B2C990B6A /* ChemModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChemModels.swift; sourceTree = "<group>"; };
 		763B52E623B1F4023F2239DB /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
+		765C389486DB6ED2F8618004 /* ProblemBank+Elements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProblemBank+Elements.swift"; sourceTree = "<group>"; };
 		7AB6B715BD929366D631F0F6 /* ElementData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementData.swift; sourceTree = "<group>"; };
 		7DF7E1435985319CEE4EF29C /* ProcessFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessFlow.swift; sourceTree = "<group>"; };
 		826D2B8FFED04BD231BCA72B /* NodeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeDetailView.swift; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 				8327AB579289C7DBECCFC7E2 /* LoreData.swift */,
 				D19533570D9B93FEA5DBF927 /* MainLineData.swift */,
 				B5331FD2F074F36C119C2F4B /* ProblemBank.swift */,
+				765C389486DB6ED2F8618004 /* ProblemBank+Elements.swift */,
 				DE6C112875409A9E7CB185C4 /* ProblemBank+Principles.swift */,
 				C1E7A28FCBFCBB869951C94E /* ProcessFlowData.swift */,
 				D84E91E6228EF266A56B6F48 /* ProgressManager.swift */,
@@ -467,6 +470,7 @@
 				84E5502A096A5AF72F49E07C /* MainLineData.swift in Sources */,
 				BB1FEE7B9113EFC86CE5742A /* NodeDetailView.swift in Sources */,
 				7E4EDE272B4430E2AB496746 /* PaywallView.swift in Sources */,
+				77720270C4522A2D732CD03D /* ProblemBank+Elements.swift in Sources */,
 				8F9EF725F3D52527A14F533B /* ProblemBank+Principles.swift in Sources */,
 				9B3D4DB2AEC368CCEC64B1E3 /* ProblemBank.swift in Sources */,
 				E976778A608D83741F89FACD /* ProblemDetailView.swift in Sources */,

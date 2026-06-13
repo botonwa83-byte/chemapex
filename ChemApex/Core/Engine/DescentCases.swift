@@ -134,7 +134,7 @@ enum DescentCases {
             options: ["Mg 和 Al", "Fe 和 Zn", "Cu 和 Zn", "Mg 和 Cu"],
             answerIndex: 0,
             explanation: "极值法：10 g 纯金属产 H₂ 分别为 Mg 0.417 mol、Al 0.556 mol、Fe 0.179 mol、Zn 0.154 mol、Cu 0。混合物的产气量必介于两种纯金属之间，只有 Mg(0.417)–Al(0.556) 区间夹住 0.5。",
-            nodeId: "n06",
+            nodeId: "al",
             dualSolution: DualSolution(
                 standard: SolutionPath(
                     title: "常规解：逐个选项设方程检验",
@@ -165,7 +165,7 @@ enum DescentCases {
             options: ["98 g", "196 g", "120 g", "245 g"],
             answerIndex: 1,
             explanation: "硫原子守恒：1 mol FeS₂ 含 2 mol S，最终全部进入 H₂SO₄，故 FeS₂ ~ 2H₂SO₄。120 g FeS₂ = 1 mol → 2 mol H₂SO₄ = 196 g。",
-            nodeId: "n07",
+            nodeId: "s",
             dualSolution: DualSolution(
                 standard: SolutionPath(
                     title: "常规解：三个方程逐步换算",

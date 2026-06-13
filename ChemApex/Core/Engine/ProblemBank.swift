@@ -17,7 +17,7 @@ enum ProblemBank {
 
     // MARK: 常规题（分批声明，避免单个数组字面量过大拖慢类型检查）
 
-    static let regular: [ChemProblem] = juniorBatch + seniorBatch1 + seniorBatch2 + expansionBatch + principlesBatch
+    static let regular: [ChemProblem] = juniorBatch + seniorBatch1 + seniorBatch2 + expansionBatch + principlesBatch + elementsBatch
 
     private static let juniorBatch: [ChemProblem] = [
 
@@ -146,21 +146,21 @@ enum ProblemBank {
             options: ["钠浮在水面上", "熔成闪亮的小球", "小球四处游动并发出嘶嘶声", "钠沉入水底剧烈反应"],
             answerIndex: 3,
             explanation: "钠的密度比水小，浮在水面——「浮、熔、游、响、红（酚酞变红）」五字现象。密度关系是判断依据：ρ(Na) ≈ 0.97 g/cm³ < 水。",
-            nodeId: "n06"),
+            nodeId: "na"),
         ChemProblem(
             id: "p_sr_11", stage: .senior, topic: .metals,
             content: "向 AlCl₃ 溶液中逐滴加入 NaOH 溶液直至过量，观察到的现象是？",
             options: ["立即产生白色沉淀且不消失", "先产生白色沉淀，后沉淀逐渐溶解", "无明显现象", "产生红褐色沉淀"],
             answerIndex: 1,
             explanation: "先 Al³⁺ + 3OH⁻ → Al(OH)₃↓（白色），NaOH 过量后 Al(OH)₃ + OH⁻ → AlO₂⁻ + 2H₂O，沉淀溶解。Al(OH)₃ 的两性是「少量/过量」分岔的代表考点。",
-            nodeId: "n06"),
+            nodeId: "al"),
         ChemProblem(
             id: "p_sr_12", stage: .senior, topic: .metals,
             content: "检验溶液中含有 Fe³⁺，最常用的试剂和现象是？",
             options: ["加 NaOH，产生白色沉淀", "加 KSCN 溶液，溶液变血红色", "加盐酸，产生气泡", "加石蕊，溶液变蓝"],
             answerIndex: 1,
             explanation: "Fe³⁺ 遇 KSCN 变血红色，灵敏且专属。注意对比：Fe²⁺ 加 KSCN 无现象，再滴氯水变红——这是检验 Fe²⁺ 的标准流程。加 NaOH 得到的是红褐色 Fe(OH)₃ 沉淀（A 选项颜色就错了）。",
-            nodeId: "n06"),
+            nodeId: "fe"),
     ]
 
     private static let seniorBatch2: [ChemProblem] = [
@@ -172,21 +172,21 @@ enum ProblemBank {
             options: ["Cl₂", "HClO", "Cl⁻", "H⁺"],
             answerIndex: 1,
             explanation: "干燥的 Cl₂ 不能漂白干燥布条；Cl₂ + H₂O ⇌ HCl + HClO，真正起漂白作用的是次氯酸 HClO 的强氧化性。「干氯气不漂白」是实验题经典对照。",
-            nodeId: "n07"),
+            nodeId: "cl"),
         ChemProblem(
             id: "p_sr_14", stage: .senior, topic: .nonmetals,
             content: "把浓硫酸滴到蔗糖上，蔗糖变黑并膨胀。变黑主要体现浓硫酸的？",
             options: ["吸水性", "脱水性", "强酸性", "难挥发性"],
             answerIndex: 1,
             explanation: "脱水性是把有机物中的 H、O 按 2:1 「夺」出来，碳被剩下（炭化）；吸水性是吸收现成的水分子（作干燥剂）。两者一字之差，年年考。",
-            nodeId: "n07"),
+            nodeId: "s"),
         ChemProblem(
             id: "p_sr_15", stage: .senior, topic: .nonmetals,
             content: "实验室制取氨气，应选用的干燥剂是？",
             options: ["浓硫酸", "无水氯化钙", "碱石灰", "五氧化二磷"],
             answerIndex: 2,
             explanation: "NH₃ 是碱性气体：浓硫酸、P₂O₅ 是酸性干燥剂会与之反应；CaCl₂ 会与 NH₃ 结合生成 CaCl₂·8NH₃，也不能用。只能选碱性的碱石灰。干燥剂选择 = 酸碱配对。",
-            nodeId: "n07"),
+            nodeId: "n"),
 
         // ===== N8 周期律 · 星图的密码 =====
         ChemProblem(
@@ -425,6 +425,6 @@ enum ProblemBank {
             options: ["用 CO 还原氧化铝", "电解熔融氯化铝", "电解熔融氧化铝（加冰晶石）", "电解氯化铝溶液"],
             answerIndex: 2,
             explanation: "铝活动性强，只能电解熔融化合物冶炼。但不能选 AlCl₃——它是共价化合物，熔融态不导电；电解溶液阴极只会析出 H₂。工业电解熔融 Al₂O₃，加冰晶石降低熔点。「三连坑」全在选项里。",
-            nodeId: "n06"),
+            nodeId: "al"),
     ]
 }

@@ -162,59 +162,162 @@ enum MainLineData {
             weaponUnlocked: .electronConservation),
 
         LearningNode(
-            id: "n06", order: 7, stage: .senior, topic: .metals,
-            title: "金属王国 · Na / Al / Fe",
-            tagline: "三大金属各有性格：暴烈、两性、变价",
+            id: "na", order: 0, stage: .senior, topic: .metals,
+            title: "钠及其化合物",
+            tagline: "暴烈的碱金属：浮熔游响红",
             knowledgePoints: [
                 KnowledgePoint(
-                    id: "k0601", title: "钠：暴烈的碱金属",
-                    detail: "与水反应「浮、熔、游、响、红」；Na₂O₂ 淡黄色，与 H₂O、CO₂ 反应都放 O₂，作供氧剂。钠保存在煤油中。",
-                    pitfall: "Na₂O₂ 中氧为 −1 价，与水反应是歧化，Na₂O₂ 既是氧化剂又是还原剂。"),
+                    id: "kna1", title: "钠单质",
+                    detail: "银白色软金属、密度小（<水）、熔点低。与水反应「浮、熔、游、响、红」；与 O₂ 常温生成 Na₂O（白）、点燃生成 Na₂O₂（淡黄）。保存在煤油中，着火用沙土盖灭。",
+                    pitfall: "钠投入盐溶液先与水反应，不能置换出金属。"),
                 KnowledgePoint(
-                    id: "k0602", title: "铝：两性的代表",
-                    detail: "Al、Al₂O₃、Al(OH)₃ 都既溶于强酸又溶于强碱。AlCl₃ 加 NaOH：少量生成白色沉淀，过量则沉淀溶解——图像题的常客。",
-                    pitfall: "「少量/过量」决定产物：CO₂ 通入 NaOH 同理（Na₂CO₃ vs NaHCO₃）。"),
+                    id: "kna2", title: "钠的氧化物",
+                    detail: "Na₂O 白色、碱性氧化物；Na₂O₂ 淡黄色、过氧化物（O 为 −1 价）。Na₂O₂ 与 H₂O、CO₂ 反应都放 O₂，作供氧剂；反应是歧化，Na₂O₂ 既是氧化剂又是还原剂（每 mol O₂ 转移 2 mol 电子）。",
+                    pitfall: "颜色区分两种氧化物：白色 Na₂O、淡黄 Na₂O₂。"),
                 KnowledgePoint(
-                    id: "k0603", title: "铁：变价的艺术",
-                    detail: "Fe²⁺ 浅绿、Fe³⁺ 黄色。Fe³⁺ 遇 KSCN 血红；Fe²⁺ 先加 KSCN 无现象再加氯水变红。铁与氯气燃烧只生成 FeCl₃（即使铁过量），与稀盐酸只生成 FeCl₂。"),
+                    id: "kna3", title: "Na₂CO₃ 与 NaHCO₃",
+                    detail: "鉴别三法：加热（NaHCO₃ 分解）、与盐酸反应快慢（NaHCO₃ 快）、CaCl₂ 溶液（Na₂CO₃ 出沉淀）。除杂：固体加热把 NaHCO₃ 转 Na₂CO₃。向 Na₂CO₃ 逐滴加盐酸先无气泡（生成 HCO₃⁻）后放 CO₂。",
+                    pitfall: "稳定性正盐>酸式盐；溶解度 Na₂CO₃>NaHCO₃。"),
                 KnowledgePoint(
-                    id: "k0604", title: "Na₂CO₃ 与 NaHCO₃",
-                    detail: "鉴别三法：①加热（NaHCO₃ 分解放 CO₂，Na₂CO₃ 不分解）②与盐酸反应剧烈程度（NaHCO₃ 更快）③CaCl₂ 溶液（Na₂CO₃ 出沉淀）。向 Na₂CO₃ 溶液逐滴加盐酸：先 CO₃²⁻→HCO₃⁻ 无气泡，后放 CO₂——滴加顺序决定现象。",
-                    pitfall: "稳定性：正盐 > 酸式盐；溶解度 Na₂CO₃ > NaHCO₃（与多数「酸式盐更易溶」直觉相反）。"),
-                KnowledgePoint(
-                    id: "k0605", title: "金属冶炼三方法",
-                    detail: "按活动性选方法：K~Al 电解熔融法（炼铝：电解熔融 Al₂O₃ 加冰晶石助熔）；Zn~Cu 热还原法（C/CO/H₂/铝热剂）；Hg、Ag 热分解法。海水提镁：石灰乳沉淀 → 盐酸溶解 → 电解熔融 MgCl₂。",
-                    pitfall: "不能电解熔融 AlCl₃ 炼铝——AlCl₃ 是共价化合物，熔融态不导电；也不能电解盐溶液得活泼金属（阴极只出 H₂）。"),
+                    id: "kna4", title: "焰色反应",
+                    detail: "钠焰色黄色，是元素的性质（物理变化）。检验钾的紫色需透过蓝色钴玻璃滤去钠的黄光。"),
             ],
-            problemIds: ["p_sr_10", "p_sr_11", "p_sr_12", "p_sr_34"],
+            problemIds: ["p_sr_10", "p_na_01", "p_na_02", "p_na_03", "p_na_04", "p_na_05", "p_na_06"]),
+
+        LearningNode(
+            id: "al", order: 0, stage: .senior, topic: .metals,
+            title: "铝及其化合物",
+            tagline: "两性的代表：既溶于酸又溶于碱",
+            knowledgePoints: [
+                KnowledgePoint(
+                    id: "kal1", title: "铝的两性",
+                    detail: "Al、Al₂O₃、Al(OH)₃ 都既溶于强酸又溶于强碱。2Al+2NaOH+2H₂O→2NaAlO₂+3H₂↑（氧化剂是水）。常温遇浓硫酸/浓硝酸钝化，可用铝罐运输。",
+                    pitfall: "Al(OH)₃ 不溶于弱碱氨水——制 Al(OH)₃ 用「铝盐+过量氨水」。"),
+                KnowledgePoint(
+                    id: "kal2", title: "图像题：少量/过量",
+                    detail: "AlCl₃ 加 NaOH：少量生成白色沉淀、过量沉淀溶解（先增后减）；反之 NaOH 中滴 AlCl₃ 立即有沉淀且增多。NaAlO₂ 通 CO₂ 析出 Al(OH)₃（弱酸不溶解产物）。",
+                    pitfall: "「谁滴入谁」现象不同，图像题要看清滴加顺序。"),
+                KnowledgePoint(
+                    id: "kal3", title: "明矾与铝热反应",
+                    detail: "明矾 KAl(SO₄)₂·12H₂O 中 Al³⁺ 水解生成 Al(OH)₃ 胶体净水（只除浊、不消毒）。铝热反应 2Al+Fe₂O₃→Al₂O₃+2Fe 放热熔铁，焊接钢轨、冶炼难熔金属。"),
+                KnowledgePoint(
+                    id: "kal4", title: "铝的冶炼",
+                    detail: "电解熔融 Al₂O₃（加冰晶石助熔）。不能电解 AlCl₃（共价化合物熔融不导电），也不能电解溶液（阴极只出 H₂）。",
+                    pitfall: "活泼金属（K~Al）只能电解熔融法冶炼。"),
+            ],
+            problemIds: ["p_sr_11", "p_sr_34", "p_al_01", "p_al_02", "p_al_03", "p_al_04", "p_al_05", "p_al_06"],
             bossCaseId: "boss_extreme",
             weaponUnlocked: .extremeValue),
 
         LearningNode(
-            id: "n07", order: 8, stage: .senior, topic: .nonmetals,
-            title: "非金属群雄 · Cl / S / N / Si",
-            tagline: "气体、酸与漂白——非金属的舞台",
+            id: "fe", order: 0, stage: .senior, topic: .metals,
+            title: "铁及其化合物",
+            tagline: "变价的艺术：+2 与 +3 的转化",
             knowledgePoints: [
                 KnowledgePoint(
-                    id: "k0701", title: "氯：黄绿色的强者",
-                    detail: "Cl₂ 黄绿色有毒。溶于水部分反应生成 HCl 和 HClO，漂白靠 HClO。实验室制法 MnO₂+4HCl(浓)，必须用浓盐酸且加热。",
-                    pitfall: "干燥的氯气不能漂白干燥布条——漂白的是 HClO 不是 Cl₂。"),
+                    id: "kfe1", title: "Fe²⁺ 与 Fe³⁺",
+                    detail: "Fe²⁺ 浅绿、Fe³⁺ 黄色。氧化剂强弱定价态：与 Cl₂ 燃烧只得 FeCl₃（铁过量也是），与稀盐酸/稀硫酸/CuSO₄ 只得 Fe²⁺。",
+                    pitfall: "铁与非氧化性酸反应生成 +2 价，不是 +3。"),
                 KnowledgePoint(
-                    id: "k0702", title: "硫：浓硫酸三性",
-                    detail: "浓硫酸：吸水性（作干燥剂）、脱水性（蔗糖炭化）、强氧化性（与 Cu 加热反应放 SO₂，常温使 Fe/Al 钝化）。SO₂ 漂白品红可逆，加热复原。",
-                    pitfall: "吸水性与脱水性的区别：吸现成的水 vs 把 H、O 从有机物里夺出来。"),
+                    id: "kfe2", title: "相互转化与保存",
+                    detail: "Fe²⁺→Fe³⁺ 用氧化剂（氯水、酸性 KMnO₄、H₂O₂）；Fe³⁺→Fe²⁺ 用还原剂（Fe、Cu）。保存 FeCl₂ 加铁钉防氧化，保存 FeCl₃ 加盐酸防水解。",
+                    pitfall: "Fe³⁺ 有较强氧化性，能氧化 Cu（刻蚀电路板）、I⁻、SO₂。"),
                 KnowledgePoint(
-                    id: "k0703", title: "氮：从 NH₃ 到 HNO₃",
-                    detail: "NH₃ 极易溶于水（喷泉实验）、唯一碱性气体，干燥用碱石灰。NO 无色不溶、NO₂ 红棕色。硝酸与铜：浓出 NO₂、稀出 NO。",
-                    pitfall: "收集 NH₃ 用向下排空气法，不能排水；NO 只能排水收集（遇空气变红棕）。"),
+                    id: "kfe3", title: "Fe(OH)₂ 的制备",
+                    detail: "4Fe(OH)₂+O₂+2H₂O→4Fe(OH)₃，颜色白→灰绿→红褐——铁的招牌现象。制纯 Fe(OH)₂ 要隔绝空气（滴管插入液面下、液面覆煤油）。"),
                 KnowledgePoint(
-                    id: "k0704", title: "硅：信息时代的基石",
-                    detail: "硅是半导体材料（芯片、太阳能电池）；SiO₂ 是光导纤维原料。SiO₂ 是酸性氧化物，却有两个「叛逆」：能与氢氟酸反应（刻蚀玻璃），能与 NaOH 反应（所以碱液瓶用橡胶塞）。",
-                    pitfall: "「硅」做半导体、「SiO₂」做光纤——材料与用途别张冠李戴。"),
+                    id: "kfe4", title: "Fe³⁺/Fe²⁺ 的检验",
+                    detail: "Fe³⁺ 遇 KSCN 直接变血红；Fe²⁺ 先加 KSCN 无现象、再加氯水变红（「先无后红」）。也可用 NaOH 看沉淀颜色（Fe(OH)₃ 红褐）。"),
             ],
-            problemIds: ["p_sr_13", "p_sr_14", "p_sr_15"],
+            problemIds: ["p_sr_12", "p_fe_01", "p_fe_02", "p_fe_03", "p_fe_04", "p_fe_05", "p_fe_06", "p_fe_07"]),
+
+        LearningNode(
+            id: "cl", order: 0, stage: .senior, topic: .nonmetals,
+            title: "氯及其化合物",
+            tagline: "黄绿色的强者：氯水与漂白",
+            knowledgePoints: [
+                KnowledgePoint(
+                    id: "kcl1", title: "氯气的性质",
+                    detail: "黄绿色、刺激性、有毒，密度大于空气、能溶于水。强氧化性：与金属（铁→FeCl₃）、非金属（H₂ 苍白火焰）、水、碱反应。实验室制法 MnO₂+4HCl(浓) 加热。",
+                    pitfall: "干燥氯气不漂白——漂白靠 HClO；尾气用 NaOH 吸收。"),
+                KnowledgePoint(
+                    id: "kcl2", title: "氯水的多重身份",
+                    detail: "Cl₂+H₂O⇌HCl+HClO，新制氯水「三分子四离子」。漂白靠 HClO（强氧化性）。久置氯水中 HClO 见光分解，最终变稀盐酸——现配现用、避光保存。",
+                    pitfall: "「干不漂、湿才漂」是氯水漂白的经典对照。"),
+                KnowledgePoint(
+                    id: "kcl3", title: "氯气与碱 · 含氯消毒剂",
+                    detail: "Cl₂+2NaOH→NaCl+NaClO+H₂O（84 消毒液，有效成分 NaClO）；2Cl₂+2Ca(OH)₂→Ca(ClO)₂+CaCl₂+2H₂O（漂白粉，有效成分 Ca(ClO)₂）。使用时靠 CO₂+H₂O 生成 HClO 起效。",
+                    pitfall: "漂白粉久置失效：Ca(ClO)₂ 与 CO₂、水生成 HClO，HClO 分解。"),
+                KnowledgePoint(
+                    id: "kcl4", title: "Cl⁻ 检验与卤素递变",
+                    detail: "检验 Cl⁻：稀硝酸酸化后加 AgNO₃，生成不溶于硝酸的白色 AgCl。卤素氧化性 Cl₂>Br₂>I₂，活泼卤素置换不活泼卤素（Cl₂+2Br⁻→2Cl⁻+Br₂）。"),
+            ],
+            problemIds: ["p_sr_13", "p_cl_01", "p_cl_02", "p_cl_03", "p_cl_04", "p_cl_05", "p_cl_06", "p_cl_07"]),
+
+        LearningNode(
+            id: "s", order: 0, stage: .senior, topic: .nonmetals,
+            title: "硫及其化合物",
+            tagline: "SO₂ 与浓硫酸：漂白、脱水、强氧化",
+            knowledgePoints: [
+                KnowledgePoint(
+                    id: "ks1", title: "二氧化硫",
+                    detail: "无色刺激性、酸性氧化物、有毒、酸雨主犯之一。漂白品红是化合型可逆漂白（加热复原），不能漂白石蕊（只使其变红）。有还原性，能被氯水、酸性 KMnO₄、O₂（催化）氧化。",
+                    pitfall: "SO₂ 与 Cl₂ 漂白原理不同，1:1 混合互相消耗都失效。"),
+                KnowledgePoint(
+                    id: "ks2", title: "浓硫酸三性",
+                    detail: "吸水性（作干燥剂，干燥中性/酸性气体）、脱水性（蔗糖炭化，夺化合态 H、O）、强氧化性（与 Cu 加热放 SO₂，常温钝化 Fe/Al）。",
+                    pitfall: "吸水（吸现成的水）≠ 脱水（夺有机物里的 H、O），一字之差。"),
+                KnowledgePoint(
+                    id: "ks3", title: "SO₄²⁻ 检验",
+                    detail: "先加足量稀盐酸排除 CO₃²⁻/SO₃²⁻/Ag⁺ 干扰，再加 BaCl₂ 生成不溶于酸的白色 BaSO₄。"),
+                KnowledgePoint(
+                    id: "ks4", title: "接触法制硫酸",
+                    detail: "S/FeS₂→SO₂→（催化氧化）SO₃→（浓硫酸吸收）H₂SO₄。SO₃ 用浓硫酸吸收防酸雾。硫原子守恒：FeS₂~2H₂SO₄。"),
+            ],
+            problemIds: ["p_sr_14", "p_s_01", "p_s_02", "p_s_03", "p_s_04", "p_s_05", "p_s_06"],
             bossCaseId: "boss_relation",
             weaponUnlocked: .relationMethod),
+
+        LearningNode(
+            id: "n", order: 0, stage: .senior, topic: .nonmetals,
+            title: "氮及其化合物",
+            tagline: "从 N₂ 到 NH₃ 再到 HNO₃",
+            knowledgePoints: [
+                KnowledgePoint(
+                    id: "kn1", title: "氮气与固氮",
+                    detail: "N≡N 三键键能极大，N₂ 很稳定、常作保护气。固氮：自然固氮（放电 N₂+O₂→2NO、生物固氮）、人工固氮（合成氨）。氮氧化物是酸雨、光化学烟雾成因。",
+                    pitfall: "放电直接产物是 NO 不是 NO₂。"),
+                KnowledgePoint(
+                    id: "kn2", title: "氨气与铵盐",
+                    detail: "NH₃ 极易溶于水（喷泉实验）、唯一碱性气体、能使湿润红色石蕊变蓝。实验室制法：NH₄Cl+Ca(OH)₂ 加热，碱石灰干燥、向下排空气收集。NH₄⁺ 检验：加 NaOH 加热放 NH₃。",
+                    pitfall: "干燥 NH₃ 只能用碱石灰（不能用浓硫酸、CaCl₂）。"),
+                KnowledgePoint(
+                    id: "kn3", title: "硝酸的强氧化性",
+                    detail: "Cu+浓硝酸→NO₂（红棕）；Cu+稀硝酸→NO（无色遇空气变红棕）。浓硝酸常温钝化 Fe、Al。越浓氧化性越强、氮被还原价态越高。",
+                    pitfall: "硝酸与金属反应不放 H₂（生成氮氧化物）。"),
+                KnowledgePoint(
+                    id: "kn4", title: "硝酸的不稳定性",
+                    detail: "HNO₃ 见光/受热分解：4HNO₃→4NO₂↑+O₂↑+2H₂O，浓硝酸常因溶有 NO₂ 显黄色。用棕色瓶避光、阴凉保存。工业制硝酸：NH₃→NO→NO₂→HNO₃。"),
+            ],
+            problemIds: ["p_sr_15", "p_n_01", "p_n_02", "p_n_03", "p_n_04", "p_n_05", "p_n_06", "p_n_07"]),
+
+        LearningNode(
+            id: "si", order: 0, stage: .senior, topic: .nonmetals,
+            title: "硅与无机非金属材料",
+            tagline: "信息时代的基石",
+            knowledgePoints: [
+                KnowledgePoint(
+                    id: "ksi1", title: "硅单质",
+                    detail: "晶体硅是良好的半导体（芯片、太阳能电池）。工业制粗硅：SiO₂+2C→(高温)Si+2CO↑（碳作还原剂、产物是 CO），再经 SiCl₄ 蒸馏提纯。",
+                    pitfall: "「硅」做半导体、「SiO₂」做光纤，别张冠李戴。"),
+                KnowledgePoint(
+                    id: "ksi2", title: "二氧化硅",
+                    detail: "SiO₂ 是酸性氧化物，制光导纤维、石英玻璃。两个「反常」：与氢氟酸反应（SiO₂+4HF→SiF₄↑+2H₂O，刻蚀玻璃，HF 存塑料瓶）、与 NaOH 反应（碱液瓶用橡胶塞）；不溶于水。"),
+                KnowledgePoint(
+                    id: "ksi3", title: "硅酸与硅酸盐",
+                    detail: "硅酸 H₂SiO₃ 是不溶于水的弱酸（用可溶性硅酸盐与酸制取）。硅酸钠水溶液俗称水玻璃，作矿物胶、防火剂。传统硅酸盐材料：玻璃、水泥、陶瓷。"),
+            ],
+            problemIds: ["p_si_01", "p_si_02", "p_si_03", "p_si_04", "p_si_05"]),
     ]
 
     // MARK: 高中段 ⚗️（主战场·下）
