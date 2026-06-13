@@ -187,6 +187,97 @@ enum DescentCases {
                 weapon: .relationMethod,
                 keyInsight: "多步反应不必步步为营——找到贯穿首尾的原子，写一条关系式直达终点。",
                 plainTalk: "硫原子就像快递包裹，中间转了三个仓库，但一件都没丢。你不用管每个仓库怎么分拣，只要数清楚发货时有多少件（2 份硫），收货时就有多少件（2 份硫酸）。")),
+    ] + batch2
+
+    // MARK: 扩容对决（每把武器再补一道，覆盖更多题型）
+
+    private static let batch2: [ChemProblem] = [
+
+        // 电子守恒 · 金属与硝酸
+        ChemProblem(
+            id: "boss_electron2", stage: .senior, topic: .redox,
+            content: "11.2 g 铁与足量稀硝酸完全反应（铁被氧化为 Fe³⁺），生成标准状况下 NO 气体的体积为？（Fe 56 g/mol）",
+            options: ["2.24 L", "4.48 L", "6.72 L", "3.36 L"],
+            answerIndex: 1,
+            explanation: "n(Fe)=11.2/56=0.2 mol，Fe→Fe³⁺ 失 3 电子共 0.6 mol。NO 中 N 由 +5→+2 得 3 电子，n(NO)=0.6/3=0.2 mol，标况体积 0.2×22.4=4.48 L。",
+            nodeId: "fe", weapon: .electronConservation,
+            dualSolution: DualSolution(
+                standard: SolutionPath(
+                    title: "常规解：配平方程式再换算",
+                    steps: [
+                        "写出并配平：Fe + 4HNO₃(稀) → Fe(NO₃)₃ + NO↑ + 2H₂O",
+                        "由方程式 1 mol Fe ~ 1 mol NO",
+                        "n(Fe)=0.2 mol → n(NO)=0.2 mol",
+                        "V=0.2×22.4=4.48 L",
+                    ],
+                    timeMinutes: 4),
+                descent: SolutionPath(
+                    title: "电子守恒：不用配平方程式",
+                    steps: [
+                        "Fe 失电子：0.2 mol × 3 = 0.6 mol",
+                        "N 每个得 3 电子：n(NO)=0.6/3=0.2 mol → 4.48 L ✓",
+                    ],
+                    timeMinutes: 1),
+                weapon: .electronConservation,
+                keyInsight: "金属与硝酸/硫酸反应求气体，电子守恒一步到位，不必背配平后的系数。",
+                plainTalk: "铁交出 0.6 个单位的电子，每个 NO 收 3 个，那能凑出多少个 NO？0.6÷3=0.2。气体在标况下一摩尔 22.4 升，乘一下就完了。")),
+
+        // 差量法 · 固体加热失重
+        ChemProblem(
+            id: "boss_diff2", stage: .senior, topic: .metals,
+            content: "加热一定量 NaHCO₃ 固体，完全分解后固体质量减少了 6.2 g。则原 NaHCO₃ 的物质的量为？（2NaHCO₃→Na₂CO₃+H₂O↑+CO₂↑）",
+            options: ["0.1 mol", "0.2 mol", "0.4 mol", "0.62 mol"],
+            answerIndex: 1,
+            explanation: "每 2 mol NaHCO₃ 分解，逸出 H₂O(18)+CO₂(44)=62 g，固体减少 62 g。减少 6.2 g 对应 0.2 mol NaHCO₃。",
+            nodeId: "na", weapon: .differenceMethod,
+            dualSolution: DualSolution(
+                standard: SolutionPath(
+                    title: "常规解：设未知数列式",
+                    steps: [
+                        "设 NaHCO₃ 为 x mol，分解生成 Na₂CO₃ x/2 mol",
+                        "固体减少 = 原质量 − 剩余 = 84x − 106·(x/2)",
+                        "84x − 53x = 31x = 6.2，x = 0.2 mol",
+                    ],
+                    timeMinutes: 3),
+                descent: SolutionPath(
+                    title: "差量法：盯住逸出的气体",
+                    steps: [
+                        "固体减少的正是逸出的 H₂O + CO₂：每 2 mol NaHCO₃ 减 62 g",
+                        "6.2 g ÷ (62 g / 2 mol) = 0.2 mol ✓",
+                    ],
+                    timeMinutes: 1),
+                weapon: .differenceMethod,
+                keyInsight: "固体加热失重题，「减少的质量」就是逸出物的质量——直接对应物质的量。",
+                plainTalk: "固体轻了多少，就是跑掉的气体有多重。每分解 2 摩尔小苏打跑掉 62 克气体，现在跑了 6.2 克，正好是 1/10，也就是 0.2 摩尔。")),
+
+        // 极值法 · 混合气体
+        ChemProblem(
+            id: "boss_extreme2", stage: .senior, topic: .nonmetals,
+            content: "CO 和 CO₂ 的混合气体共 0.5 mol，质量为 18 g。要判断是否可能，下列说法正确的是？（CO 28、CO₂ 44 g/mol）",
+            options: ["不可能，平均摩尔质量超出范围", "可能，CO 约 0.25 mol", "可能，全是 CO₂", "可能，全是 CO"],
+            answerIndex: 1,
+            explanation: "平均摩尔质量 = 18/0.5 = 36 g/mol，介于 28(CO) 和 44(CO₂) 之间，故混合可能。十字交叉得 n(CO):n(CO₂)=(44−36):(36−28)=1:1，各 0.25 mol。",
+            nodeId: "n", weapon: .extremeValue,
+            dualSolution: DualSolution(
+                standard: SolutionPath(
+                    title: "常规解：设二元一次方程组",
+                    steps: [
+                        "设 CO x mol、CO₂ y mol",
+                        "x + y = 0.5；28x + 44y = 18",
+                        "解得 x = 0.25，y = 0.25",
+                    ],
+                    timeMinutes: 3),
+                descent: SolutionPath(
+                    title: "极值法：先看平均值在不在区间内",
+                    steps: [
+                        "平均摩尔质量 = 18 / 0.5 = 36 g/mol",
+                        "36 落在 [28, 44] 之间 → 混合可能",
+                        "（要具体值再用十字交叉：1:1，各 0.25 mol）",
+                    ],
+                    timeMinutes: 1),
+                weapon: .extremeValue,
+                keyInsight: "判断混合物「可不可能」，先算平均值看它在不在两组分之间——超出即不可能，秒判。",
+                plainTalk: "两种气体一个 28 一个 44，不管怎么混，平均都只能在 28 和 44 之间。算出平均是 36，在区间里，所以这事儿能成。")),
     ]
 
     static func bossCase(id: String) -> ChemProblem? {
