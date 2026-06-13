@@ -73,13 +73,10 @@ final class ProgressManager: ObservableObject {
         nodeProgress(node) >= 0.6 - 1e-9
     }
 
-    /// 主线节点状态：第一关常开，其余看上一关。
+    /// 主线节点状态：所有章节自由开放（不再强制顺序锁，方便复习时直奔弱项）。
+    /// 已通关 → completed；其余 → current（可进可练）。付费锁是另一把锁，由 PurchaseManager 管。
     func nodeState(_ node: LearningNode, in line: [LearningNode]) -> NodeState {
-        if isNodeCompleted(node) { return .completed }
-        guard let idx = line.firstIndex(where: { $0.id == node.id }), idx > 0 else {
-            return .current
-        }
-        return isNodeCompleted(line[idx - 1]) ? .current : .locked
+        isNodeCompleted(node) ? .completed : .current
     }
 
     /// 当前推进到的节点（第一个未完成的）。

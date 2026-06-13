@@ -1,7 +1,9 @@
 import SwiftUI
 
-// MARK: - 登顶之路：学习主线地图（首页）
-// 一条从山脚到山顶的垂直路径，节点 = 学/练/战。
+// MARK: - 首页 · 指挥中心
+// 改造后定位：先亮出武器（方法），再展示训练轨道。
+// 顶部「今日实战」是灵魂模块入口（主打武器/守恒之眼/化学神探），
+// 下方「登顶之路」是可自由进出的系统训练轨道（不再锁死）。
 
 struct AscentPathView: View {
     @EnvironmentObject var profile: StudentProfile
@@ -10,42 +12,101 @@ struct AscentPathView: View {
     @State private var showPaywall = false
 
     private var nodes: [LearningNode] { MainLineData.nodes }
+    private var recommended: LearningNode? { progress.currentNode(in: nodes) }
 
     var body: some View {
         NavigationStack {
-            ScrollViewReader { proxy in
-                ScrollView {
-                    VStack(spacing: Spacing.lg) {
-                        statusHeader
+            ScrollView {
+                VStack(spacing: Spacing.lg) {
+                    todayBattle
+                    statusHeader
+                    pathHeader
 
-                        // 山顶在上，从山脚开始爬 → 倒序展示
-                        ForEach(Array(nodes.enumerated().reversed()), id: \.element.id) { index, node in
-                            if index == nodes.count - 1 {
-                                summitBanner
-                            }
-                            NodeCard(node: node, state: progress.nodeState(node, in: nodes),
-                                     progressValue: progress.nodeProgress(node),
-                                     premiumLocked: purchase.isNodePremiumLocked(node),
-                                     onPremiumTap: { showPaywall = true })
-                                .id(node.id)
-                            if node.stage != nodes[max(index - 1, 0)].stage, index > 0 {
-                                stageDivider(nodes[index - 1].stage)
-                            }
+                    ForEach(Array(nodes.enumerated()), id: \.element.id) { index, node in
+                        if index == 0 || node.stage != nodes[index - 1].stage {
+                            stageDivider(node.stage)
                         }
+                        NodeCard(node: node,
+                                 state: progress.nodeState(node, in: nodes),
+                                 progressValue: progress.nodeProgress(node),
+                                 isRecommended: node.id == recommended?.id,
+                                 premiumLocked: purchase.isNodePremiumLocked(node),
+                                 onPremiumTap: { showPaywall = true })
                     }
-                    .padding(.horizontal, Spacing.lg)
-                    .padding(.bottom, Spacing.xxl)
+
+                    summitBanner
                 }
-                .background(Color.apexBackground.ignoresSafeArea())
-                .navigationTitle("登顶之路")
-                .sheet(isPresented: $showPaywall) { PaywallView() }
-                .onAppear {
-                    if let current = progress.currentNode(in: nodes) {
-                        proxy.scrollTo(current.id, anchor: .center)
-                    }
+                .padding(.horizontal, Spacing.lg)
+                .padding(.bottom, Spacing.xxl)
+            }
+            .background(Color.apexBackground.ignoresSafeArea())
+            .navigationTitle("指挥中心")
+            .sheet(isPresented: $showPaywall) { PaywallView() }
+        }
+    }
+
+    // MARK: 今日实战（灵魂模块入口）
+
+    private var todayBattle: some View {
+        VStack(alignment: .leading, spacing: Spacing.md) {
+            SectionHeader(title: "今日实战", systemImage: "bolt.fill", accent: .apexLava)
+
+            if let guide = dailyWeapon {
+                NavigationLink { WeaponDetailView(guide: guide) } label: {
+                    featuredCard(
+                        icon: guide.weapon.icon, accent: guide.weapon.stage.color,
+                        kicker: "本周主打武器",
+                        title: guide.weapon.name,
+                        subtitle: guide.tagline,
+                        badge: "学方法")
                 }
+                .buttonStyle(.plain)
+            }
+
+            if let boss = dailyDuel, let dual = boss.dualSolution {
+                NavigationLink { DescentDetailView(problem: boss, dual: dual) } label: {
+                    featuredCard(
+                        icon: "eye", accent: .apexMystery,
+                        kicker: "守恒之眼 · 今日对决",
+                        title: dual.weapon.name,
+                        subtitle: "常规解 \(timeText(dual.standard.timeMinutes)) → 秒杀 \(timeText(dual.descent.timeMinutes))",
+                        badge: String(format: "快 %.0f 倍", dual.timeRatio))
+                }
+                .buttonStyle(.plain)
+            }
+
+            if let kase = dailyCase {
+                NavigationLink { DetectiveCaseView(detectiveCase: kase) } label: {
+                    featuredCard(
+                        icon: "magnifyingglass", accent: .apexStarBlue,
+                        kicker: "化学神探 · 今日悬案",
+                        title: kase.title,
+                        subtitle: "\(kase.clues.count) 条线索，越早破案星越高",
+                        badge: "破案")
+                }
+                .buttonStyle(.plain)
             }
         }
+    }
+
+    private func featuredCard(icon: String, accent: Color, kicker: String,
+                              title: String, subtitle: String, badge: String) -> some View {
+        HStack(spacing: Spacing.lg) {
+            Image(systemName: icon)
+                .font(.title2)
+                .frame(width: 48, height: 48)
+                .background(accent.opacity(0.15))
+                .foregroundColor(accent)
+                .cornerRadius(Radius.inner)
+            VStack(alignment: .leading, spacing: 3) {
+                Text(kicker).font(.caption2).foregroundColor(.secondary)
+                Text(title).font(AppFont.cardTitle).foregroundColor(.primary)
+                Text(subtitle).font(.caption).foregroundColor(accent).lineLimit(2)
+            }
+            Spacer(minLength: 0)
+            TagChip(text: badge, color: accent)
+        }
+        .cardSurface(padding: Spacing.lg)
     }
 
     // MARK: 今日状态
@@ -54,10 +115,9 @@ struct AscentPathView: View {
         HStack(spacing: Spacing.lg) {
             statBlock(value: "\(progress.completedNodeCount)/\(nodes.count)", label: "主线进度", color: .apexLava)
             statBlock(value: "\(progress.streak)", label: "连续天数 🔥", color: .apexGold)
-            statBlock(value: "\(progress.unlockedWeapons.count)", label: "守恒武器", color: .apexEmerald)
+            statBlock(value: "\(WeaponGuideData.all.count)", label: "解题武器", color: .apexEmerald)
         }
         .cardSurface(padding: Spacing.lg)
-        .padding(.top, Spacing.sm)
     }
 
     private func statBlock(value: String, label: String, color: Color) -> some View {
@@ -68,6 +128,18 @@ struct AscentPathView: View {
         .frame(maxWidth: .infinity)
     }
 
+    private var pathHeader: some View {
+        HStack(spacing: 6) {
+            Image(systemName: "map").foregroundColor(.apexLava)
+            Text("登顶之路 · 系统训练").font(AppFont.sectionTitle)
+            Spacer()
+            if let rec = recommended {
+                Text("推荐：\(rec.title)").font(.caption2).foregroundColor(.secondary).lineLimit(1)
+            }
+        }
+        .padding(.top, Spacing.sm)
+    }
+
     private var summitBanner: some View {
         VStack(spacing: Spacing.xs) {
             Text("🏔").font(.system(size: 44))
@@ -76,15 +148,36 @@ struct AscentPathView: View {
         .padding(.top, Spacing.sm)
     }
 
-    private func stageDivider(_ lowerStage: Stage) -> some View {
+    private func stageDivider(_ stage: Stage) -> some View {
         HStack(spacing: Spacing.sm) {
-            Rectangle().fill(lowerStage.color.opacity(0.4)).frame(height: 1)
-            Text("\(lowerStage.emoji) \(lowerStage.title)")
-                .font(AppFont.chip).foregroundColor(lowerStage.color)
+            Rectangle().fill(stage.color.opacity(0.4)).frame(height: 1)
+            Text("\(stage.emoji) \(stage.title)")
+                .font(AppFont.chip).foregroundColor(stage.color)
                 .fixedSize()
-            Rectangle().fill(lowerStage.color.opacity(0.4)).frame(height: 1)
+            Rectangle().fill(stage.color.opacity(0.4)).frame(height: 1)
         }
         .padding(.vertical, Spacing.xs)
+    }
+
+    // MARK: 每日轮换（按一年中的第几天，稳定到天）
+
+    private var dayOfYear: Int {
+        Calendar.current.ordinality(of: .day, in: .year, for: Date()) ?? 1
+    }
+    private var dailyWeapon: WeaponGuide? {
+        let g = WeaponGuideData.all
+        return g.isEmpty ? nil : g[dayOfYear % g.count]
+    }
+    private var dailyDuel: ChemProblem? {
+        let d = DescentCases.all
+        return d.isEmpty ? nil : d[dayOfYear % d.count]
+    }
+    private var dailyCase: DetectiveCase? {
+        let c = DetectiveData.all
+        return c.isEmpty ? nil : c[dayOfYear % c.count]
+    }
+    private func timeText(_ min: Double) -> String {
+        min < 1 ? "\(Int(min * 60)) 秒" : String(format: "%.0f 分", min)
     }
 }
 
@@ -94,6 +187,7 @@ struct NodeCard: View {
     let node: LearningNode
     let state: NodeState
     let progressValue: Double
+    var isRecommended: Bool = false
     var premiumLocked: Bool = false
     var onPremiumTap: () -> Void = {}
 
@@ -106,62 +200,59 @@ struct NodeCard: View {
             }
         }
         .buttonStyle(.plain)
-        .disabled(!premiumLocked && state == .locked)
     }
 
     private var cardLabel: some View {
-            HStack(spacing: Spacing.lg) {
-                // 序号圆环
-                ZStack {
-                    Circle()
-                        .stroke(state == .locked ? Color.secondary.opacity(0.3) : node.stage.color, lineWidth: 3)
-                        .frame(width: 46, height: 46)
-                    if premiumLocked {
-                        Image(systemName: "crown.fill").font(.subheadline).foregroundColor(.apexGold)
-                    } else if state == .completed {
-                        Image(systemName: "checkmark").font(.headline).foregroundColor(node.stage.color)
-                    } else if state == .locked {
-                        Image(systemName: "lock.fill").font(.subheadline).foregroundColor(.secondary)
-                    } else {
-                        Text("\(node.order)").font(AppFont.bigStat(18)).foregroundColor(node.stage.color)
-                    }
+        HStack(spacing: Spacing.lg) {
+            // 序号圆环
+            ZStack {
+                Circle()
+                    .stroke(node.stage.color, lineWidth: 3)
+                    .frame(width: 46, height: 46)
+                if premiumLocked {
+                    Image(systemName: "crown.fill").font(.subheadline).foregroundColor(.apexGold)
+                } else if state == .completed {
+                    Image(systemName: "checkmark").font(.headline).foregroundColor(node.stage.color)
+                } else {
+                    Text("\(node.order)").font(AppFont.bigStat(18)).foregroundColor(node.stage.color)
                 }
+            }
 
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(node.title)
-                        .font(AppFont.cardTitle)
-                        .foregroundColor(state == .locked ? .secondary : .primary)
-                        .multilineTextAlignment(.leading)
-                    Text(node.tagline)
-                        .font(.caption).foregroundColor(.secondary)
-                        .lineLimit(1)
-                    HStack(spacing: 6) {
-                        TagChip(text: "\(node.knowledgePoints.count) 个知识点", color: .apexStarBlue)
-                        if node.bossCaseId != nil {
-                            TagChip(text: "⚔️ Boss", color: .apexMystery)
-                        }
-                        if let weapon = node.weaponUnlocked {
-                            TagChip(text: "🗝 \(weapon.name)", color: .apexGold)
-                        }
+            VStack(alignment: .leading, spacing: 4) {
+                Text(node.title)
+                    .font(AppFont.cardTitle)
+                    .foregroundColor(.primary)
+                    .multilineTextAlignment(.leading)
+                Text(node.tagline)
+                    .font(.caption).foregroundColor(.secondary)
+                    .lineLimit(1)
+                HStack(spacing: 6) {
+                    TagChip(text: "\(node.knowledgePoints.count) 个知识点", color: .apexStarBlue)
+                    if node.bossCaseId != nil {
+                        TagChip(text: "⚔️ Boss", color: .apexMystery)
                     }
-                }
-                Spacer(minLength: 0)
-
-                if state == .current {
-                    VStack(spacing: 2) {
-                        Text("\(Int(progressValue * 100))%")
-                            .font(AppFont.chip).foregroundColor(node.stage.color)
-                        ProgressView(value: progressValue)
-                            .frame(width: 36)
-                            .tint(node.stage.color)
+                    if isRecommended {
+                        TagChip(text: "推荐", color: .apexLava)
                     }
                 }
             }
-            .cardSurface(padding: Spacing.lg)
-            .overlay(
-                RoundedRectangle(cornerRadius: Radius.card)
-                    .stroke(state == .current && !premiumLocked ? node.stage.color : .clear, lineWidth: 2)
-            )
-            .opacity(state == .locked || premiumLocked ? 0.65 : 1)
+            Spacer(minLength: 0)
+
+            if progressValue > 0 && state != .completed {
+                VStack(spacing: 2) {
+                    Text("\(Int(progressValue * 100))%")
+                        .font(AppFont.chip).foregroundColor(node.stage.color)
+                    ProgressView(value: progressValue)
+                        .frame(width: 36)
+                        .tint(node.stage.color)
+                }
+            }
+        }
+        .cardSurface(padding: Spacing.lg)
+        .overlay(
+            RoundedRectangle(cornerRadius: Radius.card)
+                .stroke(isRecommended && !premiumLocked ? node.stage.color : .clear, lineWidth: 2)
+        )
+        .opacity(premiumLocked ? 0.7 : 1)
     }
 }
