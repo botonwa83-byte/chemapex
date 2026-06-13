@@ -4,7 +4,7 @@ import Foundation
 // 红线：每步操作、试剂、产物、顺序理由必须符合教材标准；方程式配平核对。
 
 enum ProcessFlowData {
-    static let all: [ProcessFlow] = [crudeSalt, kelpIodine, seawaterBromine, bauxite]
+    static let all: [ProcessFlow] = [crudeSalt, kelpIodine, seawaterBromine, bauxite, ethyleneRoute]
 
     // MARK: 粗盐提纯（除杂顺序经典题）
 
@@ -147,4 +147,40 @@ enum ProcessFlowData {
                 sideNote: "2Al(OH)₃ →(Δ) Al₂O₃ + 3H₂O，得到纯净氧化铝（再电解熔融制铝）。"),
         ],
         examPoint: "碱溶法分两关：① 过量 NaOH 溶铝留铁，靠「两性 vs 碱性」分离；② 通过量 CO₂（弱酸）析出 Al(OH)₃ 而不用强酸——既不溶解产物，又把硅酸盐留在液中。")
+
+    // MARK: 有机合成路线（选必3，乙烯出发）
+
+    private static let ethyleneRoute = ProcessFlow(
+        id: "pf_ethylene", title: "乙烯合成路线", stage: .senior, topic: .organic,
+        overview: "以石油裂解得到的乙烯为原料，一步步合成乙酸乙酯。看官能团如何沿途转化。",
+        nodes: [
+            ProcessNode(id: "et_n0", substance: "乙烯\nCH₂=CH₂"),
+            ProcessNode(id: "et_n1", substance: "乙醇\nCH₃CH₂OH"),
+            ProcessNode(id: "et_n2", substance: "乙醛\nCH₃CHO"),
+            ProcessNode(id: "et_n3", substance: "乙酸\nCH₃COOH"),
+            ProcessNode(id: "et_n4", substance: "乙酸乙酯\nCH₃COOC₂H₅", highlight: true),
+        ],
+        steps: [
+            ProcessStep(id: "et_s0", operation: "与水加成（催化剂）",
+                sideNote: "CH₂=CH₂ + H₂O →(催化剂) CH₃CH₂OH，双键打开、引入羟基。",
+                quiz: ProcessQuiz(prompt: "乙烯→乙醇属于哪类反应？",
+                    options: ["加成反应", "取代反应", "氧化反应", "酯化反应"],
+                    answerIndex: 0,
+                    explanation: "碳碳双键打开，H 和 OH 各加到一个碳上——加成反应。这也是工业制乙醇的乙烯水化法。")),
+            ProcessStep(id: "et_s1", operation: "催化氧化（Cu/Ag 催化、Δ）",
+                sideNote: "2CH₃CH₂OH + O₂ →(Cu,Δ) 2CH₃CHO + 2H₂O，羟基被氧化成醛基。",
+                quiz: ProcessQuiz(prompt: "乙醇→乙醛，分子里减少的是？",
+                    options: ["羟基上的 H 和 α-碳上的 H（共 2 个 H）", "一个氧原子", "一个碳原子", "整个羟基"],
+                    answerIndex: 0,
+                    explanation: "醇的催化氧化脱去羟基氢和与羟基相连碳上的氢（共 2 个 H），−CH₂OH 变成 −CHO。铜丝「黑→红」循环说明 Cu 是催化剂。")),
+            ProcessStep(id: "et_s2", operation: "继续氧化",
+                sideNote: "2CH₃CHO + O₂ →(催化剂) 2CH₃COOH，醛基被氧化成羧基。"),
+            ProcessStep(id: "et_s3", operation: "与乙醇酯化（浓硫酸、Δ）",
+                sideNote: "CH₃COOH + C₂H₅OH ⇌ CH₃COOC₂H₅ + H₂O，酸脱羟基醇脱氢。",
+                quiz: ProcessQuiz(prompt: "酯化反应中浓硫酸的作用是？",
+                    options: ["催化剂和吸水剂", "只作催化剂", "只作吸水剂", "氧化剂"],
+                    answerIndex: 0,
+                    explanation: "酯化可逆，浓硫酸既加快反应（催化）又吸收生成的水使平衡正移（吸水）。同位素 ¹⁸O 示踪证明：酸脱羟基、醇脱氢。")),
+        ],
+        examPoint: "官能团转化主线：烯烃 →(加成) 醇 →(氧化) 醛 →(氧化) 羧酸 →(酯化) 酯。乙醇是枢纽——向上氧化成酸，横向酯化成酯。记住每步的反应类型和条件就掌握了有机合成的骨架。")
 }
