@@ -4,9 +4,134 @@ import Foundation
 // 红线：每条线索的现象/颜色/性质必须准确；deduction 必须讲清排除逻辑。
 
 enum DetectiveData {
-    static let all: [DetectiveCase] = inorganic + organic
+    static let all: [DetectiveCase] = inorganic + organic + batch2
 
     static func detectiveCase(id: String) -> DetectiveCase? { all.first { $0.id == id } }
+
+    // MARK: 扩充六案（金属 / 离子 / 气体）
+
+    private static let batch2: [DetectiveCase] = [
+        DetectiveCase(
+            id: "dt_11", title: "蓝色幽灵", stage: .senior, topic: .metals,
+            suspects: ["Cu²⁺", "Fe²⁺", "Fe³⁺", "Ba²⁺"],
+            answerIndex: 0,
+            clues: [
+                DetectiveClue(id: "dt_11_c1",
+                    text: "嫌疑离子让它所在的溶液呈现蓝色。",
+                    deduction: "Fe²⁺ 浅绿、Fe³⁺ 黄、Ba²⁺ 无色——蓝色直指一位嫌疑人，但还要物证。"),
+                DetectiveClue(id: "dt_11_c2",
+                    text: "向溶液中加入过量 NaOH，生成蓝色沉淀。",
+                    deduction: "蓝色沉淀是 Cu(OH)₂——Fe²⁺ 给白→灰绿→红褐、Fe³⁺ 给红褐、Ba²⁺ 不沉淀。"),
+                DetectiveClue(id: "dt_11_c3",
+                    text: "把一枚洁净的铁钉放进去，铁钉表面很快覆盖一层红色物质。",
+                    deduction: "铁置换出红色的铜（Fe+Cu²⁺→Fe²⁺+Cu）——只有 Cu²⁺ 能被铁置换出金属铜。"),
+                DetectiveClue(id: "dt_11_c4",
+                    text: "蒸干溶液后灼烧，残渣是黑色的。",
+                    deduction: "蓝色硫酸铜晶体失水、含铜化合物灼烧得黑色 CuO，旁证坐实。"),
+            ],
+            verdict: "谜底：Cu²⁺。溶液蓝色 + 加 NaOH 生成蓝色 Cu(OH)₂ 沉淀 + 铁能置换出红色铜。记住四色对照：Cu²⁺蓝、Fe²⁺浅绿、Fe³⁺黄、MnO₄⁻紫。"),
+
+        DetectiveCase(
+            id: "dt_12", title: "会放气的白粉", stage: .junior, topic: .acidBaseSalt,
+            suspects: ["碳酸钠 Na₂CO₃", "氯化钠 NaCl", "硫酸钠 Na₂SO₄", "硝酸钠 NaNO₃"],
+            answerIndex: 0,
+            clues: [
+                DetectiveClue(id: "dt_12_c1",
+                    text: "嫌疑人是一种易溶于水的白色粉末。",
+                    deduction: "四位都是可溶白色钠盐——这条线索分不出胜负。"),
+                DetectiveClue(id: "dt_12_c2",
+                    text: "向它的溶液中滴加稀盐酸，立即冒出大量气泡。",
+                    deduction: "放气！只有碳酸盐遇酸放 CO₂。NaCl、Na₂SO₄、NaNO₃ 与盐酸都不反应——嫌疑人锁定。"),
+                DetectiveClue(id: "dt_12_c3",
+                    text: "把产生的气体通入澄清石灰水，石灰水变浑浊。",
+                    deduction: "气体是 CO₂（使石灰水变浑浊），确认是碳酸盐。"),
+                DetectiveClue(id: "dt_12_c4",
+                    text: "它的水溶液能使无色酚酞变红。",
+                    deduction: "Na₂CO₃ 是强碱弱酸盐、水解显碱性，故酚酞变红——这也是「纯碱」虽是盐却显碱性的原因。"),
+            ],
+            verdict: "谜底：碳酸钠 Na₂CO₃。遇盐酸放 CO₂（使石灰水变浑浊）+ 溶液显碱性。检验碳酸盐：加酸放气、气体使石灰水变浑浊。"),
+
+        DetectiveCase(
+            id: "dt_13", title: "红棕色的烟雾", stage: .senior, topic: .nonmetals,
+            suspects: ["NO₂", "NO", "Br₂ 蒸气", "I₂ 蒸气"],
+            answerIndex: 0,
+            clues: [
+                DetectiveClue(id: "dt_13_c1",
+                    text: "嫌疑气体呈红棕色。",
+                    deduction: "NO 无色、I₂ 蒸气紫色——出局。红棕色的 NO₂ 和溴蒸气仍在场。"),
+                DetectiveClue(id: "dt_13_c2",
+                    text: "它由一种无色气体接触空气后立即生成。",
+                    deduction: "无色气体遇空气变红棕——是 2NO+O₂→2NO₂。溴是由液溴挥发而来，不是「无色变红棕」——嫌疑人锁定 NO₂。"),
+                DetectiveClue(id: "dt_13_c3",
+                    text: "把它通入水中，部分被吸收，还剩下 1/3 体积的无色气体。",
+                    deduction: "3NO₂+H₂O→2HNO₃+NO，溶于水不完全、剩 1/3 的 NO——这是 NO₂ 的标志性反应。"),
+                DetectiveClue(id: "dt_13_c4",
+                    text: "档案记载，它是光化学烟雾和酸雨的元凶之一。",
+                    deduction: "氮氧化物是大气污染的主犯，身份完全吻合。"),
+            ],
+            verdict: "谜底：NO₂。红棕色 + 由 NO 遇空气生成 + 溶于水生成 HNO₃ 并剩 1/3 的 NO。注意：NO 无色、遇空气才变红棕，这是检验 NO 的方法。"),
+
+        DetectiveCase(
+            id: "dt_14", title: "焰色密探", stage: .senior, topic: .metals,
+            suspects: ["钾盐 K⁺", "钠盐 Na⁺", "钙盐 Ca²⁺", "铜盐 Cu²⁺"],
+            answerIndex: 0,
+            clues: [
+                DetectiveClue(id: "dt_14_c1",
+                    text: "用铂丝蘸取嫌疑物质在火焰上灼烧，火焰呈现颜色。",
+                    deduction: "焰色反应是某些金属元素的特性——四位都有焰色，需看具体颜色。"),
+                DetectiveClue(id: "dt_14_c2",
+                    text: "直接观察，火焰似乎是黄色的。",
+                    deduction: "黄色是钠的焰色……但钠的黄光很容易掩盖钾的紫色，老练的侦探不会就此定案。"),
+                DetectiveClue(id: "dt_14_c3",
+                    text: "透过蓝色钴玻璃再观察，火焰呈紫色。",
+                    deduction: "蓝色钴玻璃滤掉了钠的黄光，露出紫色——这是钾的焰色！黄色是混入的微量钠造成的。"),
+                DetectiveClue(id: "dt_14_c4",
+                    text: "钙的焰色是砖红、铜是绿色，都与紫色不符。",
+                    deduction: "排除钙、铜，真凶是钾。"),
+            ],
+            verdict: "谜底：钾盐 K⁺。焰色紫色（须透过蓝色钴玻璃观察以滤去钠的黄光）。焰色对照：Na 黄、K 紫、Ca 砖红、Cu 绿、Ba 黄绿。"),
+
+        DetectiveCase(
+            id: "dt_15", title: "两副面孔的气体", stage: .senior, topic: .nonmetals,
+            suspects: ["CO₂", "SO₂", "NH₃", "HCl"],
+            answerIndex: 0,
+            clues: [
+                DetectiveClue(id: "dt_15_c1",
+                    text: "嫌疑气体无色无味。",
+                    deduction: "SO₂ 刺激性、NH₃ 刺激性、HCl 刺激性——都有味出局。无色无味的只剩 CO₂。"),
+                DetectiveClue(id: "dt_15_c2",
+                    text: "它能使澄清石灰水变浑浊。",
+                    deduction: "CO₂+Ca(OH)₂→CaCO₃↓+H₂O，使石灰水变浑浊——经典检验。"),
+                DetectiveClue(id: "dt_15_c3",
+                    text: "继续通入该气体，浑浊又消失了。",
+                    deduction: "CO₂ 过量：CaCO₃+CO₂+H₂O→Ca(HCO₃)₂（可溶），浑浊消失——这是 CO₂ 的「两副面孔」。",
+                ),
+                DetectiveClue(id: "dt_15_c4",
+                    text: "它既不燃烧也不支持燃烧，常被灌进灭火器。",
+                    deduction: "不燃不助燃、密度大，CO₂ 是常用灭火剂，身份确认。"),
+            ],
+            verdict: "谜底：CO₂。无色无味 + 使石灰水变浑浊、过量又变清 + 灭火。注意 SO₂ 也能使石灰水变浑浊，但 SO₂ 有刺激性气味、能漂白品红，可与 CO₂ 区分。"),
+
+        DetectiveCase(
+            id: "dt_16", title: "淀粉上的蓝指纹", stage: .senior, topic: .nonmetals,
+            suspects: ["I₂（碘单质）", "Cl₂", "Br₂", "KI"],
+            answerIndex: 0,
+            clues: [
+                DetectiveClue(id: "dt_16_c1",
+                    text: "嫌疑物滴在涂有淀粉的滤纸上，滤纸变蓝。",
+                    deduction: "遇淀粉变蓝是碘单质的专属反应——但 Cl₂、Br₂ 能把 KI 中的 I⁻ 氧化成 I₂ 间接变蓝，需进一步甄别。"),
+                DetectiveClue(id: "dt_16_c2",
+                    text: "它本身是一种紫黑色、有金属光泽的固体。",
+                    deduction: "紫黑色固体——Cl₂ 是黄绿色气体、Br₂ 是红棕色液体、KI 是白色固体，统统出局。锁定 I₂。"),
+                DetectiveClue(id: "dt_16_c3",
+                    text: "微微加热，它不熔化，直接升华成紫色蒸气。",
+                    deduction: "升华是碘的招牌物理性质，可用于分离提纯碘。"),
+                DetectiveClue(id: "dt_16_c4",
+                    text: "档案：人们从海带中提取它，加碘食盐里却不是它本尊。",
+                    deduction: "海带提碘得 I₂；加碘盐加的是 KIO₃（碘酸钾）不是 I₂。"),
+            ],
+            verdict: "谜底：I₂。遇淀粉变蓝 + 紫黑色固体 + 易升华。淀粉变蓝是检验碘单质（I₂）的方法，但要排除 Cl₂/Br₂ 氧化 I⁻ 间接致蓝的情况。"),
+    ]
 
     // MARK: 无机八案
 
