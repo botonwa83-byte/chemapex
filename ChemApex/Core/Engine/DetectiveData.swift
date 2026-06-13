@@ -4,9 +4,93 @@ import Foundation
 // 红线：每条线索的现象/颜色/性质必须准确；deduction 必须讲清排除逻辑。
 
 enum DetectiveData {
-    static let all: [DetectiveCase] = inorganic + organic + batch2
+    static let all: [DetectiveCase] = inorganic + organic + batch2 + batch3
 
     static func detectiveCase(id: String) -> DetectiveCase? { all.first { $0.id == id } }
+
+    // MARK: 扩充四案（有机推断为主）
+
+    private static let batch3: [DetectiveCase] = [
+        DetectiveCase(
+            id: "dt_17", title: "紫色的告密者", stage: .senior, topic: .organic,
+            suspects: ["苯酚", "乙醇", "乙酸", "甲苯"],
+            answerIndex: 0,
+            clues: [
+                DetectiveClue(id: "dt_17_c1",
+                    text: "嫌疑人常温下是无色晶体，有特殊气味，在水中溶解度不大（温水中较易溶）。",
+                    deduction: "乙醇、乙酸都与水互溶且是液体，甲苯是油状液体——一个「晶体且微溶」就把它们都比下去了。"),
+                DetectiveClue(id: "dt_17_c2",
+                    text: "向它的溶液中滴入 FeCl₃ 溶液，立刻显紫色。",
+                    deduction: "遇 FeCl₃ 显紫色是酚类的专属反应——身份几乎写在脸上。"),
+                DetectiveClue(id: "dt_17_c3",
+                    text: "与浓溴水反应，生成白色沉淀。",
+                    deduction: "生成三溴苯酚白色沉淀，既印证是酚，又把它和苯区分开。"),
+                DetectiveClue(id: "dt_17_c4",
+                    text: "它有弱酸性（俗称石炭酸），能与 NaOH 反应，却不能使石蕊明显变红。",
+                    deduction: "弱酸性——比碳酸还弱，所以不与碳酸盐反应放气，这点又和乙酸划清界限。"),
+            ],
+            verdict: "谜底：苯酚。无色晶体微溶于水 + 遇 FeCl₃ 显紫色 + 与浓溴水生成白色沉淀 + 弱酸性。酚羟基受苯环影响显弱酸性，是与乙醇（中性）最大的区别。"),
+
+        DetectiveCase(
+            id: "dt_18", title: "会冒泡的酸", stage: .senior, topic: .organic,
+            suspects: ["乙酸", "乙醇", "苯酚", "乙酸乙酯"],
+            answerIndex: 0,
+            clues: [
+                DetectiveClue(id: "dt_18_c1",
+                    text: "嫌疑人是无色、有强烈刺激性气味的液体（纯品在低温下能结成冰状）。",
+                    deduction: "乙酸乙酯是香味、苯酚是晶体——「刺激性液体、冰状」指向冰醋酸。"),
+                DetectiveClue(id: "dt_18_c2",
+                    text: "它能使紫色石蕊试液变红。",
+                    deduction: "显酸性！乙醇是中性、乙酸乙酯也不显酸性——锁定酸。"),
+                DetectiveClue(id: "dt_18_c3",
+                    text: "滴入 Na₂CO₃ 溶液，立刻产生气泡。",
+                    deduction: "放出 CO₂，说明酸性比碳酸强——苯酚是比碳酸弱的酸，不会放气，被排除。"),
+                DetectiveClue(id: "dt_18_c4",
+                    text: "与乙醇在浓硫酸催化、加热下反应，生成有果香味的油状液体。",
+                    deduction: "发生酯化生成乙酸乙酯——羧酸的招牌反应，身份坐实。"),
+            ],
+            verdict: "谜底：乙酸。刺激性液体 + 使石蕊变红 + 与 Na₂CO₃ 放 CO₂（酸性强于碳酸）+ 酯化。「强酸制弱酸」放气是乙酸与苯酚的关键区别。"),
+
+        DetectiveCase(
+            id: "dt_19", title: "甜蜜的还原剂", stage: .senior, topic: .organic,
+            suspects: ["葡萄糖", "蔗糖", "淀粉", "乙醇"],
+            answerIndex: 0,
+            clues: [
+                DetectiveClue(id: "dt_19_c1",
+                    text: "嫌疑人是白色晶体，有甜味，易溶于水。",
+                    deduction: "淀粉无甜味且难溶、乙醇是液体——先排除这两个。剩葡萄糖和蔗糖。"),
+                DetectiveClue(id: "dt_19_c2",
+                    text: "它与银氨溶液一起水浴加热，试管内壁出现光亮的银镜。",
+                    deduction: "银镜反应说明含醛基！蔗糖没有醛基、不能直接银镜——真凶锁定。"),
+                DetectiveClue(id: "dt_19_c3",
+                    text: "它还能与新制 Cu(OH)₂ 加热生成砖红色沉淀。",
+                    deduction: "再次印证醛基（医学上正是用这个反应检测糖尿病人尿液中的葡萄糖）。"),
+                DetectiveClue(id: "dt_19_c4",
+                    text: "它是人体重要的供能物质，也是植物光合作用的产物。",
+                    deduction: "供能 + 光合产物——葡萄糖的身份完全吻合。"),
+            ],
+            verdict: "谜底：葡萄糖。白色甜味晶体 + 银镜反应 + 还原新制 Cu(OH)₂——它是多羟基醛，含醛基故有还原性。蔗糖、淀粉无醛基，需先水解才能银镜。"),
+
+        DetectiveCase(
+            id: "dt_20", title: "时隐时现的沉淀", stage: .senior, topic: .metals,
+            suspects: ["Al³⁺", "Mg²⁺", "Fe³⁺", "Cu²⁺"],
+            answerIndex: 0,
+            clues: [
+                DetectiveClue(id: "dt_20_c1",
+                    text: "嫌疑离子所在的溶液是无色的。",
+                    deduction: "Fe³⁺ 黄、Cu²⁺ 蓝——有颜色的先出局。剩无色的 Al³⁺ 和 Mg²⁺。"),
+                DetectiveClue(id: "dt_20_c2",
+                    text: "向溶液中逐滴加入 NaOH，先生成白色沉淀。",
+                    deduction: "Al³⁺ 和 Mg²⁺ 都生成白色氢氧化物沉淀——还分不出，继续加。"),
+                DetectiveClue(id: "dt_20_c3",
+                    text: "继续滴加 NaOH 至过量，白色沉淀竟然又溶解消失了！",
+                    deduction: "沉淀溶于过量碱——两性！Mg(OH)₂ 不溶于过量 NaOH，故排除 Mg²⁺，锁定 Al³⁺。"),
+                DetectiveClue(id: "dt_20_c4",
+                    text: "另取原溶液，通入过量 CO₂，也生成白色沉淀，且沉淀不溶解。",
+                    deduction: "AlO₂⁻ 遇弱酸 CO₂ 重新生成 Al(OH)₃（不溶于碳酸）——印证铝的两性循环。"),
+            ],
+            verdict: "谜底：Al³⁺。无色 + 加 NaOH 先沉淀后溶解（先增后减是图像题经典）。Al(OH)₃ 两性是与 Mg²⁺ 的决定性区别；通 CO₂ 生成不溶的 Al(OH)₃ 是另一旁证。"),
+    ]
 
     // MARK: 扩充六案（金属 / 离子 / 气体）
 
