@@ -79,7 +79,28 @@ enum ProblemBank {
             options: ["只含 C、H", "含 C、H、O", "只含 C、O", "无法确定"],
             answerIndex: 1,
             explanation: "8.8 g CO₂ 中碳元素 2.4 g，5.4 g H₂O 中氢元素 0.6 g，合计 3.0 g < 4.6 g，差的 1.6 g 只能来自该物质中的氧元素。用元素守恒「称」出看不见的氧——这就是守恒思想。",
-            nodeId: "n02", weapon: .atomConservation),
+            nodeId: "n02", weapon: .atomConservation,
+            dualSolution: DualSolution(
+                standard: SolutionPath(
+                    title: "常规解：设分子式逐步求",
+                    steps: [
+                        "设物质含 C、H、O，由 CO₂ 求碳、由 H₂O 求氢",
+                        "碳：8.8/44×12 = 2.4 g；氢：5.4/18×2 = 0.6 g",
+                        "再纠结它到底含不含氧、怎么列式…",
+                    ],
+                    timeMinutes: 3),
+                descent: SolutionPath(
+                    title: "元素守恒：把氧「称」出来",
+                    steps: [
+                        "碳 2.4 g + 氢 0.6 g = 3.0 g",
+                        "总质量 4.6 g − 3.0 g = 1.6 g，只能是氧",
+                        "1.6 g > 0 → 该物质一定含氧 ✓",
+                    ],
+                    timeMinutes: 1),
+                weapon: .atomConservation,
+                principle: "原理：质量守恒决定了「物质里的各元素质量之和 = 物质总质量」。碳和氢的质量能从燃烧产物里算出来，剩下的质量没处去，只能属于氧——哪怕氧在燃烧中和空气里的 O₂ 混在一起看不见，也能靠「总质量减一减」把它称出来。这就是守恒思想的威力：用已知反推未知。",
+                keyInsight: "判断有机物含不含氧：算出 C、H 质量，和总质量一减，差额就是氧。",
+                plainTalk: "这袋东西重 4.6 克，拆出来碳 2.4 克、氢 0.6 克，加起来才 3 克。剩下的 1.6 克跑哪去了？只能是袋子里本来就藏着的氧。质量不会凭空消失，这一减就把看不见的氧揪出来了。")),
     ]
 
     private static let seniorBatch1: [ChemProblem] = [

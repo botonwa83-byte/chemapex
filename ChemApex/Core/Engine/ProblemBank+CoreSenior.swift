@@ -180,7 +180,27 @@ extension ProblemBank {
             options: ["0.2 mol", "0.5 mol", "1 mol", "1.4 mol"],
             answerIndex: 2,
             explanation: "每个 Mn 由 +7 降到 +2 得 5 个电子，0.2 mol KMnO₄ 转移 0.2×5=1 mol 电子。氧化还原计算的核心是电子守恒，关键是数清每个原子的化合价变化数。",
-            nodeId: "n05", weapon: .electronConservation),
+            nodeId: "n05", weapon: .electronConservation,
+            dualSolution: DualSolution(
+                standard: SolutionPath(
+                    title: "常规解：写出完整反应配平",
+                    steps: [
+                        "需先知道 KMnO₄ 与什么反应、产物是什么",
+                        "配平整个氧化还原方程式",
+                        "再由系数算转移电子——还原剂未知时很难下手",
+                    ],
+                    timeMinutes: 4),
+                descent: SolutionPath(
+                    title: "电子守恒：只看 Mn 的价态变化",
+                    steps: [
+                        "Mn 由 +7 → +2，每个得 5 个电子",
+                        "0.2 mol KMnO₄ × 5 = 1 mol 电子 ✓",
+                    ],
+                    timeMinutes: 0.5),
+                weapon: .electronConservation,
+                principle: "原理：转移电子总数只取决于氧化剂得电子总数（= 还原剂失电子总数）。KMnO₄ 作氧化剂，得多少电子只由 Mn 的价态变化（+7→+2，得 5 个）和它的物质的量决定，与它具体氧化了谁、生成什么完全无关。所以连反应方程式都不用写，盯住 Mn 一个原子的「降几价」即可。",
+                keyInsight: "求氧化剂转移电子数：盯中心元素降几价 × 物质的量，不必写方程式。",
+                plainTalk: "高锰酸钾里的锰要从 +7 一路掉到 +2，掉了 5 个台阶，就得收 5 个电子。0.2 摩尔锰一共收 1 摩尔电子。它去氧化谁、变成什么，跟「收了多少电子」没关系。")),
         ChemProblem(
             id: "p_redox_07", stage: .senior, topic: .redox,
             content: "已知氧化性 Cl₂ > Br₂ > Fe³⁺ > I₂。则下列反应不能发生的是？",

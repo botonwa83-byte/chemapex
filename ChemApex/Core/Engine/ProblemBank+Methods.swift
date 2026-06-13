@@ -21,7 +21,27 @@ extension ProblemBank {
             options: ["36 g", "44 g", "44 g 且有氧气剩余", "无法确定"],
             answerIndex: 2,
             explanation: "2H₂+O₂→2H₂O。4 g H₂（2 mol）只需 1 mol（32 g）O₂，氧气过量 8 g。但密闭容器内总质量始终守恒 = 4+40 = 44 g（含剩余的 8 g O₂ 和 36 g 水）。",
-            nodeId: "n02", weapon: .massConservation),
+            nodeId: "n02", weapon: .massConservation,
+            dualSolution: DualSolution(
+                standard: SolutionPath(
+                    title: "常规解：算反应、算剩余",
+                    steps: [
+                        "2H₂+O₂→2H₂O，4 g H₂ = 2 mol，需 1 mol O₂ = 32 g",
+                        "生成水：2 mol × 18 = 36 g；氧气剩 40−32 = 8 g",
+                        "容器内 = 36（水）+ 8（剩余 O₂）= 44 g",
+                    ],
+                    timeMinutes: 3),
+                descent: SolutionPath(
+                    title: "质量守恒：密闭容器总质量不变",
+                    steps: [
+                        "密闭容器，物质没进没出",
+                        "反应前后总质量恒定 = 4 + 40 = 44 g ✓（无需算谁过量）",
+                    ],
+                    timeMinutes: 0.5),
+                weapon: .massConservation,
+                principle: "原理：质量守恒的前提是「参加反应的所有物质」，在密闭容器里没有任何物质逸出或进入，所以不管反应进行到什么程度、谁过量谁剩余，容器内物质的总质量永远等于一开始投入的总质量。这道题的「坑」是诱导你去算过量——其实根本不用，守恒一句话搞定。",
+                keyInsight: "密闭容器里的总质量永远 = 投入的总质量，跟反应程度、谁过量都无关。",
+                plainTalk: "把氢气和氧气关进一个密封罐子里点燃，不管烧成什么样、剩多少氧气，罐子连里面的东西一起称，重量一点不变——4 加 40 还是 44 克。别被「氧气过量」带偏去算细账。")),
 
         // MARK: 化合价规则
         ChemProblem(
@@ -278,7 +298,27 @@ extension ProblemBank {
             options: ["1 mol", "2 mol", "0.5 mol", "4 mol"],
             answerIndex: 1,
             explanation: "氮原子守恒：1 mol N₂ 含 2 mol N，最终全部进入 HNO₃，故 N₂ ~ 2HNO₃。1 mol N₂ → 2 mol HNO₃。多步流程用关系式法直接首尾相连。",
-            nodeId: "n", weapon: .relationMethod),
+            nodeId: "n", weapon: .relationMethod,
+            dualSolution: DualSolution(
+                standard: SolutionPath(
+                    title: "常规解：逐步写四个反应",
+                    steps: [
+                        "N₂+3H₂⇌2NH₃；4NH₃+5O₂→4NO+6H₂O",
+                        "2NO+O₂→2NO₂；3NO₂+H₂O→2HNO₃+NO（循环）",
+                        "一步步按系数换算，还要处理 NO 循环——极易出错",
+                    ],
+                    timeMinutes: 6),
+                descent: SolutionPath(
+                    title: "关系式法：氮原子首尾守恒",
+                    steps: [
+                        "氮从 N₂ 一路守恒到 HNO₃：N₂ ~ 2HNO₃",
+                        "1 mol N₂ → 2 mol HNO₃ ✓",
+                    ],
+                    timeMinutes: 1),
+                weapon: .relationMethod,
+                principle: "原理：1 个 N₂ 分子含 2 个氮原子，原子守恒保证这 2 个氮无论中间变成 NO、NO₂、循环几圈，最终都进入 HNO₃。所以 N₂ 与 HNO₃ 的关系是 1:2（由氮原子个数定），与中间所有反应的系数无关。注意起点是 N₂（2 个氮）而非 NH₃（1 个氮），关系式不同。",
+                keyInsight: "关系式看「守恒的原子个数」：N₂ 含 2 个氮，所以 N₂ ~ 2HNO₃。",
+                plainTalk: "一个氮气分子里坐着 2 个氮原子，中间换乘多少趟车都不下来，最后都到「硝酸」终点。所以 1 摩尔氮气能产 2 摩尔硝酸——别忘了氮气是「双人座」，和单个氮的氨气不一样。")),
         ChemProblem(
             id: "m_rel_02", stage: .senior, topic: .metals,
             content: "用 CO 还原 Fe₂O₃ 炼铁：要炼得 11.2 g 铁，理论上需要 CO 的物质的量为？（3CO+Fe₂O₃→2Fe+3CO₂，Fe 56）",
