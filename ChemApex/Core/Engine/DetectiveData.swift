@@ -90,6 +90,46 @@ enum DetectiveData {
                     deduction: "AlO₂⁻ 遇弱酸 CO₂ 重新生成 Al(OH)₃（不溶于碳酸）——印证铝的两性循环。"),
             ],
             verdict: "谜底：Al³⁺。无色 + 加 NaOH 先沉淀后溶解（先增后减是图像题经典）。Al(OH)₃ 两性是与 Mg²⁺ 的决定性区别；通 CO₂ 生成不溶的 Al(OH)₃ 是另一旁证。"),
+
+        DetectiveCase(
+            id: "dt_21", title: "无中生有的气体", stage: .senior, topic: .nonmetals,
+            suspects: ["SO₃²⁻（亚硫酸根）", "SO₄²⁻", "CO₃²⁻", "Cl⁻"],
+            answerIndex: 0,
+            clues: [
+                DetectiveClue(id: "dt_21_c1",
+                    text: "向含嫌疑离子的溶液中加入足量稀盐酸，产生有刺激性气味的无色气体。",
+                    deduction: "放气！SO₄²⁻、Cl⁻ 与盐酸不反应放气——排除。CO₃²⁻ 放 CO₂（无味），但本气体「有刺激性」，更像 SO₂。"),
+                DetectiveClue(id: "dt_21_c2",
+                    text: "把该气体通入品红溶液，品红褪色；再加热，红色又恢复。",
+                    deduction: "可逆漂白！这是 SO₂ 的招牌（CO₂ 不能漂白品红）——锁定 SO₃²⁻。"),
+                DetectiveClue(id: "dt_21_c3",
+                    text: "向原溶液中滴入酸性 KMnO₄ 溶液，紫红色褪去。",
+                    deduction: "SO₃²⁻ 有还原性，能被 KMnO₄ 氧化使其褪色——印证是亚硫酸根而非硫酸根（SO₄²⁻ 中 S 已是最高价、无还原性）。"),
+                DetectiveClue(id: "dt_21_c4",
+                    text: "档案：它在空气中放置久了会慢慢变成另一种不放气的离子。",
+                    deduction: "SO₃²⁻ 被空气缓慢氧化成 SO₄²⁻——这也是保存亚硫酸盐要密封的原因。"),
+            ],
+            verdict: "谜底：SO₃²⁻。加酸放出有刺激性的 SO₂（品红可逆褪色）+ 有还原性（使酸性 KMnO₄ 褪色）。关键区别：SO₃²⁻ 中 S 为 +4（中间价，有还原性），SO₄²⁻ 中 S 为 +6（最高价，无还原性、加酸不放气）。"),
+
+        DetectiveCase(
+            id: "dt_22", title: "撕不掉的标签", stage: .senior, topic: .organic,
+            suspects: ["蛋白质", "葡萄糖", "油脂", "淀粉"],
+            answerIndex: 0,
+            clues: [
+                DetectiveClue(id: "dt_22_c1",
+                    text: "嫌疑物灼烧时产生一股烧焦羽毛的特殊气味。",
+                    deduction: "烧焦羽毛味是蛋白质的标志（含氮、硫）——糖类、油脂灼烧没有这种气味，基本锁定。"),
+                DetectiveClue(id: "dt_22_c2",
+                    text: "滴上浓硝酸，过一会儿变成了黄色。",
+                    deduction: "蛋白质遇浓硝酸变黄（颜色反应，因含苯环结构）——这也是浓硝酸沾到皮肤变黄的原因。"),
+                DetectiveClue(id: "dt_22_c3",
+                    text: "加入少量硫酸铜溶液（重金属盐），它很快凝结、失去了原有的活性。",
+                    deduction: "重金属盐使蛋白质变性（不可逆）——这正是重金属中毒的原理。糖、油脂不会因重金属盐变性。"),
+                DetectiveClue(id: "dt_22_c4",
+                    text: "在酶或酸催化下水解，最终得到多种氨基酸。",
+                    deduction: "水解最终产物是氨基酸——蛋白质的基本组成单位，身份完全确认。"),
+            ],
+            verdict: "谜底：蛋白质。灼烧有烧焦羽毛味 + 遇浓硝酸变黄 + 重金属盐使其变性 + 水解生成氨基酸。注意「变性」（不可逆）与「盐析」（可逆，用轻金属盐如硫酸铵分离提纯）的区别。"),
     ]
 
     // MARK: 扩充六案（金属 / 离子 / 气体）

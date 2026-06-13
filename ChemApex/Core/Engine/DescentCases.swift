@@ -5,7 +5,14 @@ import Foundation
 // 全部数值均经过验算；不标注虚构出处。
 
 enum DescentCases {
-    static let all: [ChemProblem] = [
+    static let all: [ChemProblem] = {
+        var list = batch1
+        list += batch2
+        list += batch3
+        return list
+    }()
+
+    private static let batch1: [ChemProblem] = [
 
         // ===== Boss 1（N2）：差量法 =====
         ChemProblem(
@@ -193,7 +200,7 @@ enum DescentCases {
                 principle: "原理：多步反应中只要某元素不流失，它的原子个数从始至终守恒。所以首尾物质之间存在固定的摩尔比（由原子守恒锁定），与中间几步、每步系数无关。写一条关系式，等于一次性跳过所有中间环节。",
                 keyInsight: "多步反应不必步步为营——找到贯穿首尾的原子，写一条关系式直达终点。",
                 plainTalk: "硫原子就像快递包裹，中间转了三个仓库，但一件都没丢。你不用管每个仓库怎么分拣，只要数清楚发货时有多少件（2 份硫），收货时就有多少件（2 份硫酸）。")),
-    ] + batch2 + batch3
+    ]
 
     // MARK: 扩容对决（每把武器再补一道，覆盖更多题型）
 
