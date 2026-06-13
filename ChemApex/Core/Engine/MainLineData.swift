@@ -5,8 +5,18 @@ import Foundation
 // 顺序即学习顺序：初中直觉 → 高中主战场 → 竞赛仰望。
 
 enum MainLineData {
-    static let nodes: [LearningNode] = assignOrder(
-        juniorNodes + seniorNodes1 + seniorNodes2 + principleNodes + organicExpNodes + olympiadNodes)
+    static let nodes: [LearningNode] = {
+        var list: [LearningNode] = []
+        list += juniorNodes
+        list += seniorNodes1
+        list += seniorNodes2
+        list += principleNodes
+        list += structureNodes
+        list += organicNodes
+        list += experimentNodes
+        list += olympiadNodes
+        return assignOrder(list)
+    }()
 
     /// 按数组位置统一赋 order（1 起），插关/拆关不必手工重排序号。
     private static func assignOrder(_ list: [LearningNode]) -> [LearningNode] {
@@ -556,43 +566,103 @@ enum MainLineData {
             problemIds: ["p_sr_23", "p_sr_30", "p_p8_01", "p_p8_02", "p_p8_03", "p_p8_04", "p_p8_05", "p_p8_06", "p_p8_07", "p_p8_08"]),
     ]
 
-    // MARK: 高中段 ⚗️（有机 + 实验，排在选必1反应原理之后）
+    // MARK: 选必3 有机化学段（分类→烃→衍生物→营养物质）
 
-    private static let organicExpNodes: [LearningNode] = [
+    private static let organicNodes: [LearningNode] = [
         LearningNode(
-            id: "n12", order: 13, stage: .senior, topic: .organic,
-            title: "有机入门 · 碳的王国",
-            tagline: "四价碳搭出的无限世界",
+            id: "org_basic", order: 0, stage: .senior, topic: .organic,
+            title: "有机基础 · 碳的王国",
+            tagline: "四价碳、官能团与同分异构",
             knowledgePoints: [
                 KnowledgePoint(
-                    id: "k1201", title: "碳四价与同分异构",
-                    detail: "碳永远四个键。分子式相同、结构不同 = 同分异构体（如正丁烷与异丁烷）。",
-                    pitfall: "同分异构 ≠ 同素异形体（金刚石/石墨）≠ 同位素（¹²C/¹³C）——三个「同」字辈各管各的。"),
+                    id: "kob1", title: "碳四价与有机物特点",
+                    detail: "碳最外层 4 电子、成 4 个键，能成链成环，故有机物种类繁多。多数可燃、熔点低、难溶于水（有反例如乙醇互溶）。",
+                    pitfall: "有机物不一定含氢（CCl₄）；判断结构合理性先数每个碳是否 4 个键。"),
                 KnowledgePoint(
-                    id: "k1202", title: "取代与加成",
-                    detail: "取代：换下来（甲烷+Cl₂ 光照）；加成：加上去（乙烯+Br₂ 使溴水褪色）。鉴别烷烃与烯烃就靠这一手。"),
+                    id: "kob2", title: "官能团决定性质",
+                    detail: "官能团是决定特征性质的原子团：—OH（醇/酚）、—CHO（醛）、C=O（酮）、—COOH（羧酸）、—COO—（酯）、C=C（烯）。记官能团 = 记一类物质。",
+                    pitfall: "醇与酚都含 —OH 但差异大：酚显弱酸性、遇 FeCl₃ 紫色。"),
                 KnowledgePoint(
-                    id: "k1203", title: "乙醇与乙酸",
-                    detail: "乙醇：与钠反应放 H₂、催化氧化成乙醛。乙酸：弱酸性、与乙醇发生酯化（浓硫酸催化，酸脱羟基醇脱氢）。"),
+                    id: "kob3", title: "三个「同」字辈",
+                    detail: "同系物（结构相似、相差 CH₂、通式相同）、同分异构体（分子式相同、结构不同）、同素异形体（同种元素的不同单质）。同位素则是原子层面。各管各的层次，不能混。",
+                    pitfall: "淀粉、纤维素 (C₆H₁₀O₅)ₙ 中 n 不同，不是同分异构体。"),
                 KnowledgePoint(
-                    id: "k1204", title: "苯与基本营养物质",
-                    detail: "苯环上的碳碳键介于单双键之间——苯不能使溴水和酸性 KMnO₄ 褪色，但能与液溴（FeBr₃ 催化）发生取代。糖类、油脂、蛋白质：葡萄糖银镜反应检验醛基，蛋白质灼烧有烧焦羽毛味、遇浓硝酸变黄。",
-                    pitfall: "苯使溴水「褪色」是萃取（物理过程），不是反应——和乙烯的加成褪色本质不同。"),
-                KnowledgePoint(
-                    id: "k1205", title: "官能团决定性质（选必3）",
-                    detail: "记官能团 = 记一类物质：羟基 −OH（醇/酚）、醛基 −CHO（醛）、羰基 C=O（酮）、羧基 −COOH（酸）、酯基 −COO−（酯）。同一碳上的「氢」活泼性靠官能团判断：羧基氢 > 碳酸 > 酚羟基 > 水 > 醇羟基。",
-                    pitfall: "醇与酚都含 −OH 但差别大：苯酚显弱酸性、遇 FeCl₃ 显紫色、与浓溴水生成白色沉淀；乙醇这些都不会。"),
-                KnowledgePoint(
-                    id: "k1206", title: "醛、酮与酚的鉴别（选必3）",
-                    detail: "醛基：银镜反应、与新制 Cu(OH)₂ 加热生成砖红色 Cu₂O。酮无醛基、不发生上述反应。苯酚：①遇 FeCl₃ 显紫色 ②与浓溴水反应生成三溴苯酚白色沉淀（既检验又区别于苯）。",
-                    pitfall: "酮也含羰基 C=O 但没有醛基的还原性——「含羰基」不等于「能银镜」。"),
-                KnowledgePoint(
-                    id: "k1207", title: "糖类·油脂·蛋白质（选必3）",
-                    detail: "葡萄糖（含醛基）能银镜、还原 Cu(OH)₂；蔗糖、淀粉无醛基不能直接银镜（需先水解）。油脂是高级脂肪酸甘油酯，皂化反应（碱性水解）制肥皂。蛋白质：盐析（可逆，提纯）、变性（不可逆，加热/重金属/强酸碱）、灼烧有烧焦羽毛味、遇浓硝酸变黄（颜色反应）。",
-                    pitfall: "淀粉、纤维素通式都是 (C₆H₁₀O₅)ₙ 但 n 不同，不是同分异构体；蔗糖与麦芽糖（C₁₂H₂₂O₁₁）才互为同分异构体。"),
+                    id: "kob4", title: "有机反应类型与研究方法",
+                    detail: "取代、加成、消去、氧化、酯化、加聚/缩聚。研究方法：元素分析定实验式（最简式）、相对分子质量定分子式、谱学/性质定结构。"),
             ],
-            problemIds: ["p_sr_24", "p_sr_25", "p_sr_28", "p_sr_31", "p_sr_35", "p_sr_36"]),
+            problemIds: ["p_og_b01", "p_og_b02", "p_og_b03", "p_og_b04", "p_og_b05", "p_og_b06", "p_og_b07", "p_og_b08", "p_og_b09"]),
 
+        LearningNode(
+            id: "org_hydro", order: 0, stage: .senior, topic: .organic,
+            title: "烃 · 烷烯炔与芳香烃",
+            tagline: "从甲烷到苯：取代与加成",
+            knowledgePoints: [
+                KnowledgePoint(
+                    id: "koh1", title: "烷烃",
+                    detail: "通式 CₙH₂ₙ₊₂，碳碳单键、性质稳定，不与溴水/KMnO₄ 反应，能在光照下与卤素取代（生成混合物）。",
+                    pitfall: "甲烷取代是逐步的，产物是 CH₃Cl~CCl₄ 与 HCl 的混合物。"),
+                KnowledgePoint(
+                    id: "koh2", title: "烯烃与炔烃",
+                    detail: "烯烃含 C=C（通式 CₙH₂ₙ）、炔烃含 C≡C（CₙH₂ₙ₋₂），不饱和、活泼：与溴水/H₂ 加成、被酸性 KMnO₄ 氧化、加聚。乙烯是石化基石，乙炔用于氧炔焰焊接。",
+                    pitfall: "使溴水褪色：烯炔是加成（化学），苯是萃取（物理）。"),
+                KnowledgePoint(
+                    id: "koh3", title: "苯与芳香烃",
+                    detail: "苯环碳碳键介于单双键之间（大 π 键），不使溴水/KMnO₄ 褪色，主要发生取代（卤代、硝化、磺化）和催化加氢。甲苯侧链甲基能被 KMnO₄ 氧化（褪色）。",
+                    pitfall: "「苯不褪色、甲苯褪色」是芳香烃的对比考点。"),
+                KnowledgePoint(
+                    id: "koh4", title: "煤和石油",
+                    detail: "石油分馏（物理，按沸点分离）、裂化（化学，增产汽油）、裂解（化学，制乙烯等化工原料）；煤的干馏（化学）、气化、液化。化石燃料的综合利用。"),
+            ],
+            problemIds: ["p_sr_24", "p_sr_25", "p_og_h01", "p_og_h02", "p_og_h03", "p_og_h04", "p_og_h05", "p_og_h06", "p_og_h07", "p_og_h08"]),
+
+        LearningNode(
+            id: "org_deriv", order: 0, stage: .senior, topic: .organic,
+            title: "烃的衍生物 · 醇醛酸酯",
+            tagline: "官能团决定一切",
+            knowledgePoints: [
+                KnowledgePoint(
+                    id: "kod1", title: "卤代烃",
+                    detail: "在 NaOH 水溶液中加热水解（取代）生成醇；在 NaOH 醇溶液中加热消去生成烯烃。「水解看水、消去看醇」。卤代烃是有机合成的桥梁。"),
+                KnowledgePoint(
+                    id: "kod2", title: "醇与酚",
+                    detail: "乙醇：与钠反应放 H₂（断 O—H）、催化氧化成乙醛、消去成乙烯。苯酚：弱酸性（与 NaOH 反应）、遇 FeCl₃ 显紫色（检验）、与浓溴水生成三溴苯酚白色沉淀。",
+                    pitfall: "醇羟基中性，酚羟基弱酸性——同是 —OH 性质迥异。"),
+                KnowledgePoint(
+                    id: "kod3", title: "醛与羧酸",
+                    detail: "醛基 —CHO 有还原性：银镜反应、与新制 Cu(OH)₂ 加热生成砖红色 Cu₂O（检验醛基），也能被还原（加 H₂）。乙酸：弱酸性（强于碳酸，能与碳酸盐放 CO₂）、与乙醇酯化。",
+                    pitfall: "酮含羰基但无醛基，不能银镜。"),
+                KnowledgePoint(
+                    id: "kod4", title: "酯与官能团转化",
+                    detail: "酯水解：酸性可逆、碱性较彻底（皂化型）。官能团主线：烯烃→醇→醛→羧酸→酯，掌握每步反应类型与条件即握住有机合成骨架。"),
+            ],
+            problemIds: ["p_sr_28", "p_sr_31", "p_sr_35", "p_og_d01", "p_og_d02", "p_og_d03", "p_og_d04", "p_og_d05", "p_og_d06", "p_og_d07", "p_og_d08", "p_og_d09"]),
+
+        LearningNode(
+            id: "org_life", order: 0, stage: .senior, topic: .organic,
+            title: "营养物质与高分子",
+            tagline: "糖、油脂、蛋白质与合成材料",
+            knowledgePoints: [
+                KnowledgePoint(
+                    id: "kol1", title: "糖类",
+                    detail: "单糖（葡萄糖 C₆H₁₂O₆，多羟基醛，能银镜、还原 Cu(OH)₂）、二糖（蔗糖/麦芽糖 C₁₂H₂₂O₁₁，互为同分异构体）、多糖（淀粉/纤维素 (C₆H₁₀O₅)ₙ）。淀粉遇碘变蓝。",
+                    pitfall: "蔗糖、淀粉无醛基，不能直接银镜，需先水解。"),
+                KnowledgePoint(
+                    id: "kol2", title: "油脂",
+                    detail: "高级脂肪酸甘油酯（酯类）。皂化反应：碱性水解生成高级脂肪酸钠（肥皂）和甘油。不饱和油脂可氢化成硬化油。是重要营养物质和工业原料。"),
+                KnowledgePoint(
+                    id: "kol3", title: "蛋白质与氨基酸",
+                    detail: "氨基酸含 —COOH 和 —NH₂，两性。蛋白质由氨基酸缩合（肽键）而成：水解生成氨基酸；盐析（可逆，提纯）；变性（不可逆，加热/重金属/强酸碱/酒精）；遇浓硝酸变黄、灼烧有烧焦羽毛味。"),
+                KnowledgePoint(
+                    id: "kol4", title: "合成高分子",
+                    detail: "加聚反应（双键打开首尾相连，无小分子生成，如聚乙烯）、缩聚反应（生成小分子如水）。单体、链节、聚合度是高分子的基本概念。",
+                    pitfall: "聚乙烯无双键，不能使溴水褪色；保鲜膜用聚乙烯、聚氯乙烯不可包食品。"),
+            ],
+            problemIds: ["p_sr_36", "p_og_l01", "p_og_l02", "p_og_l03", "p_og_l04", "p_og_l05", "p_og_l06", "p_og_l07"]),
+    ]
+
+    // MARK: 高中段 ⚗️（化学实验，必考大题）
+
+    private static let experimentNodes: [LearningNode] = [
         LearningNode(
             id: "n12x", order: 14, stage: .senior, topic: .experiment,
             title: "化学实验 · 真理的裁判所",
@@ -619,32 +689,92 @@ enum MainLineData {
 
     // MARK: 竞赛段 👁
 
+    // MARK: 选必2 物质结构段（高考范围，按原子→分子→晶体递进）
+
+    private static let structureNodes: [LearningNode] = [
+        LearningNode(
+            id: "struct_atom", order: 0, stage: .senior, topic: .structure,
+            title: "原子结构",
+            tagline: "电子怎么排，性质就怎么定",
+            knowledgePoints: [
+                KnowledgePoint(
+                    id: "ksa1", title: "能层、能级与电子排布",
+                    detail: "能层 K/L/M…，能级 s/p/d/f（s 1 轨道、p 3 轨道、d 5 轨道）。按构造原理 1s→2s→2p→3s→3p→4s→3d… 填充。基态电子排布式是结构题基本功。",
+                    pitfall: "4s 先于 3d 填充（能级交错）。"),
+                KnowledgePoint(
+                    id: "ksa2", title: "核外电子排布三原则",
+                    detail: "能量最低原理（先填低能级）、泡利原理（一轨道最多 2 个自旋相反电子）、洪特规则（简并轨道先单占且自旋平行）。",
+                    pitfall: "Cr(3d⁵4s¹)、Cu(3d¹⁰4s¹) 特例：半满/全满更稳定。"),
+                KnowledgePoint(
+                    id: "ksa3", title: "电离能",
+                    detail: "气态基态原子失去一个电子所需最低能量。同周期总体增大、同主族减小。反常：Mg>Al、N>O（半满/全满稳定）。逐级电离能突增处可判断最外层电子数。"),
+                KnowledgePoint(
+                    id: "ksa4", title: "电负性",
+                    detail: "原子吸引电子能力，非金属性越强越大，氟最大（4.0）。同周期增大、同主族减小。电负性差>1.7 倾向离子键、<1.7 倾向共价键，可判断键型和元素金属性。"),
+            ],
+            problemIds: ["p_oly_01", "p_st_a01", "p_st_a02", "p_st_a03", "p_st_a04", "p_st_a05", "p_st_a06", "p_st_a07", "p_st_a08", "p_st_a09"]),
+
+        LearningNode(
+            id: "struct_mol", order: 0, stage: .senior, topic: .structure,
+            title: "分子结构与性质",
+            tagline: "杂化、构型与分子间的力",
+            knowledgePoints: [
+                KnowledgePoint(
+                    id: "ksm1", title: "σ 键与 π 键",
+                    detail: "单键=1σ；双键=1σ+1π；三键=1σ+2π。σ 键「头碰头」较牢，π 键「肩并肩」较弱（不饱和键易加成）。",
+                    pitfall: "数杂化看 σ 键数，双键三键里只算 1 个 σ。"),
+                KnowledgePoint(
+                    id: "ksm2", title: "杂化与 VSEPR",
+                    detail: "中心原子价层电子对数（σ键数+孤对数）=2→sp 直线、3→sp² 平面三角、4→sp³ 四面体。孤对电子参与杂化但不计入分子构型描述（H₂O 是 V 形、NH₃ 是三角锥）。",
+                    pitfall: "孤对压缩键角：CH₄109.5°>NH₃107°>H₂O105°。"),
+                KnowledgePoint(
+                    id: "ksm3", title: "分子极性与配合物",
+                    detail: "键有极性 + 结构对称 → 非极性分子（CO₂、CCl₄）；不对称 → 极性分子（H₂O、NH₃）。配合物：中心离子（提供空轨道）+ 配体（提供孤对电子）以配位键结合，配位数=配体数。"),
+                KnowledgePoint(
+                    id: "ksm4", title: "氢键与分子间作用力",
+                    detail: "含 N、O、F 的氢化物（HF、H₂O、NH₃）分子间形成氢键，沸点反常偏高。组成结构相似的分子晶体，相对分子质量越大范德华力越大、熔沸点越高（卤素单质递增）。",
+                    pitfall: "氢键是较强的分子间作用力，不是化学键。"),
+            ],
+            problemIds: ["p_oly_02", "p_st_m01", "p_st_m02", "p_st_m03", "p_st_m04", "p_st_m05", "p_st_m06", "p_st_m07", "p_st_m08", "p_st_m09"]),
+
+        LearningNode(
+            id: "struct_crystal", order: 0, stage: .senior, topic: .structure,
+            title: "晶体结构",
+            tagline: "四类晶体与晶胞计算",
+            knowledgePoints: [
+                KnowledgePoint(
+                    id: "ksc1", title: "晶体四类型",
+                    detail: "离子晶体（NaCl，离子键）、共价晶体（金刚石/SiO₂/SiC，共价键，熔点最高硬度最大）、分子晶体（干冰/冰/I₂，分子间作用力，熔点最低）、金属晶体（金属键，导电延展）。",
+                    pitfall: "SiO₂ 是共价晶体——「CO₂ 是分子晶体」不能类推到 SiO₂。"),
+                KnowledgePoint(
+                    id: "ksc2", title: "熔沸点比较",
+                    detail: "一般：共价晶体 > 离子晶体≈金属晶体 > 分子晶体。先判断晶体类型，同类型再比键强弱（离子晶体看离子电荷与半径、分子晶体看分子间作用力）。"),
+                KnowledgePoint(
+                    id: "ksc3", title: "晶胞与均摊法",
+                    detail: "均摊法：顶点贡献 1/8、棱 1/4、面 1/2、体内 1。据此数出晶胞内微粒数、写化学式。配位数：NaCl 中 Na⁺ 周围 6 个 Cl⁻。",
+                    pitfall: "晶胞是晶体的最小重复单元，化学式只表示微粒个数比。"),
+                KnowledgePoint(
+                    id: "ksc4", title: "晶胞密度计算",
+                    detail: "ρ = 晶胞内微粒质量/晶胞体积 = nM/(Nᴀ·V)。先用均摊法求 n，再代入棱长求体积——这是结构题压轴的计算模型。"),
+            ],
+            problemIds: ["p_oly_03", "p_st_c01", "p_st_c02", "p_st_c03", "p_st_c04", "p_st_c05", "p_st_c06", "p_st_c07"]),
+    ]
+
+    // MARK: 竞赛段 👁（收尾：向上仰望，少而精）
+
     private static let olympiadNodes: [LearningNode] = [
         LearningNode(
-            id: "n13", order: 15, stage: .olympiad, topic: .structure,
-            title: "结构之眼 · 晶体与轨道",
+            id: "cap", order: 0, stage: .olympiad, topic: .structure,
+            title: "竞赛之窗 · 向上仰望",
             tagline: "山顶的风景：从「记性质」到「算性质」",
             knowledgePoints: [
                 KnowledgePoint(
-                    id: "k1301", title: "电子排布式",
-                    detail: "按能量最低原理填充：1s → 2s → 2p → 3s → 3p → 4s → 3d…。洪特规则：简并轨道先单占、自旋平行。",
-                    pitfall: "Cr 和 Cu 特例：3d⁵4s¹、3d¹⁰4s¹——半满全满更稳定。"),
+                    id: "kcap1", title: "为什么性质能「算」出来",
+                    detail: "电负性、电离能、杂化、晶胞，决定了你在高中死记硬背的一切：键角、酸性、颜色、熔点。结构化学是化学从经验走向理论的入口——这就是上帝视角的降维。"),
                 KnowledgePoint(
-                    id: "k1302", title: "为什么性质能「算」出来",
-                    detail: "电负性、电离能、轨道杂化决定了你在高中死记硬背的一切：键角、酸性、颜色。结构化学是化学从经验走向理论的入口——这就是降维视角。"),
-                KnowledgePoint(
-                    id: "k1303", title: "杂化轨道与分子构型",
-                    detail: "判断口诀：中心原子的 σ 键数 + 孤对电子数 = 2 → sp（直线）、3 → sp²（平面三角）、4 → sp³（四面体）。孤对电子会「压弯」键角：CH₄ 109.5° → NH₃ 107° → H₂O 105°。",
-                    pitfall: "数的是 σ 键不是总键数——双键、三键里只有一个 σ 键。"),
-                KnowledgePoint(
-                    id: "k1304", title: "晶体四类型",
-                    detail: "离子晶体（NaCl，破坏离子键）、共价晶体（金刚石/SiO₂，破坏共价键，熔点最高）、分子晶体（干冰/冰，只破坏分子间作用力，熔点最低）、金属晶体（破坏金属键）。熔沸点比较先定类型再比强弱。",
-                    pitfall: "SiO₂ 是共价晶体不是分子晶体——「二氧化碳是分子晶体」不能类推到二氧化硅。"),
-                KnowledgePoint(
-                    id: "k1305", title: "电离能与电负性",
-                    detail: "同周期从左到右电离能总体增大、电负性增大；氟电负性最大（4.0）。第一电离能的「反常」：N > O、Mg > Al——半满/全满结构更稳定。电负性差大于 1.7 倾向离子键。",
-                    pitfall: "新课标选必2 已是高考范围——这一关的内容并非纯竞赛，选考结构的同学必须拿下。"),
+                    id: "kcap2", title: "晶胞计算与等电子原理",
+                    detail: "晶胞密度 ρ=nM/(Nᴀ·V) 把微观结构与宏观可测量连起来。等电子体（原子数、价电子数相同）有相似构型，可预测陌生微粒——这些「算结构」的工具是竞赛与强基的入场券。"),
             ],
-            problemIds: ["p_oly_01", "p_oly_02", "p_oly_03"]),
+            problemIds: ["p_cap_01", "p_cap_02"]),
     ]
 }

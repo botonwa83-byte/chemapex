@@ -26,6 +26,8 @@ enum ProblemBank {
         list += principlesBatch
         list += elementsBatch
         list += coreSeniorBatch
+        list += structureBatch
+        list += organicBatch
         return list
     }()
 
@@ -269,14 +271,14 @@ enum ProblemBank {
             options: ["加成反应", "取代反应", "氧化反应", "聚合反应"],
             answerIndex: 1,
             explanation: "CH₄ 中的 H 被 Cl 逐个「替换」生成 CH₃Cl、CH₂Cl₂ 等，是取代反应。加成是不饱和键「加上去」（如乙烯使溴水褪色），取代是「换下来」——一加一换，本质不同。",
-            nodeId: "n12"),
+            nodeId: "org_hydro"),
         ChemProblem(
             id: "p_sr_25", stage: .senior, topic: .organic,
             content: "鉴别甲烷和乙烯，最简便的方法是分别通入？",
             options: ["澄清石灰水", "溴的四氯化碳溶液", "蒸馏水", "氢氧化钠溶液"],
             answerIndex: 1,
             explanation: "乙烯含碳碳双键，能与 Br₂ 发生加成使溴的 CCl₄ 溶液褪色，甲烷不能。酸性高锰酸钾也可鉴别（乙烯使其褪色），但会把乙烯氧化成 CO₂，不能用于「除杂」——鉴别与除杂的试剂选择经常对比考。",
-            nodeId: "n12"),
+            nodeId: "org_hydro"),
 
         // ===== 结构之眼（竞赛预告） =====
         ChemProblem(
@@ -285,7 +287,7 @@ enum ProblemBank {
             options: ["1s²2s²2p²", "1s²2s⁴", "1s²2p⁴", "1s⁴2s²"],
             answerIndex: 0,
             explanation: "按能量最低原理依次填充：1s² → 2s² → 2p²。每个 s 能级最多 2 个电子，2p² 的两个电子按洪特规则分占两个轨道且自旋平行。这是结构化学的入口。",
-            nodeId: "n13"),
+            nodeId: "struct_atom"),
     ]
 
     // MARK: 覆盖补强批次（酸碱盐 / 实验 / 热化学 / 水解 / 酯化）
@@ -359,7 +361,7 @@ enum ProblemBank {
             options: ["只作催化剂", "只作吸水剂", "催化剂和吸水剂", "氧化剂"],
             answerIndex: 2,
             explanation: "酯化反应可逆：CH₃COOH + C₂H₅OH ⇌ CH₃COOC₂H₅ + H₂O。浓硫酸既加快反应（催化剂），又吸收生成的水使平衡正移（吸水剂），一身二职。另注意：导管不能插入饱和碳酸钠溶液液面以下（防倒吸）。",
-            nodeId: "n12"),
+            nodeId: "org_deriv"),
 
         // ===== 阶段 A 补全（周期律 / 电化学应用 / 有机检验 / 结构） =====
         ChemProblem(
@@ -382,21 +384,21 @@ enum ProblemBank {
             options: ["加 NaOH 溶液，观察是否变色", "加入银氨溶液，水浴加热，看是否出现光亮银镜", "加入 NaCl 溶液，看是否有沉淀", "滴入酚酞，看是否变红"],
             answerIndex: 1,
             explanation: "醛基的两大检验法：①银氨溶液水浴加热出银镜 ②新制 Cu(OH)₂ 加热出砖红色 Cu₂O 沉淀。两者都利用醛基的还原性。注意操作细节：银镜反应必须水浴，不能直接加热。",
-            nodeId: "n12"),
+            nodeId: "org_deriv"),
         ChemProblem(
             id: "p_oly_02", stage: .olympiad, topic: .structure,
             content: "下列分子中，中心原子采取 sp 杂化的是？",
             options: ["CH₄", "NH₃", "CO₂", "H₂O"],
             answerIndex: 2,
             explanation: "CO₂ 直线形，碳原子 2 个 σ 键、无孤对电子，sp 杂化。CH₄（4 个 σ 键）、NH₃（3 σ + 1 孤对）、H₂O（2 σ + 2 孤对）都是 sp³ 杂化。判断口诀：σ 键数 + 孤对数 = 2 是 sp、3 是 sp²、4 是 sp³。",
-            nodeId: "n13"),
+            nodeId: "struct_mol"),
         ChemProblem(
             id: "p_oly_03", stage: .olympiad, topic: .structure,
             content: "下列晶体熔化时，只需克服分子间作用力的是？",
             options: ["NaCl", "金刚石", "干冰", "铁"],
             answerIndex: 2,
             explanation: "干冰（固态 CO₂）是分子晶体，熔化只破坏分子间作用力，所以熔点极低。NaCl 是离子晶体（破坏离子键）、金刚石是共价晶体（破坏共价键）、铁是金属晶体（破坏金属键）。熔沸点大致：共价 > 离子/金属 > 分子。",
-            nodeId: "n13"),
+            nodeId: "struct_crystal"),
 
         // ===== 选必3 有机拓展（醛酮酚 / 营养物质） =====
         ChemProblem(
@@ -405,14 +407,14 @@ enum ProblemBank {
             options: ["紫色石蕊试液", "FeCl₃ 溶液", "新制 Cu(OH)₂ 悬浊液并加热", "NaOH 溶液"],
             answerIndex: 2,
             explanation: "新制 Cu(OH)₂ 加热：乙醛含醛基生成砖红色 Cu₂O 沉淀；苯酚显弱酸性，常温即溶解蓝色 Cu(OH)₂（或不现砖红）；乙醇无明显变化——三者现象各异，一次区别。FeCl₃ 只能挑出苯酚（显紫色），区分不了乙醇和乙醛。",
-            nodeId: "n12"),
+            nodeId: "org_deriv"),
         ChemProblem(
             id: "p_sr_36", stage: .senior, topic: .organic,
             content: "关于糖类、油脂、蛋白质的说法正确的是？",
             options: ["淀粉和纤维素互为同分异构体", "油脂都是高分子化合物", "蛋白质遇浓硝酸变黄是变性引起的颜色反应", "葡萄糖和蔗糖都能发生银镜反应"],
             answerIndex: 2,
             explanation: "蛋白质遇浓硝酸变黄是含苯环结构的颜色反应（常用于鉴别）。淀粉、纤维素通式同为 (C₆H₁₀O₅)ₙ 但 n 不同、相对分子质量不同，不是同分异构体；油脂是小分子不是高分子；蔗糖无醛基不能直接银镜（葡萄糖可以）。",
-            nodeId: "n12"),
+            nodeId: "org_life"),
 
         // ===== 阶段 A 续（胶体 / 氧化性比较 / 金属冶炼） =====
         ChemProblem(
