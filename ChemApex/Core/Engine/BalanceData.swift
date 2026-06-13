@@ -1,0 +1,68 @@
+import Foundation
+
+// MARK: - 配平题库（高频方程式，从易到难）
+// 红线：每题系数为最简整数比，原子守恒已核对。
+
+enum BalanceData {
+    static let all: [BalanceProblem] = [
+        // 初中 · 观察法
+        BalanceProblem(id: "bal_01", stage: .junior,
+            reactants: ["H₂", "O₂"], products: ["H₂O"], answer: [2, 1, 2],
+            condition: "点燃",
+            hint: "先配氧：右边 H₂O 含 1 个 O，左边 O₂ 含 2 个 O，给 H₂O 配 2、再回头配 H。"),
+        BalanceProblem(id: "bal_02", stage: .junior,
+            reactants: ["C", "O₂"], products: ["CO₂"], answer: [1, 1, 1],
+            condition: "点燃",
+            hint: "碳、氧原子两边各 1、2 已平，系数全为 1。"),
+        BalanceProblem(id: "bal_03", stage: .junior,
+            reactants: ["KClO₃"], products: ["KCl", "O₂"], answer: [2, 2, 3],
+            condition: "MnO₂ 催化、Δ",
+            hint: "氧原子：左边每个 KClO₃ 含 3 个 O，右边 O₂ 含 2 个 O，取最小公倍数 6 → KClO₃ 配 2、O₂ 配 3。"),
+        BalanceProblem(id: "bal_04", stage: .junior,
+            reactants: ["Fe₂O₃", "CO"], products: ["Fe", "CO₂"], answer: [1, 3, 2, 3],
+            condition: "高温",
+            hint: "Fe₂O₃ 含 2 个 Fe → Fe 配 2；3 个 O 配给 CO/CO₂，CO、CO₂ 各配 3。"),
+        BalanceProblem(id: "bal_05", stage: .junior,
+            reactants: ["KMnO₄"], products: ["K₂MnO₄", "MnO₂", "O₂"], answer: [2, 1, 1, 1],
+            condition: "Δ（加热）",
+            hint: "K 两边要平：左边 KMnO₄ 配 2，右边 K₂MnO₄ 含 2 个 K 配 1；再平 Mn、O。"),
+
+        // 高中 · 观察法 / 化合价升降法
+        BalanceProblem(id: "bal_06", stage: .senior,
+            reactants: ["Na", "H₂O"], products: ["NaOH", "H₂"], answer: [2, 2, 2, 1],
+            condition: "常温",
+            hint: "H₂ 含 2 个 H，需偶数个 H：Na、H₂O、NaOH 各配 2，H₂ 配 1。"),
+        BalanceProblem(id: "bal_07", stage: .senior,
+            reactants: ["Al", "HCl"], products: ["AlCl₃", "H₂"], answer: [2, 6, 2, 3],
+            condition: "常温",
+            hint: "Al 失 3 电子、2H⁺ 得 2 电子，电子守恒取 6；Al 配 2、HCl 配 6、AlCl₃ 配 2、H₂ 配 3。"),
+        BalanceProblem(id: "bal_08", stage: .senior,
+            reactants: ["MnO₂", "HCl"], products: ["MnCl₂", "Cl₂", "H₂O"], answer: [1, 4, 1, 1, 2],
+            condition: "Δ（浓盐酸）",
+            hint: "Mn +4→+2 得 2e，2Cl⁻→Cl₂ 失 2e；4 个 HCl 中 2 个被氧化、2 个作酸。"),
+        BalanceProblem(id: "bal_09", stage: .senior,
+            reactants: ["Cu", "HNO₃"], products: ["Cu(NO₃)₂", "NO", "H₂O"], answer: [3, 8, 3, 2, 4],
+            condition: "稀硝酸",
+            hint: "Cu 失 2e、N(+5→+2) 得 3e，电子守恒取最小公倍数 6：Cu 配 3、NO 配 2；再配 H、N、O。"),
+        BalanceProblem(id: "bal_10", stage: .senior,
+            reactants: ["Cu", "H₂SO₄"], products: ["CuSO₄", "SO₂", "H₂O"], answer: [1, 2, 1, 1, 2],
+            condition: "浓硫酸、Δ",
+            hint: "2 个 H₂SO₄ 中 1 个被还原成 SO₂、1 个作酸进 CuSO₄；先定 SO₂ 再平。"),
+        BalanceProblem(id: "bal_11", stage: .senior,
+            reactants: ["Fe(OH)₂", "O₂", "H₂O"], products: ["Fe(OH)₃"], answer: [4, 1, 2, 4],
+            condition: "常温（空气中）",
+            hint: "Fe +2→+3 失 1e，O₂ 得 4e，取 4：Fe(OH)₂、Fe(OH)₃ 各配 4，O₂ 配 1、H₂O 配 2。"),
+        BalanceProblem(id: "bal_12", stage: .senior,
+            reactants: ["Mg", "CO₂"], products: ["MgO", "C"], answer: [2, 1, 2, 1],
+            condition: "点燃",
+            hint: "Mg 失 2e、C(+4→0) 得 4e，电子守恒取 4：Mg、MgO 各配 2，CO₂、C 配 1。"),
+        BalanceProblem(id: "bal_13", stage: .senior,
+            reactants: ["FeS₂", "O₂"], products: ["Fe₂O₃", "SO₂"], answer: [4, 11, 2, 8],
+            condition: "高温（沸腾炉）",
+            hint: "接触法制硫酸第一步，原子较多：先配 Fe（4→2）、S（8→8），再用 O 平 O₂=11。"),
+        BalanceProblem(id: "bal_14", stage: .senior,
+            reactants: ["NH₃", "O₂"], products: ["NO", "H₂O"], answer: [4, 5, 4, 6],
+            condition: "催化剂、Δ",
+            hint: "氨催化氧化：N(−3→+2) 失 5e、O₂ 得 4e；配 NH₃=4、NO=4、H₂O=6，最后 O₂=5。"),
+    ]
+}

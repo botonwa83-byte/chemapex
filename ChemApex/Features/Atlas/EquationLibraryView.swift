@@ -9,25 +9,15 @@ struct EquationLibraryView: View {
                 Text("方程式不是公式，是剧本：什么条件、什么现象、坑在哪里。")
                     .font(.caption).foregroundColor(.secondary)
 
-                NavigationLink {
-                    EquationDrillView()
-                } label: {
-                    HStack(spacing: Spacing.md) {
-                        Image(systemName: "pencil.and.outline").font(.title3)
-                        VStack(alignment: .leading, spacing: 2) {
-                            Text("✍️ 方程式默写训练").font(AppFont.cardTitle)
-                            Text("光看记不住——来练默写，攻化学最大的记忆关").font(.caption2).foregroundColor(.white.opacity(0.85))
-                        }
-                        Spacer()
-                        Image(systemName: "chevron.right").font(.caption)
-                    }
-                    .foregroundColor(.white)
-                    .padding(Spacing.lg)
-                    .frame(maxWidth: .infinity)
-                    .background(LinearGradient(colors: [.apexLava, .apexMystery], startPoint: .leading, endPoint: .trailing))
-                    .cornerRadius(Radius.card)
-                }
-                .buttonStyle(.plain)
+                practiceEntry(
+                    icon: "pencil.and.outline", title: "✍️ 方程式默写训练",
+                    subtitle: "光看记不住——给提示默写，攻最大的记忆关",
+                    colors: [.apexLava, .apexMystery]) { EquationDrillView() }
+
+                practiceEntry(
+                    icon: "scalemass", title: "⚖️ 配平训练",
+                    subtitle: "不会写不会配？点系数当场判对错，练成「闭眼配」",
+                    colors: [.apexEmerald, .apexStarBlue]) { BalanceListView() }
 
                 ForEach(Stage.allCases) { stage in
                     let eqs = EquationLibrary.all.filter { $0.stage == stage }
@@ -41,6 +31,29 @@ struct EquationLibraryView: View {
             }
             .padding(Spacing.lg)
         }
+    }
+
+    private func practiceEntry<Dest: View>(icon: String, title: String, subtitle: String,
+                                           colors: [Color], @ViewBuilder dest: @escaping () -> Dest) -> some View {
+        NavigationLink {
+            dest()
+        } label: {
+            HStack(spacing: Spacing.md) {
+                Image(systemName: icon).font(.title3)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(title).font(AppFont.cardTitle)
+                    Text(subtitle).font(.caption2).foregroundColor(.white.opacity(0.85))
+                }
+                Spacer()
+                Image(systemName: "chevron.right").font(.caption)
+            }
+            .foregroundColor(.white)
+            .padding(Spacing.lg)
+            .frame(maxWidth: .infinity)
+            .background(LinearGradient(colors: colors, startPoint: .leading, endPoint: .trailing))
+            .cornerRadius(Radius.card)
+        }
+        .buttonStyle(.plain)
     }
 }
 

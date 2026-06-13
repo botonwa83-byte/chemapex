@@ -27,6 +27,7 @@ struct MainTabView: View {
     @State private var demoWeapon = ProcessInfo.processInfo.arguments.contains("-demoWeapon")
     @State private var demoDuel = ProcessInfo.processInfo.arguments.contains("-demoDuel")
     @State private var demoDrill = ProcessInfo.processInfo.arguments.contains("-demoDrill")
+    @State private var demoBalance = ProcessInfo.processInfo.arguments.contains("-demoBalance")
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -78,6 +79,9 @@ struct MainTabView: View {
         }
         .fullScreenCover(isPresented: $demoDrill) {
             NavigationStack { EquationDrillSessionView(equations: Array(EquationLibrary.all.prefix(8)), title: "方程式默写") }
+        }
+        .fullScreenCover(isPresented: $demoBalance) {
+            NavigationStack { BalanceSessionView(problems: Array(BalanceData.all.prefix(5)), title: "配平训练") }
         }
     }
 }

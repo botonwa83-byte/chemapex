@@ -199,6 +199,27 @@ final class ChemApexTests: XCTestCase {
         }
     }
 
+    /// 配平题：系数与物质数一致、为最简整数、且真的配平（两边各元素守恒由系数表征——这里只校验结构）。
+    func testBalanceDataIntegrity() {
+        XCTAssertFalse(BalanceData.all.isEmpty)
+        let ids = BalanceData.all.map(\.id)
+        XCTAssertEqual(Set(ids).count, ids.count, "配平题 ID 重复")
+        for p in BalanceData.all {
+            XCTAssertEqual(p.answer.count, p.species.count, "题 \(p.id) 系数个数与物质数不符")
+            XCTAssertTrue(p.answer.allSatisfy { $0 >= 1 }, "题 \(p.id) 系数应为正整数")
+            // 最简：所有系数的最大公约数应为 1
+            let g = p.answer.reduce(0) { gcd($0, $1) }
+            XCTAssertEqual(g, 1, "题 \(p.id) 系数非最简整数比")
+            XCTAssertFalse(p.reactants.isEmpty); XCTAssertFalse(p.products.isEmpty)
+        }
+        // 判分逻辑
+        XCTAssertTrue(BalanceManager.isCorrect([2,1,2], answer: [2,1,2]))
+        XCTAssertFalse(BalanceManager.isCorrect([4,2,4], answer: [2,1,2]), "非最简应判错")
+        XCTAssertFalse(BalanceManager.isCorrect([1,1,2], answer: [2,1,2]))
+    }
+
+    private func gcd(_ a: Int, _ b: Int) -> Int { b == 0 ? a : gcd(b, a % b) }
+
     /// 元素与方程式数据完整性。
     func testAtlasDataIntegrity() {
         let numbers = ElementData.all.map(\.number)
