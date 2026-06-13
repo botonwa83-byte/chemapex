@@ -15,7 +15,7 @@ final class PurchaseManager: ObservableObject {
     let productID = "com.chemapex.app.full_unlock"
 
     /// 免费档数量。改动需同步 ChemApexTests.testFreeTierPolicy。
-    static let freeNodeCount = 6        // 主线前 6 关
+    static let freeNodeCount = 11       // 主线前 11 关（初中全部 8 关 + 高中物质的量/离子/氧化还原）
     static let freeDescentCount = 4     // 守恒之眼前 4 案（恰为免费关卡的 Boss）
     static let freeDetectiveCount = 3   // 化学神探前 3 案
     static let freeLabCount = 3         // 虚拟实验台前 3 关（初中全部）

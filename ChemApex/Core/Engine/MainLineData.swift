@@ -51,7 +51,51 @@ enum MainLineData {
             problemIds: ["p_jr_01", "p_jr_02", "p_jr_03"]),
 
         LearningNode(
-            id: "n02", order: 2, stage: .junior, topic: .massConservation,
+            id: "jr_air", order: 0, stage: .junior, topic: .phenomena,
+            title: "空气 · 氧气 · 水",
+            tagline: "身边最常见的气体与液体",
+            knowledgePoints: [
+                KnowledgePoint(
+                    id: "kja1", title: "空气的成分",
+                    detail: "按体积：氮气约 78%、氧气约 21%、稀有气体约 0.94%、CO₂ 约 0.03%。空气是混合物。N₂ 化学性质稳定作保护气，稀有气体作电光源。"),
+                KnowledgePoint(
+                    id: "kja2", title: "氧气",
+                    detail: "无色无味、不易溶于水、密度略大于空气。支持燃烧、供给呼吸（助燃但本身不燃）。检验：带火星木条复燃。实验室制法：加热 KMnO₄ 或 H₂O₂+MnO₂（催化）。",
+                    pitfall: "MnO₂ 在制 O₂ 时是催化剂、制 Cl₂ 时是氧化剂。"),
+                KnowledgePoint(
+                    id: "kja3", title: "水的组成",
+                    detail: "电解水 2H₂O→(通电)2H₂↑+O₂↑，负极氢气、正极氧气，体积比 2:1——证明水由氢、氧元素组成。水是常用溶剂。",
+                    pitfall: "「正氧负氢、氢二氧一」。"),
+                KnowledgePoint(
+                    id: "kja4", title: "氢气",
+                    detail: "最轻的气体、可燃、燃烧只生成水（清洁能源）。点燃前必须验纯（不纯遇火易爆）。"),
+            ],
+            problemIds: ["p_jr_air1", "p_jr_air2", "p_jr_air3", "p_jr_air4", "p_jr_air5", "p_jr_air6"]),
+
+        LearningNode(
+            id: "jr_micro", order: 0, stage: .junior, topic: .phenomena,
+            title: "微观世界",
+            tagline: "分子、原子、元素与化学式",
+            knowledgePoints: [
+                KnowledgePoint(
+                    id: "kjm1", title: "分子与原子",
+                    detail: "分子是保持物质化学性质的最小粒子；原子是化学变化中的最小粒子。化学变化中分子可分、原子不可分，原子重新组合成新分子。",
+                    pitfall: "化学变化中「原子不可再分」，但用物理方法（如核反应外）原子有更小结构。"),
+                KnowledgePoint(
+                    id: "kjm2", title: "原子结构与元素",
+                    detail: "原子由质子、中子（原子核）和核外电子构成。质子数 = 核电荷数 = 核外电子数（中性原子）。质子数决定元素种类。相对原子质量 ≈ 质子数 + 中子数。"),
+                KnowledgePoint(
+                    id: "kjm3", title: "化学式的含义",
+                    detail: "化学式表示物质组成。元素符号右下角数字 = 一个分子中该原子个数；化学式前的系数 = 分子个数。可据化学式算相对分子质量、元素质量比、质量分数。"),
+                KnowledgePoint(
+                    id: "kjm4", title: "化合价",
+                    detail: "化合物中各元素正负化合价代数和为零。常见：H +1、O −2、金属正价。由化合价可写化学式、由化学式可求未知元素化合价。",
+                    pitfall: "单质中元素化合价为 0。"),
+            ],
+            problemIds: ["p_jr_mic1", "p_jr_mic2", "p_jr_mic3", "p_jr_mic4", "p_jr_mic5", "p_jr_mic6"]),
+
+        LearningNode(
+            id: "n02", order: 0, stage: .junior, topic: .massConservation,
             title: "质量守恒 · 第一把武器",
             tagline: "原子不增不减——你的第一条守恒定律",
             knowledgePoints: [
@@ -71,7 +115,73 @@ enum MainLineData {
             weaponUnlocked: .differenceMethod),
 
         LearningNode(
-            id: "n02x", order: 3, stage: .junior, topic: .acidBaseSalt,
+            id: "jr_carbon", order: 0, stage: .junior, topic: .phenomena,
+            title: "碳和碳的氧化物",
+            tagline: "黑色的碳，无色的 CO 与 CO₂",
+            knowledgePoints: [
+                KnowledgePoint(
+                    id: "kjc1", title: "碳单质",
+                    detail: "金刚石、石墨、C₆₀ 是碳的同素异形体（原子排列不同，性质各异）。碳常温稳定、高温活泼：可燃（充分生成 CO₂、不充分生成 CO），有还原性（还原 CuO、Fe₂O₃）。"),
+                KnowledgePoint(
+                    id: "kjc2", title: "二氧化碳",
+                    detail: "无色无味、密度比空气大、能溶于水。不燃不助燃（可灭火）。与水反应生成碳酸（使石蕊变红）、使澄清石灰水变浑浊（检验 CO₂）。过多排放致温室效应。",
+                    pitfall: "CO₂ 通入石灰水过量会使浑浊消失（生成可溶 Ca(HCO₃)₂）。"),
+                KnowledgePoint(
+                    id: "kjc3", title: "一氧化碳",
+                    detail: "无色无味、有毒（与血红蛋白结合致缺氧）、可燃（蓝色火焰生成 CO₂）、有还原性（炼铁）。CO 与 CO₂ 性质迥异，因分子构成不同。",
+                    pitfall: "煤炉通风不良产生 CO 致中毒；CO 尾气需点燃处理。"),
+                KnowledgePoint(
+                    id: "kjc4", title: "CO₂ 的实验室制取",
+                    detail: "大理石（CaCO₃）+ 稀盐酸：CaCO₃+2HCl→CaCl₂+H₂O+CO₂↑。不用稀硫酸（生成微溶 CaSO₄ 阻止反应）、不用浓盐酸（挥发 HCl）。向上排空气法收集，燃着木条验满。"),
+            ],
+            problemIds: ["p_jr_c1", "p_jr_c2", "p_jr_c3", "p_jr_c4", "p_jr_c5", "p_jr_c6"]),
+
+        LearningNode(
+            id: "jr_metal", order: 0, stage: .junior, topic: .acidBaseSalt,
+            title: "金属与金属材料",
+            tagline: "活动性、合金与锈蚀",
+            knowledgePoints: [
+                KnowledgePoint(
+                    id: "kjmt1", title: "金属的物理性质",
+                    detail: "一般有金属光泽、能导电导热、有延展性。汞是常温下唯一的液态金属。",
+                    pitfall: "「金属常温都是固体」错——汞是液态。"),
+                KnowledgePoint(
+                    id: "kjmt2", title: "金属活动性顺序",
+                    detail: "钾钙钠镁铝、锌铁锡铅氢、铜汞银铂金。应用：氢前金属能置换酸中的氢；前面金属能把后面金属从其盐溶液中置换出来（湿法炼铜 Fe+CuSO₄）。",
+                    pitfall: "K/Ca/Na 太活泼，放盐溶液中先与水反应。"),
+                KnowledgePoint(
+                    id: "kjmt3", title: "合金",
+                    detail: "金属与其他金属或非金属熔合而成（混合物），一般比纯金属硬度大、熔点低。生铁和钢都是铁合金（含碳量不同）。"),
+                KnowledgePoint(
+                    id: "kjmt4", title: "金属锈蚀与冶炼",
+                    detail: "铁生锈是铁与氧气、水共同作用（缺一不可），防锈靠隔绝氧气和水（涂油漆、镀层、制不锈钢）。工业炼铁：CO 还原 Fe₂O₃（3CO+Fe₂O₃→2Fe+3CO₂）。"),
+            ],
+            problemIds: ["p_jr_m1", "p_jr_m2", "p_jr_m3", "p_jr_m4", "p_jr_m5", "p_jr_m6"]),
+
+        LearningNode(
+            id: "jr_solution", order: 0, stage: .junior, topic: .acidBaseSalt,
+            title: "溶液",
+            tagline: "溶解、饱和与溶解度",
+            knowledgePoints: [
+                KnowledgePoint(
+                    id: "kjs1", title: "溶液的组成",
+                    detail: "溶液是均一、稳定的混合物，由溶质和溶剂组成。溶质可以是固、液、气（盐酸的溶质是 HCl 气体）；水是最常用溶剂。溶液不一定无色。",
+                    pitfall: "均一稳定的不一定是溶液（水也均一稳定但是纯净物）。"),
+                KnowledgePoint(
+                    id: "kjs2", title: "饱和与不饱和",
+                    detail: "一定温度、一定量溶剂里不能再溶解某溶质的溶液叫饱和溶液。多数固体：加溶质/蒸发溶剂/降温可使不饱和变饱和。",
+                    pitfall: "饱和不一定浓（Ca(OH)₂ 饱和溶液很稀）。"),
+                KnowledgePoint(
+                    id: "kjs3", title: "溶解度与结晶",
+                    detail: "溶解度：一定温度下 100 g 溶剂中达饱和时溶解的溶质质量。多数固体溶解度随温度升高而增大。结晶：溶解度受温度影响大用降温结晶（KNO₃），影响小用蒸发结晶（NaCl）。"),
+                KnowledgePoint(
+                    id: "kjs4", title: "溶质质量分数与乳化",
+                    detail: "溶质质量分数 = 溶质质量/溶液质量 ×100%。乳化：洗洁精把油污分散成小液滴随水冲走（与汽油「溶解」去油污原理不同）。"),
+            ],
+            problemIds: ["p_jr_s1", "p_jr_s2", "p_jr_s3", "p_jr_s4", "p_jr_s5", "p_jr_s6"]),
+
+        LearningNode(
+            id: "n02x", order: 0, stage: .junior, topic: .acidBaseSalt,
             title: "酸碱盐 · 物质的家谱",
             tagline: "中考的主战场：谁和谁反应，凭什么",
             knowledgePoints: [

@@ -48,6 +48,7 @@
 		BC7FC756A19F2B7DED76B695 /* LabBenchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F6EE70FC279AD6FB667103 /* LabBenchData.swift */; };
 		C262BBC53C1314FD1F16A36F /* DescentCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B8783B53EBE1B1B4F3E72E /* DescentCases.swift */; };
 		D3E9B6BFB314F1E4CE3E1491 /* LabBench.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314BEB9E7F5731AE8A7843FA /* LabBench.swift */; };
+		DCA9EBD769BEBF1CC7BBA82E /* ProblemBank+Junior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98AFA8E1427FA97D595DF9B9 /* ProblemBank+Junior.swift */; };
 		E151F5D4FBB76C8BC0B434EF /* ProblemBank+CoreSenior.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42A9E5BED2FA0A505B22C29 /* ProblemBank+CoreSenior.swift */; };
 		E67694B93B2AEE5DD77A5F16 /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FA735507B9C2669DBC2FE0 /* DesignSystem.swift */; };
 		E976778A608D83741F89FACD /* ProblemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE19B8D8E8A24982BEE23B0 /* ProblemDetailView.swift */; };
@@ -100,6 +101,7 @@
 		8B1EB4ABDEEA03529E1C0605 /* ProcessFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessFlowView.swift; sourceTree = "<group>"; };
 		8E9D8698B41DB7321B52D33C /* DetectiveData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectiveData.swift; sourceTree = "<group>"; };
 		939AAE4513B8D671F3214A70 /* EquationLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquationLibrary.swift; sourceTree = "<group>"; };
+		98AFA8E1427FA97D595DF9B9 /* ProblemBank+Junior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProblemBank+Junior.swift"; sourceTree = "<group>"; };
 		9B0D54B6141EB1A6C1C34EF7 /* StudentProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentProfile.swift; sourceTree = "<group>"; };
 		A81598C2BCACA59774AFBA3B /* AscentPathView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AscentPathView.swift; sourceTree = "<group>"; };
 		ACD1B2BD5EEF4F749E69B12B /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 				B5331FD2F074F36C119C2F4B /* ProblemBank.swift */,
 				C42A9E5BED2FA0A505B22C29 /* ProblemBank+CoreSenior.swift */,
 				765C389486DB6ED2F8618004 /* ProblemBank+Elements.swift */,
+				98AFA8E1427FA97D595DF9B9 /* ProblemBank+Junior.swift */,
 				BA307A77FE611DE05D530304 /* ProblemBank+Organic.swift */,
 				DE6C112875409A9E7CB185C4 /* ProblemBank+Principles.swift */,
 				E470BCC51954C6788C1A4C1B /* ProblemBank+Structure.swift */,
@@ -481,6 +484,7 @@
 				7E4EDE272B4430E2AB496746 /* PaywallView.swift in Sources */,
 				E151F5D4FBB76C8BC0B434EF /* ProblemBank+CoreSenior.swift in Sources */,
 				77720270C4522A2D732CD03D /* ProblemBank+Elements.swift in Sources */,
+				DCA9EBD769BEBF1CC7BBA82E /* ProblemBank+Junior.swift in Sources */,
 				67A82B2314F054E877C5E1C3 /* ProblemBank+Organic.swift in Sources */,
 				8F9EF725F3D52527A14F533B /* ProblemBank+Principles.swift in Sources */,
 				9BF6EA7AE5A1EFF6D504BF4C /* ProblemBank+Structure.swift in Sources */,
