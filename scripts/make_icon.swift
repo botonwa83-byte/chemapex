@@ -26,11 +26,11 @@ var rng = LCG(state: 20260613)
 
 let summit = CGPoint(x: 512, y: 792)   // 顶点（登顶之巅）
 
-// MARK: 1. 深蓝星空背景（底深顶亮的纵向渐变）
+// MARK: 1. 青绿星空背景（ChemApex 主色：偏青绿/翠色，化学/试管感）
 
 let sky = CGGradient(colorsSpace: cs,
-                     colors: [color(0.055, 0.075, 0.16),   // 底
-                              color(0.10, 0.13, 0.27)] as CFArray,
+                     colors: [color(0.04, 0.12, 0.13, 1.0),    // 底（深墨绿青）
+                              color(0.07, 0.22, 0.24, 1.0)] as CFArray, // 顶（青绿）
                      locations: [0, 1])!
 ctx.drawLinearGradient(sky, start: CGPoint(x: 512, y: 0),
                        end: CGPoint(x: 512, y: 1024), options: [])
@@ -46,12 +46,12 @@ ctx.drawRadialGradient(halo, startCenter: summit, startRadius: 0,
 
 // MARK: 2. 椭圆轨道环（淡蓝）+ 环上几个点
 
-ctx.setStrokeColor(color(0.55, 0.65, 0.95, 0.22))
+ctx.setStrokeColor(color(0.45, 0.85, 0.85, 0.22))
 ctx.setLineWidth(3)
 let orbit = CGRect(x: 512 - 440, y: summit.y - 150, width: 880, height: 300)
 ctx.strokeEllipse(in: orbit)
 // 内侧再来一圈更淡的
-ctx.setStrokeColor(color(0.55, 0.65, 0.95, 0.10))
+ctx.setStrokeColor(color(0.45, 0.85, 0.85, 0.10))
 ctx.setLineWidth(2)
 ctx.strokeEllipse(in: orbit.insetBy(dx: 70, dy: 24))
 
@@ -84,13 +84,13 @@ func triangle(_ a: CGPoint, _ b: CGPoint, _ c: CGPoint, _ col: CGColor) {
     ctx.move(to: a); ctx.addLine(to: b); ctx.addLine(to: c)
     ctx.closePath(); ctx.fillPath()
 }
-// 左峰、右峰（暗）
+// 左峰、右峰（暗，偏青绿）
 triangle(CGPoint(x: -60, y: 0), CGPoint(x: 300, y: 430), CGPoint(x: 470, y: 0),
-         color(0.13, 0.16, 0.30))
+         color(0.10, 0.22, 0.23))
 triangle(CGPoint(x: 560, y: 0), CGPoint(x: 770, y: 470), CGPoint(x: 1084, y: 0),
-         color(0.11, 0.14, 0.27))
+         color(0.08, 0.19, 0.20))
 
-// MARK: 5. 中央光束（聚光灯感，从顶点扇向地面）
+// MARK: 5. 中央光束（青绿聚光，从顶点扇向地面）
 
 ctx.saveGState()
 let beam = CGMutablePath()
@@ -100,15 +100,15 @@ beam.addLine(to: CGPoint(x: 652, y: 0))
 beam.closeSubpath()
 ctx.addPath(beam); ctx.clip()
 let beamGrad = CGGradient(colorsSpace: cs,
-                          colors: [color(0.45, 0.55, 0.95, 0.55),
-                                   color(0.30, 0.40, 0.85, 0.10)] as CFArray,
+                          colors: [color(0.30, 0.80, 0.72, 0.55),
+                                   color(0.20, 0.55, 0.58, 0.10)] as CFArray,
                           locations: [0, 1])!
 ctx.drawLinearGradient(beamGrad, start: summit, end: CGPoint(x: 512, y: 0), options: [])
 ctx.restoreGState()
 
 // 中央峰（比侧峰略亮，受光面）
 triangle(CGPoint(x: 250, y: 0), summit, CGPoint(x: 774, y: 0),
-         color(0.17, 0.21, 0.40))
+         color(0.14, 0.30, 0.31))
 
 // MARK: 6. 登顶之路（明亮细光线，从地面升到顶点）
 
@@ -153,6 +153,34 @@ ctx.strokePath()
 ctx.setLineWidth(8)
 ctx.strokeEllipse(in: CGRect(x: summit.x - 27, y: summit.y - 27, width: 54, height: 54))
 ctx.setShadow(offset: .zero, blur: 0, color: nil)
+
+// MARK: 8. 底部黑色地面层（沿用 MathApex 的暗色基座）
+
+let groundH: CGFloat = 150
+let ground = CGGradient(colorsSpace: cs,
+                        colors: [color(0.01, 0.04, 0.04, 1.0),   // 底（近黑墨绿）
+                                 color(0.03, 0.08, 0.08, 0.0)] as CFArray,
+                        locations: [0, 1])!
+ctx.saveGState()
+ctx.clip(to: CGRect(x: 0, y: 0, width: 1024, height: groundH))
+ctx.drawLinearGradient(ground, start: CGPoint(x: 512, y: 0),
+                       end: CGPoint(x: 512, y: groundH), options: [])
+ctx.restoreGState()
+
+// MARK: 9. App 名（英文，低调置于暗色基座上）
+
+NSGraphicsContext.saveGraphicsState()
+NSGraphicsContext.current = NSGraphicsContext(cgContext: ctx, flipped: false)
+let title = "ChemApex"
+let attrs: [NSAttributedString.Key: Any] = [
+    .font: NSFont.systemFont(ofSize: 52, weight: .semibold),
+    .foregroundColor: NSColor(srgbRed: 0.80, green: 0.95, blue: 0.92, alpha: 0.62),
+    .kern: 3.0,
+]
+let astr = NSAttributedString(string: title, attributes: attrs)
+let tsz = astr.size()
+astr.draw(at: NSPoint(x: (1024 - tsz.width) / 2, y: 46))
+NSGraphicsContext.restoreGraphicsState()
 
 // MARK: 输出
 
