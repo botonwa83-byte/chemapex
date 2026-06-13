@@ -14,34 +14,31 @@ struct PaywallView: View {
                 heroArea
 
                 VStack(alignment: .leading, spacing: 14) {
-                    benefitRow(icon: "map.fill", color: .apexLava,
-                               title: "解锁登顶之路全部 \(MainLineData.nodes.count) 关",
-                               desc: "初中现象 → 高考守恒 → 竞赛结构，一条主线爬到山顶")
+                    benefitRow(icon: "shield.lefthalf.filled", color: .apexLava,
+                               title: "解锁全套 \(WeaponGuideData.all.count) 把降维武器",
+                               desc: "电子守恒、差量、极值、关系式……每把都教「何时用·怎么用」，压轴题一行拿下")
                     benefitRow(icon: "eye.fill", color: .apexMystery,
-                               title: "解锁全部 \(DescentCases.all.count) 道守恒之眼战例",
-                               desc: "常规解 vs 守恒秒杀，极值法、关系式法压轴武器全开")
+                               title: "解锁全部守恒之眼对决",
+                               desc: "同一道压轴题，常规解 8 分钟 vs 秒杀 30 秒——看见差距，学会秒杀")
+                    benefitRow(icon: "bubble.left.and.text.bubble.right.fill", color: .apexEmerald,
+                               title: "每道难题都「说人话」",
+                               desc: "不只给答案，更讲「这一步你是怎么想到的」——是教练，不是答案册")
                     benefitRow(icon: "magnifyingglass", color: .apexStarBlue,
                                title: "解锁化学神探全部 \(DetectiveData.all.count) 案",
-                               desc: "推断题破案游戏，无机八案 + 有机两案逐条揭线索")
-                    benefitRow(icon: "books.vertical.fill", color: .apexEmerald,
-                               title: "解锁全部 \(ProblemBank.all.count) 道分层题库",
-                               desc: "电化学、有机、实验、结构——高考全主干章节覆盖")
+                               desc: "推断题做成破案游戏，练的是「识局」的元能力")
                     benefitRow(icon: "infinity", color: .apexGold,
                                title: "一次买断，永久使用",
-                               desc: "无订阅、无续费，内容持续更新")
-                    benefitRow(icon: "checkmark.shield.fill", color: .apexGold,
-                               title: "支持恢复购买",
-                               desc: "换机后登录同一 App Store 账号即可恢复")
+                               desc: "无订阅、无续费，方法与内容持续更新；支持换机恢复购买")
                 }
                 .padding(.horizontal, 24).padding(.top, 28).padding(.bottom, 20)
 
                 Divider().padding(.horizontal, 24)
 
                 VStack(spacing: 6) {
-                    Text("免费已开放：主线前 \(PurchaseManager.freeNodeCount) 关（含 \(PurchaseManager.freeDescentCount) 个 Boss）+ 神探前 \(PurchaseManager.freeDetectiveCount) 案；元素星图 / 方程式剧本 / 现象闪卡永久免费")
+                    Text("免费已开放：初中全部 + 高中前 3 核心关，含电子守恒等 \(PurchaseManager.freeDescentCount) 把武器的完整对决；元素星图 / 方程式剧本 / 现象闪卡永久免费")
                         .font(.footnote).foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
-                    Text("解锁后立即获得剩余全部内容 →")
+                    Text("先白嫖一把武器试试手感，再解锁全套 →")
                         .font(.footnote).fontWeight(.medium).foregroundColor(.apexLava)
                 }
                 .padding(.vertical, 16).padding(.horizontal, 24)
@@ -80,9 +77,9 @@ struct PaywallView: View {
             LinearGradient(colors: [Color.apexLava, Color.apexMystery],
                            startPoint: .topLeading, endPoint: .bottomTrailing)
             VStack(spacing: 10) {
-                Image(systemName: "flask.fill").font(.system(size: 44)).foregroundColor(.white)
-                Text("解锁完整版").font(.system(size: 24, weight: .black, design: .rounded)).foregroundColor(.white)
-                Text("一杯奶茶钱，守恒秒杀随便用").font(.subheadline).foregroundColor(.white.opacity(0.9))
+                Image(systemName: "shield.lefthalf.filled").font(.system(size: 44)).foregroundColor(.white)
+                Text("解锁全套解题武器").font(.system(size: 24, weight: .black, design: .rounded)).foregroundColor(.white)
+                Text("不是多给你几道题，是教你怎么把题秒掉").font(.subheadline).foregroundColor(.white.opacity(0.9))
             }
             .padding(.vertical, 40)
         }
