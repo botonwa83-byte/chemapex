@@ -3,11 +3,43 @@ import Foundation
 // MARK: - 现象闪卡数据：颜色事实必须准确（学生会背进考场）
 
 enum FlashcardData {
-    static let all: [ColorFact] = flame + solution + precipitate + solidGas
+    static let all: [ColorFact] = flame + solution + precipitate + solidGas + extra
 
     static func facts(in category: FlashCategory) -> [ColorFact] {
         all.filter { $0.category == category }
     }
+
+    // MARK: 扩充色卡（高频补强）
+
+    private static let extra: [ColorFact] = [
+        // 沉淀
+        ColorFact(id: "fc_p09", category: .precipitate, item: "Mg(OH)₂", colorName: "白色", hex: 0xF7F7F7,
+                  note: "不溶于过量 NaOH（与两性的 Al(OH)₃ 区分）"),
+        ColorFact(id: "fc_p10", category: .precipitate, item: "Al(OH)₃", colorName: "白色", hex: 0xF2F2F2,
+                  note: "白色絮状、两性，溶于强酸和强碱"),
+        ColorFact(id: "fc_p11", category: .precipitate, item: "CaCO₃", colorName: "白色", hex: 0xFAFAFA,
+                  note: "石灰水变浑浊就是它；溶于盐酸放 CO₂"),
+        ColorFact(id: "fc_p12", category: .precipitate, item: "Ag₂CrO₄", colorName: "砖红色", hex: 0xB5482A,
+                  note: "莫尔法滴定终点的颜色"),
+        // 溶液与离子
+        ColorFact(id: "fc_s09", category: .solution, item: "K₂Cr₂O₇ 溶液", colorName: "橙色", hex: 0xE8590C,
+                  note: "重铬酸钾，强氧化剂；CrO₄²⁻ 则为黄色"),
+        ColorFact(id: "fc_s10", category: .solution, item: "碘的 CCl₄ 溶液", colorName: "紫红色", hex: 0x8E2DC5,
+                  note: "碘水是棕黄色——同一种碘，溶剂不同颜色不同"),
+        ColorFact(id: "fc_s11", category: .solution, item: "淀粉遇碘", colorName: "蓝色", hex: 0x1A3A8F,
+                  note: "检验碘单质（I₂）的专属显色"),
+        // 固体与气体
+        ColorFact(id: "fc_g09", category: .solidGas, item: "CuO（固）", colorName: "黑色", hex: 0x1A1A1A,
+                  note: "氧化铜；被 C/CO/H₂ 还原成红色铜"),
+        ColorFact(id: "fc_g10", category: .solidGas, item: "Fe₂O₃（固）", colorName: "红棕色", hex: 0x8D3A24,
+                  note: "铁锈主要成分；炼铁原料"),
+        ColorFact(id: "fc_g11", category: .solidGas, item: "MnO₂（固）", colorName: "黑色", hex: 0x202020,
+                  note: "制氧催化剂 / 制氯氧化剂，一物两用"),
+        ColorFact(id: "fc_g12", category: .solidGas, item: "碳 C（固）", colorName: "黑色", hex: 0x111111,
+                  note: "木炭、活性炭；有还原性和吸附性"),
+        ColorFact(id: "fc_g13", category: .solidGas, item: "铜绿 Cu₂(OH)₂CO₃", colorName: "绿色", hex: 0x2E8B57,
+                  note: "铜在潮湿空气中锈蚀的产物（碱式碳酸铜）"),
+    ]
 
     // MARK: 焰色反应
 
