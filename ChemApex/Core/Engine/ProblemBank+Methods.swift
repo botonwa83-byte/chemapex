@@ -5,7 +5,53 @@ import Foundation
 // 红线：数据全部验算，方法符合真实解题逻辑。
 
 extension ProblemBank {
-    static let methodsBatch: [ChemProblem] = [
+    // 新武器靶场练习
+    private static let newWeaponsBatch: [ChemProblem] = [
+        ChemProblem(
+            id: "m_3stage_01", stage: .senior, topic: .equilibrium,
+            content: "某温度下，2 mol SO₂ 与 1 mol O₂ 在 2 L 容器中反应，平衡时 SO₃ 为 1.6 mol。则 SO₂ 的转化率为？",
+            options: ["40%", "60%", "80%", "100%"],
+            answerIndex: 2,
+            explanation: "三段式：生成 1.6 mol SO₃，由系数转化 SO₂ 也是 1.6 mol。SO₂ 转化率 = 1.6/2 = 80%。",
+            nodeId: "p3", weapon: .threeStage),
+        ChemProblem(
+            id: "m_equiv_01", stage: .senior, topic: .equilibrium,
+            content: "恒温恒容下，反应 N₂+3H₂⇌2NH₃。下列投料与「充入 1 mol N₂ 和 3 mol H₂」能建立等效平衡的是？",
+            options: ["充入 2 mol NH₃", "充入 1 mol N₂、3 mol H₂、1 mol NH₃", "充入 2 mol N₂、6 mol H₂", "充入 1 mol NH₃"],
+            answerIndex: 0,
+            explanation: "把 2 mol NH₃ 按方程式「一边倒」换算回反应物：2 mol NH₃ → 1 mol N₂ + 3 mol H₂，与原投料完全相同，故恒温恒容下等效。其余换算后量不同。",
+            nodeId: "p3", weapon: .equivalentEquilibrium),
+        ChemProblem(
+            id: "m_graph_01", stage: .senior, topic: .equilibrium,
+            content: "可逆反应的速率-时间图中，t₁ 时刻改变某条件，正逆反应速率都突然增大且仍相等、平衡不移动。该条件最可能是？",
+            options: ["升高温度", "增大压强", "使用催化剂", "增大反应物浓度"],
+            answerIndex: 2,
+            explanation: "正逆速率「同等增大、仍相等、平衡不移动」是催化剂的标志（同等加快正逆反应）。升温/加压/增浓都会使正逆速率不等、平衡移动。图像题先看「正逆速率是否仍相等」。",
+            nodeId: "p3", weapon: .graphReading),
+        ChemProblem(
+            id: "m_numline_01", stage: .senior, topic: .nonmetals,
+            content: "向含 1 mol FeBr₂ 的溶液中通入 1 mol Cl₂，已知还原性 Fe²⁺ > Br⁻。充分反应后，被氧化的离子是？",
+            options: ["只有 Fe²⁺", "只有 Br⁻", "Fe²⁺ 全部、Br⁻ 部分", "Fe²⁺ 和 Br⁻ 全部"],
+            answerIndex: 2,
+            explanation: "还原性 Fe²⁺>Br⁻，Cl₂ 先氧化 Fe²⁺。1 mol Fe²⁺ 耗 0.5 mol Cl₂，剩 0.5 mol Cl₂ 再氧化 Br⁻（2 mol）中的 1 mol。故 Fe²⁺ 全部、Br⁻ 部分被氧化。数轴分段：先 Fe²⁺ 后 Br⁻。",
+            nodeId: "n", weapon: .numberLine),
+        ChemProblem(
+            id: "m_assign_01", stage: .senior, topic: .organic,
+            content: "某烃中碳元素的质量分数为 80%，则该烃的最简式（实验式）为？（C 12、H 1）",
+            options: ["CH₃", "CH₄", "CH₂", "C₂H₅"],
+            answerIndex: 0,
+            explanation: "赋值法设烃 100 g：C 80 g = 80/12 ≈ 6.67 mol，H 20 g = 20 mol，n(C):n(H)=6.67:20=1:3，最简式 CH₃。设具体质量把百分数变成可算的量。",
+            nodeId: "org_basic", weapon: .assignValue),
+        ChemProblem(
+            id: "m_converge_01", stage: .senior, topic: .nonmetals,
+            content: "反应 KClO₃ + 6HCl(浓) → KCl + 3Cl₂↑ + 3H₂O 中，Cl₂ 既来自 +5 价的 Cl 也来自 −1 价的 Cl。下列说法正确的是？",
+            options: ["氧化产物与还原产物之比为 5:1", "Cl₂ 全部是氧化产物", "被氧化的 Cl 与被还原的 Cl 之比为 5:1", "该反应不是氧化还原反应"],
+            answerIndex: 2,
+            explanation: "价态归中：+5（KClO₃）降、−1（HCl）升，都归到 0（Cl₂），只靠拢不交叉。1 个 +5 的 Cl 得 5 电子（被还原），需 5 个 −1 的 Cl 各失 1 电子（被氧化）配平。故被氧化:被还原 = 5:1。",
+            nodeId: "cl", weapon: .valenceConvergence),
+    ]
+
+    static let methodsBatch: [ChemProblem] = newWeaponsBatch + [
 
         // MARK: 质量守恒
         ChemProblem(

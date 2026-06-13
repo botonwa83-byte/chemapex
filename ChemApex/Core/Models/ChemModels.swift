@@ -92,6 +92,12 @@ enum ChemWeapon: String, Codable, CaseIterable, Identifiable {
     case crossMethod          // 十字交叉法
     case relationMethod       // 关系式法
     case averageMethod        // 平均值法
+    case threeStage           // 三段式法（平衡/电离/水解计算框架）
+    case equivalentEquilibrium // 等效平衡法
+    case graphReading         // 图像分析法
+    case assignValue          // 赋值法（设特殊值）
+    case valenceConvergence   // 价态归中规律
+    case numberLine           // 数轴分段法（过量/滴定/共存讨论）
     // 竞赛
     case hessCycle            // 热力学循环
     case orbitalSymmetry      // 轨道与对称
@@ -111,6 +117,12 @@ enum ChemWeapon: String, Codable, CaseIterable, Identifiable {
         case .crossMethod:          return "十字交叉法"
         case .relationMethod:       return "关系式法"
         case .averageMethod:        return "平均值法"
+        case .threeStage:           return "三段式法"
+        case .equivalentEquilibrium: return "等效平衡法"
+        case .graphReading:         return "图像分析法"
+        case .assignValue:          return "赋值法"
+        case .valenceConvergence:   return "价态归中"
+        case .numberLine:           return "数轴分段法"
         case .hessCycle:            return "热力学循环"
         case .orbitalSymmetry:      return "轨道与对称"
         }
@@ -138,6 +150,12 @@ enum ChemWeapon: String, Codable, CaseIterable, Identifiable {
         case .crossMethod:          return "平均值一定介于两个分量之间，差值定比例"
         case .relationMethod:       return "多步反应找首尾物质的摩尔关系，一步到位"
         case .averageMethod:        return "混合物的平均摩尔质量介于组分之间"
+        case .threeStage:           return "起始-转化-平衡三行排开，平衡计算的万能模板"
+        case .equivalentEquilibrium: return "换一种投料方式，平衡其实是同一个"
+        case .graphReading:         return "先看轴、再看点、后看拐点——图像题的破译术"
+        case .assignValue:          return "比例题没数据？设个特殊值，抽象瞬间变具体"
+        case .valenceConvergence:   return "同种元素相邻价态相遇，只靠拢不交叉"
+        case .numberLine:           return "过量、滴定、共存，画条数轴分段讨论"
         case .hessCycle:            return "状态函数只看始末，设计循环绕开未知"
         case .orbitalSymmetry:      return "电子排布与对称性决定性质"
         }
@@ -156,6 +174,12 @@ enum ChemWeapon: String, Codable, CaseIterable, Identifiable {
         case .crossMethod:          return "xmark"
         case .relationMethod:       return "link"
         case .averageMethod:        return "equal.circle"
+        case .threeStage:           return "tablecells"
+        case .equivalentEquilibrium: return "arrow.triangle.swap"
+        case .graphReading:         return "chart.xyaxis.line"
+        case .assignValue:          return "number.square"
+        case .valenceConvergence:   return "arrow.down.right.and.arrow.up.left"
+        case .numberLine:           return "ruler"
         case .hessCycle:            return "arrow.triangle.2.circlepath.circle"
         case .orbitalSymmetry:      return "circle.hexagongrid"
         }

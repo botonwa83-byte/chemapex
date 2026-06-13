@@ -9,8 +9,135 @@ enum DescentCases {
         var list = batch1
         list += batch2
         list += batch3
+        list += batch4
         return list
     }()
+
+    // MARK: 新武器对决（三段式/赋值/价态归中/数轴分段）
+
+    private static let batch4: [ChemProblem] = [
+
+        // 三段式法 · 平衡转化率
+        ChemProblem(
+            id: "boss_threestage", stage: .senior, topic: .equilibrium,
+            content: "一定温度下，向 2 L 密闭容器中充入 4 mol N₂ 和 4 mol H₂，发生 N₂+3H₂⇌2NH₃，平衡时测得 NH₃ 为 2 mol。则 H₂ 的转化率为？",
+            options: ["25%", "50%", "75%", "37.5%"],
+            answerIndex: 2,
+            explanation: "三段式：生成 2 mol NH₃，由系数转化 H₂ = 2×(3/2)=3 mol。H₂ 转化率 = 3/4 = 75%。",
+            nodeId: "p3", weapon: .threeStage,
+            dualSolution: DualSolution(
+                standard: SolutionPath(
+                    title: "常规解：脑子里硬凑各量",
+                    steps: [
+                        "生成 2 mol NH₃，想 N₂、H₂ 各消耗多少…",
+                        "容易把系数比、转化量、平衡量记混",
+                        "数据一多就乱",
+                    ],
+                    timeMinutes: 3),
+                descent: SolutionPath(
+                    title: "三段式：起始-转化-平衡列表",
+                    steps: [
+                        "起始(mol)  N₂ 4   H₂ 4   NH₃ 0",
+                        "转化(mol)  N₂ 1   H₂ 3   NH₃ 2（按系数 1:3:2）",
+                        "平衡(mol)  N₂ 3   H₂ 1   NH₃ 2",
+                        "H₂ 转化率 = 转化/起始 = 3/4 = 75% ✓",
+                    ],
+                    timeMinutes: 1),
+                weapon: .threeStage,
+                principle: "原理：可逆反应里三种物质的量同时在变，凭脑子追踪极易出错。三段式把「起始、转化、平衡」三行对齐排开，其中转化量严格按化学计量数成比例——这是反应定量进行的必然。把抽象的「变化」变成一张表，转化率、平衡常数、浓度全都一目了然，是平衡/电离/水解计算的通用框架。",
+                keyInsight: "平衡计算先列三段式：转化量按系数比，平衡量=起始±转化，再求所问。",
+                plainTalk: "别在脑子里硬算。画三行：一开始多少、中间变了多少、最后剩多少。中间「变了多少」严格按方程式系数 1:3:2 配。氢气一开始 4 摩尔、变了 3 摩尔，转化率就是 3/4。")),
+
+        // 赋值法 · 比例求相对密度
+        ChemProblem(
+            id: "boss_assign", stage: .senior, topic: .mole,
+            content: "同温同压下，体积比为 1 : 1 的 CH₄ 和 CO₂ 组成的混合气体，对 H₂ 的相对密度为？（CH₄ 16、CO₂ 44、H₂ 2）",
+            options: ["7.5", "15", "30", "22"],
+            answerIndex: 1,
+            explanation: "赋值各 1 mol：平均摩尔质量 =(16+44)/2 = 30 g/mol，对 H₂ 的相对密度 = 30/2 = 15。",
+            nodeId: "n03", weapon: .assignValue,
+            dualSolution: DualSolution(
+                standard: SolutionPath(
+                    title: "常规解：设比例符号运算",
+                    steps: [
+                        "设 CH₄ 为 a mol、CO₂ 为 a mol（体积比 1:1）",
+                        "总质量 16a+44a=60a，总物质的量 2a",
+                        "平均 M = 60a/2a = 30，相对密度 = 30/2 = 15",
+                    ],
+                    timeMinutes: 2),
+                descent: SolutionPath(
+                    title: "赋值法：各设 1 mol 直接算",
+                    steps: [
+                        "体积比 1:1 → 直接设各 1 mol",
+                        "平均 M =(16+44)/2 = 30 → 相对密度 30/2 = 15 ✓",
+                    ],
+                    timeMinutes: 0.5),
+                weapon: .assignValue,
+                principle: "原理：相对密度、质量分数、平均摩尔质量这类「比值型」结果，只与组分的比例有关，与具体取多少无关。所以题目只给比例时，干脆给它赋一个最方便的具体值（这里各取 1 mol），把抽象的字母运算变成纯数字计算——换任何值结果都一样，这是比值的数学性质保证的。",
+                keyInsight: "只给比例没数据的题，大胆设特殊值（常设 1 mol/100 g），结果与所设值无关。",
+                plainTalk: "题目只说「1 比 1」，那就当真各拿 1 摩尔来算，省得带着字母 a 绕。算出平均分子量 30，是氢气的 15 倍。你设 2 摩尔、10 摩尔，答案都一样——比值不挑数。")),
+
+        // 价态归中 · H₂S + SO₂
+        ChemProblem(
+            id: "boss_converge", stage: .senior, topic: .nonmetals,
+            content: "反应 2H₂S + SO₂ → 3S↓ + 2H₂O 中，被氧化与被还原的硫原子个数之比为？",
+            options: ["2 : 1", "1 : 2", "3 : 1", "1 : 1"],
+            answerIndex: 0,
+            explanation: "H₂S 中 S 为 −2（升到 0，被氧化，2 个）；SO₂ 中 S 为 +4（降到 0，被还原，1 个）。被氧化:被还原 = 2:1。电子守恒验证：2×2=4=1×4 ✓。",
+            nodeId: "s", weapon: .valenceConvergence,
+            dualSolution: DualSolution(
+                standard: SolutionPath(
+                    title: "常规解：逐个标价态数电子",
+                    steps: [
+                        "H₂S 中 S：−2；SO₂ 中 S：+4；产物 S：0",
+                        "2 个 H₂S 的 S：−2→0，各失 2e，共失 4e（被氧化）",
+                        "1 个 SO₂ 的 S：+4→0，得 4e（被还原）",
+                        "被氧化:被还原 = 2:1",
+                    ],
+                    timeMinutes: 3),
+                descent: SolutionPath(
+                    title: "价态归中：高低价向中间靠",
+                    steps: [
+                        "同是硫：−2（H₂S，低）和 +4（SO₂，高）向中间归到 0（S）",
+                        "−2 的升上来（被氧化）、+4 的降下去（被还原）",
+                        "由电子守恒 2×2=1×4，个数比 2:1 ✓",
+                    ],
+                    timeMinutes: 1),
+                weapon: .valenceConvergence,
+                principle: "原理：同种元素的高价态和低价态相遇，会向中间价态「归中」——低价被氧化（升）、高价被还原（降），且「只靠拢不交叉」（产物价态不会越过对方）。所以一眼就知道 H₂S 的硫被氧化、SO₂ 的硫被还原，谁也不会变成对方那一端。再用电子守恒一配，个数比立现。",
+                keyInsight: "同种元素高低价相遇必归中：低价被氧化、高价被还原，只靠拢不交叉。",
+                plainTalk: "硫有两种身份：H₂S 里是 −2（穷），SO₂ 里是 +4（富）。俩一见面，穷的往上爬、富的往下走，最后都停在中间的 0（单质硫）。穷的爬 2 格、富的走 4 格，按电子账算个数就是 2:1。")),
+
+        // 数轴分段 · CO₂ 通入 NaOH
+        ChemProblem(
+            id: "boss_numberline", stage: .senior, topic: .metals,
+            content: "向含 3 mol NaOH 的溶液中通入 2 mol CO₂，充分反应后所得溶液中的溶质是？",
+            options: ["只有 Na₂CO₃", "只有 NaHCO₃", "Na₂CO₃ 和 NaHCO₃", "NaOH 和 Na₂CO₃"],
+            answerIndex: 2,
+            explanation: "n(NaOH)/n(CO₂)=3/2=1.5，介于 1 与 2 之间，产物是 Na₂CO₃ 与 NaHCO₃ 的混合。设 Na₂CO₃ x、NaHCO₃ y：Na 2x+y=3、C x+y=2，解得 x=y=1。",
+            nodeId: "na", weapon: .numberLine,
+            dualSolution: DualSolution(
+                standard: SolutionPath(
+                    title: "常规解：设两种盐解方程",
+                    steps: [
+                        "设产物 Na₂CO₃ x mol、NaHCO₃ y mol",
+                        "钠守恒 2x+y=3；碳守恒 x+y=2",
+                        "解得 x=1、y=1 → 两者共存",
+                    ],
+                    timeMinutes: 3),
+                descent: SolutionPath(
+                    title: "数轴分段：看 NaOH/CO₂ 比值落在哪段",
+                    steps: [
+                        "画数轴：n(NaOH)/n(CO₂) 比值",
+                        "≥2 全是 Na₂CO₃；=1 全是 NaHCO₃；1~2 之间两者共存",
+                        "3/2=1.5 落在 1~2 之间 → Na₂CO₃ 和 NaHCO₃ ✓",
+                    ],
+                    timeMinutes: 0.5),
+                weapon: .numberLine,
+                principle: "原理：CO₂ 通入 NaOH，产物随两者用量之比连续变化——碱足够多（比值≥2）只生成正盐 Na₂CO₃，碱不足（比值≤1）只生成酸式盐 NaHCO₃，介于中间则两者共存。把这个比值画在数轴上、标出 1 和 2 两个临界点，落在哪一段产物就一目了然，不必每次都列方程。",
+                keyInsight: "「少量/过量」产物问题，画数轴标临界点，看比值落在哪段直接读结论。",
+                plainTalk: "氢氧化钠和二氧化碳的「比例」决定产物：碱多就生成碳酸钠，碱少就生成碳酸氢钠，比例卡在 1 到 2 之间就两个都有。3 比 2 等于 1.5，正好夹在中间，所以两种盐都生成。")),
+    ]
 
     private static let batch1: [ChemProblem] = [
 

@@ -8,6 +8,8 @@ enum WeaponGuideData {
     static let all: [WeaponGuide] = [
         electronConservation, differenceMethod, crossMethod, chargeConservation,
         extremeValue, relationMethod, atomConservation, averageMethod,
+        threeStage, equivalentEquilibrium, graphReading, assignValue,
+        valenceConvergence, numberLine,
         massConservation, valenceRule, solubilityCurve,
         hessCycle, orbitalSymmetry,
     ]
@@ -156,6 +158,108 @@ enum WeaponGuideData {
             "④ 常与十字交叉法、极值法配合",
         ],
         exampleCaseId: "boss_average")
+
+    // MARK: 三段式法（平衡/电离/水解计算框架）
+
+    private static let threeStage = WeaponGuide(
+        weapon: .threeStage,
+        tagline: "平衡计算的万能模板：起始-转化-平衡三行排开",
+        whenToUse: [
+            "化学平衡、电离平衡、水解平衡求浓度/转化率/平衡常数",
+            "已知起始量和某一平衡量，求其他量",
+        ],
+        steps: [
+            "① 写出可逆反应方程式，列「起始、转化、平衡」三行",
+            "② 转化量按系数比填（设一个未知数 x）",
+            "③ 平衡量 = 起始量 ± 转化量",
+            "④ 代入已知的平衡量解出 x，再求转化率 α=转化量/起始量 或 K",
+        ],
+        exampleCaseId: "boss_threestage")
+
+    // MARK: 等效平衡法
+
+    private static let equivalentEquilibrium = WeaponGuide(
+        weapon: .equivalentEquilibrium,
+        tagline: "换一种投料方式，平衡其实是同一个",
+        whenToUse: [
+            "两种不同投料，判断是否达到同一平衡状态",
+            "把生成物「倒推」回反应物，比较是否等效",
+        ],
+        steps: [
+            "① 把所有投料按方程式「一边倒」换算成同一边的物质",
+            "② 恒温恒容：换算后各物质的量完全相同 → 等效平衡",
+            "③ 恒温恒压：换算后各物质的量成相同比例即可 → 等效",
+            "④ 等效平衡各组分的百分含量、转化率相同",
+        ],
+        exampleCaseId: nil)
+
+    // MARK: 图像分析法
+
+    private static let graphReading = WeaponGuide(
+        weapon: .graphReading,
+        tagline: "先看轴、再看点、后看拐点——图像题的破译术",
+        whenToUse: [
+            "平衡移动图（速率-时间、含量-温度/压强）、溶解度曲线、滴定曲线",
+            "任何带坐标图的选择/填空题",
+        ],
+        steps: [
+            "① 看清横纵坐标各代表什么量、单位",
+            "② 找特殊点：起点、终点、交点、拐点、最高/最低点的含义",
+            "③ 看趋势：上升/下降、陡/缓，对应什么变化",
+            "④ 「先拐先平、数值大」判断条件高低（如温度、催化剂）",
+        ],
+        exampleCaseId: nil)
+
+    // MARK: 赋值法（设特殊值）
+
+    private static let assignValue = WeaponGuide(
+        weapon: .assignValue,
+        tagline: "比例题没数据？设个特殊值，抽象瞬间变具体",
+        whenToUse: [
+            "题目只给比例、百分数、没有具体数值",
+            "求质量分数、体积比、平均值等「比值型」结果",
+        ],
+        steps: [
+            "① 给未知量设一个方便计算的特殊值（常设 1 mol 或 100 g）",
+            "② 按设定值算出各物理量",
+            "③ 求比值/百分数（结果与所设值无关，故可任意设）",
+            "④ 验证：换一个值结果应相同",
+        ],
+        exampleCaseId: "boss_assign")
+
+    // MARK: 价态归中规律
+
+    private static let valenceConvergence = WeaponGuide(
+        weapon: .valenceConvergence,
+        tagline: "同种元素相邻价态相遇，只靠拢不交叉",
+        whenToUse: [
+            "同种元素的高价态与低价态物质反应（归中反应）",
+            "判断产物价态、配平、计算转移电子数",
+        ],
+        steps: [
+            "① 找出同种元素的两个价态（高价、低价）",
+            "② 归中：两者向中间靠拢，生成中间价态产物",
+            "③ 「只靠拢、不交叉」——高价不会降到比低价还低",
+            "④ 据此定产物价态，再用电子守恒算量",
+        ],
+        exampleCaseId: "boss_converge")
+
+    // MARK: 数轴分段法
+
+    private static let numberLine = WeaponGuide(
+        weapon: .numberLine,
+        tagline: "过量、滴定、共存，画条数轴分段讨论",
+        whenToUse: [
+            "一种物质逐渐加入另一种，产物随用量变化（如 CO₂ 通入 NaOH、盐酸滴入碳酸钠）",
+            "「少量/过量」分段、图像题分段、离子共存的范围讨论",
+        ],
+        steps: [
+            "① 画一条数轴，横轴是加入物质的量",
+            "② 标出各「临界点」（恰好完全反应的量）",
+            "③ 分段写出每一段的反应和产物",
+            "④ 对照所给条件落在哪一段，得出结论",
+        ],
+        exampleCaseId: "boss_numberline")
 
     // MARK: 质量守恒（初中基础武器）
 
