@@ -16,6 +16,7 @@ enum EquationLibrary {
         list += principles
         list += organic
         list += applications
+        list += supplement
         return list
     }()
 
@@ -559,5 +560,95 @@ enum EquationLibrary {
             phenomenon: "焦炭还原石英砂",
             examPoint: "硅的工业制备第一步；后续提纯经 SiCl₄ 蒸馏再还原",
             trap: "产物是 CO 不是 CO₂——高温下碳过量，按 CO 配平"),
+    ]
+
+    // MARK: 补充篇（高频气体制取 / 消去 / 置换 / 分解）
+
+    private static let supplement: [ChemEquation] = [
+        ChemEquation(
+            id: "eq_x01", stage: .junior, topic: .phenomena,
+            formula: "2H₂O₂ → 2H₂O + O₂↑",
+            condition: "MnO₂ 催化（常温）",
+            phenomenon: "产生使带火星木条复燃的气体",
+            examPoint: "实验室制氧气的另一法；MnO₂ 作催化剂（不是反应物）",
+            trap: "MnO₂ 在此是催化剂、在制 Cl₂ 时是氧化剂——同一物质两种角色"),
+        ChemEquation(
+            id: "eq_x02", stage: .junior, topic: .phenomena,
+            formula: "2KClO₃ → 2KCl + 3O₂↑",
+            condition: "MnO₂ 催化、Δ",
+            phenomenon: "固体加热产生氧气",
+            examPoint: "实验室制氧气的第三法（氯酸钾分解）",
+            trap: "MnO₂ 是催化剂，加它是为了降低分解温度、加快速率"),
+        ChemEquation(
+            id: "eq_x03", stage: .junior, topic: .massConservation,
+            formula: "C + 2CuO → 2Cu + CO₂↑",
+            condition: "高温",
+            phenomenon: "黑色粉末逐渐变红，产生使石灰水变浑浊的气体",
+            examPoint: "碳的还原性；木炭还原氧化铜",
+            trap: "碳作还原剂、CuO 作氧化剂；产物是 CO₂（碳不足量时也可能生成 CO）"),
+        ChemEquation(
+            id: "eq_x04", stage: .junior, topic: .phenomena,
+            formula: "3Fe + 2O₂ → Fe₃O₄",
+            condition: "点燃",
+            phenomenon: "剧烈燃烧、火星四射，生成黑色固体",
+            examPoint: "铁在纯氧中燃烧（不是生成 Fe₂O₃）",
+            trap: "铁在 O₂ 中燃烧产物是 Fe₃O₄；与 Cl₂ 反应才生成 FeCl₃"),
+        ChemEquation(
+            id: "eq_x05", stage: .senior, topic: .metals,
+            formula: "2Mg + CO₂ → 2MgO + C",
+            condition: "点燃",
+            phenomenon: "镁在二氧化碳中剧烈燃烧，生成白色固体并附黑色碳",
+            examPoint: "镁的强还原性；CO₂ 不能扑灭镁/活泼金属火灾",
+            trap: "活泼金属着火不能用 CO₂ 灭火器，要用沙土"),
+        ChemEquation(
+            id: "eq_x06", stage: .senior, topic: .nonmetals,
+            formula: "CO₂ + C → 2CO",
+            condition: "高温",
+            phenomenon: "吸热反应（高炉炼铁中产生还原剂 CO）",
+            examPoint: "归中反应（C 0 价、C +4 价 → 都变 +2）；典型吸热反应",
+            trap: "这是吸热反应；高炉中正是它持续供应还原剂 CO"),
+        ChemEquation(
+            id: "eq_x07", stage: .senior, topic: .metals,
+            formula: "2Al(OH)₃ → Al₂O₃ + 3H₂O",
+            condition: "Δ（灼烧）",
+            phenomenon: "白色固体受热分解",
+            examPoint: "工业制 Al₂O₃ 的最后一步（再电解熔融炼铝）",
+            trap: "Al(OH)₃ 既溶于强酸强碱（两性），又受热分解"),
+        ChemEquation(
+            id: "eq_x08", stage: .senior, topic: .metals,
+            formula: "2Fe(OH)₃ → Fe₂O₃ + 3H₂O",
+            condition: "Δ（灼烧）",
+            phenomenon: "红褐色固体受热分解为红棕色 Fe₂O₃",
+            examPoint: "含铁化合物最终灼烧都得 Fe₂O₃（原子守恒计算常用）"),
+        ChemEquation(
+            id: "eq_x09", stage: .senior, topic: .organic,
+            formula: "CH₃CH₂OH → CH₂=CH₂↑ + H₂O",
+            condition: "浓硫酸、170℃",
+            phenomenon: "实验室制乙烯",
+            examPoint: "醇的消去反应；浓硫酸作催化剂兼脱水剂",
+            trap: "170℃ 消去成乙烯；140℃ 则分子间脱水成乙醚——温度决定产物"),
+        ChemEquation(
+            id: "eq_x10", stage: .senior, topic: .metals,
+            formula: "Cu + 2AgNO₃ → Cu(NO₃)₂ + 2Ag",
+            condition: "常温",
+            phenomenon: "铜丝表面覆盖银白色物质，溶液变蓝",
+            examPoint: "金属活动性 Cu > Ag；置换反应",
+            trap: "活动性靠前的铜置换出靠后的银",
+            ionic: "Cu + 2Ag⁺ → Cu²⁺ + 2Ag"),
+        ChemEquation(
+            id: "eq_x11", stage: .junior, topic: .acidBaseSalt,
+            formula: "NaHCO₃ + HCl → NaCl + H₂O + CO₂↑",
+            condition: "常温",
+            phenomenon: "迅速产生大量气泡",
+            examPoint: "小苏打与酸反应（泡腾片、治胃酸过多原理）",
+            trap: "NaHCO₃ 与酸反应比 Na₂CO₃ 更剧烈、更快",
+            ionic: "HCO₃⁻ + H⁺ → H₂O + CO₂↑"),
+        ChemEquation(
+            id: "eq_x12", stage: .senior, topic: .organic,
+            formula: "CaC₂ + 2H₂O → Ca(OH)₂ + C₂H₂↑",
+            condition: "常温",
+            phenomenon: "电石与水反应放出乙炔气体",
+            examPoint: "实验室制乙炔；乙炔用于氧炔焰焊接切割",
+            trap: "用饱和食盐水代替水以控制反应速率（电石反应很剧烈）"),
     ]
 }
