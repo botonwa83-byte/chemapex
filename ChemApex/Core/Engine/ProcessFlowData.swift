@@ -4,7 +4,8 @@ import Foundation
 // 红线：每步操作、试剂、产物、顺序理由必须符合教材标准；方程式配平核对。
 
 enum ProcessFlowData {
-    static let all: [ProcessFlow] = [crudeSalt, kelpIodine, seawaterBromine, bauxite, ethyleneRoute]
+    static let all: [ProcessFlow] = [crudeSalt, kelpIodine, seawaterBromine, bauxite, ethyleneRoute,
+                                     contactSulfuric, solvaySoda]
 
     // MARK: 粗盐提纯（除杂顺序经典题）
 
@@ -183,4 +184,70 @@ enum ProcessFlowData {
                     explanation: "酯化可逆，浓硫酸既加快反应（催化）又吸收生成的水使平衡正移（吸水）。同位素 ¹⁸O 示踪证明：酸脱羟基、醇脱氢。")),
         ],
         examPoint: "官能团转化主线：烯烃 →(加成) 醇 →(氧化) 醛 →(氧化) 羧酸 →(酯化) 酯。乙醇是枢纽——向上氧化成酸，横向酯化成酯。记住每步的反应类型和条件就掌握了有机合成的骨架。")
+
+    // MARK: 接触法制硫酸
+
+    private static let contactSulfuric = ProcessFlow(
+        id: "pf_h2so4", title: "接触法制硫酸", stage: .senior, topic: .nonmetals,
+        overview: "以黄铁矿（FeS₂）为原料，经「三炉一塔」工业制硫酸。看硫元素如何一路升价。",
+        nodes: [
+            ProcessNode(id: "su_n0", substance: "黄铁矿 FeS₂"),
+            ProcessNode(id: "su_n1", substance: "SO₂\n（炉气，需净化）"),
+            ProcessNode(id: "su_n2", substance: "SO₃"),
+            ProcessNode(id: "su_n3", substance: "H₂SO₄", highlight: true),
+        ],
+        steps: [
+            ProcessStep(id: "su_s0", operation: "沸腾炉灼烧（粉碎矿石）",
+                sideNote: "4FeS₂+11O₂ →(高温) 2Fe₂O₃+8SO₂。矿石粉碎、用沸腾炉是为了增大接触面积、加快反应。",
+                quiz: ProcessQuiz(prompt: "矿石要先粉碎成细粒，目的是？",
+                    options: ["增大接触面积、加快反应、使氧化更充分", "降低反应温度", "防止矿石爆炸", "便于运输"],
+                    answerIndex: 0,
+                    explanation: "粉碎增大固体反应物的接触面积，加快灼烧速率、提高原料利用率。这是固气反应提速的通用手段（与铝热剂、催化剂载体同理）。")),
+            ProcessStep(id: "su_s1", operation: "接触室催化氧化",
+                sideNote: "2SO₂+O₂ ⇌(催化剂 V₂O₅, Δ) 2SO₃。可逆反应，需控制温度并循环未反应气体。",
+                quiz: ProcessQuiz(prompt: "接触室中促使 SO₂ 充分转化，措施是？",
+                    options: ["用催化剂并将未反应气体循环利用", "升到很高温度", "加大压强到极限", "通入大量水蒸气"],
+                    answerIndex: 0,
+                    explanation: "该反应放热、可逆，温度过高平衡逆移。工业上用 V₂O₅ 催化、适宜温度、并把未转化的 SO₂ 循环回接触室——速率与平衡的折中。")),
+            ProcessStep(id: "su_s2", operation: "吸收塔用 98.3% 浓硫酸吸收",
+                sideNote: "SO₃+H₂O→H₂SO₄。但工业上用浓硫酸吸收 SO₃（再兑水），不直接用水。",
+                quiz: ProcessQuiz(prompt: "吸收 SO₃ 为什么用浓硫酸而不用水？",
+                    options: ["用水会形成酸雾，吸收不完全", "浓硫酸更便宜", "水不与 SO₃ 反应", "防止 SO₃ 分解"],
+                    answerIndex: 0,
+                    explanation: "SO₃ 直接遇水放出大量热，水汽与 SO₃ 形成酸雾（小液滴），既吸收不完全又污染。改用浓硫酸吸收 SO₃ 生成发烟硫酸，再稀释，安全高效。")),
+        ],
+        examPoint: "三炉一塔：沸腾炉（制 SO₂）→ 接触室（催化氧化 SO₃）→ 吸收塔（浓硫酸吸收）。两大采分点：粉碎增大接触面积、SO₃ 用浓硫酸吸收防酸雾。硫元素 −1/+2 → +4 → +6 一路升价。")
+
+    // MARK: 侯氏制碱法
+
+    private static let solvaySoda = ProcessFlow(
+        id: "pf_soda", title: "侯氏制碱法", stage: .senior, topic: .metals,
+        overview: "侯德榜改进的联合制碱法：以饱和食盐水、氨、CO₂ 为原料制纯碱，副产氮肥 NH₄Cl。",
+        nodes: [
+            ProcessNode(id: "so_n0", substance: "饱和食盐水"),
+            ProcessNode(id: "so_n1", substance: "氨盐水\n（NaCl + NH₃）"),
+            ProcessNode(id: "so_n2", substance: "NaHCO₃ 晶体\n（+ 母液 NH₄Cl）"),
+            ProcessNode(id: "so_n3", substance: "Na₂CO₃（纯碱）", highlight: true),
+        ],
+        steps: [
+            ProcessStep(id: "so_s0", operation: "先通入 NH₃",
+                sideNote: "氨极易溶，使溶液呈碱性，为后续大量吸收 CO₂ 创造条件。",
+                quiz: ProcessQuiz(prompt: "为什么先通 NH₃ 而不是先通 CO₂？",
+                    options: ["NH₃ 极易溶、先造碱性环境，CO₂ 才能大量吸收", "NH₃ 比 CO₂ 轻", "CO₂ 有毒", "先通 CO₂ 会爆炸"],
+                    answerIndex: 0,
+                    explanation: "CO₂ 在水中溶解度小，直接通吸收很少。先通极易溶的 NH₃ 使溶液呈碱性，能大量吸收 CO₂ 生成 HCO₃⁻——「先氨后碳」是侯氏制碱的关键顺序。")),
+            ProcessStep(id: "so_s1", operation: "通入 CO₂，析出 NaHCO₃",
+                sideNote: "NaCl+NH₃+CO₂+H₂O→NaHCO₃↓+NH₄Cl。NaHCO₃ 溶解度最小，先结晶析出。",
+                quiz: ProcessQuiz(prompt: "四种产物中为什么是 NaHCO₃ 先析出？",
+                    options: ["NaHCO₃ 在该体系中溶解度最小", "NaHCO₃ 密度最大", "NaHCO₃ 不溶于水", "NH₄Cl 会挥发"],
+                    answerIndex: 0,
+                    explanation: "同温下 NaHCO₃ 的溶解度在 NaCl、NH₄Cl、NaHCO₃ 中最小，故率先达到饱和、结晶析出，过滤即可分离。NH₄Cl 留在母液中。")),
+            ProcessStep(id: "so_s2", operation: "过滤、煅烧",
+                sideNote: "2NaHCO₃ →(Δ) Na₂CO₃+H₂O↑+CO₂↑。煅烧 NaHCO₃ 得纯碱，放出的 CO₂ 可循环利用。",
+                quiz: ProcessQuiz(prompt: "煅烧 NaHCO₃ 放出的 CO₂ 如何处理？",
+                    options: ["循环回通气工序，重复利用", "直接排空", "通入石灰水", "用于灭火"],
+                    answerIndex: 0,
+                    explanation: "煅烧产生的 CO₂ 通回前面的吸收工序循环利用，提高原子利用率。母液中的 NH₄Cl 加 NaCl 冷却结晶分离，作氮肥——这正是侯氏制碱「联合」与「不浪费」的精髓。")),
+        ],
+        examPoint: "侯氏制碱三步：通氨 → 通 CO₂ 析出 NaHCO₃ → 煅烧得 Na₂CO₃。三大采分点：先氨后碳（CO₂ 才吸得多）、NaHCO₃ 溶解度最小先析出、CO₂ 循环 + 副产 NH₄Cl 氮肥。侯德榜打破了国外技术封锁。")
 }
