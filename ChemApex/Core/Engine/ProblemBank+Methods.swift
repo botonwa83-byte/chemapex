@@ -115,7 +115,27 @@ extension ProblemBank {
             options: ["0.3 mol", "0.4 mol", "0.5 mol", "0.7 mol"],
             answerIndex: 0,
             explanation: "电荷守恒：正电荷 0.3×1+0.2×2 = 0.7 mol，负电荷 0.4×1+n(NO₃⁻)×1 = 0.7，解得 n(NO₃⁻) = 0.3 mol。溶液整体电中性。",
-            nodeId: "n04", weapon: .chargeConservation),
+            nodeId: "n04", weapon: .chargeConservation,
+            dualSolution: DualSolution(
+                standard: SolutionPath(
+                    title: "常规解：拆成盐去凑",
+                    steps: [
+                        "想 K⁺、Mg²⁺、Cl⁻、NO₃⁻ 由哪些盐组成",
+                        "设若干盐的物质的量、列方程组",
+                        "未知数多、要讨论——绕远",
+                    ],
+                    timeMinutes: 4),
+                descent: SolutionPath(
+                    title: "电荷守恒：正负电荷拉平",
+                    steps: [
+                        "正电荷：0.3×1 + 0.2×2 = 0.7 mol",
+                        "负电荷：0.4 + n(NO₃⁻) = 0.7 → 0.3 mol ✓",
+                    ],
+                    timeMinutes: 1),
+                weapon: .chargeConservation,
+                principle: "原理：溶液宏观电中性是物理定律——正电荷总量永远等于负电荷总量，与这些离子来自哪些盐毫无关系。所以哪怕完全不知道溶液怎么配出来的，也能凭「正=负」这一条直接解出缺失的离子。",
+                keyInsight: "求溶液里缺的那个离子，正负电荷一拉平就出来，不必管它来自哪种盐。",
+                plainTalk: "一杯溶液不带电，正电荷加起来 0.7，负电荷里氯离子只占 0.4，剩下 0.3 必须由硝酸根补上，否则这杯水就「带电」了——那不可能。")),
 
         // MARK: 原子守恒
         ChemProblem(
@@ -160,7 +180,28 @@ extension ProblemBank {
             options: ["0.2 mol", "0.6 mol", "0.3 mol", "0.9 mol"],
             answerIndex: 1,
             explanation: "n(Al)=5.4/27=0.2 mol，Al→Al³⁺ 每个失 3 电子，转移电子 0.2×3 = 0.6 mol。求转移电子数只需盯还原剂失电子总数，不必写完整方程式。",
-            nodeId: "n05", weapon: .electronConservation),
+            nodeId: "n05", weapon: .electronConservation,
+            dualSolution: DualSolution(
+                standard: SolutionPath(
+                    title: "常规解：配平方程式再看电子",
+                    steps: [
+                        "Al + 4HNO₃(稀) → Al(NO₃)₃ + NO↑ + 2H₂O",
+                        "标价态：Al 0→+3、N +5→+2",
+                        "1 mol Al 转移 3 mol 电子",
+                        "0.2 mol Al → 0.6 mol 电子",
+                    ],
+                    timeMinutes: 3),
+                descent: SolutionPath(
+                    title: "电子守恒：只数还原剂失电子",
+                    steps: [
+                        "Al → Al³⁺，每个失 3 电子",
+                        "0.2 mol × 3 = 0.6 mol 电子 ✓",
+                    ],
+                    timeMinutes: 0.5),
+                weapon: .electronConservation,
+                principle: "原理：转移电子总数就等于还原剂失去的电子总数（= 氧化剂得到的，二者守恒）。铝失多少电子，只由它的价态变化（0→+3）和物质的量决定，与硝酸是浓是稀、生成 NO 还是 NO₂ 都无关。所以盯住还原剂一端就够，不必配平整个方程式。",
+                keyInsight: "求转移电子数，盯还原剂：价态变化 × 物质的量，一乘就得。",
+                plainTalk: "每个铝原子要交出 3 个电子才能变成 Al³⁺。有 0.2 摩尔铝，一共交出 0.6 摩尔电子。至于这些电子被谁收走、生成什么气体，跟「交了多少」没关系。")),
         ChemProblem(
             id: "m_elec_02", stage: .senior, topic: .redox,
             content: "铁与足量氯气完全反应。若有 0.3 mol 电子转移，则参加反应的铁为？（Fe→FeCl₃）",
@@ -183,7 +224,28 @@ extension ProblemBank {
             options: ["0.1 mol", "0.2 mol", "0.3 mol", "0.6 mol"],
             answerIndex: 2,
             explanation: "n(Fe)=11.2/56=0.2 mol。由方程式 2Fe ~ 3CO，关系式 n(CO)=0.2×3/2 = 0.3 mol。多步或一步反应均可用关系式按系数比直接换算。",
-            nodeId: "jr_metal", weapon: .relationMethod),
+            nodeId: "jr_metal", weapon: .relationMethod,
+            dualSolution: DualSolution(
+                standard: SolutionPath(
+                    title: "常规解：按方程式逐步换算",
+                    steps: [
+                        "3CO + Fe₂O₃ →(高温) 2Fe + 3CO₂",
+                        "n(Fe)=11.2/56=0.2 mol",
+                        "由系数 2Fe ~ 3CO，n(CO)=0.2 × 3/2",
+                        "= 0.3 mol",
+                    ],
+                    timeMinutes: 2),
+                descent: SolutionPath(
+                    title: "关系式法：CO 与 Fe 直接挂钩",
+                    steps: [
+                        "关系式 3CO ~ 2Fe（系数比锁定）",
+                        "0.2 mol Fe × 3/2 = 0.3 mol CO ✓",
+                    ],
+                    timeMinutes: 1),
+                weapon: .relationMethod,
+                principle: "原理：方程式的系数比本质是参加反应的微粒个数比，它是固定的。只要确定首尾两种物质（CO 和 Fe）的系数比 3:2，就能跳过中间一切，直接由 Fe 的量算 CO。多步连续反应也一样——只要找到贯穿首尾的守恒桥，关系式一拉到底。",
+                keyInsight: "由产物的量反求原料：找到两者的系数比（关系式），一步换算。",
+                plainTalk: "方程式写着「3 个 CO 换 2 个铁」，这是死规矩。要 0.2 摩尔铁，按 3:2 的比例，就得 0.3 摩尔 CO，不用管中间 CO₂ 怎么跑。")),
 
         // MARK: 电荷守恒（补强靶场）
         ChemProblem(
@@ -201,6 +263,26 @@ extension ProblemBank {
             options: ["0.6 mol", "1.2 mol", "0.4 mol", "0.8 mol"],
             answerIndex: 1,
             explanation: "起始总量 3 mol，反应后 2.4 mol，减少 0.6 mol。每生成 2 mol SO₃ 气体总量减少 1 mol（3 mol 气体变 2 mol）。减 0.6 → 生成 SO₃ 1.2 mol。气体物质的量「差量法」。",
-            nodeId: "s", weapon: .differenceMethod),
+            nodeId: "s", weapon: .differenceMethod,
+            dualSolution: DualSolution(
+                standard: SolutionPath(
+                    title: "常规解：设转化量列三段式",
+                    steps: [
+                        "设生成 SO₃ 为 2a mol，则消耗 SO₂ 2a、O₂ a",
+                        "反应后总量：(2−2a)+(1−a)+2a = 3−a",
+                        "3−a = 2.4 → a = 0.6，SO₃ = 2a = 1.2 mol",
+                    ],
+                    timeMinutes: 4),
+                descent: SolutionPath(
+                    title: "差量法：盯气体总量的减少",
+                    steps: [
+                        "每生成 2 mol SO₃，气体总量减少 1 mol（3→2）",
+                        "实际减少 3−2.4 = 0.6 mol → SO₃ = 0.6×2 = 1.2 mol ✓",
+                    ],
+                    timeMinutes: 1),
+                weapon: .differenceMethod,
+                principle: "原理：可逆反应里 SO₂、O₂、SO₃ 各自的量都在变，单独追踪很麻烦。但「气体总物质的量的减少」与「反应进行的程度」严格成正比——因为方程式系数定死了「每生成 2 mol SO₃ 总量必减 1 mol」。抓住这个不变的比例关系，一步就从总量变化算出产物。",
+                keyInsight: "气体反应前后分子数变化时，「总量的差」是直接量出反应进度的尺子。",
+                plainTalk: "三个气体分子撞一撞变成两个，每反应一轮就「少一个」。现在总共少了 0.6 个单位，说明反应了 0.6 轮，每轮产出 2 个 SO₃，所以 1.2 摩尔。")),
     ]
 }
