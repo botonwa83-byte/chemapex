@@ -18,6 +18,7 @@ struct AscentPathView: View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: Spacing.lg) {
+                    examCountdown
                     todayBattle
                     statusHeader
                     pathHeader
@@ -42,6 +43,28 @@ struct AscentPathView: View {
             .background(Color.apexBackground.ignoresSafeArea())
             .navigationTitle("指挥中心")
             .sheet(isPresented: $showPaywall) { PaywallView() }
+        }
+    }
+
+    // MARK: 距高考倒计时
+
+    @ViewBuilder
+    private var examCountdown: some View {
+        if let days = profile.daysToExam {
+            HStack(spacing: Spacing.md) {
+                Image(systemName: "flag.checkered").font(.title3).foregroundColor(.apexLava)
+                VStack(alignment: .leading, spacing: 1) {
+                    Text("距高考").font(.caption2).foregroundColor(.secondary)
+                    HStack(alignment: .firstTextBaseline, spacing: 4) {
+                        Text("\(days)").font(AppFont.bigStat(28)).foregroundColor(.apexLava)
+                        Text("天").font(.caption).foregroundColor(.secondary)
+                    }
+                }
+                Spacer()
+                Text("每多掌握一把武器，就多拿几分").font(.caption2).foregroundColor(.secondary)
+                    .multilineTextAlignment(.trailing).frame(width: 120)
+            }
+            .cardSurface(padding: Spacing.lg)
         }
     }
 

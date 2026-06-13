@@ -9,6 +9,7 @@ enum WeaponGuideData {
         electronConservation, differenceMethod, crossMethod, chargeConservation,
         extremeValue, relationMethod, atomConservation, averageMethod,
         massConservation, valenceRule, solubilityCurve,
+        hessCycle, orbitalSymmetry,
     ]
 
     static func guide(for weapon: ChemWeapon) -> WeaponGuide? {
@@ -204,6 +205,42 @@ enum WeaponGuideData {
             "② 点在曲线下方=不饱和、上方=过饱和（有晶体析出）",
             "③ 溶解度受温度影响大→降温结晶；影响小→蒸发结晶",
             "④ 饱和溶液质量分数 = 溶解度/(100+溶解度)×100%",
+        ],
+        exampleCaseId: nil)
+
+    // MARK: 热力学循环（盖斯定律进阶，竞赛）
+
+    private static let hessCycle = WeaponGuide(
+        weapon: .hessCycle,
+        tagline: "状态函数只看始末，设计循环绕开未知",
+        whenToUse: [
+            "求某反应的反应热，但它难以直接测定",
+            "已知几个相关反应的 ΔH，要拼出目标反应",
+            "晶格能、键能、生成焓的循环计算（玻恩-哈伯循环）",
+        ],
+        steps: [
+            "① 把目标反应的始态、末态画出来",
+            "② 找一条由已知反应组成的「迂回路径」连接始末态",
+            "③ 盖斯定律：两条路径的总 ΔH 相等",
+            "④ 把已知反应像代数式一样加减，ΔH 同步加减，解出目标",
+        ],
+        exampleCaseId: nil)
+
+    // MARK: 轨道与对称（结构化学，竞赛）
+
+    private static let orbitalSymmetry = WeaponGuide(
+        weapon: .orbitalSymmetry,
+        tagline: "电子排布与对称性，决定性质",
+        whenToUse: [
+            "判断微粒的空间构型、键角、是否极性",
+            "用等电子原理预测陌生微粒的结构",
+            "由电子排布解释电离能/电负性的反常（半满全满）",
+        ],
+        steps: [
+            "① 写出中心原子的电子排布、数出 σ 键与孤对电子",
+            "② 由价层电子对数定杂化方式与空间构型（VSEPR）",
+            "③ 看分子是否对称→判断极性；看排布是否半满/全满→判断稳定性",
+            "④ 等电子体（原子数、价电子数相同）构型相似，可迁移预测",
         ],
         exampleCaseId: nil)
 }

@@ -36,6 +36,20 @@ struct ProfileView: View {
                 Text("段位决定元素星图的点亮范围；主线节点按顺序解锁，不受段位限制。")
             }
 
+            Section {
+                Toggle("设置高考日期", isOn: examToggle)
+                if profile.examDate != nil {
+                    DatePicker("高考日期", selection: examBinding, displayedComponents: .date)
+                    if let days = profile.daysToExam {
+                        statRow(label: "距高考", value: "\(days) 天")
+                    }
+                }
+            } header: {
+                Text("距高考倒计时")
+            } footer: {
+                Text("设置后首页会显示距高考天数，给冲刺一个明确的目标。")
+            }
+
             Section("学习数据") {
                 statRow(label: "主线进度", value: "\(progress.completedNodeCount)/\(MainLineData.nodes.count) 关")
                 statRow(label: "累计答题", value: "\(progress.totalAttempts) 次")
@@ -59,6 +73,27 @@ struct ProfileView: View {
         }
         .navigationTitle("我的")
         .navigationBarTitleDisplayMode(.inline)
+    }
+
+    private var examToggle: Binding<Bool> {
+        Binding(
+            get: { profile.examDate != nil },
+            set: { on in
+                if on {
+                    // 默认设为次年 6 月 7 日（高考日）
+                    if profile.examDate == nil {
+                        profile.examDate = StudentProfile.defaultExamDate()
+                    }
+                } else {
+                    profile.examDate = nil
+                }
+            })
+    }
+
+    private var examBinding: Binding<Date> {
+        Binding(
+            get: { profile.examDate ?? StudentProfile.defaultExamDate() },
+            set: { profile.examDate = $0 })
     }
 
     private func statRow(label: String, value: String) -> some View {

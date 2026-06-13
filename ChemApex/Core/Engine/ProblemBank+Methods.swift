@@ -127,5 +127,39 @@ extension ProblemBank {
             answerIndex: 0,
             explanation: "Fe→Fe³⁺ 每个失 3 电子。转移 0.3 mol 电子 → n(Fe) = 0.3/3 = 0.1 mol。注意铁与 Cl₂ 反应生成 +3 价（不是 +2），每个铁失 3 电子。",
             nodeId: "fe", weapon: .electronConservation),
+
+        // MARK: 关系式法（补强靶场）
+        ChemProblem(
+            id: "m_rel_01", stage: .senior, topic: .nonmetals,
+            content: "工业合成氨再制硝酸：N₂ → NH₃ → NO → NO₂ → HNO₃。理论上 1 mol N₂ 最多可制得 HNO₃ 的物质的量为？",
+            options: ["1 mol", "2 mol", "0.5 mol", "4 mol"],
+            answerIndex: 1,
+            explanation: "氮原子守恒：1 mol N₂ 含 2 mol N，最终全部进入 HNO₃，故 N₂ ~ 2HNO₃。1 mol N₂ → 2 mol HNO₃。多步流程用关系式法直接首尾相连。",
+            nodeId: "n", weapon: .relationMethod),
+        ChemProblem(
+            id: "m_rel_02", stage: .senior, topic: .metals,
+            content: "用 CO 还原 Fe₂O₃ 炼铁：要炼得 11.2 g 铁，理论上需要 CO 的物质的量为？（3CO+Fe₂O₃→2Fe+3CO₂，Fe 56）",
+            options: ["0.1 mol", "0.2 mol", "0.3 mol", "0.6 mol"],
+            answerIndex: 2,
+            explanation: "n(Fe)=11.2/56=0.2 mol。由方程式 2Fe ~ 3CO，关系式 n(CO)=0.2×3/2 = 0.3 mol。多步或一步反应均可用关系式按系数比直接换算。",
+            nodeId: "jr_metal", weapon: .relationMethod),
+
+        // MARK: 电荷守恒（补强靶场）
+        ChemProblem(
+            id: "m_charge_02", stage: .senior, topic: .solution,
+            content: "0.1 mol/L 的 Na₂SO₄ 溶液中，c(Na⁺) 与 c(SO₄²⁻) 的关系是？",
+            options: ["c(Na⁺) = c(SO₄²⁻)", "c(Na⁺) = 2c(SO₄²⁻)", "2c(Na⁺) = c(SO₄²⁻)", "无法确定"],
+            answerIndex: 1,
+            explanation: "Na₂SO₄ 完全电离，1 个 Na₂SO₄ 给 2 个 Na⁺ 和 1 个 SO₄²⁻，故 c(Na⁺)=2c(SO₄²⁻)=0.2 mol/L。也可由电荷守恒 c(Na⁺)=2c(SO₄²⁻) 直接得到（强电解质不水解）。",
+            nodeId: "p4", weapon: .chargeConservation),
+
+        // MARK: 差量法（补强靶场）
+        ChemProblem(
+            id: "m_diff_03", stage: .senior, topic: .nonmetals,
+            content: "把 2 mol SO₂ 和 1 mol O₂ 通入密闭容器，催化反应一段时间后气体总物质的量变为 2.4 mol。则生成 SO₃ 的物质的量为？（2SO₂+O₂⇌2SO₃）",
+            options: ["0.6 mol", "1.2 mol", "0.4 mol", "0.8 mol"],
+            answerIndex: 1,
+            explanation: "起始总量 3 mol，反应后 2.4 mol，减少 0.6 mol。每生成 2 mol SO₃ 气体总量减少 1 mol（3 mol 气体变 2 mol）。减 0.6 → 生成 SO₃ 1.2 mol。气体物质的量「差量法」。",
+            nodeId: "s", weapon: .differenceMethod),
     ]
 }
