@@ -62,7 +62,27 @@ extension ProblemBank {
             options: ["0.1 mol", "0.2 mol", "0.4 mol", "1.6 mol"],
             answerIndex: 1,
             explanation: "Fe+CuSO₄→FeSO₄+Cu，每 1 mol 反应铁片增重 64−56 = 8 g。增重 1.6 g 对应 0.2 mol，故 CuSO₄ 也是 0.2 mol。",
-            nodeId: "fe", weapon: .differenceMethod),
+            nodeId: "fe", weapon: .differenceMethod,
+            dualSolution: DualSolution(
+                standard: SolutionPath(
+                    title: "常规解：设反应量列式",
+                    steps: [
+                        "设参加反应的 CuSO₄ 为 x mol，析出 Cu 也是 x mol、溶解 Fe x mol",
+                        "铁片质量变化：+64x − 56x = 8x",
+                        "8x = 1.6 → x = 0.2 mol",
+                    ],
+                    timeMinutes: 3),
+                descent: SolutionPath(
+                    title: "差量法：每摩尔增重 8 g",
+                    steps: [
+                        "每 1 mol Fe 换成 Cu，铁片净增 64−56 = 8 g",
+                        "增重 1.6 g → 反应 0.2 mol → CuSO₄ 0.2 mol ✓",
+                    ],
+                    timeMinutes: 1),
+                weapon: .differenceMethod,
+                principle: "原理：铁片增重的根源是「每溶解 56 g Fe、就沉积 64 g Cu」，净增 8 g 是个固定常数（由反应 1:1 决定）。增重总量与反应进行的摩尔数严格成正比，所以拿「实际增重 ÷ 每摩尔增重」就直接得到反应量——不用分别算溶解了多少铁、沉积了多少铜。",
+                keyInsight: "金属片增重/减重题，「每摩尔的固定差值」就是换算反应量的尺子。",
+                plainTalk: "铁片就像一杆秤，每做成一笔「掉 56 克铁、长 64 克铜」的买卖就净赚 8 克。现在赚了 1.6 克，那就是做了 0.2 笔买卖——硫酸铜也消耗 0.2 摩尔。")),
         ChemProblem(
             id: "m_diff_02", stage: .senior, topic: .metals,
             content: "将 Na₂CO₃ 和 NaHCO₃ 的混合物加热至质量不再变化，固体质量减少了 3.1 g（只有 NaHCO₃ 分解）。则原混合物中 NaHCO₃ 为？",
@@ -78,7 +98,27 @@ extension ProblemBank {
             options: ["无法确定比例", "N₂ : CO = 1 : 1", "全是 N₂", "任意比例都成立"],
             answerIndex: 3,
             explanation: "N₂ 和 CO 摩尔质量都是 28，无论怎么混合平均摩尔质量都是 28。这是「等摩尔质量组分」的特殊情形——比例任意。提醒：十字交叉只在两组分值不同时才能定比例。",
-            nodeId: "n03", weapon: .averageMethod),
+            nodeId: "n03", weapon: .averageMethod,
+            dualSolution: DualSolution(
+                standard: SolutionPath(
+                    title: "常规解：尝试十字交叉",
+                    steps: [
+                        "想用十字交叉：(28−28):(28−28)=0:0",
+                        "比例算不出来——十字交叉在这里失效",
+                        "改用平均值思想分析",
+                    ],
+                    timeMinutes: 2),
+                descent: SolutionPath(
+                    title: "平均值法：两组分相等则比例任意",
+                    steps: [
+                        "N₂ 与 CO 摩尔质量都是 28",
+                        "无论怎么混，平均值恒为 28 → 比例无法确定（任意）✓",
+                    ],
+                    timeMinutes: 0.5),
+                weapon: .averageMethod,
+                principle: "原理：平均值必然落在两组分之间。当两组分的值相等时，平均值被「夹死」在这个唯一的数上，与混合比例完全无关——所以反过来由平均值也定不出比例。这正是平均值法的边界：值不同才能定比例，值相同则比例任意。看清这一点，就不会在这类陷阱题上硬套十字交叉。",
+                keyInsight: "两组分数值相等时，平均值恒定、与比例无关——十字交叉失效，比例任意。",
+                plainTalk: "两组同学都考 28 分，那不管两组各多少人，全班平均永远是 28。反过来，知道平均 28 也猜不出两组人数比——因为怎么分都一样。这题的「坑」就在这儿：别硬算比例。")),
         ChemProblem(
             id: "m_cross_02", stage: .senior, topic: .mole,
             content: "由 CH₄ 和 CO₂ 组成的混合气体，平均摩尔质量为 20 g/mol，则 n(CH₄) : n(CO₂) 为？（CH₄ 16、CO₂ 44 g/mol）",
@@ -208,7 +248,28 @@ extension ProblemBank {
             options: ["0.1 mol", "0.15 mol", "0.2 mol", "0.3 mol"],
             answerIndex: 0,
             explanation: "Fe→Fe³⁺ 每个失 3 电子。转移 0.3 mol 电子 → n(Fe) = 0.3/3 = 0.1 mol。注意铁与 Cl₂ 反应生成 +3 价（不是 +2），每个铁失 3 电子。",
-            nodeId: "fe", weapon: .electronConservation),
+            nodeId: "fe", weapon: .electronConservation,
+            dualSolution: DualSolution(
+                standard: SolutionPath(
+                    title: "常规解：配平再算",
+                    steps: [
+                        "2Fe + 3Cl₂ →(点燃) 2FeCl₃",
+                        "Fe 0→+3，每个失 3 电子",
+                        "转移 0.3 mol 电子 → n(Fe) = 0.3 ÷ 3",
+                        "= 0.1 mol",
+                    ],
+                    timeMinutes: 2),
+                descent: SolutionPath(
+                    title: "电子守恒：反推还原剂的量",
+                    steps: [
+                        "Fe → Fe³⁺，每 mol Fe 失 3 mol 电子",
+                        "0.3 mol 电子 ÷ 3 = 0.1 mol Fe ✓",
+                    ],
+                    timeMinutes: 0.5),
+                weapon: .electronConservation,
+                principle: "原理：转移的电子全部由铁失去（Cl₂ 接收）。每个铁原子失几个电子，由它的价态变化定死——与 Cl₂ 反应生成 +3 价，所以每个铁失 3 个，绝不是 2 个。知道了「单位失电子数」，用电子总数反除就得铁的量。关键是别把价态记错（Fe+Cl₂→FeCl₃ 而非 FeCl₂）。",
+                keyInsight: "已知转移电子数反求金属量：电子总数 ÷ 每原子失电子数（看准价态）。",
+                plainTalk: "铁被氯气「逼」着交出 3 个电子变成 Fe³⁺。一共收到 0.3 摩尔电子，每个铁贡献 3 个，那就是 0.1 摩尔铁。千万记住是 +3 价（不是和盐酸反应的 +2）。")),
 
         // MARK: 关系式法（补强靶场）
         ChemProblem(

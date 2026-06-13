@@ -30,7 +30,29 @@ extension ProblemBank {
             options: ["1 mol", "2 mol", "0.5 mol", "4 mol"],
             answerIndex: 0,
             explanation: "2Na₂O₂+2H₂O→4NaOH+O₂↑ 中，O 由 −1 价歧化为 −2（NaOH）和 0（O₂）。每 2 mol Na₂O₂ 转移 2 mol 电子，故 1 mol Na₂O₂ 转移 1 mol 电子。Na₂O₂ 既是氧化剂又是还原剂。",
-            nodeId: "na", weapon: .electronConservation),
+            nodeId: "na", weapon: .electronConservation,
+            dualSolution: DualSolution(
+                standard: SolutionPath(
+                    title: "常规解：标价态、数转移",
+                    steps: [
+                        "2Na₂O₂ + 2H₂O → 4NaOH + O₂↑",
+                        "O₂²⁻ 中 O 为 −1 价：一半升到 0（O₂）、一半降到 −2（NaOH）",
+                        "每 2 mol Na₂O₂ 生成 1 mol O₂，转移 2 mol 电子",
+                        "故 1 mol Na₂O₂ 转移 1 mol 电子",
+                    ],
+                    timeMinutes: 3),
+                descent: SolutionPath(
+                    title: "电子守恒：盯生成的 O₂",
+                    steps: [
+                        "歧化反应中，得失电子都发生在 O 身上",
+                        "每生成 1 mol O₂（O 升 2 价）转移 2 mol 电子",
+                        "1 mol Na₂O₂ → 0.5 mol O₂ → 转移 1 mol 电子 ✓",
+                    ],
+                    timeMinutes: 1),
+                weapon: .electronConservation,
+                principle: "原理：歧化反应里氧化剂和还原剂是同一种元素（这里都是 −1 价的 O），但电子守恒照样成立——升价的 O 失去的电子，恰好等于降价的 O 得到的电子。所以只需盯「升价那部分」即生成的 O₂：每 1 mol O₂ 对应 2 mol 电子，不必把氧化、还原两端分开数。",
+                keyInsight: "歧化反应转移电子数，按「升价产物」（O₂）算：每 mol O₂ 转移 2 mol 电子。",
+                plainTalk: "过氧化钠里的氧很纠结，一半往上跳（变成 O₂）、一半往下走（变成 NaOH）。往上跳的交出多少电子，往下走的就接住多少。盯着跳成氧气的那部分数就行：1 摩尔氧气 = 2 摩尔电子。")),
         ChemProblem(
             id: "p_na_04", stage: .senior, topic: .metals,
             content: "用焰色反应检验钠元素，火焰呈现的颜色是？",
