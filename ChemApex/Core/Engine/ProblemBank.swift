@@ -29,6 +29,7 @@ enum ProblemBank {
         list += structureBatch
         list += organicBatch
         list += juniorExtraBatch
+        list += methodsBatch
         return list
     }()
 

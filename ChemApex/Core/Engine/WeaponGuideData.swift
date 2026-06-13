@@ -8,6 +8,7 @@ enum WeaponGuideData {
     static let all: [WeaponGuide] = [
         electronConservation, differenceMethod, crossMethod, chargeConservation,
         extremeValue, relationMethod, atomConservation, averageMethod,
+        massConservation, valenceRule, solubilityCurve,
     ]
 
     static func guide(for weapon: ChemWeapon) -> WeaponGuide? {
@@ -152,6 +153,57 @@ enum WeaponGuideData {
             "② 平均值必介于各组分的对应值之间",
             "③ 据此判断组成或排除不可能的选项",
             "④ 常与十字交叉法、极值法配合",
+        ],
+        exampleCaseId: nil)
+
+    // MARK: 质量守恒（初中基础武器）
+
+    private static let massConservation = WeaponGuide(
+        weapon: .massConservation,
+        tagline: "参加反应的总质量，前后一克不差",
+        whenToUse: [
+            "求反应中某物质的质量（尤其是看不见的气体）",
+            "由反应物/生成物的质量推未知量，或验证质量关系",
+        ],
+        steps: [
+            "① 列出所有参加反应的物质和所有生成物（含气体）",
+            "② 反应物总质量 = 生成物总质量",
+            "③ 已知量代入，解出未知质量",
+            "④ 注意「参加反应的」——剩余的反应物不算",
+        ],
+        exampleCaseId: nil)
+
+    // MARK: 化合价规则（初中基础武器）
+
+    private static let valenceRule = WeaponGuide(
+        weapon: .valenceRule,
+        tagline: "正负化合价代数和为零",
+        whenToUse: [
+            "求化合物中某元素的化合价",
+            "由化合价书写化学式、判断化学式是否合理",
+        ],
+        steps: [
+            "① 标出已知元素的化合价（H +1、O −2、金属正价等）",
+            "② 设未知元素化合价为 x",
+            "③ 各元素化合价 × 原子个数，代数和 = 0",
+            "④ 解出 x；单质中元素化合价为 0",
+        ],
+        exampleCaseId: nil)
+
+    // MARK: 溶解度曲线（初中基础武器）
+
+    private static let solubilityCurve = WeaponGuide(
+        weapon: .solubilityCurve,
+        tagline: "曲线上的点 = 该温度的饱和状态",
+        whenToUse: [
+            "溶解度曲线读图：求某温度的溶解度、判断饱和/不饱和",
+            "结晶方法选择、溶质质量分数计算",
+        ],
+        steps: [
+            "① 曲线上的点表示该温度下的饱和溶液",
+            "② 点在曲线下方=不饱和、上方=过饱和（有晶体析出）",
+            "③ 溶解度受温度影响大→降温结晶；影响小→蒸发结晶",
+            "④ 饱和溶液质量分数 = 溶解度/(100+溶解度)×100%",
         ],
         exampleCaseId: nil)
 }

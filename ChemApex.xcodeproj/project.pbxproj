@@ -20,6 +20,7 @@
 		49A064CB5FA3E084B508F7E7 /* ProgressManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84E91E6228EF266A56B6F48 /* ProgressManager.swift */; };
 		4D2DD1E3D6FAFC6548A8964D /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B52E623B1F4023F2239DB /* ReviewView.swift */; };
 		5095F61E52D4A8346AFDDCA3 /* WeaponGuideData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F80DB640DCE7B867FD4297 /* WeaponGuideData.swift */; };
+		58715965868BF51FB9484B4C /* ProblemBank+Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8650CB44A8F1995B2F136471 /* ProblemBank+Methods.swift */; };
 		5BB58A62C8C1D589EF01EF0B /* LabBenchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A09E07508A87AD10FC9D5E /* LabBenchView.swift */; };
 		67A82B2314F054E877C5E1C3 /* ProblemBank+Organic.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA307A77FE611DE05D530304 /* ProblemBank+Organic.swift */; };
 		6AF19FC8A19ED49EBCBC73FA /* Stage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C716BE99074F201478CCB85E /* Stage.swift */; };
@@ -89,7 +90,7 @@
 		57B583F2F4DB4F0D710ED2EF /* Detective.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detective.swift; sourceTree = "<group>"; };
 		5E44FC3818EA27F820D90E29 /* DescentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescentView.swift; sourceTree = "<group>"; };
 		61F6EE70FC279AD6FB667103 /* LabBenchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabBenchData.swift; sourceTree = "<group>"; };
-		621F89CFE36C183A0B89427F /* ChemApex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChemApex.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		621F89CFE36C183A0B89427F /* ChemApex.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = ChemApex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65B48063DE8C8652CD273F71 /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
 		69F80DB640DCE7B867FD4297 /* WeaponGuideData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeaponGuideData.swift; sourceTree = "<group>"; };
 		7015CFAAAC13062019705FB3 /* Lore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lore.swift; sourceTree = "<group>"; };
@@ -100,6 +101,7 @@
 		7DF7E1435985319CEE4EF29C /* ProcessFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessFlow.swift; sourceTree = "<group>"; };
 		826D2B8FFED04BD231BCA72B /* NodeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeDetailView.swift; sourceTree = "<group>"; };
 		8327AB579289C7DBECCFC7E2 /* LoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoreData.swift; sourceTree = "<group>"; };
+		8650CB44A8F1995B2F136471 /* ProblemBank+Methods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProblemBank+Methods.swift"; sourceTree = "<group>"; };
 		865B045497FE83B5D48B7EC1 /* LearningNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningNode.swift; sourceTree = "<group>"; };
 		8B1EB4ABDEEA03529E1C0605 /* ProcessFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessFlowView.swift; sourceTree = "<group>"; };
 		8E9D8698B41DB7321B52D33C /* DetectiveData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectiveData.swift; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 				C42A9E5BED2FA0A505B22C29 /* ProblemBank+CoreSenior.swift */,
 				765C389486DB6ED2F8618004 /* ProblemBank+Elements.swift */,
 				98AFA8E1427FA97D595DF9B9 /* ProblemBank+Junior.swift */,
+				8650CB44A8F1995B2F136471 /* ProblemBank+Methods.swift */,
 				BA307A77FE611DE05D530304 /* ProblemBank+Organic.swift */,
 				DE6C112875409A9E7CB185C4 /* ProblemBank+Principles.swift */,
 				E470BCC51954C6788C1A4C1B /* ProblemBank+Structure.swift */,
@@ -420,6 +423,8 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+				};
 			};
 			buildConfigurationList = 329A8A78138E3BE7E5F0E917 /* Build configuration list for PBXProject "ChemApex" */;
 			developmentRegion = en;
@@ -497,6 +502,7 @@
 				E151F5D4FBB76C8BC0B434EF /* ProblemBank+CoreSenior.swift in Sources */,
 				77720270C4522A2D732CD03D /* ProblemBank+Elements.swift in Sources */,
 				DCA9EBD769BEBF1CC7BBA82E /* ProblemBank+Junior.swift in Sources */,
+				58715965868BF51FB9484B4C /* ProblemBank+Methods.swift in Sources */,
 				67A82B2314F054E877C5E1C3 /* ProblemBank+Organic.swift in Sources */,
 				8F9EF725F3D52527A14F533B /* ProblemBank+Principles.swift in Sources */,
 				9BF6EA7AE5A1EFF6D504BF4C /* ProblemBank+Structure.swift in Sources */,
@@ -534,7 +540,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = Z7F8BY55DS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = ChemApex;
@@ -718,7 +723,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = Z7F8BY55DS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = ChemApex;
