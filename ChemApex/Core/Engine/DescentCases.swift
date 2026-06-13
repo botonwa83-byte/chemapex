@@ -278,6 +278,65 @@ enum DescentCases {
                 weapon: .extremeValue,
                 keyInsight: "判断混合物「可不可能」，先算平均值看它在不在两组分之间——超出即不可能，秒判。",
                 plainTalk: "两种气体一个 28 一个 44，不管怎么混，平均都只能在 28 和 44 之间。算出平均是 36，在区间里，所以这事儿能成。")),
+
+        // 原子守恒 · 铁的一系列转化
+        ChemProblem(
+            id: "boss_atom", stage: .senior, topic: .metals,
+            content: "11.2 g 铁与足量稀盐酸反应，向溶液中加入过量 NaOH，过滤得沉淀，将沉淀在空气中充分灼烧，最终得到红棕色固体 Fe₂O₃ 的质量为？（Fe 56）",
+            options: ["8 g", "16 g", "32 g", "11.2 g"],
+            answerIndex: 1,
+            explanation: "铁原子守恒：所有铁最终都进入 Fe₂O₃。n(Fe)=11.2/56=0.2 mol，每 2 个 Fe 进 1 个 Fe₂O₃，n(Fe₂O₃)=0.1 mol，质量 0.1×160=16 g。",
+            nodeId: "fe", weapon: .atomConservation,
+            dualSolution: DualSolution(
+                standard: SolutionPath(
+                    title: "常规解：一步步追踪铁",
+                    steps: [
+                        "Fe + 2HCl → FeCl₂ + H₂↑，0.2 mol Fe → 0.2 mol FeCl₂",
+                        "FeCl₂ + 2NaOH → Fe(OH)₂↓ + 2NaCl，得 0.2 mol Fe(OH)₂",
+                        "4Fe(OH)₂ + O₂ + 2H₂O → 4Fe(OH)₃（灼烧前被氧化）",
+                        "2Fe(OH)₃ →(灼烧) Fe₂O₃ + 3H₂O，0.2 mol Fe(OH)₃ → 0.1 mol Fe₂O₃",
+                        "m = 0.1 × 160 = 16 g",
+                    ],
+                    timeMinutes: 5),
+                descent: SolutionPath(
+                    title: "原子守恒：铁一个都没丢",
+                    steps: [
+                        "铁原子守恒：0.2 mol Fe 全部进入 Fe₂O₃",
+                        "2Fe ~ Fe₂O₃，n(Fe₂O₃)=0.2/2=0.1 mol → 16 g ✓",
+                    ],
+                    timeMinutes: 1),
+                weapon: .atomConservation,
+                keyInsight: "中间转化再多步，铁原子总数不变——直接用首尾的「2Fe ~ Fe₂O₃」一步到位。",
+                plainTalk: "铁从盐酸里走到氢氧化物再到氧化铁，换了好几身衣服，但人还是那些人。0.2 摩尔铁原子，两个铁配一个 Fe₂O₃，就是 0.1 摩尔，乘 160 就是 16 克。")),
+
+        // 平均值法 · 混合烃平均组成
+        ChemProblem(
+            id: "boss_average", stage: .senior, topic: .organic,
+            content: "两种气态烃组成的混合气体，测得其平均分子式为 C₁.₅H₅。则该混合气体中一定含有的气体是？",
+            options: ["CH₄", "C₂H₄", "C₂H₆", "C₃H₈"],
+            answerIndex: 0,
+            explanation: "平均碳原子数 1.5，两组分的碳数必然一个大于 1.5、一个小于 1.5。气态烃中碳数小于 1.5 的只有 CH₄（C=1），故混合气体一定含 CH₄。",
+            nodeId: "org_hydro", weapon: .averageMethod,
+            dualSolution: DualSolution(
+                standard: SolutionPath(
+                    title: "常规解：逐个组合试算",
+                    steps: [
+                        "设两种烃为 CₐHᵦ 和 C꜀Hᵈ，按比例混合",
+                        "列方程让平均碳为 1.5、平均氢为 5",
+                        "逐一假设碳数组合（1与2、1与3…）验证",
+                        "发现只有含 C=1 的 CH₄ 才能把平均拉到 1.5 以下",
+                    ],
+                    timeMinutes: 4),
+                descent: SolutionPath(
+                    title: "平均值法：平均必在两组分之间",
+                    steps: [
+                        "平均碳原子数 1.5，必有一组分碳数 < 1.5",
+                        "气态烃中碳数 < 1.5 的只有 CH₄（C=1）→ 一定含 CH₄ ✓",
+                    ],
+                    timeMinutes: 0.5),
+                weapon: .averageMethod,
+                keyInsight: "平均值卡在两组分之间——平均碳 1.5 就逼出「必有一个碳数 ≤1」，唯一答案 CH₄。",
+                plainTalk: "全班平均身高 1.5 米，那肯定有人比 1.5 矮。气态烃里比「1.5 个碳」还少的，只有甲烷（1 个碳），所以一定有甲烷。")),
     ]
 
     static func bossCase(id: String) -> ChemProblem? {

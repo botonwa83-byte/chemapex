@@ -138,7 +138,7 @@ enum WeaponGuideData {
             "③ 代入已知量求未知量",
             "④ 常与质量守恒、电荷守恒配合使用",
         ],
-        exampleCaseId: nil)
+        exampleCaseId: "boss_atom")
 
     // MARK: 平均值法
 
@@ -155,7 +155,7 @@ enum WeaponGuideData {
             "③ 据此判断组成或排除不可能的选项",
             "④ 常与十字交叉法、极值法配合",
         ],
-        exampleCaseId: nil)
+        exampleCaseId: "boss_average")
 
     // MARK: 质量守恒（初中基础武器）
 
