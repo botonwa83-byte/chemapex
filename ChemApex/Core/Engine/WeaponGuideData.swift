@@ -328,7 +328,7 @@ enum WeaponGuideData {
             "③ 盖斯定律：两条路径的总 ΔH 相等",
             "④ 把已知反应像代数式一样加减，ΔH 同步加减，解出目标",
         ],
-        exampleCaseId: nil)
+        exampleCaseId: "boss_hess")
 
     // MARK: 轨道与对称（结构化学，竞赛）
 
@@ -346,5 +346,5 @@ enum WeaponGuideData {
             "③ 看分子是否对称→判断极性；看排布是否半满/全满→判断稳定性",
             "④ 等电子体（原子数、价电子数相同）构型相似，可迁移预测",
         ],
-        exampleCaseId: nil)
+        exampleCaseId: "boss_orbital")
 }

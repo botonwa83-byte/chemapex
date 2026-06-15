@@ -16,6 +16,8 @@ schemes:
     build:
       targets:
         ChemApex: all
+    run:
+      storeKitConfiguration: ChemApex.storekit
     test:
       targets:
         - ChemApexTests

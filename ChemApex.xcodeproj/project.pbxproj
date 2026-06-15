@@ -52,6 +52,7 @@
 		AA917FD8EBC3DA6E65BCA933 /* ProcessFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF7E1435985319CEE4EF29C /* ProcessFlow.swift */; };
 		AF5741D52D16E9C1DD776D90 /* BalanceProblem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E65B5BC0E1E66FC8D7C381C /* BalanceProblem.swift */; };
 		B66F21ED4D0890106F454AF5 /* ThemeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D15DF74F566562536B34E7 /* ThemeColors.swift */; };
+		B6CB74FD50C4FC999A9D0D8D /* PromoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F155C3241570AD5ADDA29AF3 /* PromoView.swift */; };
 		B753E9230B48AA11C8D6A787 /* AscentPathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81598C2BCACA59774AFBA3B /* AscentPathView.swift */; };
 		B7E08DFE56B2A3713F842277 /* FlashcardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E0F6F3EF8CA31A48CDC81D /* FlashcardData.swift */; };
 		BB1FEE7B9113EFC86CE5742A /* NodeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826D2B8FFED04BD231BCA72B /* NodeDetailView.swift */; };
@@ -106,7 +107,7 @@
 		5B64BEF00955BBBB57C80B82 /* BalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceView.swift; sourceTree = "<group>"; };
 		5E44FC3818EA27F820D90E29 /* DescentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescentView.swift; sourceTree = "<group>"; };
 		61F6EE70FC279AD6FB667103 /* LabBenchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabBenchData.swift; sourceTree = "<group>"; };
-		621F89CFE36C183A0B89427F /* ChemApex.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = ChemApex.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		621F89CFE36C183A0B89427F /* ChemApex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChemApex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65B48063DE8C8652CD273F71 /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
 		69F80DB640DCE7B867FD4297 /* WeaponGuideData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeaponGuideData.swift; sourceTree = "<group>"; };
 		7015CFAAAC13062019705FB3 /* Lore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lore.swift; sourceTree = "<group>"; };
@@ -144,6 +145,7 @@
 		E470BCC51954C6788C1A4C1B /* ProblemBank+Structure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProblemBank+Structure.swift"; sourceTree = "<group>"; };
 		E4B89530B64C7D480B203B15 /* EquationLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquationLibraryView.swift; sourceTree = "<group>"; };
 		F0BFB1297B530A0984767B1D /* ShortAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortAnswer.swift; sourceTree = "<group>"; };
+		F155C3241570AD5ADDA29AF3 /* PromoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoView.swift; sourceTree = "<group>"; };
 		F9FA735507B9C2669DBC2FE0 /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
 		FBE61566C4664A41EF400513 /* ChemApexTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChemApexTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -270,6 +272,14 @@
 			path = Detective;
 			sourceTree = "<group>";
 		};
+		939F87DDBB69A17BDF8BE8C0 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				F155C3241570AD5ADDA29AF3 /* PromoView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		A1CE2DF953E492E0CF4EE298 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -386,6 +396,7 @@
 				A5A9156CA5FAB16BC2890AF0 /* Lab */,
 				62AA2FED08EAE8DE7C76BB00 /* LabBench */,
 				660A8A77B6AE077DD2D9BBB1 /* Lore */,
+				939F87DDBB69A17BDF8BE8C0 /* Onboarding */,
 				73BB9FE4D1D6CF907CA1E36A /* Paywall */,
 				F234FD0E5117A725E788E597 /* ProcessFlow */,
 				3ED9F8B4A02C0A82CEC7D11A /* Profile */,
@@ -450,8 +461,6 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
-				TargetAttributes = {
-				};
 			};
 			buildConfigurationList = 329A8A78138E3BE7E5F0E917 /* Build configuration list for PBXProject "ChemApex" */;
 			developmentRegion = en;
@@ -546,6 +555,7 @@
 				7718915B1069081813181777 /* ProcessFlowView.swift in Sources */,
 				12F9980D6869A3FBC5C32B87 /* ProfileView.swift in Sources */,
 				49A064CB5FA3E084B508F7E7 /* ProgressManager.swift in Sources */,
+				B6CB74FD50C4FC999A9D0D8D /* PromoView.swift in Sources */,
 				9BF8D7C5D550CCEDB65E28FD /* PurchaseManager.swift in Sources */,
 				EFEB1842A44D11BE4D81B0CA /* ReviewScheduler.swift in Sources */,
 				4D2DD1E3D6FAFC6548A8964D /* ReviewView.swift in Sources */,
@@ -576,6 +586,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = Z7F8BY55DS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = ChemApex;
@@ -761,6 +772,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = Z7F8BY55DS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = ChemApex;

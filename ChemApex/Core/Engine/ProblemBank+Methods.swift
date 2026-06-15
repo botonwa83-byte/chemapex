@@ -7,6 +7,37 @@ import Foundation
 extension ProblemBank {
     // 新武器靶场练习
     private static let newWeaponsBatch: [ChemProblem] = [
+        // 热力学循环（盖斯定律）
+        ChemProblem(
+            id: "m_hess_01", stage: .senior, topic: .energy,
+            content: "已知 2H₂(g)+O₂(g)→2H₂O(l) ΔH=−571.6 kJ/mol，则 H₂(g)+½O₂(g)→H₂O(l) 的 ΔH 为？",
+            options: ["−285.8 kJ/mol", "−571.6 kJ/mol", "−1143.2 kJ/mol", "+285.8 kJ/mol"],
+            answerIndex: 0,
+            explanation: "热化学方程式的化学计量数与 ΔH 成正比：系数整体减半，ΔH 也减半，−571.6/2 = −285.8 kJ/mol。",
+            nodeId: nil, weapon: .hessCycle),
+        ChemProblem(
+            id: "m_hess_02", stage: .senior, topic: .energy,
+            content: "已知：① C(s)+O₂(g)→CO₂(g) ΔH₁=−393.5 kJ/mol；② 2CO(g)+O₂(g)→2CO₂(g) ΔH₂=−566.0 kJ/mol。则 2C(s)+O₂(g)→2CO(g) 的 ΔH 为？",
+            options: ["−221.0 kJ/mol", "−110.5 kJ/mol", "−960.5 kJ/mol", "+221.0 kJ/mol"],
+            answerIndex: 0,
+            explanation: "盖斯定律：目标反应 = ①×2 − ②。ΔH = 2×(−393.5) −(−566.0) = −787.0 + 566.0 = −221.0 kJ/mol。",
+            nodeId: nil, weapon: .hessCycle),
+        // 轨道与对称（结构化学）
+        ChemProblem(
+            id: "m_orbital_01", stage: .olympiad, topic: .structure,
+            content: "氮原子的第一电离能反常地大于氧原子，主要原因是？",
+            options: ["N 的 2p 轨道为半充满(2p³)，结构较稳定，失去电子更难",
+                      "N 的原子半径比 O 大", "N 的核电荷数比 O 多", "O 的非金属性比 N 强"],
+            answerIndex: 0,
+            explanation: "N 的价电子排布为 2s²2p³，2p 轨道半充满，能量较低、较稳定，失去第一个电子更难，故第一电离能反常高于相邻的 O。半满/全满更稳定，是解释电离能反常的关键。",
+            nodeId: nil, weapon: .orbitalSymmetry),
+        ChemProblem(
+            id: "m_orbital_02", stage: .olympiad, topic: .structure,
+            content: "SO₃ 与下列微粒互为等电子体，且空间构型同为平面三角形的是？",
+            options: ["NO₃⁻", "CO₂", "NH₃", "H₂O"],
+            answerIndex: 0,
+            explanation: "SO₃：4 原子、价电子 6+6×3=24，平面三角形。NO₃⁻：4 原子、价电子 5+6×3+1=24，等电子体→平面三角形。CO₂(直线)、NH₃(三角锥)、H₂O(V 形) 均不同。",
+            nodeId: nil, weapon: .orbitalSymmetry),
         ChemProblem(
             id: "m_3stage_01", stage: .senior, topic: .equilibrium,
             content: "某温度下，2 mol SO₂ 与 1 mol O₂ 在 2 L 容器中反应，平衡时 SO₃ 为 1.6 mol。则 SO₂ 的转化率为？",

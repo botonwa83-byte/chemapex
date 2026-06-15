@@ -8,11 +8,32 @@ struct ChemApexApp: App {
 
     var body: some Scene {
         WindowGroup {
-            MainTabView()
+            RootView()
                 .environmentObject(profile)
                 .environmentObject(progress)
                 .preferredColorScheme(appearance.colorScheme)
         }
+    }
+}
+
+/// 每次启动先展示广告页（对标 PhysicsApex），点击进入主界面。
+/// 启动参数（截图/UI 自动化用）：-skipPromo 或任意 -demo* 参数会跳过广告页直达主界面。
+struct RootView: View {
+    @State private var passedPromo: Bool = {
+        let args = ProcessInfo.processInfo.arguments
+        return args.contains("-skipPromo") || args.contains { $0.hasPrefix("-demo") }
+    }()
+
+    var body: some View {
+        ZStack {
+            if passedPromo {
+                MainTabView().transition(.opacity)
+            } else {
+                PromoView { withAnimation(.easeInOut(duration: 0.4)) { passedPromo = true } }
+                    .transition(.opacity)
+            }
+        }
+        .animation(.easeInOut(duration: 0.4), value: passedPromo)
     }
 }
 

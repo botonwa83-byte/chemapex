@@ -18,6 +18,7 @@ struct AscentPathView: View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: Spacing.lg) {
+                    premiumBanner
                     examCountdown
                     weakRecommend
                     todayBattle
@@ -45,6 +46,38 @@ struct AscentPathView: View {
             .background(Color.apexBackground.ignoresSafeArea())
             .navigationTitle("指挥中心")
             .sheet(isPresented: $showPaywall) { PaywallView() }
+        }
+    }
+
+    // MARK: 解锁完整版（首页置顶钩子）
+
+    @ViewBuilder
+    private var premiumBanner: some View {
+        if !purchase.isUnlocked {
+            Button { showPaywall = true } label: {
+                HStack(spacing: Spacing.md) {
+                    Image(systemName: "crown.fill")
+                        .font(.title3).foregroundColor(.white)
+                        .frame(width: 44, height: 44)
+                        .background(Color.white.opacity(0.18))
+                        .clipShape(RoundedRectangle(cornerRadius: Radius.inner))
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("解锁完整版").font(AppFont.cardTitle).foregroundColor(.white)
+                        Text("全部 \(nodes.count) 关 · 守恒之眼 · 化学神探 · \(WeaponGuideData.all.count) 把武器，一次买断")
+                            .font(.caption2).foregroundColor(.white.opacity(0.9)).lineLimit(2)
+                    }
+                    Spacer(minLength: 0)
+                    Text(purchase.product?.displayPrice ?? "¥22")
+                        .font(AppFont.cardTitle).foregroundColor(.white)
+                        .padding(.horizontal, 12).padding(.vertical, 6)
+                        .background(Color.white.opacity(0.22)).clipShape(Capsule())
+                }
+                .padding(Spacing.lg)
+                .background(LinearGradient(colors: [.apexGold, .apexLava], startPoint: .leading, endPoint: .trailing))
+                .cornerRadius(Radius.card)
+                .shadow(color: Color.apexLava.opacity(0.3), radius: 8, y: 4)
+            }
+            .buttonStyle(.plain)
         }
     }
 

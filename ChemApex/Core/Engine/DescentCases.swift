@@ -10,6 +10,7 @@ enum DescentCases {
         list += batch2
         list += batch3
         list += batch4
+        list += batch5
         return list
     }()
 
@@ -605,6 +606,74 @@ enum DescentCases {
                 principle: "原理：燃烧只是原子重新组合，碳原子全部跑进 CO₂、氢原子全部跑进 H₂O，一个不丢（原子守恒）。所以「1 个烃分子里有几个碳」就等于「生成的 CO₂ 分子数 ÷ 烃分子数」，氢同理。不必配平整个方程式，数原子即可定分子式。",
                 keyInsight: "由燃烧产物反推分子式：碳进 CO₂、氢进 H₂O，按比例直接数原子。",
                 plainTalk: "烧之前烧之后，碳原子和氢原子的数目都没变。0.1 摩尔烃烧出 0.3 摩尔 CO₂，说明平均每个烃分子掏出 3 个碳；烧出 0.4 摩尔水（含 0.8 摩尔氢），每个分子 8 个氢。拼起来就是 C₃H₈。")),
+    ]
+
+    // MARK: 竞赛武器对决（热力学循环 / 轨道与对称）
+
+    private static let batch5: [ChemProblem] = [
+
+        // 热力学循环（盖斯定律进阶）· 求测不到的反应热
+        ChemProblem(
+            id: "boss_hess", stage: .senior, topic: .energy,
+            content: "已知：① C(s)+O₂(g)→CO₂(g) ΔH₁=−393.5 kJ/mol；② CO(g)+½O₂(g)→CO₂(g) ΔH₂=−283.0 kJ/mol。求 C(s)+½O₂(g)→CO(g) 的 ΔH（碳不完全燃烧成 CO 的热难以直接测定）。",
+            options: ["−110.5 kJ/mol", "−676.5 kJ/mol", "+110.5 kJ/mol", "−283.0 kJ/mol"],
+            answerIndex: 0,
+            explanation: "盖斯定律：目标反应 = ① − ②，ΔH = ΔH₁ − ΔH₂ = −393.5 −(−283.0) = −110.5 kJ/mol。碳燃烧总伴随 CO₂ 生成、无法单独测 CO 的生成热，但设计循环即可绕开。",
+            nodeId: nil, weapon: .hessCycle,
+            dualSolution: DualSolution(
+                standard: SolutionPath(
+                    title: "常规解：想直接测 CO 的生成热",
+                    steps: [
+                        "碳燃烧时 CO 与 CO₂ 总是同时生成，比例难控制",
+                        "没法单独测出「只生成 CO」那一步放多少热",
+                        "直接测——此路不通",
+                    ],
+                    timeMinutes: 5),
+                descent: SolutionPath(
+                    title: "热力学循环：用已知反应拼出目标",
+                    steps: [
+                        "目标：始态 C+½O₂ → 末态 CO",
+                        "迂回路：C 先完全燃烧成 CO₂(①)，再逆着②把 CO₂ 退回 CO",
+                        "盖斯定律 ΔH = ΔH₁ − ΔH₂",
+                        "= −393.5 −(−283.0) = −110.5 kJ/mol ✓",
+                    ],
+                    timeMinutes: 1),
+                weapon: .hessCycle,
+                principle: "原理：焓是状态函数，反应的 ΔH 只取决于始态和末态，与走哪条路径无关。所以哪怕目标反应没法直接测，也能设计一条由已知反应组成的迂回路线连接同样的始末态——两条路的总 ΔH 必然相等。把已知热化学方程式当代数式加减，ΔH 同步加减，未知就解出来了。",
+                keyInsight: "求测不到的反应热：用已知反应拼一条同始末态的迂回路径，ΔH 随方程式加减。",
+                plainTalk: "碳烧成 CO 这步单独测不准（总会冒点 CO₂）。但只要终点一样：让碳先彻底烧成 CO₂（放 393.5），再「退一步」把 CO₂ 变回 CO（吸 283）。一放一吸，净放 110.5。爬山不管走哪条道，海拔差是固定的。")),
+
+        // 轨道与对称（结构化学）· 等电子原理判构型
+        ChemProblem(
+            id: "boss_orbital", stage: .olympiad, topic: .structure,
+            content: "下列微粒与 CO₂ 互为等电子体（原子数相同、价电子总数相同），因而空间构型同为直线形的是？",
+            options: ["N₂O", "SO₂", "NO₂", "H₂O"],
+            answerIndex: 0,
+            explanation: "CO₂：3 原子、价电子 4+6×2=16。N₂O：3 原子、价电子 5×2+6=16，等电子体→直线形。SO₂(18 价电子)、NO₂(17)、H₂O(8) 的中心原子都有孤对电子，均为 V 形（角形）。",
+            nodeId: nil, weapon: .orbitalSymmetry,
+            dualSolution: DualSolution(
+                standard: SolutionPath(
+                    title: "常规解：逐个做 VSEPR 分析",
+                    steps: [
+                        "对 4 个选项分别写电子式、定中心原子杂化",
+                        "数中心原子的成键电子对与孤对电子",
+                        "由价层电子对数判断构型",
+                        "四个挨个算，慢且易在孤对电子上出错",
+                    ],
+                    timeMinutes: 4),
+                descent: SolutionPath(
+                    title: "等电子原理：锚定到熟悉的 CO₂",
+                    steps: [
+                        "等电子体（原子数同、价电子数同）构型相似",
+                        "CO₂：3 原子、16 价电子、直线形",
+                        "逐一数价电子：只有 N₂O = 16 且为 3 原子",
+                        "→ 与 CO₂ 同为直线形 ✓",
+                    ],
+                    timeMinutes: 1),
+                weapon: .orbitalSymmetry,
+                principle: "原理：决定分子空间构型的是价层电子对的排布，而价电子总数和原子数都相同的微粒，成键与孤对情况几乎一致，构型也就相同——这就是等电子原理。它让你把一个陌生微粒「锚定」到一个已知构型的熟悉微粒上，不必从头做杂化与 VSEPR 分析，特别适合考场上快速判断陌生离子的形状。",
+                keyInsight: "判断陌生微粒构型：找一个原子数、价电子数都相同的熟悉微粒，构型照搬。",
+                plainTalk: "别一个个去推杂化。记住 CO₂ 是直线、3 个原子、16 个价电子。谁跟它「原子一样多、价电子一样多」，谁就长得一样。数一圈，只有 N₂O 凑齐 3 原子 16 价电子，所以它也是直线；其余的中心原子带着孤对电子，被顶成了 V 形。")),
     ]
 
     static func bossCase(id: String) -> ChemProblem? {
