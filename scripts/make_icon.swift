@@ -44,14 +44,15 @@ ctx.drawRadialGradient(sheen, startCenter: CGPoint(x: 360, y: 830), startRadius:
 let halo = CGGradient(colorsSpace: cs,
                       colors: [color(1, 1, 1, 0.20), color(1, 1, 1, 0.0)] as CFArray,
                       locations: [0, 1])!
-ctx.drawRadialGradient(halo, startCenter: CGPoint(x: 512, y: 520), startRadius: 0,
-                       endCenter: CGPoint(x: 512, y: 520), endRadius: 360, options: [])
+ctx.drawRadialGradient(halo, startCenter: CGPoint(x: 512, y: 584), startRadius: 0,
+                       endCenter: CGPoint(x: 512, y: 584), endRadius: 360, options: [])
 
-// MARK: 2. 锥形瓶几何（居中放大）
+// MARK: 2. 锥形瓶几何（居中放大，整体上抬为底部 app 名留白）
 
+let L: CGFloat = 64   // 主角整体上抬量，给下方文字让位
 let neckHalf: CGFloat = 46, baseHalf: CGFloat = 200
-let baseY: CGFloat = 330, bodyTopY: CGFloat = 602, neckTopY: CGFloat = 726
-let liquidTopY: CGFloat = 486
+let baseY: CGFloat = 330 + L, bodyTopY: CGFloat = 602 + L, neckTopY: CGFloat = 726 + L
+let liquidTopY: CGFloat = 486 + L
 
 func halfWidth(at y: CGFloat) -> CGFloat {
     baseHalf + (neckHalf - baseHalf) * (y - baseY) / (bodyTopY - baseY)
@@ -87,7 +88,7 @@ ctx.fill(CGRect(x: 0, y: 0, width: 1024, height: 1024))
 ctx.restoreGState()
 
 // 液体内气泡 = 背景色负形（在液体内重绘背景渐变）
-let innerBubbles: [(CGFloat, CGFloat, CGFloat)] = [(470, 420, 20), (552, 452, 13), (500, 392, 10), (430, 376, 8)]
+let innerBubbles: [(CGFloat, CGFloat, CGFloat)] = [(470, 420 + L, 20), (552, 452 + L, 13), (500, 392 + L, 10), (430, 376 + L, 8)]
 for (bx, by, br) in innerBubbles {
     ctx.saveGState()
     ctx.addEllipse(in: CGRect(x: bx - br, y: by - br, width: br * 2, height: br * 2))
@@ -103,12 +104,12 @@ for (bx, by, br) in innerBubbles {
 ctx.saveGState()
 ctx.addPath(liquid); ctx.clip()
 ctx.setFillColor(color(1, 1, 1, 0.5))
-ctx.fillEllipse(in: CGRect(x: 360, y: 432, width: 120, height: 30))
+ctx.fillEllipse(in: CGRect(x: 360, y: 432 + L, width: 120, height: 30))
 ctx.restoreGState()
 
 // MARK: 4. 液面上方上升的小气泡（白色描边圈）
 
-let risingBubbles: [(CGFloat, CGFloat, CGFloat)] = [(498, 545, 13), (530, 590, 9), (500, 640, 7)]
+let risingBubbles: [(CGFloat, CGFloat, CGFloat)] = [(498, 545 + L, 13), (530, 590 + L, 9), (500, 640 + L, 7)]
 ctx.setStrokeColor(color(1, 1, 1, 0.92))
 for (bx, by, br) in risingBubbles {
     ctx.setLineWidth(br > 10 ? 6 : 4.5)
@@ -128,7 +129,7 @@ ctx.setShadow(offset: .zero, blur: 0, color: nil)
 
 // MARK: 6. 瓶口上方发光苯环（化学签名）
 
-let benz = CGPoint(x: 512, y: 818)
+let benz = CGPoint(x: 512, y: 818 + L)
 let glow = CGGradient(colorsSpace: cs,
                       colors: [color(1.0, 0.98, 0.85, 0.95), color(1.0, 0.85, 0.4, 0.0)] as CFArray,
                       locations: [0, 1])!
@@ -149,6 +150,25 @@ ctx.setLineWidth(10)
 ctx.setLineJoin(.round)
 ctx.addPath(hexPath(benz, 40)); ctx.strokePath()
 ctx.setShadow(offset: .zero, blur: 0, color: nil)
+
+// MARK: 7. App 名（锥形瓶下方 · 沿用 Apex 家族字标风格）
+
+NSGraphicsContext.saveGraphicsState()
+NSGraphicsContext.current = NSGraphicsContext(cgContext: ctx, flipped: false)
+let shadow = NSShadow()
+shadow.shadowColor = NSColor(srgbRed: 0.55, green: 0.18, blue: 0.06, alpha: 0.30)
+shadow.shadowOffset = NSSize(width: 0, height: -3)   // flipped:false 下向下偏移
+shadow.shadowBlurRadius = 10
+let nameAttrs: [NSAttributedString.Key: Any] = [
+    .font: NSFont.systemFont(ofSize: 96, weight: .bold),
+    .foregroundColor: NSColor(srgbRed: 1.0, green: 1.0, blue: 1.0, alpha: 0.97),
+    .kern: 2.0,
+    .shadow: shadow,
+]
+let name = NSAttributedString(string: "ChemApex", attributes: nameAttrs)
+let nsz = name.size()
+name.draw(at: NSPoint(x: (1024 - nsz.width) / 2, y: 150))   // 居中，瓶身下方
+NSGraphicsContext.restoreGraphicsState()
 
 // MARK: 输出
 
