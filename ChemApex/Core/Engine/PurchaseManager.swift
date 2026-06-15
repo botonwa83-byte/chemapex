@@ -148,12 +148,4 @@ final class PurchaseManager: ObservableObject {
         case .verified(let value): return value
         }
     }
-
-    #if DEBUG
-    /// 调试用：本地直接解锁 / 还原，便于无 ASC 时预览。
-    @MainActor func debugToggle() {
-        isUnlocked.toggle()
-        UserDefaults.standard.set(isUnlocked, forKey: storageKey)
-    }
-    #endif
 }

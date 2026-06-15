@@ -55,11 +55,6 @@ struct PaywallView: View {
                         .multilineTextAlignment(.center).padding(.horizontal, 24).padding(.top, 8)
                 }
 
-                #if DEBUG
-                Button("（调试）本地解锁") { purchase.debugToggle() }
-                    .font(.caption2).foregroundColor(.secondary).padding(.top, 10)
-                #endif
-
                 Text("购买即视为同意[用户协议](https://botonwa83-byte.github.io/chemapex/terms.html)与[隐私政策](https://botonwa83-byte.github.io/chemapex/privacy.html)。付款通过 Apple 账户完成，换机后可在「恢复购买」找回。")
                     .font(.system(size: 10)).foregroundColor(.secondary)
                     .tint(.apexLava)
