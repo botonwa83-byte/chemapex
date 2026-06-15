@@ -18,6 +18,7 @@ struct ProcessFlowListView: View {
                 }
             }
             .padding(Spacing.lg)
+            .readableWidth()
         }
         .background(Color.apexBackground.ignoresSafeArea())
         .navigationTitle("工艺流程")
@@ -124,6 +125,7 @@ struct ProcessFlowDetailView: View {
                 if allSolved { successCard }
             }
             .padding(Spacing.lg)
+            .readableWidth()
         }
         .background(Color.apexBackground.ignoresSafeArea())
         .navigationTitle(flow.title)

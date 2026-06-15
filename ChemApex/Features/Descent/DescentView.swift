@@ -26,6 +26,7 @@ struct DescentView: View {
                 }
             }
             .padding(Spacing.lg)
+            .readableWidth()
         }
         .background(Color.mysteryBackground.ignoresSafeArea())
         .navigationTitle("守恒之眼")
@@ -156,6 +157,7 @@ struct DescentDetailView: View {
                 .cardShadow()
             }
             .padding(Spacing.lg)
+            .readableWidth()
         }
         .background(Color.mysteryBackground.ignoresSafeArea())
         .navigationTitle("双解对决")

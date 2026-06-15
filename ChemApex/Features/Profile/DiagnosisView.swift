@@ -26,6 +26,7 @@ struct DiagnosisView: View {
                         }
                     }
                     .padding(Spacing.lg)
+                    .readableWidth()
                 }
                 .background(Color.apexBackground.ignoresSafeArea())
             }

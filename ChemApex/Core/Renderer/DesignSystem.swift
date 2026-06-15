@@ -40,6 +40,27 @@ extension View {
             .cornerRadius(Radius.card)
             .cardShadow()
     }
+
+    /// iPad 适配：在 regular 宽度（iPad）下把正文限制为可读最大宽度并居中，
+    /// 避免卡片/文字在大屏上拉满变形；iPhone（compact）下完全无影响。
+    /// 用法：套在 ScrollView 内容容器（如 VStack）的最外层。
+    func readableWidth(_ maxWidth: CGFloat = 640) -> some View {
+        modifier(ReadableWidthModifier(maxWidth: maxWidth))
+    }
+}
+
+private struct ReadableWidthModifier: ViewModifier {
+    let maxWidth: CGFloat
+    @Environment(\.horizontalSizeClass) private var sizeClass
+    func body(content: Content) -> some View {
+        if sizeClass == .regular {
+            content
+                .frame(maxWidth: maxWidth)
+                .frame(maxWidth: .infinity)   // 撑满可用宽度并把受限内容居中
+        } else {
+            content
+        }
+    }
 }
 
 // MARK: - 流式布局（标签自动换行）

@@ -4,7 +4,7 @@ import SwiftUI
 // MARK: - 完整功能解锁 IAP（StoreKit 2 · 一次性买断，移植自 PhysicsApex）
 //
 // 产品 ID：com.chemapex.app.full_unlock（¥22 一次性买断，价格在 App Store Connect 配置）
-// 免费档：主线前 6 关（初中全部 + 物质的量/离子反应/氧化还原，含 4 个守恒之眼 Boss）
+// 免费档：主线前 11 关（初中全部 8 关 + 高中物质的量/离子反应/氧化还原，含 4 个守恒之眼 Boss）
 //        + 化学神探前 3 案；元素星图 / 方程式剧本库 / 现象闪卡 / 智能复习 / 错题本 永久免费（习惯与转化钩子）。
 // 解锁后：主线 15 关、守恒之眼 6 战例、神探 10 案与后续更新内容全开。
 // 本地 UserDefaults 缓存即时呈现，启动时 Transaction.currentEntitlements 核验防破解。

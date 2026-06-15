@@ -16,6 +16,7 @@ struct FlashcardView: View {
                 }
             }
             .padding(Spacing.lg)
+            .readableWidth()
         }
         .background(Color.apexBackground.ignoresSafeArea())
         .navigationTitle("现象闪卡")
@@ -130,6 +131,7 @@ struct FlashcardGameView: View {
             }
         }
         .padding(Spacing.lg)
+        .readableWidth()
         .background(Color.apexBackground.ignoresSafeArea())
         .navigationTitle(category.name)
         .navigationBarTitleDisplayMode(.inline)

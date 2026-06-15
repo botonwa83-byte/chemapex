@@ -42,6 +42,7 @@ struct NodeDetailView: View {
                 }
             }
             .padding(Spacing.lg)
+            .readableWidth()
         }
         .background(Color.apexBackground.ignoresSafeArea())
         .navigationTitle("第 \(node.order) 关")

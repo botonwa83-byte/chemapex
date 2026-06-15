@@ -40,6 +40,7 @@ struct AscentPathView: View {
                 }
                 .padding(.horizontal, Spacing.lg)
                 .padding(.bottom, Spacing.xxl)
+                .readableWidth()
             }
             .background(Color.apexBackground.ignoresSafeArea())
             .navigationTitle("指挥中心")

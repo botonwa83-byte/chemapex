@@ -69,6 +69,7 @@ struct ElementMapView: View {
                 legend
             }
             .padding(Spacing.lg)
+            .readableWidth()
         }
         .sheet(item: $selected) { e in
             ElementDetailView(element: e)

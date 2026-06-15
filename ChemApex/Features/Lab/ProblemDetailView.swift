@@ -88,6 +88,7 @@ struct ProblemDetailView: View {
                 }
             }
             .padding(Spacing.lg)
+            .readableWidth()
         }
         .background(Color.apexBackground.ignoresSafeArea())
         .navigationTitle("练习")

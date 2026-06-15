@@ -45,6 +45,7 @@ struct BalanceListView: View {
                 }
             }
             .padding(Spacing.lg)
+            .readableWidth()
         }
         .background(Color.apexBackground.ignoresSafeArea())
         .navigationTitle("配平训练")

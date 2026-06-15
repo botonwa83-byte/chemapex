@@ -36,6 +36,7 @@ struct ShortAnswerListView: View {
                 }
             }
             .padding(Spacing.lg)
+            .readableWidth()
         }
         .background(Color.apexBackground.ignoresSafeArea())
         .navigationTitle("简答题训练")
@@ -124,6 +125,7 @@ struct ShortAnswerSessionView: View {
                         }
                     }
                     .padding(.horizontal, Spacing.lg)
+                    .readableWidth()
                 }
                 bottomBar(q)
             } else {

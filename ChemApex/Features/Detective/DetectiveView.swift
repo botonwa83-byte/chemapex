@@ -25,6 +25,7 @@ struct DetectiveView: View {
                 }
             }
             .padding(Spacing.lg)
+            .readableWidth()
         }
         .background(Color.mysteryBackground.ignoresSafeArea())
         .navigationTitle("化学神探")
@@ -142,6 +143,7 @@ struct DetectiveCaseView: View {
                 }
             }
             .padding(Spacing.lg)
+            .readableWidth()
         }
         .background(Color.mysteryBackground.ignoresSafeArea())
         .navigationTitle(detectiveCase.title)

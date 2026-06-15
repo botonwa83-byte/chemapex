@@ -41,6 +41,7 @@ struct EquationDrillView: View {
                 .buttonStyle(.plain)
             }
             .padding(Spacing.lg)
+            .readableWidth()
         }
         .background(Color.apexBackground.ignoresSafeArea())
         .navigationTitle("方程式默写")
@@ -111,6 +112,7 @@ struct EquationDrillSessionView: View {
                         }
                     }
                     .padding(.horizontal, Spacing.lg)
+                    .readableWidth()
                 }
 
                 Spacer(minLength: 0)

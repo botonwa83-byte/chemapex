@@ -32,6 +32,7 @@ struct GiantsView: View {
                 }
             }
             .padding(Spacing.lg)
+            .readableWidth()
         }
         .background(Color.apexBackground.ignoresSafeArea())
         .navigationTitle("化学巨人")
@@ -70,6 +71,7 @@ struct GiantDetailView: View {
                 statRow("影响", giant.impact)
             }
             .padding(Spacing.lg)
+            .readableWidth()
         }
         .background(Color.apexBackground.ignoresSafeArea())
         .navigationTitle(giant.name)
@@ -121,6 +123,7 @@ struct StoryVaultView: View {
                 }
             }
             .padding(Spacing.lg)
+            .readableWidth()
         }
         .background(Color.mysteryBackground.ignoresSafeArea())
         .navigationTitle("毒与火档案馆")
@@ -150,6 +153,7 @@ struct StoryDetailView: View {
                 .cornerRadius(Radius.card)
             }
             .padding(Spacing.lg)
+            .readableWidth()
         }
         .background(Color.mysteryBackground.ignoresSafeArea())
         .navigationTitle(story.title)

@@ -20,6 +20,7 @@ struct WeaponShelfView: View {
                 }
             }
             .padding(Spacing.lg)
+            .readableWidth()
         }
         .background(Color.apexBackground.ignoresSafeArea())
         .navigationTitle("解题武器库")
@@ -126,6 +127,7 @@ struct WeaponDetailView: View {
                 }
             }
             .padding(Spacing.lg)
+            .readableWidth()
         }
         .background(Color.apexBackground.ignoresSafeArea())
         .navigationTitle(weapon.name)

@@ -18,6 +18,7 @@ struct LabBenchView: View {
                 }
             }
             .padding(Spacing.lg)
+            .readableWidth()
         }
         .background(Color.apexBackground.ignoresSafeArea())
         .navigationTitle("虚拟实验台")
@@ -122,6 +123,7 @@ struct LabBenchGameView: View {
                 }
             }
             .padding(Spacing.lg)
+            .readableWidth()
         }
         .background(Color.apexBackground.ignoresSafeArea())
         .navigationTitle(setup.title)

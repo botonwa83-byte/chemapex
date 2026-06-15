@@ -30,6 +30,7 @@ struct EquationLibraryView: View {
                 }
             }
             .padding(Spacing.lg)
+            .readableWidth()
         }
     }
 
